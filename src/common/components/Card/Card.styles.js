@@ -8,11 +8,11 @@ export const styles = {
   },
   content: {},
   title: {
+    fontSize: { xs: '28px', md: '48px' },
     marginBottom: '16px',
-    background: 'linear-gradient(90deg, #FBC7D4 0%, #9796F0 100%), #4AAF47',
-    backgroundClip: 'text',
-    textFillColor: 'transparent',
-    textTransform: 'uppercase',
   },
-  description: {},
+  description: {
+    fontSize: { xs: '14px', md: '16px' },
+    lineHeight: { xs: '22.4px', md: '25.6px' },
+  },
 };

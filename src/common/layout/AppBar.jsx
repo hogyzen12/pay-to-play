@@ -13,7 +13,7 @@ const styles = {
   header: {
     gridArea: 'AppBar',
     maxHeight: '100px',
-    borderBottom: '1px solid #221F20',
+    borderBottom: theme => `1px solid ${theme.palette.custom.thunder}`,
     padding: '16px 0',
     boxShadow: 'none',
   },
@@ -26,8 +26,14 @@ const styles = {
   wallet: {
     display: 'flex',
   },
+  key: {
+    maxWidth: '120px',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+  },
   connected: {
-    color: '#4AAF47',
+    color: theme => theme.palette.custom.apple,
     ml: '16px',
   },
 };
@@ -46,7 +52,7 @@ const AppBar = ({ providerPubKey, loginHandler }) => {
 
         {providerPubKey ? (
           <Box sx={styles.wallet}>
-            <Typography>{providerPubKey.toBase58()}</Typography>
+            <Typography sx={styles.key}>{providerPubKey.toBase58()}</Typography>
             <Typography sx={styles.connected}>Connected</Typography>
           </Box>
         ) : (

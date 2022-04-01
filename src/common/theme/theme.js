@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/named
 import { createTheme, responsiveFontSizes } from '@mui/material';
-import {} from '@mui/material/colors';
 
 let theme = createTheme({
   palette: {
@@ -13,17 +12,18 @@ let theme = createTheme({
       contrastText: '#FFF',
     },
     success: {
-      main: '#191819',
+      main: '#404040',
       contrastText: '#A2A2A2',
     },
     info: {
-      main: '#FFF',
-      contrastText: '#002E36',
+      main: '#1D1D1D',
+      contrastText: '#FFF',
     },
     custom: {
       white: '#FFF',
       black: '#000',
-      mercury: '#E4E4E4',
+      apple: '#4AAF47',
+      thunder: '#221F20',
     },
     background: {
       default: '#141414',
@@ -34,19 +34,7 @@ let theme = createTheme({
     },
   },
   typography: {
-    fontFamily: [
-      'Inter',
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
+    fontFamily: "'Inter', sans-serif",
     fontSize: 16,
     fontWeightRegular: 400,
     fontWeightMedium: 500,
@@ -54,6 +42,10 @@ let theme = createTheme({
       fontFamily: "'Stick No Bills'",
       fontSize: '48px',
       fontWeight: 600,
+      background: 'linear-gradient(90deg, #FBC7D4 0%, #9796F0 100%), #4AAF47',
+      backgroundClip: 'text',
+      textFillColor: 'transparent',
+      textTransform: 'uppercase',
     },
     h3: {
       fontFamily: "'Bebas Neue'",
@@ -97,13 +89,15 @@ let theme = createTheme({
     MuiToolbar: {
       styleOverrides: {
         root: {
+          minHeight: 'fit-content',
+
           '@media (min-width: 768px)': {
             minHeight: 'fit-content',
           },
         },
         gutters: {
-          paddingLeft: 20,
-          paddingRight: 20,
+          paddingLeft: 16,
+          paddingRight: 16,
 
           '@media (min-width: 600px)': {
             paddingLeft: 48,

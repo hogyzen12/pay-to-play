@@ -3,3 +3,4 @@ export { default as Card } from './Card/Card';
 export { default as Tutorial } from './Tutorial/Tutorial';
 export { default as PaymentSelect } from './PaymentSelect/PaymentSelect';
 export { default as ResultModal } from './ResultModal/ResultModal';
+export { default as NotificationPopup } from './NotificationPopup/NotificationPopup';

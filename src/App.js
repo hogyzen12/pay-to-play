@@ -12,7 +12,6 @@ import {
   PublicKey,
 } from '@solana/web3.js';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-
 import AppLayout from './common/layout/AppLayout';
 
 const NETWORK = clusterApiUrl('devnet');
@@ -21,9 +20,17 @@ const gameWalletPublicKey = new PublicKey(
   '62AtDMhgaW1YQZCxv7hGBE7HDTU67L71vs4VQrRVBq3p',
 );
 
+const initialAlersState = {
+  open: false,
+  message: '',
+  severity: undefined,
+};
+
 const App = () => {
   const [provider, setProvider] = useState();
   const [providerPubKey, setProviderPub] = useState();
+  const [alertState, setAlertState] = useState(initialAlersState);
+  const [openModal, setOpenModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -44,10 +51,22 @@ const App = () => {
     if (provider) {
       provider.on('connect', async () => {
         console.log('wallet got connected', provider.publicKey);
+
+        setAlertState({
+          open: true,
+          message: 'wallet got connected',
+          severity: 'success',
+        });
         setProviderPub(provider.publicKey);
       });
       provider.on('disconnect', () => {
         console.log('Disconnected from wallet');
+
+        setAlertState({
+          open: true,
+          message: 'Disconnected from wallet',
+          severity: 'error',
+        });
       });
     }
   }, [provider]);
@@ -172,6 +191,19 @@ const App = () => {
     console.log('DHMT button clicked'); // TODO: DHTM button click logic goes here <--
   };
 
+  const onAlertClose = () => {
+    setAlertState(initialAlersState);
+  };
+
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
+
+  const resetResult = () => {};
+
+  const submitResult = () => {
+    setOpenModal(true);
+  };
+
   return (
     <>
       <Suspense fallback={<Loader isLoading />}>
@@ -180,8 +212,15 @@ const App = () => {
             path={routes.home}
             element={
               <AppLayout
+                loading={loading}
+                openModal={openModal}
+                handleCloseModal={handleCloseModal}
+                alertState={alertState}
                 providerPubKey={providerPubKey}
+                onAlertClose={onAlertClose}
                 loginHandler={loginHandler}
+                resetResult={resetResult}
+                submitResult={submitResult}
               />
             }
           >
@@ -199,7 +238,6 @@ const App = () => {
           </Route>
         </Routes>
       </Suspense>
-      <Loader isLoading={loading} />
     </>
   );
 };

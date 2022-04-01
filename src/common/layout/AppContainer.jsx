@@ -4,7 +4,7 @@ import { Container } from '@mui/material';
 const styles = {
   container: {
     height: '100%',
-    padding: { xs: '32px 0 48px', md: '32px 0 55px' },
+    padding: { xs: '32px 16px 48px', md: '32px 0 55px' },
   },
 };
 

@@ -7,6 +7,7 @@ import { routes } from '../../routes';
 import AppBar from './AppBar';
 import AppWrapper from './AppWrapper';
 import AppBasement from './AppBasement';
+import { Loader, NotificationPopup, ResultModal } from '../components';
 
 const styles = {
   layout: {
@@ -22,22 +23,47 @@ const styles = {
   },
 };
 
-const AppLayout = ({ providerPubKey, loginHandler }) => {
+const AppLayout = ({
+  providerPubKey,
+  loginHandler,
+  loading,
+  openModal,
+  alertState,
+  onAlertClose,
+  resetResult,
+  submitResult,
+  handleCloseModal,
+}) => {
   const [showBasement, setShowBasement] = useState(false);
+  const [showBar, setShowBar] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     setShowBasement(location.pathname === routes.crossword);
+    setShowBar(
+      location.pathname === routes.home ||
+        location.pathname === routes.crossword,
+    );
   }, [location]);
 
   return (
-    <Box sx={styles.layout}>
-      <AppBar providerPubKey={providerPubKey} loginHandler={loginHandler} />
-      <AppWrapper>
-        <Outlet />
-      </AppWrapper>
-      {showBasement && <AppBasement />}
-    </Box>
+    <>
+      <Box sx={styles.layout}>
+        {showBar && (
+          <AppBar providerPubKey={providerPubKey} loginHandler={loginHandler} />
+        )}
+        <AppWrapper>
+          <Outlet />
+        </AppWrapper>
+        {showBasement && (
+          <AppBasement resetResult={resetResult} submitResult={submitResult} />
+        )}
+      </Box>
+
+      <Loader isLoading={loading} />
+      <NotificationPopup alertState={alertState} onAlertClose={onAlertClose} />
+      <ResultModal openModal={openModal} handleCloseModal={handleCloseModal} />
+    </>
   );
 };
 

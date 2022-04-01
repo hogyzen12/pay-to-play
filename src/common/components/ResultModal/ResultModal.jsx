@@ -1,8 +1,12 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Modal } from '@mui/material';
 
-const ResultModal = () => {
-  return <Box>ResultModal</Box>;
+const ResultModal = ({ openModal, handleCloseModal }) => {
+  return (
+    <Modal open={openModal} onClose={handleCloseModal}>
+      <Box>ResultModal</Box>
+    </Modal>
+  );
 };
 
 export default ResultModal;

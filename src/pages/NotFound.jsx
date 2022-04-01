@@ -1,4 +1,4 @@
-import React, { useEffect, createRef } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
@@ -10,12 +10,12 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    textAlign: 'center',
     minHeight: '100%',
   },
   title: {
     mb: '20px',
   },
-  text: {},
 };
 
 const NotFound = () => {
@@ -41,7 +41,7 @@ const NotFound = () => {
           <Typography sx={styles.title} variant="h2">
             Sorry, this page does not exist
           </Typography>
-          <Typography sx={styles.text}>
+          <Typography variant="body1">
             You will be redirected to home page in 5 seconds
           </Typography>
         </Box>

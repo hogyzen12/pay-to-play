@@ -1,6 +1,9 @@
-export { default as Loader } from './Loader/Loader';
 export { default as Card } from './Card/Card';
+export { default as Game } from './Game/Game';
+export { default as Hints } from './Hints/Hints';
+export { default as Timer } from './Timer/Timer';
+export { default as Modal } from './Modal/Modal';
+export { default as Loader } from './Loader/Loader';
 export { default as Tutorial } from './Tutorial/Tutorial';
+export { default as Notification } from './Notification/Notification';
 export { default as PaymentSelect } from './PaymentSelect/PaymentSelect';
-export { default as ResultModal } from './ResultModal/ResultModal';
-export { default as NotificationPopup } from './NotificationPopup/NotificationPopup';

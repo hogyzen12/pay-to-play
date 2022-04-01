@@ -1,7 +1,7 @@
 import React from 'react';
 import { Snackbar, Alert } from '@mui/material';
 
-const NotificationPopup = ({ alertState, onAlertClose }) => (
+const Notification = ({ alertState, onAlertClose }) => (
   <Snackbar
     anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
     open={alertState.open}
@@ -18,4 +18,4 @@ const NotificationPopup = ({ alertState, onAlertClose }) => (
   </Snackbar>
 );
 
-export default NotificationPopup;
+export default Notification;

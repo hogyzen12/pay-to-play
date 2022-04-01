@@ -7,6 +7,7 @@ import {
   IconButton,
   Button,
 } from '@mui/material';
+import { Timer } from '../components';
 import { ReactComponent as Logo } from '../../assets/icons/diamond.svg';
 
 const styles = {
@@ -49,6 +50,8 @@ const AppBar = ({ providerPubKey, loginHandler }) => {
         <IconButton size="large" edge="start">
           <Logo width="32" />
         </IconButton>
+
+        <Timer />
 
         {providerPubKey ? (
           <Box sx={styles.wallet}>

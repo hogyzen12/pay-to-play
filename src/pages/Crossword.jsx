@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Box } from '@mui/material';
+import { Game, Hints } from '../common/components';
 import AppContainer from '../common/layout/AppContainer';
 
 const styles = {
@@ -20,8 +21,8 @@ const Crossword = () => {
 
       <AppContainer>
         <Box sx={styles.wrapper}>
-          <Box></Box>
-          <Box></Box>
+          <Game></Game>
+          <Hints></Hints>
         </Box>
       </AppContainer>
     </>

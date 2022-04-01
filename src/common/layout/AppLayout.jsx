@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
-
+import { Loader, Notification, Modal } from '../components';
 import { routes } from '../../routes';
 import AppBar from './AppBar';
 import AppWrapper from './AppWrapper';
 import AppBasement from './AppBasement';
-import { Loader, NotificationPopup, ResultModal } from '../components';
 
 const styles = {
   layout: {
@@ -61,8 +60,8 @@ const AppLayout = ({
       </Box>
 
       <Loader isLoading={loading} />
-      <NotificationPopup alertState={alertState} onAlertClose={onAlertClose} />
-      <ResultModal openModal={openModal} handleCloseModal={handleCloseModal} />
+      <Modal openModal={openModal} handleCloseModal={handleCloseModal} />
+      <Notification alertState={alertState} onAlertClose={onAlertClose} />
     </>
   );
 };

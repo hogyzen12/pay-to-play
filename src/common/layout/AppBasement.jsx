@@ -1,5 +1,14 @@
 import React from 'react';
-import { Box, Toolbar, Typography, Button, Link } from '@mui/material';
+import {
+  Box,
+  Toolbar,
+  Typography,
+  Button as MuiButton,
+  Link,
+  useTheme,
+  useMediaQuery,
+} from '@mui/material';
+import { Button } from '../components';
 
 const styles = {
   footer: {
@@ -26,15 +35,12 @@ const styles = {
   reset: {
     padding: '16px 24px',
   },
-  submit: {
-    padding: '16px 54px',
-    background:
-      'linear-gradient(90deg, #FBC7D4 0%, #9796F0 100%), linear-gradient(0deg, #512DA8, #512DA8), linear-gradient(90deg, #FBC7D4 0%, #9796F0 100%), #4AAF47;',
-    color: theme => theme.palette.primary.main,
-  },
 };
 
 const AppBasement = ({ resetResult, submitResult }) => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
   const handleReset = () => resetResult();
   const handleSubmit = () => submitResult();
 
@@ -51,22 +57,15 @@ const AppBasement = ({ resetResult, submitResult }) => {
         </Box>
 
         <Box sx={styles.buttons}>
-          <Button
+          <MuiButton
             sx={styles.reset}
             onClick={handleReset}
             color="info"
             variant="contained"
           >
             Reset
-          </Button>
-          <Button
-            sx={styles.submit}
-            onClick={handleSubmit}
-            color="secondary"
-            variant="contained"
-          >
-            Submit
-          </Button>
+          </MuiButton>
+          <Button onClick={handleSubmit} />
         </Box>
       </Toolbar>
     </Box>

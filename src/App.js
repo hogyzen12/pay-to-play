@@ -98,7 +98,13 @@ const App = () => {
      */
 
     if (!providerPubKey) {
-      alert('Ooops... Please login via wallet');
+      // alert('Ooops... Please login via wallet');
+      setAlertState({
+        open: true,
+        message: 'Please login via wallet',
+        severity: 'info',
+      });
+
       return;
     }
 
@@ -189,20 +195,28 @@ const App = () => {
 
   const handleClickDHMT = () => {
     console.log('DHMT button clicked'); // TODO: DHTM button click logic goes here <--
+
+    /*
+     * Check if the user is logged in
+     */
+
+    if (!providerPubKey) {
+      // alert('Ooops... Please login via wallet');
+      setAlertState({
+        open: true,
+        message: 'Please login via wallet',
+        severity: 'info',
+      });
+
+      return;
+    }
   };
 
-  const onAlertClose = () => {
-    setAlertState(initialAlersState);
-  };
-
+  const onAlertClose = () => setAlertState(initialAlersState);
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
-
+  const submitResult = () => handleOpenModal();
   const resetResult = () => {};
-
-  const submitResult = () => {
-    setOpenModal(true);
-  };
 
   return (
     <>

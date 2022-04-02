@@ -1,25 +1,26 @@
 import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, IconButton } from '@mui/material';
+import {
+  PlayArrow as PlayArrowIcon,
+  Pause as PauseIcon,
+} from '@mui/icons-material';
+import { styles } from './Timer.styles';
 
-const styles = {
-  timer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  time: {
-    color: 'custom.white',
-  },
-  button: {},
-};
+const Timer = ({ type = 'play' }) => {
+  const handleClick = () => console.log('click');
 
-const Timer = () => {
   return (
     <Box sx={styles.timer}>
       <Typography sx={styles.time} variant="h3" color="">
         00 : 00
       </Typography>
-      <Button sx={styles.button}></Button>
+      <IconButton sx={styles.button} onClick={handleClick}>
+        {type === 'pause' ? (
+          <PauseIcon sx={styles.icon} />
+        ) : (
+          <PlayArrowIcon sx={styles.icon} />
+        )}
+      </IconButton>
     </Box>
   );
 };

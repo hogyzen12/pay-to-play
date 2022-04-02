@@ -4,6 +4,8 @@ export { default as Hints } from './Hints/Hints';
 export { default as Timer } from './Timer/Timer';
 export { default as Modal } from './Modal/Modal';
 export { default as Loader } from './Loader/Loader';
+export { default as Button } from './Button/Button';
+export { default as Answer } from './Answer/Answer';
 export { default as Tutorial } from './Tutorial/Tutorial';
 export { default as Notification } from './Notification/Notification';
 export { default as PaymentSelect } from './PaymentSelect/PaymentSelect';

@@ -1,9 +1,15 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { styles } from './Hints.styles';
 
 const Hints = () => {
-  return <Box sx={styles.hints}>Hints</Box>;
+  return (
+    <Box sx={styles.hints}>
+      <Typography sx={styles.title} variant="h3">
+        Hints
+      </Typography>
+    </Box>
+  );
 };
 
 export default Hints;

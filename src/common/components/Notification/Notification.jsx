@@ -5,7 +5,7 @@ const Notification = ({ alertState, onAlertClose }) => (
   <Snackbar
     anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
     open={alertState.open}
-    autoHideDuration={6000}
+    autoHideDuration={4000}
     onClose={onAlertClose}
   >
     <Alert

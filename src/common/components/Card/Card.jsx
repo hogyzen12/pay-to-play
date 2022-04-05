@@ -5,26 +5,27 @@ import {
   CardContent,
   Typography,
 } from '@mui/material';
+import { staticContent } from 'common/static/content';
 import { styles } from './Card.styles';
 
 const Card = () => {
+  const { title, description } = staticContent.pages.home;
+
   return (
     <MuiCard sx={styles.card}>
       <CardMedia
         sx={styles.image}
         component="img"
         height="280"
-        image="/static/images/cards/contemplative-reptile.jpg"
+        image=""
         alt=""
       />
       <CardContent sx={styles.content}>
         <Typography sx={styles.title} variant="h2" component="h2">
-          Diamond Hands NFT Game
+          {title}
         </Typography>
         <Typography sx={styles.description} variant="body1">
-          The Diamond Hands NFT project is backed by Cryptonary{'’'}s team of
-          leading industry experts and one of the biggest established
-          communities in the crypto space.
+          {description}
         </Typography>
       </CardContent>
     </MuiCard>

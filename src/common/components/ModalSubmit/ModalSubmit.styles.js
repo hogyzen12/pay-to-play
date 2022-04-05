@@ -4,22 +4,49 @@ export const styles = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    maxWidth: { xs: '90%', xl: '1020px' },
+    maxWidth: '1020px',
     width: '100%',
     bgcolor: '#1D1D1D',
-    padding: { md: '32px' },
+    padding: { xs: '32px 16px', md: '32px' },
     borderRadius: '8px',
   },
   heading: {
     display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: { md: '32px' },
+    flexDirection: { xs: 'column', md: 'row' },
+    justifyContent: { md: 'space-between' },
+    alignItems: { md: 'center' },
+    marginBottom: '32px',
+  },
+  title: {
+    fontSize: { xs: '20px', md: '32px' },
+    lineHeight: { xs: '20px', md: '32px' },
+    fontWeight: { md: 500 },
+    marginBottom: { xs: '32px', md: '0' },
+  },
+  statsWrapper: {
+    display: 'flex',
+  },
+  stats: {
+    display: 'flex',
+
+    '&:first-of-type': {
+      marginRight: '32px',
+    },
+  },
+  statsTitle: {
+    fontSize: { xs: '20px', md: '32px' },
+    lineHeight: { xs: '20px', md: '32px' },
+    marginRight: '8px',
+  },
+  statsResult: {
+    fontSize: { xs: '20px', md: '32px' },
+    lineHeight: { xs: '20px', md: '32px' },
+    color: 'custom.white',
   },
   content: {
     display: 'flex',
-    paddingTop: { md: '32px' },
-    marginBottom: { md: '32px' },
+    paddingTop: '32px',
+    marginBottom: '32px',
     borderTop: theme => `1px solid ${theme.palette.success.main}`,
   },
   axis: {
@@ -38,34 +65,18 @@ export const styles = {
     listStyleType: 'none',
     padding: '0',
   },
-  title: {
-    fontSize: { md: '32px' },
-    fontWeight: { md: 500 },
-  },
-  statsWrapper: {
-    display: 'flex',
-  },
-  stats: {
-    display: 'flex',
-
-    '&:first-of-type': {
-      marginRight: { md: '32px' },
-    },
-  },
-  statsTitle: {
-    marginRight: { md: '8px' },
-  },
-  statsResult: {
-    color: 'custom.white',
-  },
   footer: {
     display: 'flex',
-    justifyContent: 'space-between',
+    flexDirection: { xs: 'column-reverse', md: 'row' },
+    justifyContent: { md: 'space-between' },
     alignItems: 'center',
-    paddingTop: { md: '32px' },
+    paddingTop: '32px',
     borderTop: theme => `1px solid ${theme.palette.success.main}`,
   },
   link: {
+    fontSize: { xs: '14px' },
+    lineHeight: { xs: '14px' },
+    marginTop: { xs: '32px' },
     color: '#A5A5A5',
   },
   submit: {

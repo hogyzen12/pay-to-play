@@ -1,8 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Box } from '@mui/material';
-import { Game, Hints } from '../common/components';
-import AppContainer from '../common/layout/AppContainer';
+import { Game, Hints } from 'common/components';
+import { staticContent } from 'common/static/content';
+import AppContainer from 'common/layout/AppContainer';
 
 const styles = {
   wrapper: {
@@ -13,11 +14,13 @@ const styles = {
 };
 
 const Crossword = () => {
+  const { title, description } = staticContent.meta.crossword;
+
   return (
     <>
       <Helmet>
-        <title>Diamond Crossword</title>
-        <meta name="description" content="Diamond Hands Game" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
       </Helmet>
 
       <AppContainer>

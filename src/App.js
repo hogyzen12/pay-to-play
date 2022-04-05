@@ -30,7 +30,8 @@ const App = () => {
   const [provider, setProvider] = useState();
   const [providerPubKey, setProviderPub] = useState();
   const [alertState, setAlertState] = useState(initialAlersState);
-  const [openModal, setOpenModal] = useState(false);
+  const [openSubmitModal, setOpenSubmitModal] = useState(false);
+  const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -213,9 +214,11 @@ const App = () => {
   };
 
   const onAlertClose = () => setAlertState(initialAlersState);
-  const handleOpenModal = () => setOpenModal(true);
-  const handleCloseModal = () => setOpenModal(false);
-  const submitResult = () => handleOpenModal();
+  const handleOpenSubmitModal = () => setOpenSubmitModal(true);
+  const handleCloseSubmitModal = () => setOpenSubmitModal(false);
+  const handleOpenSuccessModal = () => setOpenSuccessModal(true);
+  const handleCloseSuccessModal = () => setOpenSuccessModal(false);
+  const submitResult = () => handleOpenSubmitModal();
   const resetResult = () => {};
 
   return (
@@ -227,14 +230,17 @@ const App = () => {
             element={
               <AppLayout
                 loading={loading}
-                openModal={openModal}
-                handleCloseModal={handleCloseModal}
                 alertState={alertState}
                 providerPubKey={providerPubKey}
                 onAlertClose={onAlertClose}
                 loginHandler={loginHandler}
                 resetResult={resetResult}
                 submitResult={submitResult}
+                openSubmitModal={openSubmitModal}
+                openSuccessModal={openSuccessModal}
+                handleCloseSubmitModal={handleCloseSubmitModal}
+                handleOpenSuccessModal={handleOpenSuccessModal}
+                handleCloseSuccessModal={handleCloseSuccessModal}
               />
             }
           >

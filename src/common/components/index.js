@@ -1,8 +1,10 @@
 export { default as Card } from './Card/Card';
 export { default as Game } from './Game/Game';
+export { default as Tabs } from './Tabs/Tabs';
 export { default as Hints } from './Hints/Hints';
 export { default as Timer } from './Timer/Timer';
-export { default as Modal } from './Modal/Modal';
+export { default as ModalSubmit } from './ModalSubmit/ModalSubmit';
+export { default as ModalSuccess } from './ModalSuccess/ModalSuccess';
 export { default as Loader } from './Loader/Loader';
 export { default as Button } from './Button/Button';
 export { default as Answer } from './Answer/Answer';

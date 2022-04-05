@@ -9,6 +9,7 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { Button } from '../components';
+import { staticContent } from '../static/content';
 
 const styles = {
   footer: {
@@ -18,7 +19,8 @@ const styles = {
   },
   toolbar: {
     display: 'flex',
-    justifyContent: 'space-between',
+    flexDirection: { xs: 'column', md: 'row' },
+    justifyContent: { md: 'space-between' },
   },
   technical: {
     display: 'flex',
@@ -40,6 +42,7 @@ const styles = {
 const AppBasement = ({ resetResult, submitResult }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
+  const { know, reset, submit, technical } = staticContent.footer;
 
   const handleReset = () => resetResult();
   const handleSubmit = () => submitResult();
@@ -49,10 +52,10 @@ const AppBasement = ({ resetResult, submitResult }) => {
       <Toolbar sx={styles.toolbar}>
         <Box sx={styles.technical}>
           <Typography variant="body1" color="text.secondary">
-            Technical problems?
+            {technical}
           </Typography>
           <Link sx={styles.link} href="#">
-            Let us know
+            {know}
           </Link>
         </Box>
 
@@ -63,9 +66,9 @@ const AppBasement = ({ resetResult, submitResult }) => {
             color="info"
             variant="contained"
           >
-            Reset
+            {reset}
           </MuiButton>
-          <Button onClick={handleSubmit} />
+          <Button title={submit} onClick={handleSubmit} />
         </Box>
       </Toolbar>
     </Box>

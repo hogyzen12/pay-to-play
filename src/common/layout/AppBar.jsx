@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   Box,
   AppBar as AppHeading,
@@ -7,8 +8,10 @@ import {
   IconButton,
   Button,
 } from '@mui/material';
-import { Timer } from '../components';
-import { ReactComponent as Logo } from '../../assets/icons/diamond.svg';
+import { ReactComponent as Logo } from 'assets/icons/diamond.svg';
+import { Timer } from 'common/components';
+import { staticContent } from 'common/static/content';
+import { routes } from 'routes';
 
 const styles = {
   header: {
@@ -40,6 +43,9 @@ const styles = {
 };
 
 const AppBar = ({ providerPubKey, loginHandler }) => {
+  const location = useLocation();
+  const { connected, walletButton } = staticContent.header;
+
   const handleConnectWallet = () => {
     if (loginHandler) loginHandler();
   };
@@ -51,12 +57,12 @@ const AppBar = ({ providerPubKey, loginHandler }) => {
           <Logo width="32" />
         </IconButton>
 
-        <Timer />
+        {location.pathname === routes.crossword && <Timer />}
 
         {providerPubKey ? (
           <Box sx={styles.wallet}>
             <Typography sx={styles.key}>{providerPubKey.toBase58()}</Typography>
-            <Typography sx={styles.connected}>Connected</Typography>
+            <Typography sx={styles.connected}>{connected}</Typography>
           </Box>
         ) : (
           <Button
@@ -65,7 +71,7 @@ const AppBar = ({ providerPubKey, loginHandler }) => {
             sx={styles.button}
             onClick={handleConnectWallet}
           >
-            Connect wallet
+            {walletButton}
           </Button>
         )}
       </Toolbar>

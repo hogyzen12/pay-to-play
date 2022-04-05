@@ -1,28 +1,30 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
+import { ReactComponent as ArrowForward } from 'assets/icons/arrow.svg';
+import { staticContent } from 'common/static/content';
 import { styles } from './PaymentSelect.styles';
 
-import { ReactComponent as ArrowForward } from '../../../assets/icons/arrow.svg';
-
-const SOLamount = '0.1';
-const DHMTamount = '1';
+const amountSOL = '0.1';
+const amountDHMT = '1';
 
 const PaymentSelect = ({ handleClickSOL, handleClickDHMT }) => {
+  const { selectPayment, sol, dhmt } = staticContent.pages.home;
+
   return (
     <Box sx={styles.select} component="section">
       <Typography sx={styles.title} variant="h3">
-        select Payment to start game:
+        {selectPayment}
       </Typography>
       <Box sx={styles.buttons}>
         <Button sx={styles.button} onClick={handleClickSOL}>
           <Typography sx={styles.buttonText} variant="h3">
-            {SOLamount} SOL
+            {amountSOL} {sol}
           </Typography>
           <ArrowForward />
         </Button>
         <Button sx={styles.button} onClick={handleClickDHMT}>
           <Typography sx={styles.buttonText} variant="h3">
-            {DHMTamount} DHMT
+            {amountDHMT} {dhmt}
           </Typography>
           <ArrowForward />
         </Button>

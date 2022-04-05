@@ -1,7 +1,7 @@
 export const styles = {
   item: {
     display: 'flex',
-    padding: { md: '16px' },
+    padding: '16px',
     borderRadius: '4px',
     backgroundColor: theme => theme.palette.primary.main,
   },

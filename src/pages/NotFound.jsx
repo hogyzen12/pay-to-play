@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
 import AppContainer from '../common/layout/AppContainer';
+import { staticContent } from 'common/static/content';
 
 const styles = {
   wrapper: {
@@ -20,30 +21,27 @@ const styles = {
 
 const NotFound = () => {
   const navigate = useNavigate();
+  const { message, redirect } = staticContent.pages.notFound;
+  const { title, description } = staticContent.meta.notFound;
 
   useEffect(() => {
     const timer = setTimeout(() => navigate('/'), 5000);
-
-    return () => {
-      clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   }, [navigate]);
 
   return (
     <>
       <Helmet>
-        <title>Not Found</title>
-        <meta name="description" content="Page doesn't exist" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
       </Helmet>
 
       <AppContainer>
         <Box sx={styles.wrapper}>
           <Typography sx={styles.title} variant="h2">
-            Sorry, this page does not exist
+            {message}
           </Typography>
-          <Typography variant="body1">
-            You will be redirected to home page in 5 seconds
-          </Typography>
+          <Typography variant="body1">{redirect}</Typography>
         </Box>
       </AppContainer>
     </>

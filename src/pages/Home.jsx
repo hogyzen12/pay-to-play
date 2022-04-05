@@ -1,21 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Box } from '@mui/material';
+import { Card, Tutorial, PaymentSelect } from 'common/components';
+import { staticContent } from 'common/static/content';
+import AppContainer from 'common/layout/AppContainer';
 
-import AppContainer from '../common/layout/AppContainer';
-import { Card, Tutorial, PaymentSelect } from '../common/components';
+const styles = {
+  wrapper: { margin: '0 auto', maxWidth: { md: '640px' } },
+};
 
 const Home = ({ handleClickSOL, handleClickDHMT }) => {
+  const { title, description } = staticContent.meta.home;
+
   return (
     <>
       <Helmet>
-        <title>Diamond Game</title>
-        <meta name="description" content="Diamond Hands Game" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
       </Helmet>
 
       <AppContainer>
-        <Box sx={{ margin: '0 auto', maxWidth: { md: '640px' } }}>
+        <Box sx={styles.wrapper}>
           <Card />
           <Tutorial />
           <PaymentSelect

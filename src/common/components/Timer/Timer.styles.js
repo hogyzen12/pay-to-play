@@ -6,7 +6,7 @@ export const styles = {
   },
   time: {
     color: 'custom.white',
-    marginRight: '16px',
+    // marginRight: '16px',
   },
   button: {
     display: 'flex',

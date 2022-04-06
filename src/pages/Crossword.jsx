@@ -26,7 +26,7 @@ const Crossword = () => {
       <AppContainer>
         <Box sx={styles.wrapper}>
           <Game />
-          <Hints />
+          {/* <Hints /> */}
         </Box>
       </AppContainer>
     </>

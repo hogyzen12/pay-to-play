@@ -14,6 +14,7 @@
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
+    "@jaredreisinger/react-crossword": "^4.3.2",
     "@mui/icons-material": "^5.5.1",
     "@mui/material": "^5.5.3",
     "@solana/spl-token": "^0.2.0",
@@ -27,6 +28,7 @@
     "react-helmet-async": "^1.2.3",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
+    "react-timer-hook": "^3.0.5",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {

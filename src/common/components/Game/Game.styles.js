@@ -1,5 +1,8 @@
 export const styles = {
   game: {
-    width: { md: '50%' },
+    width: '100%',
+    display: 'flex',
+    gap: '24px',
+    // width: { md: '50%' },
   },
 };

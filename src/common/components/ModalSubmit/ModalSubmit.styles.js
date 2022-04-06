@@ -1,4 +1,8 @@
 export const styles = {
+  drawer: {
+    padding: '32px 20px',
+    bgcolor: theme => theme.palette.info.main,
+  },
   modal: {
     position: 'absolute',
     top: '50%',
@@ -6,7 +10,7 @@ export const styles = {
     transform: 'translate(-50%, -50%)',
     maxWidth: '1020px',
     width: '100%',
-    bgcolor: '#1D1D1D',
+    bgcolor: theme => theme.palette.info.main,
     padding: { xs: '32px 16px', md: '32px' },
     borderRadius: '8px',
   },

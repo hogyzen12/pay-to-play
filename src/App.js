@@ -14,8 +14,8 @@ import {
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import AppLayout from './common/layout/AppLayout';
 
-const NETWORK = clusterApiUrl('devnet');
 let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
+const NETWORK = clusterApiUrl('devnet');
 const gameWalletPublicKey = new PublicKey(
   '62AtDMhgaW1YQZCxv7hGBE7HDTU67L71vs4VQrRVBq3p',
 );
@@ -102,7 +102,7 @@ const App = () => {
       // alert('Ooops... Please login via wallet');
       setAlertState({
         open: true,
-        message: 'Please login via wallet',
+        message: 'Please connect your wallet',
         severity: 'info',
       });
 
@@ -205,7 +205,7 @@ const App = () => {
       // alert('Ooops... Please login via wallet');
       setAlertState({
         open: true,
-        message: 'Please login via wallet',
+        message: 'Please connect your wallet',
         severity: 'info',
       });
 
@@ -239,6 +239,7 @@ const App = () => {
                 openSubmitModal={openSubmitModal}
                 openSuccessModal={openSuccessModal}
                 handleCloseSubmitModal={handleCloseSubmitModal}
+                handleOpenSubmitModal={handleOpenSubmitModal}
                 handleOpenSuccessModal={handleOpenSuccessModal}
                 handleCloseSuccessModal={handleCloseSuccessModal}
               />

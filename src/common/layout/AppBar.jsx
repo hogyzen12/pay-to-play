@@ -7,7 +7,10 @@ import {
   Typography,
   IconButton,
   Button,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material';
+import { Menu as MenuIcon } from '@mui/icons-material';
 import { ReactComponent as Logo } from 'assets/icons/diamond.svg';
 import { Timer } from 'common/components';
 import { staticContent } from 'common/static/content';
@@ -43,6 +46,8 @@ const styles = {
 };
 
 const AppBar = ({ providerPubKey, loginHandler }) => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
   const location = useLocation();
   const { connected, walletButton } = staticContent.header;
 
@@ -61,8 +66,16 @@ const AppBar = ({ providerPubKey, loginHandler }) => {
 
         {providerPubKey ? (
           <Box sx={styles.wallet}>
-            <Typography sx={styles.key}>{providerPubKey.toBase58()}</Typography>
-            <Typography sx={styles.connected}>{connected}</Typography>
+            {matches ? (
+              <>
+                <Typography sx={styles.key}>
+                  {providerPubKey.toBase58()}
+                </Typography>
+                <Typography sx={styles.connected}>{connected}</Typography>
+              </>
+            ) : (
+              <MenuIcon />
+            )}
           </Box>
         ) : (
           <Button

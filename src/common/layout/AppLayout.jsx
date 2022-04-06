@@ -37,8 +37,9 @@ const AppLayout = ({
   onAlertClose,
   resetResult,
   submitResult,
-  handleCloseSubmitModal,
+  handleOpenSubmitModal,
   handleOpenSuccessModal,
+  handleCloseSubmitModal,
   handleCloseSuccessModal,
 }) => {
   const [showBasement, setShowBasement] = useState(false);
@@ -70,13 +71,14 @@ const AppLayout = ({
       <Loader isLoading={loading} />
       <Notification alertState={alertState} onAlertClose={onAlertClose} />
       <ModalSubmit
-        openModal={openSubmitModal}
-        handleCloseModal={handleCloseSubmitModal}
+        openSubmitModal={openSubmitModal}
+        handleCloseSubmitModal={handleCloseSubmitModal}
+        handleOpenSubmitModal={handleOpenSubmitModal}
         handleOpenSuccessModal={handleOpenSuccessModal}
       />
       <ModalSuccess
-        openModal={openSuccessModal}
-        handleCloseModal={handleCloseSuccessModal}
+        openSuccessModal={openSuccessModal}
+        handleCloseSuccessModal={handleCloseSuccessModal}
       />
     </>
   );

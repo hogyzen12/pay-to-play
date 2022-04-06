@@ -1,7 +1,7 @@
 export const styles = {
   wrapper: {
     width: '100%',
-    padding: '16px',
+    // padding: '16px',
     bgcolor: '#1D1D1D',
   },
   controls: {

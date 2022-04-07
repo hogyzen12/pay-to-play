@@ -1,0 +1,24 @@
+{
+  "across": {
+    "1": {
+      "clue": "Colour of Bills Glasses",
+      "answer": "YELLOW",
+      "row": 0,
+      "col": 0
+    },
+    "2": {
+      "clue": "What you should be doing with some of your Solana, and the mechanism that secures the network aka Proof of",
+      "answer": "STAKE",
+      "row": 5,
+      "col": 0
+    }
+  },
+  "down": {
+    "2": {
+      "clue": "The instrument that allows trader to increase their positions",
+      "answer": "LEVERAGE",
+      "row": 0,
+      "col": 2
+    }
+  }
+}

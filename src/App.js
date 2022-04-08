@@ -1,5 +1,6 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState, useRef } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useScreenshot } from 'use-react-screenshot';
 import { HomePage, CrosswordPage, NotFoundPage } from './routes';
 import { confirmAlert } from 'react-confirm-alert';
 import { transferCustomToken } from './common/utils/transferToken';
@@ -33,7 +34,11 @@ const App = () => {
   const [openSubmitModal, setOpenSubmitModal] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [image, takeScreenshot] = useScreenshot();
   const navigate = useNavigate();
+  const gameRef = useRef();
+
+  const getImage = () => takeScreenshot(gameRef.current);
 
   /*
    * Connection to the Solana cluster
@@ -47,6 +52,10 @@ const App = () => {
    * 1. connect -> This method gets triggered when the wallet connection is successful
    * 2. disconnect -> This callback method gets triggered when the wallet gets disconnected from the application
    */
+
+  useEffect(() => {
+    console.log('image :>> ', image);
+  }, [image]);
 
   useEffect(() => {
     if (provider) {
@@ -218,11 +227,15 @@ const App = () => {
   const handleCloseSubmitModal = () => setOpenSubmitModal(false);
   const handleOpenSuccessModal = () => setOpenSuccessModal(true);
   const handleCloseSuccessModal = () => setOpenSuccessModal(false);
-  const submitResult = () => handleOpenSubmitModal();
+  const submitResult = () => {
+    getImage();
+    handleOpenSubmitModal();
+  };
   const resetResult = () => {};
 
   return (
     <>
+      {image && <img src={image} alt="" />}
       <Suspense fallback={<Loader isLoading />}>
         <Routes>
           <Route
@@ -254,7 +267,10 @@ const App = () => {
                 />
               }
             />
-            <Route path={routes.crossword} element={<CrosswordPage />} />
+            <Route
+              path={routes.crossword}
+              element={<CrosswordPage gameRef={gameRef} />}
+            />
             <Route path={routes.notFound} element={<NotFoundPage />} />
           </Route>
         </Routes>

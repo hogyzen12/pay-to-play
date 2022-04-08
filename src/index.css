@@ -57,3 +57,25 @@ code {
 .direction {
   width: 50%;
 }
+
+.header {
+  margin: 0;
+  padding: 0;
+}
+
+.clues {
+  color: red;
+}
+
+.correct {
+  color: red;
+}
+/* .grid {
+}
+.clue {
+} */
+
+.clue-cell {
+  border-radius: 6px;
+  font-size: 16px;
+}

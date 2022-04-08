@@ -26,10 +26,10 @@ export const data = {
 /**
 Crossword Clues
 
-yellow - Colour of Bills Glasses
+@yellow - Colour of Bills Glasses
 satoshi - The first name of the Bitcoin creator
-bitcoin - The first cryptocurrency to be created
-leverage - The instrument that allows trader to increase their positions aka what Uncle Sams Casino offers
+@bitcoin - The first cryptocurrency to be created
+@leverage - The instrument that allows trader to increase their positions aka what Uncle Sams Casino offers
 liquidation - What happens to your account when you are short BTC and it pumps HARD
 cryptonary - Your best guide in the crypto market
 stake - what you should be doing with some of your Solana, and the mechanism that secures the network aka Proof of
@@ -37,7 +37,7 @@ sbfalameda - The acronym used by the founder of FTX
 yakovenko - Surname of Solana Creator
 vitalik - The first name of Ethereum Creator
 merge - What will happen with ethereum in order for 2.0 to release
-ethereum - Karims’ favourite cryptocurrency
+@ethereum - Karims’ favourite cryptocurrency
 crossword - The format of this game
 bullish - Cryptonarys market sentiment
 supercycle - A description of the current market conditions most commonly referred to by

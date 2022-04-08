@@ -11,6 +11,12 @@
       "answer": "STAKE",
       "row": 5,
       "col": 0
+    },
+    "3": {
+      "clue": "Karims favourite cryptocurrency",
+      "answer": "ETHEREUM",
+      "row": 3,
+      "col": 2
     }
   },
   "down": {

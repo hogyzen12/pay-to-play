@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
   CrosswordProvider,
   CrosswordGrid,
@@ -20,14 +20,20 @@ const theme = {
   highlightBackground: '#EEEEFC',
 };
 
-const Game = ({ gameRef }) => {
+const Game = ({ gameRef, crosswordRef }) => {
   const { hints } = staticContent.pages.crossword;
+  // const crosswordRef = useRef();
+
+  // useEffect(() => {
+  //   console.log('crosswordRef', crosswordRef.current);
+  // }, [crosswordRef]);
 
   return (
     <Box sx={styles.game}>
       <CrosswordProvider
         theme={theme}
         data={data}
+        ref={crosswordRef}
         // useStorage={false}
         onLoadedCorrect={e => console.log(e)}
         onCrosswordComplete={e => console.log(e)} // fires when all the answers are correct

@@ -1,6 +1,8 @@
 import { Suspense, useEffect, useState, useRef } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { useScreenshot } from 'use-react-screenshot';
+import { Box, Typography, Backdrop, IconButton } from '@mui/material';
+import { Close as CloseIcon } from '@mui/icons-material';
 import { HomePage, CrosswordPage, NotFoundPage } from './routes';
 import { confirmAlert } from 'react-confirm-alert';
 import { transferCustomToken } from './common/utils/transferToken';
@@ -27,15 +29,21 @@ const initialAlersState = {
   severity: undefined,
 };
 
+const PrivateRoute = ({ transferTokenStatus, children }) => {
+  return transferTokenStatus ? children : <Navigate to={routes.home} />;
+};
+
 const App = () => {
   const [provider, setProvider] = useState();
   const [providerPubKey, setProviderPub] = useState();
   const [alertState, setAlertState] = useState(initialAlersState);
   const [openSubmitModal, setOpenSubmitModal] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
+  const [transferTokenStatus, setTransferTokenStatus] = useState(false);
   const [loading, setLoading] = useState(false);
   const [image, takeScreenshot] = useScreenshot();
   const navigate = useNavigate();
+  const crosswordRef = useRef();
   const gameRef = useRef();
 
   const getImage = () => takeScreenshot(gameRef.current);
@@ -54,8 +62,18 @@ const App = () => {
    */
 
   useEffect(() => {
-    console.log('image :>> ', image);
-  }, [image]);
+    console.log('crosswordRef', crosswordRef.current);
+  }, [crosswordRef]);
+
+  // useEffect(() => {
+  //   console.log('image :>> ', image);
+  // }, [image]);
+
+  useEffect(() => {
+    if (provider && !provider.isConnected) {
+      provider.connect();
+    }
+  }, [provider]);
 
   useEffect(() => {
     if (provider) {
@@ -67,6 +85,7 @@ const App = () => {
           message: 'wallet got connected',
           severity: 'success',
         });
+
         setProviderPub(provider.publicKey);
       });
       provider.on('disconnect', () => {
@@ -131,35 +150,49 @@ const App = () => {
       const optionsNoBalance = {
         childrenElement: () => <div />,
         customUI: ({ onClose }) => (
-          <div className="box">
-            <div className="modal-container" id="m2-o">
-              <div className="modal">
-                {/* <div className="image-holder">
-										 <img src={coins} alt="" />
-									 </div> */}
-                <h1 className="modal__title">
-                  Oops!!! You do not have enough balance
-                </h1>
-                <p className="modal__text">
-                  Please fund your wallet with{' '}
-                  <b>{fundNeededToPlay / LAMPORTS_PER_SOL} SOL</b> tokens to
-                  play the game.
-                </p>
-                <button className="modal__btn no" onClick={onClose}>
-                  No
-                </button>
-                <button
-                  className="modal__btn yes"
-                  onClick={() => {
-                    navigate(`/purchase/stack`);
-                    onClose();
-                  }}
-                >
-                  Fund wallet
-                </button>
-              </div>
-            </div>
-          </div>
+          <Backdrop open={true} onClick={onClose}>
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                maxWidth: { xs: '90%', md: '600px' },
+                width: '100%',
+                bgcolor: '#1D1D1D',
+                padding: '16px 16px 32px',
+                borderRadius: '8px',
+              }}
+            >
+              <IconButton
+                sx={{
+                  display: 'block',
+                  padding: '0',
+                  margin: '0',
+                  marginLeft: 'auto',
+                  marginBottom: '20px',
+                }}
+                onClick={onClose}
+              >
+                <CloseIcon sx={{ color: '#A2A2A2' }} />
+              </IconButton>
+              <Typography
+                sx={{
+                  mb: '16px',
+                  fontSize: '32px',
+                  textAlign: 'center',
+                }}
+                variant="h3"
+              >
+                Oops!!! You do not have enough balance
+              </Typography>
+              <Typography sx={{ textAlign: 'center' }}>
+                Please fund your wallet with{' '}
+                <b>{fundNeededToPlay / LAMPORTS_PER_SOL} SOL</b> tokens to play
+                the game.
+              </Typography>
+            </Box>
+          </Backdrop>
         ),
         closeOnEscape: true,
         closeOnClickOutside: true,
@@ -190,7 +223,13 @@ const App = () => {
     );
 
     if (!result.status) {
-      alert('Error in sending the tokens, Please try again!!!');
+      setTransferTokenStatus(result.status);
+      // alert('Error in sending the tokens, Please try again!!!');
+      setAlertState({
+        open: true,
+        message: 'Error in sending the tokens, Please try again!!!',
+        severity: 'error',
+      });
       return;
     }
 
@@ -198,6 +237,7 @@ const App = () => {
      * If the status is true, that means transaction got successful and we can proceed
      */
 
+    setTransferTokenStatus(result.status);
     setLoading(false);
     // history.push('/stack');
     navigate('/crossword');
@@ -235,7 +275,6 @@ const App = () => {
 
   return (
     <>
-      {image && <img src={image} alt="" />}
       <Suspense fallback={<Loader isLoading />}>
         <Routes>
           <Route
@@ -269,7 +308,11 @@ const App = () => {
             />
             <Route
               path={routes.crossword}
-              element={<CrosswordPage gameRef={gameRef} />}
+              element={
+                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                <CrosswordPage gameRef={gameRef} crosswordRef={crosswordRef} />
+                // </PrivateRoute>
+              }
             />
             <Route path={routes.notFound} element={<NotFoundPage />} />
           </Route>

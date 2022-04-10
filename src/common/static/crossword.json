@@ -17,14 +17,32 @@
       "answer": "ETHEREUM",
       "row": 3,
       "col": 2
+    },
+    "4": {
+      "clue": "What happened with Lil Uzi Verts project",
+      "answer": "RUGPULL",
+      "row": 4,
+      "col": 2
+    },
+    "5": {
+      "clue": "Something that crypto seeks to encourage",
+      "answer": "INNOVATION",
+      "row": 11,
+      "col": 0
     }
   },
   "down": {
-    "2": {
+    "1": {
       "clue": "The instrument that allows trader to increase their positions",
       "answer": "LEVERAGE",
       "row": 0,
       "col": 2
+    },
+    "2": {
+      "clue": "The first name of the Bitcoin creator",
+      "answer": "SATOSHI",
+      "row": 5,
+      "col": 0
     }
   }
 }

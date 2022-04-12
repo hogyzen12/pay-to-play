@@ -43,17 +43,34 @@ const styles = {
     color: theme => theme.palette.custom.apple,
     ml: '16px',
   },
+  burgerBtn: { color: '#fff' },
 };
 
-const AppBar = ({ providerPubKey, loginHandler }) => {
+const AppBar = ({ providerPubKey, loginHandler, toggleDrawer }) => {
+  const location = useLocation();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
-  const location = useLocation();
   const { connected, walletButton } = staticContent.header;
 
   const handleConnectWallet = () => {
     if (loginHandler) loginHandler();
   };
+
+  const homeWalletStatus = () => (
+    <>
+      <Typography sx={styles.key}>{providerPubKey?.toBase58()}</Typography>
+      <Typography sx={styles.connected}>{connected}</Typography>
+    </>
+  );
+
+  const gameWalletStatus = () =>
+    matches ? (
+      homeWalletStatus()
+    ) : (
+      <IconButton sx={styles.burgerBtn} onClick={toggleDrawer}>
+        <MenuIcon />
+      </IconButton>
+    );
 
   return (
     <AppHeading sx={styles.header} position="static">
@@ -64,29 +81,24 @@ const AppBar = ({ providerPubKey, loginHandler }) => {
 
         {location.pathname === routes.crossword && <Timer />}
 
-        {providerPubKey ? (
-          <Box sx={styles.wallet}>
-            {matches ? (
-              <>
-                <Typography sx={styles.key}>
-                  {providerPubKey.toBase58()}
-                </Typography>
-                <Typography sx={styles.connected}>{connected}</Typography>
-              </>
-            ) : (
-              <MenuIcon />
-            )}
-          </Box>
-        ) : (
-          <Button
-            color="secondary"
-            variant="contained"
-            sx={styles.button}
-            onClick={handleConnectWallet}
-          >
-            {walletButton}
-          </Button>
-        )}
+        <Box sx={styles.wallet}>
+          {location.pathname === routes.home && !providerPubKey && (
+            <Button
+              color="secondary"
+              variant="contained"
+              sx={styles.button}
+              onClick={handleConnectWallet}
+            >
+              {walletButton}
+            </Button>
+          )}
+
+          {location.pathname === routes.home &&
+            providerPubKey &&
+            homeWalletStatus()}
+
+          {location.pathname === routes.crossword && gameWalletStatus()}
+        </Box>
       </Toolbar>
     </AppHeading>
   );

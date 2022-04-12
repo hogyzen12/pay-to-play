@@ -17,4 +17,9 @@ export const styles = {
     lineHeight: '21.6px',
     marginBottom: { xs: '8px', md: '20px' },
   },
+  hints: { width: { xs: '100%', md: '50%' } },
+  clues: {
+    display: 'flex',
+    gap: '16px',
+  },
 };

@@ -11,5 +11,11 @@ export const styles = {
   description: {
     marginBottom: '24px',
   },
+  expandButton: {
+    color: '#A1A1A1',
+    margin: '0',
+    padding: '0',
+    textDecoration: 'underline',
+  },
   descriptionSecond: {},
 };

@@ -7,7 +7,6 @@ import {
 import { Box, Typography } from '@mui/material';
 import { staticContent } from 'common/static/content';
 import { styles } from './Game.styles';
-// import { data } from 'common/static/crossword';
 import data from 'common/static/crossword.json';
 
 const theme = {
@@ -20,43 +19,36 @@ const theme = {
   highlightBackground: '#EEEEFC',
 };
 
-const Game = ({ gameRef, crosswordRef }) => {
+const Game = ({ gameRef }) => {
   const { hints } = staticContent.pages.crossword;
-  // const crosswordRef = useRef();
+  const crosswordRef = useRef();
 
-  // useEffect(() => {
-  //   console.log('crosswordRef', crosswordRef.current);
-  // }, [crosswordRef]);
+  useEffect(() => {
+    const crossRef = crosswordRef.current;
+    console.log('crossRef', crossRef);
+  }, [crosswordRef]);
 
   return (
     <Box sx={styles.game}>
       <CrosswordProvider
-        theme={theme}
         data={data}
+        theme={theme}
         ref={crosswordRef}
-        // useStorage={false}
-        onLoadedCorrect={e => console.log(e)}
-        onCrosswordComplete={e => console.log(e)} // fires when all the answers are correct
-        onAnswerCorrect={(e, v) => console.log(e, v)} // gets fired when the answer is correct
-        // onCellChange={e => console.log(e)} //
-        onCorrect={(direction, number, answer) =>
-          console.log(direction, number, answer)
-        }
+        useStorage={false}
+        onCellChange={(row, col, char) => console.log(row, col, char)}
+        onAnswerComplete={(direction, number, correct, answer) => {
+          console.log('answer', direction, number, correct, answer);
+        }}
       >
         <Box sx={styles.grid} ref={gameRef}>
           <CrosswordGrid />
         </Box>
-        <Box sx={{ width: { xs: '100%', md: '50%' } }}>
+        <Box sx={styles.hints}>
           <Typography sx={styles.title} variant="h3">
             {hints}
           </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              gap: '16px',
-            }}
-          >
-            <DirectionClues style={{ bgcolor: 'red' }} direction="across" />
+          <Box sx={styles.clues}>
+            <DirectionClues direction="across" />
             <DirectionClues direction="down" />
           </Box>
         </Box>

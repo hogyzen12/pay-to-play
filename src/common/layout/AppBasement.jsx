@@ -59,18 +59,13 @@ const styles = {
   },
 };
 
-const AppBasement = ({ resetResult, submitResult }) => {
-  const [open, setOpen] = useState(false);
+const AppBasement = ({ resetResult, submitResult, toggleDrawer, open }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   const { know, reset, submit, technical } = staticContent.footer;
 
   const handleReset = () => resetResult();
   const handleSubmit = () => submitResult();
-
-  const toggleDrawer = newOpen => () => {
-    setOpen(newOpen);
-  };
 
   const basementToolbar = () => (
     <Toolbar sx={matches ? styles.toolbar : styles.toolbarMobile}>

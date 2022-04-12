@@ -1,8 +1,8 @@
 import { Suspense, useEffect, useState, useRef } from 'react';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
-import { useScreenshot } from 'use-react-screenshot';
 import { Box, Typography, Backdrop, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
+import { useScreenshot } from 'use-react-screenshot';
 import { HomePage, CrosswordPage, NotFoundPage } from './routes';
 import { confirmAlert } from 'react-confirm-alert';
 import { transferCustomToken } from './common/utils/transferToken';
@@ -43,10 +43,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [image, takeScreenshot] = useScreenshot();
   const navigate = useNavigate();
-  const crosswordRef = useRef();
   const gameRef = useRef();
-
-  const getImage = () => takeScreenshot(gameRef.current);
 
   /*
    * Connection to the Solana cluster
@@ -60,14 +57,6 @@ const App = () => {
    * 1. connect -> This method gets triggered when the wallet connection is successful
    * 2. disconnect -> This callback method gets triggered when the wallet gets disconnected from the application
    */
-
-  useEffect(() => {
-    console.log('crosswordRef', crosswordRef.current);
-  }, [crosswordRef]);
-
-  // useEffect(() => {
-  //   console.log('image :>> ', image);
-  // }, [image]);
 
   useEffect(() => {
     if (provider && !provider.isConnected) {
@@ -99,6 +88,10 @@ const App = () => {
       });
     }
   }, [provider]);
+
+  const getImage = () => {
+    takeScreenshot(gameRef.current);
+  };
 
   const loginHandler = () => {
     console.log('connectWallet :>> ', provider);
@@ -262,15 +255,31 @@ const App = () => {
     }
   };
 
-  const onAlertClose = () => setAlertState(initialAlersState);
-  const handleOpenSubmitModal = () => setOpenSubmitModal(true);
-  const handleCloseSubmitModal = () => setOpenSubmitModal(false);
-  const handleOpenSuccessModal = () => setOpenSuccessModal(true);
-  const handleCloseSuccessModal = () => setOpenSuccessModal(false);
+  const onAlertClose = () => {
+    setAlertState(initialAlersState);
+  };
+
+  const handleOpenSubmitModal = () => {
+    setOpenSubmitModal(true);
+  };
+
+  const handleCloseSubmitModal = () => {
+    setOpenSubmitModal(false);
+  };
+
+  const handleOpenSuccessModal = () => {
+    setOpenSuccessModal(true);
+  };
+
+  const handleCloseSuccessModal = () => {
+    setOpenSuccessModal(false);
+  };
+
   const submitResult = () => {
     getImage();
     handleOpenSubmitModal();
   };
+
   const resetResult = () => {};
 
   return (
@@ -310,7 +319,7 @@ const App = () => {
               path={routes.crossword}
               element={
                 // <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                <CrosswordPage gameRef={gameRef} crosswordRef={crosswordRef} />
+                <CrosswordPage gameRef={gameRef} resetResult={resetResult} />
                 // </PrivateRoute>
               }
             />

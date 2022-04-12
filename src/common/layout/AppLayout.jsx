@@ -42,6 +42,7 @@ const AppLayout = ({
   handleCloseSubmitModal,
   handleCloseSuccessModal,
 }) => {
+  const [open, setOpen] = useState(false);
   const [showBasement, setShowBasement] = useState(false);
   const [showBar, setShowBar] = useState(false);
   const location = useLocation();
@@ -54,17 +55,31 @@ const AppLayout = ({
     );
   }, [location]);
 
+  const toggleDrawer = newOpen => () => {
+    console.log('click');
+    setOpen(newOpen);
+  };
+
   return (
     <>
       <Box sx={styles.layout}>
         {showBar && (
-          <AppBar providerPubKey={providerPubKey} loginHandler={loginHandler} />
+          <AppBar
+            providerPubKey={providerPubKey}
+            loginHandler={loginHandler}
+            toggleDrawer={toggleDrawer}
+          />
         )}
         <AppWrapper>
           <Outlet />
         </AppWrapper>
         {showBasement && (
-          <AppBasement resetResult={resetResult} submitResult={submitResult} />
+          <AppBasement
+            open={open}
+            resetResult={resetResult}
+            submitResult={submitResult}
+            toggleDrawer={toggleDrawer}
+          />
         )}
       </Box>
 

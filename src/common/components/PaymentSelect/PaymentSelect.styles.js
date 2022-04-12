@@ -22,12 +22,9 @@ export const styles = {
     padding: { xs: '', md: '10px 16px' },
     border: theme => `1px solid ${theme.palette.success.main}`,
     width: { xs: '50%', md: 'fit-content' },
-
-    // '&:first-of-type': {
-    //   marginRight: { md: '8px' },
-    // },
   },
   buttonText: {
+    lineHeight: { xs: '14px' },
     color: theme => theme.palette.custom.white,
     marginRight: '8px',
   },

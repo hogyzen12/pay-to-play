@@ -56,6 +56,10 @@ const AppBar = ({ providerPubKey, loginHandler, toggleDrawer }) => {
     if (loginHandler) loginHandler();
   };
 
+  const handleBurgerClick = () => {
+    if (toggleDrawer) toggleDrawer(true);
+  };
+
   const homeWalletStatus = () => (
     <>
       <Typography sx={styles.key}>{providerPubKey?.toBase58()}</Typography>
@@ -67,7 +71,7 @@ const AppBar = ({ providerPubKey, loginHandler, toggleDrawer }) => {
     matches ? (
       homeWalletStatus()
     ) : (
-      <IconButton sx={styles.burgerBtn} onClick={toggleDrawer}>
+      <IconButton sx={styles.burgerBtn} onClick={handleBurgerClick}>
         <MenuIcon />
       </IconButton>
     );

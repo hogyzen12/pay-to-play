@@ -55,9 +55,9 @@ const AppLayout = ({
     );
   }, [location]);
 
-  const toggleDrawer = newOpen => () => {
+  const toggleDrawer = () => {
     console.log('click');
-    setOpen(newOpen);
+    setOpen(!open);
   };
 
   return (

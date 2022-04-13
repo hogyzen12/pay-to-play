@@ -4,7 +4,8 @@ import {
   Typography,
   Link,
   Modal as SubmitModal,
-  SwipeableDrawer,
+  // SwipeableDrawer,
+  Drawer,
   useTheme,
   useMediaQuery,
 } from '@mui/material';
@@ -101,14 +102,14 @@ const ModalSubmit = ({
           {modalContent()}
         </SubmitModal>
       ) : (
-        <SwipeableDrawer
+        <Drawer
           anchor="bottom"
           open={openSubmitModal}
           onOpen={handleOpenSubmitModal}
           onClose={handleCloseSubmitModal}
         >
           {modalContent()}
-        </SwipeableDrawer>
+        </Drawer>
       )}
     </>
   );

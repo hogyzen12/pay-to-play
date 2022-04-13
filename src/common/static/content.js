@@ -1,11 +1,23 @@
 export const staticContent = {
   meta: {
     home: {
-      title: 'Diamond Game',
-      description: 'Diamond Hands Game',
+      title: 'Diamond Hands',
+      description: 'Diamond Hands',
+    },
+    main: {
+      title: 'Diamond Hands',
+      description: 'Diamond Hands',
+    },
+    atricles: {
+      title: 'Diamond Hands Articles',
+      description: 'Diamond Hands Articles',
+    },
+    discount: {
+      title: 'Diamond Hands Discount',
+      description: 'Diamond Hands Discount',
     },
     crossword: {
-      title: 'Diamond Crossword',
+      title: 'Diamond Hands Crossword',
       description: 'Diamond Hands Crossword',
     },
     notFound: {
@@ -31,6 +43,13 @@ export const staticContent = {
       sol: 'SOL',
       dhmt: 'DHMT',
     },
+    main: {
+      pageTitle: 'Welcome to diamond hands page',
+      sol: 'SOL',
+      dhmt: 'DHMT',
+    },
+    articles: {},
+    discount: {},
     crossword: {
       hints: 'Hints',
       successModal: {

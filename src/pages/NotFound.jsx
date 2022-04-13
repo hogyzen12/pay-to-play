@@ -12,7 +12,7 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-    minHeight: '100%',
+    minHeight: '100vh',
   },
   title: {
     mb: '20px',

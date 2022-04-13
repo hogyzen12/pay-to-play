@@ -1,37 +1,40 @@
 import { Suspense, useEffect, useState, useRef } from 'react';
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { Box, Typography, Backdrop, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import { useScreenshot } from 'use-react-screenshot';
-import { HomePage, CrosswordPage, NotFoundPage } from './routes';
 import { confirmAlert } from 'react-confirm-alert';
-import { transferCustomToken } from './common/utils/transferToken';
-import { Loader } from './common/components';
-import { routes } from './routes';
 import {
   clusterApiUrl,
   Connection,
   LAMPORTS_PER_SOL,
   PublicKey,
 } from '@solana/web3.js';
+import {
+  ArticlesPage,
+  DiscountPage,
+  CrosswordPage,
+  NotFoundPage,
+  MainPage,
+} from './routes';
+import {
+  Loader,
+  Notification,
+  ModalSubmit,
+  ModalSuccess,
+} from 'common/components';
+import { transferCustomToken } from 'common/utils/transferToken';
+import { PrivateRoute } from 'common/utils/PrivateRoute';
+import { initialAlersState } from 'common/static/alert';
+import { routes } from './routes';
+import AppLayout from 'common/layout/AppLayout';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import AppLayout from './common/layout/AppLayout';
 
 let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
 const NETWORK = clusterApiUrl('devnet');
 const gameWalletPublicKey = new PublicKey(
   '62AtDMhgaW1YQZCxv7hGBE7HDTU67L71vs4VQrRVBq3p',
 );
-
-const initialAlersState = {
-  open: false,
-  message: '',
-  severity: undefined,
-};
-
-const PrivateRoute = ({ transferTokenStatus, children }) => {
-  return transferTokenStatus ? children : <Navigate to={routes.home} />;
-};
 
 const App = () => {
   const [provider, setProvider] = useState();
@@ -89,10 +92,6 @@ const App = () => {
     }
   }, [provider]);
 
-  const getImage = () => {
-    takeScreenshot(gameRef.current);
-  };
-
   const loginHandler = () => {
     console.log('connectWallet :>> ', provider);
     if (!provider && window.solana) {
@@ -105,7 +104,8 @@ const App = () => {
     }
   };
 
-  const playStack = async () => {
+  const handlePaySOL = async selectedItem => {
+    console.log(selectedItem);
     /*
      * Flow to play the game
      * 1. Check if the user is logged in
@@ -233,16 +233,11 @@ const App = () => {
     setTransferTokenStatus(result.status);
     setLoading(false);
     // history.push('/stack');
-    navigate('/crossword');
+    // navigate('/crossword');
+    navigate(selectedItem);
   };
 
-  const handleClickDHMT = () => {
-    console.log('DHMT button clicked'); // TODO: DHTM button click logic goes here <--
-
-    /*
-     * Check if the user is logged in
-     */
-
+  const handlePayDHMT = async selectedItem => {
     if (!providerPubKey) {
       // alert('Ooops... Please login via wallet');
       setAlertState({
@@ -253,6 +248,8 @@ const App = () => {
 
       return;
     }
+
+    navigate(selectedItem);
   };
 
   const onAlertClose = () => {
@@ -275,6 +272,10 @@ const App = () => {
     setOpenSuccessModal(false);
   };
 
+  const getImage = () => {
+    takeScreenshot(gameRef.current);
+  };
+
   const submitResult = () => {
     getImage();
     handleOpenSubmitModal();
@@ -290,43 +291,72 @@ const App = () => {
             path={routes.home}
             element={
               <AppLayout
-                loading={loading}
-                alertState={alertState}
                 providerPubKey={providerPubKey}
-                onAlertClose={onAlertClose}
                 loginHandler={loginHandler}
                 resetResult={resetResult}
                 submitResult={submitResult}
-                openSubmitModal={openSubmitModal}
-                openSuccessModal={openSuccessModal}
-                handleCloseSubmitModal={handleCloseSubmitModal}
-                handleOpenSubmitModal={handleOpenSubmitModal}
-                handleOpenSuccessModal={handleOpenSuccessModal}
-                handleCloseSuccessModal={handleCloseSuccessModal}
               />
             }
           >
-            <Route
+            {/* <Route
               index
               element={
                 <HomePage
-                  handleClickSOL={playStack}
-                  handleClickDHMT={handleClickDHMT}
+                  handleClickSOL={handlePaySOL}
+                  handleClickDHMT={handlePayDHMT}
                 />
+              }
+            /> */}
+            <Route
+              index
+              element={
+                <MainPage
+                  handleClickSOL={handlePaySOL}
+                  handleClickDHMT={handlePayDHMT}
+                />
+              }
+            />
+            <Route
+              path={routes.articles}
+              element={
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <ArticlesPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={routes.discount}
+              element={
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <DiscountPage />
+                </PrivateRoute>
               }
             />
             <Route
               path={routes.crossword}
               element={
-                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                <CrosswordPage gameRef={gameRef} resetResult={resetResult} />
-                // </PrivateRoute>
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <CrosswordPage gameRef={gameRef} resetResult={resetResult} />
+                </PrivateRoute>
               }
             />
-            <Route path={routes.notFound} element={<NotFoundPage />} />
           </Route>
+          <Route path={routes.notFound} element={<NotFoundPage />} />
         </Routes>
       </Suspense>
+
+      <Loader isLoading={loading} />
+      <Notification alertState={alertState} onAlertClose={onAlertClose} />
+      <ModalSuccess
+        openSuccessModal={openSuccessModal}
+        handleCloseSuccessModal={handleCloseSuccessModal}
+      />
+      <ModalSubmit
+        openSubmitModal={openSubmitModal}
+        handleCloseSubmitModal={handleCloseSubmitModal}
+        handleOpenSubmitModal={handleOpenSubmitModal}
+        handleOpenSuccessModal={handleOpenSuccessModal}
+      />
     </>
   );
 };

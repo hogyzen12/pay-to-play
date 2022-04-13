@@ -105,7 +105,7 @@ const ModalSubmit = ({
         <Drawer
           anchor="bottom"
           open={openSubmitModal}
-          onOpen={handleOpenSubmitModal}
+          // onOpen={handleOpenSubmitModal}
           onClose={handleCloseSubmitModal}
         >
           {modalContent()}

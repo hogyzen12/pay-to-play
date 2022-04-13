@@ -83,7 +83,7 @@ const AppBar = ({ providerPubKey, loginHandler, toggleDrawer }) => {
           <Logo width="32" />
         </IconButton>
 
-        {location.pathname === routes.crossword && <Timer />}
+        {location.pathname !== routes.home && <Timer />}
 
         <Box sx={styles.wallet}>
           {location.pathname === routes.home && !providerPubKey && (
@@ -97,7 +97,7 @@ const AppBar = ({ providerPubKey, loginHandler, toggleDrawer }) => {
             </Button>
           )}
 
-          {location.pathname === routes.home &&
+          {location.pathname !== routes.crossword &&
             providerPubKey &&
             homeWalletStatus()}
 

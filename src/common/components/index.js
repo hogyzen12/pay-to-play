@@ -1,4 +1,5 @@
 export { default as Card } from './Card/Card';
+export { default as ChoiceCard } from './ChoiceCard/ChoiceCard';
 export { default as Game } from './Game/Game';
 export { default as Tabs } from './Tabs/Tabs';
 export { default as Hints } from './Hints/Hints';
@@ -12,3 +13,4 @@ export { default as Answer } from './Answer/Answer';
 export { default as Tutorial } from './Tutorial/Tutorial';
 export { default as Notification } from './Notification/Notification';
 export { default as PaymentSelect } from './PaymentSelect/PaymentSelect';
+export { default as PayButton } from './PayButton/PayButton';

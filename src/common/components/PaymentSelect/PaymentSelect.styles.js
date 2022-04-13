@@ -22,6 +22,9 @@ export const styles = {
     padding: { xs: '', md: '10px 16px' },
     border: theme => `1px solid ${theme.palette.success.main}`,
     width: { xs: '50%', md: 'fit-content' },
+    '&:hover': {
+      borderColor: '#FFF',
+    },
   },
   buttonText: {
     lineHeight: { xs: '14px' },

@@ -5,13 +5,12 @@ import { Card, Tutorial, PaymentSelect } from 'common/components';
 import { staticContent } from 'common/static/content';
 import AppContainer from 'common/layout/AppContainer';
 
+const { title, description } = staticContent.meta.home;
 const styles = {
   wrapper: { margin: '0 auto', maxWidth: { md: '640px' } },
 };
 
 const Home = ({ handleClickSOL, handleClickDHMT }) => {
-  const { title, description } = staticContent.meta.home;
-
   return (
     <>
       <Helmet>

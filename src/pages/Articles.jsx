@@ -15,6 +15,7 @@ import graph from 'assets/image/graph1.png';
 import graphSecond from 'assets/image/graph2.png';
 
 const { title, description } = staticContent.meta.atricles;
+
 const styles = {
   title: {
     fontSize: { md: '32px' },

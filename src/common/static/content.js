@@ -47,6 +47,7 @@ export const staticContent = {
       pageTitle: 'Welcome to diamond hands page',
       sol: 'SOL',
       dhmt: 'DHMT',
+      start: 'start game:',
     },
     articles: {},
     discount: {},

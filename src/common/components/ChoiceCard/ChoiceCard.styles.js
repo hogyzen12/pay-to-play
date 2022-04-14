@@ -1,7 +1,15 @@
 export const styles = {
   card: {
-    width: { xs: '100%', md: '50%' },
-    // marginBottom: { xs: '24px', md: '32px' },
+    border: theme => `1px solid ${theme.palette.success.main}`,
+    borderRadius: '8px',
+    width: '100%',
+    maxWidth: { xs: '100%', md: '457px' },
+    padding: '24px',
+    // mb: { xs: '24px', md: '32px' },
+  },
+  image: {
+    marginBottom: '20px',
+    borderRadius: '8px',
   },
   mediaBox: {
     display: 'flex',
@@ -14,25 +22,44 @@ export const styles = {
     height: '200px',
     mb: '16px',
   },
-  title: {
-    textAlign: 'center',
-    fontSize: { xs: '20px', md: '20px' },
-    lineHeight: { xs: '22.4px', md: '25.6px' },
-  },
-  image: {
-    marginBottom: '20px',
-    borderRadius: '8px',
-  },
   content: {
-    marginBottom: '16px',
+    mb: '32px',
+  },
+  title: {
+    fontSize: { xs: '20px', lg: '24px', xl: '32px' },
+    lineHeight: { xs: '22.4px', md: '28.8px' },
+    color: 'custom.white',
+    mb: '16px',
+  },
+  description: {
+    fontSize: '14px',
+    lineHeight: '22.4px',
+    color: theme => theme.palette.success.contrastText,
   },
   actions: {
+    display: 'flex',
     padding: '0',
+  },
+  start: {
+    mr: '16px',
   },
   buttons: {
     display: 'flex',
-    justifyContent: 'center',
-    width: { xs: '100%', md: '100%' },
+    alignItems: 'center',
     gap: '8px',
+  },
+  soon: {
+    lineHeight: { xs: '14px' },
+    maxHeight: '42px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '10px 16px',
+    width: 'fit-content',
+    borderRadius: '4px',
+    pointerEvents: 'none',
+    userSelect: 'none',
+    color: theme => theme.palette.success.main,
+    border: theme => `1px solid ${theme.palette.success.main}`,
   },
 };

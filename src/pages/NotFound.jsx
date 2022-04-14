@@ -2,9 +2,12 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
-import AppContainer from 'common/layout/AppContainer';
 import { staticContent } from 'common/static/content';
 import { routes } from 'routes';
+import AppContainer from 'common/layout/AppContainer';
+
+const { title, description } = staticContent.meta.notFound;
+const { message, redirect } = staticContent.pages.notFound;
 
 const styles = {
   wrapper: {
@@ -22,8 +25,6 @@ const styles = {
 
 const NotFound = () => {
   const navigate = useNavigate();
-  const { message, redirect } = staticContent.pages.notFound;
-  const { title, description } = staticContent.meta.notFound;
 
   useEffect(() => {
     const timer = setTimeout(() => navigate(routes.home), 5000);

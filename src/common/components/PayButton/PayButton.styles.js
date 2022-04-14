@@ -4,7 +4,7 @@ export const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     padding: { xs: '', md: '10px 16px' },
-    width: '50%',
+    width: 'fit-content',
     border: theme => `1px solid ${theme.palette.success.main}`,
     '&:hover': {
       borderColor: '#FFF',

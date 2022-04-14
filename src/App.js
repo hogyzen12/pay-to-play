@@ -319,9 +319,9 @@ const App = () => {
             <Route
               path={routes.articles}
               element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <ArticlesPage />
-                </PrivateRoute>
+                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                <ArticlesPage />
+                // </PrivateRoute>
               }
             />
             <Route

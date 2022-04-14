@@ -1740,9 +1740,9 @@
     start-server-and-test "^1.14.0"
 
 "@solana/web3.js@^1.32.0", "@solana/web3.js@^1.37.0":
-  version "1.37.1"
-  resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.37.1.tgz#5a4d30a4cf79c4598e0a437e841c7942e31be74c"
-  integrity sha512-1zm1blRU6ANb8bOfONibKkNKoMyzE1e0Z88MagyRLF1AmfHc+18lFvqxSQKUdazLMHcioZ28h+GfyAaeCT63iA==
+  version "1.37.2"
+  resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.37.2.tgz#41f2daf402743d2cdda85c65a7a4e71d86b795e9"
+  integrity sha512-rgPidynwPTu8iLmS++aQbDGiPPtwjRmu+uQxF9jTNT7v3ifKIlS4HccMdjj4WDcYx8h2mUtQX5xkdk6liSbdvg==
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@ethersproject/sha2" "^5.5.0"
@@ -2176,9 +2176,9 @@
     "@types/react" "*"
 
 "@types/react@*":
-  version "18.0.3"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.3.tgz#baefa397561372015b9f8ba5bc83bc3f84ae8fcb"
-  integrity sha512-P8QUaMW4k+kH9aKNPl9b3XWcKMSSALYprLL8xpAMJOLUn3Pl6B+6nKC4F7dsk9oJPwkiRx+qlwhG/Zc1LxFVuQ==
+  version "18.0.4"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.4.tgz#88e9eddd8788fdf60dcf260b1cff2fb7487e4373"
+  integrity sha512-Zm4ryWh9xQbMX6ge7Ej/nS6VBoT+9wzvwd/hZ+9EONGjBkejyyvEKndZt/DZHHj1lSU/YeTPyJAn22S3GnYchQ==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -2774,9 +2774,9 @@ async@0.9.x:
   integrity sha1-rqdNXmHB+JlhO/ZL2mbUx48v0X0=
 
 async@^2.6.2:
-  version "2.6.3"
-  resolved "https://registry.yarnpkg.com/async/-/async-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
-  integrity sha512-zflvls11DCy+dQWzTW2dzuilv8Z5X/pjfmZOWba6TNIVDm+2UDaJmXSOXlasHKfNBs8oo3M0aT50fDEWfKZjXg==
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.6.4.tgz#706b7ff6084664cd7eae713f6f965433b5504221"
+  integrity sha512-mzo5dfJYwAn29PeiJ0zvwTo04zj8HDJj0Mn8TD7sno7q12prdbnasKJHhkm2c1LgrhlJ0teaea8860oxi51mGA==
   dependencies:
     lodash "^4.17.14"
 
@@ -4194,9 +4194,9 @@ encodeurl@~1.0.2:
   integrity sha1-rT/0yG7C0CkyL1oCw6mmBslbP1k=
 
 enhanced-resolve@^5.9.2:
-  version "5.9.2"
-  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.9.2.tgz#0224dcd6a43389ebfb2d55efee517e5466772dd9"
-  integrity sha512-GIm3fQfwLJ8YZx2smuHpBKkXC1yOk+OBEmKckVyL0i/ea8mqDEykK3ld5dgH1QYPNyT/lIllxV2LULnxCHaHkA==
+  version "5.9.3"
+  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.9.3.tgz#44a342c012cbc473254af5cc6ae20ebd0aae5d88"
+  integrity sha512-Bq9VSor+kjvW3f9/MiiR4eE3XYgOl7/rS8lnSxbRbF3kS0B2r+Y9w5krBWxZgDxASVZbdYrn5wT4j/Wb0J9qow==
   dependencies:
     graceful-fs "^4.2.4"
     tapable "^2.2.0"

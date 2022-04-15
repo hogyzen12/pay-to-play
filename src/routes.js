@@ -8,8 +8,16 @@ export const MainPage = lazy(() =>
   import('./pages/Main' /* webpackChunkName: "MainPage" */),
 );
 
-export const ArticlesPage = lazy(() =>
-  import('./pages/Articles' /* webpackChunkName: "ArticlesPage" */),
+export const PremiumPage = lazy(() =>
+  import('./pages/Premium' /* webpackChunkName: "PremiumPage" */),
+);
+
+export const PremiaPage = lazy(() =>
+  import('./pages/Premia' /* webpackChunkName: "PremiaPage" */),
+);
+
+export const AlphaPage = lazy(() =>
+  import('./pages/Alpha' /* webpackChunkName: "AlphaPage" */),
 );
 
 export const DiscountPage = lazy(() =>
@@ -26,7 +34,9 @@ export const NotFoundPage = lazy(() =>
 
 export const routes = {
   home: '/',
-  articles: '/articles',
+  alpha: '/alpha',
+  premia: '/premia',
+  premium: '/premium',
   discount: '/discount',
   crossword: '/crossword',
   notFound: '*',

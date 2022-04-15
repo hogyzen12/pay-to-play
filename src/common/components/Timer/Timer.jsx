@@ -6,7 +6,7 @@ import { routes } from 'routes';
 import { styles } from './Timer.styles';
 
 const expiryTimestamp = new Date();
-expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + 300);
+expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + 500);
 
 const Timer = () => {
   const navigate = useNavigate();
@@ -28,8 +28,6 @@ const Timer = () => {
     time.setSeconds(time.getSeconds() + 100); // Restarts to 5 minutes timer
     restart(time);
   };
-
-  // const handleClick = () => console.log('click');
 
   return (
     <Box sx={styles.timer}>

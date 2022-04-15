@@ -14,7 +14,9 @@ import {
   PublicKey,
 } from '@solana/web3.js';
 import {
-  ArticlesPage,
+  AlphaPage,
+  PremiaPage,
+  PremiumPage,
   DiscountPage,
   CrosswordPage,
   NotFoundPage,
@@ -114,7 +116,6 @@ const App = () => {
   };
 
   const handlePaySOL = async selectedItem => {
-    console.log(selectedItem);
     /*
      * Flow to play the game
      * 1. Check if the user is logged in
@@ -247,7 +248,6 @@ const App = () => {
   };
 
   const handlePayDHMT = async selectedItem => {
-    console.log('DHMT button clicked');
     /*
      * Flow to play the game
      * 1. Check if the user is logged in
@@ -457,23 +457,32 @@ const App = () => {
                 <MainPage
                   handleClickSOL={handlePaySOL}
                   handleClickDHMT={handlePayDHMT}
+                  handleClickSHDW={handlePayDHMT}
                 />
               }
             />
             <Route
-              path={routes.articles}
+              path={routes.premium}
               element={
                 // <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                <ArticlesPage />
+                <PremiumPage />
                 // </PrivateRoute>
               }
             />
             <Route
-              path={routes.discount}
+              path={routes.premia}
               element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <DiscountPage />
-                </PrivateRoute>
+                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                <PremiaPage />
+                // </PrivateRoute>
+              }
+            />
+            <Route
+              path={routes.alpha}
+              element={
+                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                <AlphaPage />
+                // </PrivateRoute>
               }
             />
             <Route
@@ -481,6 +490,14 @@ const App = () => {
               element={
                 <PrivateRoute transferTokenStatus={transferTokenStatus}>
                   <CrosswordPage gameRef={gameRef} resetResult={resetResult} />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={routes.discount}
+              element={
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <DiscountPage />
                 </PrivateRoute>
               }
             />

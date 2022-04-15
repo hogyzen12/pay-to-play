@@ -35,7 +35,7 @@ const styles = {
   regular: { mb: '16px' },
 };
 
-const Articles = () => {
+const Premium = () => {
   return (
     <>
       <Helmet>
@@ -338,4 +338,4 @@ const Articles = () => {
   );
 };
 
-export default Articles;
+export default Premium;

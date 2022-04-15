@@ -13,25 +13,28 @@ import { styles } from './ChoiceCard.styles';
 
 const SOLamount = '0.1';
 const DHMTamount = '1';
-const { dhmt, sol, start } = staticContent.pages.main;
+const SHDWamount = '1';
+const { dhmt, sol, shdw, start, comming } = staticContent.pages.main;
 
 const ChoiceCard = ({
   title,
   image,
+  payment,
   available,
   description,
   selectedPage,
   handleClickSOL,
   handleClickDHMT,
+  handleClickSHDW,
 }) => {
   return (
     <Card sx={styles.card}>
       <CardMedia
         sx={styles.image}
+        alt={title}
         image={image}
         component="img"
         height="240"
-        alt={title}
       />
 
       <CardContent sx={styles.content}>
@@ -50,22 +53,34 @@ const ChoiceCard = ({
         <Box sx={styles.buttons}>
           {available ? (
             <>
-              <PayButton
-                currency={sol}
-                amount={SOLamount}
-                handlePay={handleClickSOL}
-                selectedPage={selectedPage}
-              />
-              <PayButton
-                currency={dhmt}
-                amount={DHMTamount}
-                handlePay={handleClickDHMT}
-                selectedPage={selectedPage}
-              />
+              {payment.sol && (
+                <PayButton
+                  currency={sol}
+                  amount={SOLamount}
+                  handlePay={handleClickSOL}
+                  selectedPage={selectedPage}
+                />
+              )}
+              {payment.dhmt && (
+                <PayButton
+                  currency={dhmt}
+                  amount={DHMTamount}
+                  handlePay={handleClickDHMT}
+                  selectedPage={selectedPage}
+                />
+              )}
+              {payment.shdw && (
+                <PayButton
+                  currency={shdw}
+                  amount={SHDWamount}
+                  handlePay={handleClickSHDW}
+                  selectedPage={selectedPage}
+                />
+              )}
             </>
           ) : (
             <Typography sx={styles.soon} variant="h3">
-              Available soon
+              {comming}
             </Typography>
           )}
         </Box>

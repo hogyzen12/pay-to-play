@@ -15,13 +15,19 @@ const styles = {
     justifyContent: 'center',
   },
   choice: {
-    display: 'flex',
-    gap: '16px',
-    flexDirection: { xs: 'column', md: 'row' },
+    display: 'grid',
+    gridTemplateColumns: {
+      xs: '1fr',
+      md: 'repeat(2, 1fr)',
+      xl: 'repeat(3, 1fr)',
+    },
+    gridTemplateRows: { xs: 'repeat(5, 1fr)', md: 'repeat(2, 1fr)' },
+    gridColumnGap: { md: '16px' },
+    gridRowGap: '16px',
   },
 };
 
-const Main = ({ handleClickSOL, handleClickDHMT }) => {
+const Main = ({ handleClickSOL, handleClickDHMT, handleClickSHDW }) => {
   return (
     <>
       <Helmet>
@@ -32,16 +38,21 @@ const Main = ({ handleClickSOL, handleClickDHMT }) => {
       <AppContainer customStyles={styles.container} size="xl">
         <Box sx={styles.choice}>
           {cards.map(
-            ({ title, description, image, redirect, available }, index) => (
+            (
+              { title, description, image, redirect, available, payment },
+              index,
+            ) => (
               <ChoiceCard
                 key={index}
                 title={title}
                 image={image}
+                payment={payment}
                 available={available}
                 selectedPage={redirect}
                 description={description}
                 handleClickSOL={handleClickSOL}
                 handleClickDHMT={handleClickDHMT}
+                handleClickSHDW={handleClickSHDW}
               />
             ),
           )}

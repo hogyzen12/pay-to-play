@@ -40,12 +40,14 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 
 let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
 let diamondsRequiredToPlay = 1;
+
 const web3 = require('@solana/web3.js');
 const NETWORK = clusterApiUrl('devnet');
 const gameWalletPublicKey = new PublicKey(
   'CproxWoLCk4QrCd3VJNUpo3QZf3bjEnTN1FuBcRbZYaw',
 );
 const tokenMint = new PublicKey('2bbAWEg52ojrnaG1ymVzpPxbpRub2Wr4DmTedAi9uDHS');
+const shadowMint = new PublicKey('SHDWyBxihqiCj6YekG2GUr7wqKLeLAMK1gHZck9pL6y');
 
 const App = () => {
   const [provider, setProvider] = useState();
@@ -115,7 +117,7 @@ const App = () => {
     }
   };
 
-  const handlePaySOL = async selectedItem => {
+  const handlePaySOL = async (selectedItem, currency) => {
     /*
      * Flow to play the game
      * 1. Check if the user is logged in
@@ -247,7 +249,9 @@ const App = () => {
     navigate(selectedItem);
   };
 
-  const handlePayDHMT = async selectedItem => {
+  const handlePayDHMT = async (selectedItem, currency) => {
+    const isSHDW = currency === 'SHDW';
+
     /*
      * Flow to play the game
      * 1. Check if the user is logged in
@@ -273,7 +277,7 @@ const App = () => {
      * And use the value to check if they can afford the game
      */
     const diamondAddress = await splToken.getAssociatedTokenAddress(
-      tokenMint,
+      isSHDW ? shadowMint : tokenMint,
       providerPubKey,
     );
 
@@ -369,7 +373,7 @@ const App = () => {
     const result = await transferDiamondToken(
       provider,
       connection,
-      tokenMint,
+      isSHDW ? shadowMint : tokenMint,
       providerPubKey,
       gameWalletPublicKey,
       diamondBalance.value.amount,

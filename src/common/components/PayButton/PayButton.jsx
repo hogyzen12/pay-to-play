@@ -5,7 +5,7 @@ import { styles } from './PayButton.styles';
 
 const PayButton = ({ currency, amount, handlePay, selectedPage }) => {
   const handleClick = () => {
-    if (handlePay) handlePay(selectedPage);
+    if (handlePay) handlePay(selectedPage, currency);
   };
 
   return (

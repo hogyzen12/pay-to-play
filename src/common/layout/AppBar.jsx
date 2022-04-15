@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Box,
   AppBar as AppHeading,
@@ -48,6 +48,7 @@ const styles = {
 
 const AppBar = ({ providerPubKey, loginHandler, toggleDrawer }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   const { connected, walletButton } = staticContent.header;
@@ -79,7 +80,11 @@ const AppBar = ({ providerPubKey, loginHandler, toggleDrawer }) => {
   return (
     <AppHeading sx={styles.header} position="static">
       <Toolbar sx={styles.toolbar}>
-        <IconButton size="large" edge="start">
+        <IconButton
+          size="large"
+          edge="start"
+          onClick={() => navigate(routes.home)}
+        >
           <Logo width="32" />
         </IconButton>
 

@@ -11,10 +11,10 @@ import {
 } from '@mui/material';
 import { staticContent } from 'common/static/content';
 import AppContainer from 'common/layout/AppContainer';
-import graph from 'assets/image/graph1.png';
-import graphSecond from 'assets/image/graph2.png';
+import graph from 'assets/image/premium/graph1.png';
+import graphSecond from 'assets/image/premium/graph2.png';
 
-const { title, description } = staticContent.meta.atricles;
+const { title, description } = staticContent.meta.premium;
 
 const styles = {
   title: {

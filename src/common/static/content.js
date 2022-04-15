@@ -8,9 +8,17 @@ export const staticContent = {
       title: 'Diamond Hands',
       description: 'Diamond Hands',
     },
-    atricles: {
-      title: 'Diamond Hands Articles',
-      description: 'Diamond Hands Articles',
+    premium: {
+      title: 'Diamond Hands Premium',
+      description: 'Diamond Hands Premium',
+    },
+    premia: {
+      title: 'Diamond Hands Premia',
+      description: 'Diamond Hands Premia',
+    },
+    alpha: {
+      title: 'Diamond Hands Alpha',
+      description: 'Diamond Hands Alpha',
     },
     discount: {
       title: 'Diamond Hands Discount',

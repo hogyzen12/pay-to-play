@@ -5,8 +5,9 @@ import { Box, Typography } from '@mui/material';
 import { routes } from 'routes';
 import { styles } from './Timer.styles';
 
+const timeAmount = 3600; // one hour
 const expiryTimestamp = new Date();
-expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + 500);
+expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + timeAmount);
 
 const Timer = () => {
   const navigate = useNavigate();
@@ -18,16 +19,17 @@ const Timer = () => {
     },
   });
 
+  const resetTimer = () => {
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + timeAmount);
+    restart(time);
+  };
+
   useEffect(() => {
+    resetTimer();
     start();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const resetTimer = () => {
-    const time = new Date();
-    time.setSeconds(time.getSeconds() + 100); // Restarts to 5 minutes timer
-    restart(time);
-  };
 
   return (
     <Box sx={styles.timer}>

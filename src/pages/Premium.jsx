@@ -18,9 +18,10 @@ const { title, description } = staticContent.meta.premium;
 
 const styles = {
   title: {
-    fontSize: { md: '32px' },
+    fontSize: { xs: '24px', md: '32px' },
+    lineHeight: { xs: '24px', md: '32px' },
     fontWeight: 600,
-    mb: '24px',
+    mb: '32px',
     color: '#fff',
   },
   italicText: {

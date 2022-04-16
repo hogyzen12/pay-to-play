@@ -20,9 +20,10 @@ const { title, description } = staticContent.meta.alpha;
 
 const styles = {
   title: {
-    fontSize: { md: '32px' },
+    fontSize: { xs: '24px', md: '32px' },
+    lineHeight: { xs: '24px', md: '32px' },
     fontWeight: 600,
-    mb: '24px',
+    mb: '32px',
     color: '#fff',
   },
   italicText: {
@@ -114,7 +115,7 @@ const Alpha = () => {
           The purchase can be made across Raydium, Orca and Aldrin Exchange, all
           of which are DEXs on Solana.
         </Typography>
-        <Typography sx={{ ...styles.title, mb: '24px' }}>
+        <Typography sx={{ ...styles.title, mb: '24px' }} variant="h3">
           Proposal 18 | Status | Executed
         </Typography>
 
@@ -378,7 +379,7 @@ const Alpha = () => {
           would most likely be $1.50 for SHDW.
         </Typography>
 
-        <Typography sx={{ ...styles.title, mb: '24px' }}>
+        <Typography sx={{ ...styles.title, mb: '24px' }} variant="h3">
           Core investment update:
         </Typography>
 
@@ -512,7 +513,7 @@ const Alpha = () => {
         >
           Frank | GenesysGo — Yes
         </Typography>
-        <Typography sx={{ ...styles.title, mb: '24px' }}>
+        <Typography sx={{ ...styles.title, mb: '24px' }} variant="h3">
           Project direction
         </Typography>
         <Typography sx={{ ...styles.regular, ...styles.boldText }}>
@@ -577,7 +578,7 @@ const Alpha = () => {
           scale also isn&apos;t affected.
         </Typography>
 
-        <Typography sx={{ ...styles.title, mb: '24px' }}>
+        <Typography sx={{ ...styles.title, mb: '24px' }} variant="h3">
           Technical Details
         </Typography>
 

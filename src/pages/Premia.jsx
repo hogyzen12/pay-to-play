@@ -27,9 +27,10 @@ const { title, description } = staticContent.meta.premia;
 
 const styles = {
   title: {
-    fontSize: { md: '32px' },
+    fontSize: { xs: '24px', md: '32px' },
+    lineHeight: { xs: '24px', md: '32px' },
     fontWeight: 600,
-    mb: '24px',
+    mb: '32px',
     color: '#fff',
   },
   italicText: {
@@ -76,7 +77,9 @@ const Premia = () => {
           us double down.
         </Typography>
 
-        <Typography sx={{ ...styles.title, mb: '24px' }}>TLDR</Typography>
+        <Typography sx={{ ...styles.title, mb: '24px' }} variant="h3">
+          TLDR
+        </Typography>
         <List sx={{ mb: '32px' }}>
           <ListItem sx={{ padding: '0 0 0 16px' }}>
             <ListItemText>
@@ -98,7 +101,9 @@ const Premia = () => {
           </ListItem>
         </List>
 
-        <Typography sx={styles.title}>What is Premia?</Typography>
+        <Typography sx={styles.title} variant="h3">
+          What is Premia?
+        </Typography>
 
         <Typography sx={styles.regular}>
           Now, you{"'"}ve all read our 5-part series on derivatives in crypto -
@@ -172,7 +177,7 @@ const Premia = () => {
           diving deep, but I{"'"}ve discovered masses of alpha on Premia, and
           see no way Dopex could steal the crown.
         </Typography>
-        <Typography sx={{ ...styles.title, mb: '32px' }}>
+        <Typography sx={{ ...styles.title, mb: '32px' }} variant="h3">
           Premia Bull Case
         </Typography>
 
@@ -330,7 +335,9 @@ const Premia = () => {
 
         <CardMedia sx={{ mb: '32px' }} component="img" src={g4} />
 
-        <Typography sx={{ ...styles.title, mb: '24px' }}>vePREMIA</Typography>
+        <Typography sx={{ ...styles.title, mb: '24px' }} variant="h3">
+          vePREMIA
+        </Typography>
         <Typography sx={styles.regular}>
           First on the list of upgrades to Premia is vePREMIA, due to come out
           in the next couple of months.
@@ -391,7 +398,9 @@ const Premia = () => {
           interesting to see how these play out between both platforms.
         </Typography>
 
-        <Typography sx={styles.title}>Coming Soon to V2</Typography>
+        <Typography sx={styles.title} variant="h3">
+          Coming Soon to V2
+        </Typography>
 
         <Typography sx={styles.regular}>
           In preparation for V3, Premia are upgrading aspects of V2 where
@@ -411,7 +420,9 @@ const Premia = () => {
           detailing all updates since you last visited the platform (tied to
           your wallet). This is expected in the next few weeks.
         </Typography>
-        <Typography sx={{ ...styles.title, mb: '24px' }}>V3</Typography>
+        <Typography sx={{ ...styles.title, mb: '24px' }} variant="h3">
+          V3
+        </Typography>
         <Typography sx={styles.regular}>
           This is the big daddy of what{"'"}s coming up for Premia. Version 3 of
           the platform.
@@ -492,7 +503,7 @@ const Premia = () => {
           Currently, Deribit accounts for around 88% of BTC options volume
           (above, dark blue = Deribit), and 96% of ETH.
         </Typography>
-        <Typography sx={{ ...styles.regular, md: '32px' }}>
+        <Typography sx={{ ...styles.regular, mb: '32px' }}>
           Now, imagine Premia taking even a small % of that market share!{' '}
           <Box sx={styles.boldText} component="span">
             MEGA BULLISH
@@ -500,7 +511,7 @@ const Premia = () => {
           . This without considering the general shift we are seeing from CeFi
           to DeFi.
         </Typography>
-        <Typography sx={styles.title}>
+        <Typography sx={styles.title} variant="h3">
           Expanding Chain and Asset Offering
         </Typography>
         <Typography sx={styles.boldText}>Current Chains:</Typography>
@@ -600,7 +611,7 @@ const Premia = () => {
           </ListItem>
         </List>
 
-        <Typography sx={{ ...styles.title, mb: '32px' }}>
+        <Typography sx={{ ...styles.title, mb: '32px' }} variant="h3">
           DOV Funding and Integration
         </Typography>
 
@@ -737,7 +748,9 @@ const Premia = () => {
           they will iterate and address them, but this is something we will be
           keeping an eye on.
         </Typography>
-        <Typography sx={styles.title}>Upgradeability</Typography>
+        <Typography sx={styles.title} variant="h3">
+          Upgradeability
+        </Typography>
         <Typography sx={styles.regular}>
           Below is a quote from the Premia docs:
         </Typography>
@@ -749,7 +762,9 @@ const Premia = () => {
           unforeseen opportunities are all on the table. The upgrade process
           will be subject to extensive audit and approval by the Premia DAO.”
         </Typography>
-        <Typography sx={styles.title}>Updated Fee Structure</Typography>
+        <Typography sx={styles.title} variant="h3">
+          Updated Fee Structure
+        </Typography>
         <Typography sx={styles.regular}>
           The 3% fee on options purchase remains, but the 3% exercise fee on
           profits has been scrapped. This was a sticking point for us, as it
@@ -765,7 +780,9 @@ const Premia = () => {
           0.2% per month the capital is being used, FAR less than the LP earns,
           and considerably lower than competing vaults charge.
         </Typography>
-        <Typography sx={styles.title}>Options Trading</Typography>
+        <Typography sx={styles.title} variant="h3">
+          Options Trading
+        </Typography>
 
         <CardMedia sx={{ mb: '24px' }} component="img" src={g16} />
 
@@ -815,7 +832,7 @@ const Premia = () => {
           option or deposits liquidity, bundling all transactions into 1, saving
           on gas fees and removing layers of complexity.
         </Typography>
-        <Typography sx={{ ...styles.title, lineHeight: '32px' }}>
+        <Typography sx={{ ...styles.title, lineHeight: '32px' }} variant="h3">
           Pricing, Volatility Surface Oracles and Pool Utilisation
         </Typography>
         <Typography>
@@ -942,7 +959,9 @@ const Premia = () => {
           tools that could be used to address issues if they arise, but it is
           important I run you through my logic.
         </Typography>
-        <Typography sx={styles.title}>Tokenomics / Vesting</Typography>
+        <Typography sx={styles.title} variant="h3">
+          Tokenomics / Vesting
+        </Typography>
 
         <List>
           <ListItem sx={{ padding: '0 0 0 16px' }}>
@@ -1014,7 +1033,7 @@ const Premia = () => {
           what implications this could have closer to the time, and potentially
           hedge against potential downside should there be selling pressure.
         </Typography>
-        <Typography sx={{ ...styles.title, lineHeight: '32px' }}>
+        <Typography sx={{ ...styles.title, lineHeight: '32px' }} variant="h3">
           Current Market Cap vs Fully Diluted Value - Should We Worry?
         </Typography>
         <Typography sx={styles.regular}>
@@ -1098,7 +1117,9 @@ const Premia = () => {
           decision making put our minds at ease.
         </Typography>
 
-        <Typography sx={styles.title}>What We{"'"}d Like To See</Typography>
+        <Typography sx={styles.title} variant="h3">
+          What We{"'"}d Like To See
+        </Typography>
 
         <List sx={{ mb: '32px' }}>
           <ListItem sx={{ padding: '0 0 0 16px' }}>
@@ -1148,7 +1169,9 @@ const Premia = () => {
           </ListItem>
         </List>
 
-        <Typography sx={styles.title}>Technical Analysis</Typography>
+        <Typography sx={styles.title} variant="h3">
+          Technical Analysis
+        </Typography>
         <Typography
           sx={{ ...styles.regular, ...styles.boldText, ...styles.italicText }}
         >
@@ -1172,7 +1195,9 @@ const Premia = () => {
           strong break out above the $2.5 resistance, backed by high buying
           volume.
         </Typography>
-        <Typography sx={styles.title}>Conclusion</Typography>
+        <Typography sx={styles.title} variant="h3">
+          Conclusion
+        </Typography>
         <Typography sx={styles.regular}>
           I{"'"}ve gone into a lot of detail above, so I{"'"}m going to keep
           this short and sweet…

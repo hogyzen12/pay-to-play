@@ -468,25 +468,25 @@ const App = () => {
             <Route
               path={routes.premium}
               element={
-                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                <PremiumPage />
-                // </PrivateRoute>
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <PremiumPage />
+                </PrivateRoute>
               }
             />
             <Route
               path={routes.premia}
               element={
-                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                <PremiaPage />
-                // </PrivateRoute>
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <PremiaPage />
+                </PrivateRoute>
               }
             />
             <Route
               path={routes.alpha}
               element={
-                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                <AlphaPage />
-                // </PrivateRoute>
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <AlphaPage />
+                </PrivateRoute>
               }
             />
             <Route

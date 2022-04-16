@@ -136,7 +136,7 @@ const Premium = () => {
               <Box sx={styles.italicText} component="span">
                 think Solana outages
               </Box>
-              ), there&apos;s one though that has been consistent: Ethereum. The
+              ), there{"'"}s one though that has been consistent: Ethereum. The
               problem is that it is incredibly expensive with some transactions
               costing as much as a fancy dinner in the heart of London. This is
               where Layer-2s come into play with better UX and significantly
@@ -156,11 +156,11 @@ const Premium = () => {
                 3. Cross-Chain Communication:
               </Box>{' '}
               Tens of L1s and many new L2s on the rise, it is clear that these
-              chains are becoming silos and that&apos;s a major problem -
-              perhaps the biggest problem of 2022. These chains will need to
-              communicate and aggregate liquidity in some form or manner.
-              Whether that is done via an L0, bridge or liquidity pools, a
-              solution is needed and it can&apos;t come soon enough.
+              chains are becoming silos and that{"'"}s a major problem - perhaps
+              the biggest problem of 2022. These chains will need to communicate
+              and aggregate liquidity in some form or manner. Whether that is
+              done via an L0, bridge or liquidity pools, a solution is needed
+              and it can{"'"}t come soon enough.
             </ListItemText>
           </ListItem>
           <ListItem>
@@ -169,9 +169,9 @@ const Premium = () => {
                 4. DeFi Derivatives:
               </Box>{' '}
               Some people like to degen gamble while others like to use complex
-              products to hedge/limit their risk and we shouldn&apos;t stop
-              them. Derivatives are the most traded products worldwide across
-              asset classes (
+              products to hedge/limit their risk and we shouldn{"'"}t stop them.
+              Derivatives are the most traded products worldwide across asset
+              classes (
               <Box sx={styles.italicText} component="span">
                 crypto incl
               </Box>

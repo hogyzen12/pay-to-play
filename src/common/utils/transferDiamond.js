@@ -12,13 +12,14 @@ const createDiamondTransferTransaction = async (
   fromAssociatedTokenAccountPubkey,
   toAssociatedTokenAccountPubkey,
   fromTokenAccountPubkey,
+  amount,
 ) => {
   let transaction = new web3.Transaction().add(
     splToken.createTransferInstruction(
       fromAssociatedTokenAccountPubkey,
       toAssociatedTokenAccountPubkey,
       fromTokenAccountPubkey,
-      1,
+      amount,
       [],
       TOKEN_PROGRAM_ID,
     ),
@@ -39,6 +40,7 @@ const createDiamondTransferTransaction = async (
  * @param {PublickKey} fromTokenAccountPubkey : sender of the token - connected
  * @param {*} toTokenAccountPubkey : receiver of the token - treasury
  * @param {*} checkDiamondBalance : amount of the custom token as
+ * @param {number} amount : amount of the custom token as
  * @returns
  */
 
@@ -49,6 +51,7 @@ export const transferDiamondToken = async (
   fromTokenAccountPubkey,
   toTokenAccountPubkey,
   checkDiamondBalance,
+  amount,
 ) => {
   if (checkDiamondBalance < 1) {
     return {
@@ -78,6 +81,7 @@ export const transferDiamondToken = async (
     fromAssociatedTokenAccountPubkey,
     toAssociatedTokenAccountPubkey,
     fromTokenAccountPubkey,
+    amount,
   );
 
   if (transaction) {

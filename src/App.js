@@ -39,14 +39,15 @@ import AppLayout from 'common/layout/AppLayout';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
+let shadowRequiredToPlay = 1.0 * LAMPORTS_PER_SOL;
 let diamondsRequiredToPlay = 1;
 
 const web3 = require('@solana/web3.js');
-const NETWORK = clusterApiUrl('devnet');
+const NETWORK = clusterApiUrl('mainnet-beta');
 const gameWalletPublicKey = new PublicKey(
   'CproxWoLCk4QrCd3VJNUpo3QZf3bjEnTN1FuBcRbZYaw',
 );
-const tokenMint = new PublicKey('2bbAWEg52ojrnaG1ymVzpPxbpRub2Wr4DmTedAi9uDHS');
+const tokenMint = new PublicKey('FdSBbLHK8hfc6BSqjrhQZaGj7jgd5vfPcchDB2RDAQFA');
 const shadowMint = new PublicKey('SHDWyBxihqiCj6YekG2GUr7wqKLeLAMK1gHZck9pL6y');
 
 const App = () => {
@@ -251,7 +252,6 @@ const App = () => {
 
   const handlePayDHMT = async (selectedItem, currency) => {
     const isSHDW = currency === 'SHDW';
-
     /*
      * Flow to play the game
      * 1. Check if the user is logged in
@@ -377,6 +377,7 @@ const App = () => {
       providerPubKey,
       gameWalletPublicKey,
       diamondBalance.value.amount,
+      isSHDW ? shadowRequiredToPlay : diamondsRequiredToPlay,
     );
 
     if (!result.status) {

@@ -9,8 +9,7 @@ import { routes } from 'routes';
 export const cards = [
   {
     title: 'Premium Article',
-    description:
-      "The Diamond Hands NFT project is backed by Cryptonary's team of leading industry experts and one of the biggest established communities in the crypto space.",
+    description: 'I mean it says in the title - SHOW ME THE MONEY!!',
     image: premium,
     available: true,
     redirect: routes.premium,
@@ -23,7 +22,7 @@ export const cards = [
   {
     title: 'Premia Deep Dive',
     description:
-      "The Diamond Hands NFT project is backed by Cryptonary's team of leading industry experts and one of the biggest established communities in the crypto space.",
+      'I’m no sorcerer, but after months of deep research, I’m confident I can leave the crystal ball at home, and still give you some grade-A alpha. - Max',
     image: premia,
     available: true,
     redirect: routes.premia,
@@ -36,7 +35,7 @@ export const cards = [
   {
     title: 'Alpha-DAO Proposal #18',
     description:
-      "The Diamond Hands NFT project is backed by Cryptonary's team of leading industry experts and one of the biggest established communities in the crypto space.",
+      'An update on an existing AlphaDAO investment in the infrastructure sector, containing juicy alpha sourced from the depths of Discord.',
     image: alpha,
     available: true,
     redirect: routes.alpha,
@@ -49,7 +48,7 @@ export const cards = [
   {
     title: 'Diamond Hands NFT Game',
     description:
-      "The Diamond Hands NFT project is backed by Cryptonary's team of leading industry experts and one of the biggest established communities in the crypto space.",
+      'Currently under construction - a skill based game that will test your crypto knowledge.',
     image: game,
     available: false,
     redirect: routes.crossword,
@@ -62,7 +61,7 @@ export const cards = [
   {
     title: 'Win Coindrip Merchandise',
     description:
-      "The Diamond Hands NFT project is backed by Cryptonary's team of leading industry experts and one of the biggest established communities in the crypto space.",
+      'Being worked on at the moment - you will be able to claim a discount on any CoinDrip Merch!',
     image: discount,
     available: false,
     redirect: routes.discount,

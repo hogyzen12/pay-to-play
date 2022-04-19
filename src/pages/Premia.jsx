@@ -9,8 +9,9 @@ import {
   ListItem,
   ListItemText,
 } from '@mui/material';
-import { staticContent } from 'common/static/content';
+import staticContent from 'common/static/content.json';
 import AppContainer from 'common/layout/AppContainer';
+
 import premia from 'assets/image/premia.jpg';
 import g1 from 'assets/image/premia/1.jpeg';
 import g2 from 'assets/image/premia/2.jpeg';

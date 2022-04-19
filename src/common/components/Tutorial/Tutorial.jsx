@@ -7,7 +7,7 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
-import { staticContent } from 'common/static/content';
+import staticContent from 'common/static/content.json';
 import { styles } from './Tutorial.styles';
 
 const Tutorial = () => {

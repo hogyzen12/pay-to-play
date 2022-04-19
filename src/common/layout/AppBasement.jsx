@@ -9,7 +9,7 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { Button, Swipeable } from 'common/components';
-import { staticContent } from '../static/content';
+import staticContent from 'common/static/content.json';
 
 const { know, reset, submit, technical } = staticContent.footer;
 const styles = {
@@ -44,7 +44,13 @@ const styles = {
   },
 };
 
-const AppBasement = ({ open, resetTimer, submitResult, toggleDrawer }) => {
+const AppBasement = ({
+  open,
+  resetTimer,
+  submitResult,
+  toggleDrawer,
+  providerPubKey,
+}) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -53,8 +59,8 @@ const AppBasement = ({ open, resetTimer, submitResult, toggleDrawer }) => {
   };
 
   const handleSubmit = () => {
-    toggleDrawer();
     submitResult();
+    toggleDrawer();
   };
 
   const basementToolbar = () => (
@@ -70,14 +76,18 @@ const AppBasement = ({ open, resetTimer, submitResult, toggleDrawer }) => {
 
       <Box sx={styles.buttons}>
         <MuiButton
-          sx={styles.reset}
           onClick={handleReset}
+          sx={styles.reset}
           color="info"
           variant="contained"
         >
           {reset}
         </MuiButton>
-        <Button title={submit} onClick={handleSubmit} />
+        <Button
+          title={submit}
+          onClick={handleSubmit}
+          // disabled={!providerPubKey}
+        />
       </Box>
     </Toolbar>
   );

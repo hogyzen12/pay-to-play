@@ -11,7 +11,7 @@ import {
 import { Close as CloseIcon } from '@mui/icons-material';
 import { ReactComponent as CheckmarkImage } from 'assets/icons/checkmark.svg';
 import { Button } from 'common/components';
-import { staticContent } from 'common/static/content';
+import staticContent from 'common/static/content.json';
 import { styles } from './ModalSuccess.styles';
 
 const ModalSuccess = ({ openSuccessModal, toggleSuccessModal }) => {

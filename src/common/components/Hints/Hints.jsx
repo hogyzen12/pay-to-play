@@ -3,7 +3,7 @@ import { Box, Typography, useTheme, useMediaQuery } from '@mui/material';
 import { Tabs, Answer } from 'common/components';
 import { ReactComponent as AcrossIcon } from 'assets/icons/across.svg';
 import { ReactComponent as DownIcon } from 'assets/icons/down.svg';
-import { staticContent } from 'common/static/content';
+import staticContent from 'common/static/content.json';
 import { styles } from './Hints.styles';
 
 const Hints = () => {

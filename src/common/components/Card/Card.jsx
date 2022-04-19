@@ -5,7 +5,7 @@ import {
   CardContent,
   Typography,
 } from '@mui/material';
-import { staticContent } from 'common/static/content';
+import staticContent from 'common/static/content';
 import { styles } from './Card.styles';
 
 const Card = () => {

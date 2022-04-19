@@ -2,8 +2,8 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Box } from '@mui/material';
 import { ChoiceCard } from 'common/components';
-import { staticContent } from 'common/static/content';
 import { cards } from 'common/static/cards';
+import staticContent from 'common/static/content.json';
 import AppContainer from 'common/layout/AppContainer';
 
 const { title, description } = staticContent.meta.home;

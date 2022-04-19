@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import { ReactComponent as ArrowForward } from 'assets/icons/arrow.svg';
-import { staticContent } from 'common/static/content';
+import staticContent from 'common/static/content.json';
 import { styles } from './PaymentSelect.styles';
 
 const amountSOL = '0.1';

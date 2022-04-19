@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Tabs, Tab, Box, Typography } from '@mui/material';
 import { Answer } from 'common/components';
-import { staticContent } from 'common/static/content';
+import staticContent from 'common/static/content.json';
 import { styles } from './Tabs.styles';
 
 const BasicTabs = ({ customStyles = {} }) => {

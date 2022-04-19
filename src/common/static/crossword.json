@@ -42,7 +42,7 @@
       "row": 8,
       "col": 12
     },
-    "78": {
+    "8": {
       "clue": "A core feature that makes crypto so important",
       "answer": "UNMUTABLE",
       "row": 11,
@@ -82,12 +82,6 @@
       "clue": "A key element which will expand the throughput of Ethereum",
       "answer": "SHARDING",
       "row": 23,
-      "col": 7
-    },
-    "15": {
-      "clue": "",
-      "answer": "",
-      "row": 0,
       "col": 7
     }
   },

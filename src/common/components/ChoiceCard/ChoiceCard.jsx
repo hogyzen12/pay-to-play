@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 import { PayButton } from 'common/components';
-import { staticContent } from 'common/static/content';
+import staticContent from 'common/static/content.json';
 import { styles } from './ChoiceCard.styles';
 
 const SOLamount = '0.1';

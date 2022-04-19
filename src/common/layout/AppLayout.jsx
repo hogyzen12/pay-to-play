@@ -59,6 +59,7 @@ const AppLayout = ({
           resetTimer={resetTimer}
           submitResult={submitResult}
           toggleDrawer={toggleDrawer}
+          providerPubKey={providerPubKey}
         />
       )}
     </Box>

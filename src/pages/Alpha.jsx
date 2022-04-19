@@ -9,7 +9,7 @@ import {
   ListItem,
   ListItemText,
 } from '@mui/material';
-import { staticContent } from 'common/static/content';
+import staticContent from 'common/static/content.json';
 import AppContainer from 'common/layout/AppContainer';
 import alpha from 'assets/image/alpha.png';
 import g1 from 'assets/image/alpha/1.png';

@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import { ReactComponent as Logo } from 'assets/icons/diamond.svg';
-import { staticContent } from 'common/static/content';
+import staticContent from 'common/static/content.json';
 import { routes } from 'routes';
 
 const styles = {

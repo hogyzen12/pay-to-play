@@ -12,7 +12,8 @@ import {
 import { Button, Answer, Tabs } from 'common/components';
 import { ReactComponent as AcrossIcon } from 'assets/icons/across.svg';
 import { ReactComponent as DownIcon } from 'assets/icons/down.svg';
-import { staticContent } from 'common/static/content';
+import { results } from 'common/static/results';
+import staticContent from 'common/static/content.json';
 import { styles } from './ModalSubmit.styles';
 
 const ModalSubmit = ({
@@ -29,6 +30,8 @@ const ModalSubmit = ({
     toggleSubmitModal();
     toggleSuccessModal();
   };
+
+  const answerOption = () => {};
 
   const modalContent = () => (
     <Box sx={matches ? styles.modal : styles.drawer}>
@@ -65,7 +68,14 @@ const ModalSubmit = ({
                 <AcrossIcon />
               </Box>
               <Box sx={styles.answersList} component="ul">
-                <Answer number="1" question="Dui adipiscing vitae dui" />
+                {results.across.map(result => (
+                  <Answer
+                    key={result.number}
+                    number={result.number}
+                    question={result.clue}
+                    answer={result.answer}
+                  />
+                ))}
               </Box>
             </Box>
             <Box sx={styles.axis}>
@@ -76,7 +86,14 @@ const ModalSubmit = ({
                 <DownIcon />
               </Box>
               <Box sx={styles.answersList} component="ul">
-                <Answer number="2" question="Dui adipiscing vitae dui" />
+                {results.down.map(result => (
+                  <Answer
+                    key={result.number}
+                    number={result.number}
+                    question={result.clue}
+                    answer={result.answer}
+                  />
+                ))}
               </Box>
             </Box>
           </>

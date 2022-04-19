@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Box } from '@mui/material';
 import { Card, Tutorial, PaymentSelect } from 'common/components';
-import { staticContent } from 'common/static/content';
+import staticContent from 'common/static/content.json';
 import AppContainer from 'common/layout/AppContainer';
 
 const { title, description } = staticContent.meta.home;

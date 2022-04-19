@@ -30,11 +30,14 @@ import {
   ModalSuccess,
 } from 'common/components';
 import { transferCustomToken } from 'common/utils/transferToken';
-import { transferDiamondToken } from './common/utils/transferDiamond';
-import './common/utils/bufferFill';
+import { transferDiamondToken } from 'common/utils/transferDiamond';
+import 'common/utils/bufferFill';
 
 import { PrivateRoute } from 'common/utils/PrivateRoute';
 import { initialAlersState } from 'common/static/alert';
+import { localStorageGet } from 'common/utils/localStorage';
+import { getResults } from 'common/utils/getResults';
+import { results } from 'common/static/results';
 import { routes } from './routes';
 import AppLayout from 'common/layout/AppLayout';
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -66,6 +69,7 @@ const App = () => {
   const [image, takeScreenshot] = useScreenshot();
   const navigate = useNavigate();
   const gameRef = useRef();
+  const crosswordRef = useRef();
   const { seconds, minutes, isRunning, start, restart, pause } = useTimer({
     expiryTimestamp,
     onExpire: () => {
@@ -86,10 +90,6 @@ const App = () => {
    * 1. connect -> This method gets triggered when the wallet connection is successful
    * 2. disconnect -> This callback method gets triggered when the wallet gets disconnected from the application
    */
-
-  useEffect(() => {
-    console.log('isRunning', isRunning);
-  }, [isRunning]);
 
   useEffect(() => {
     resetTimer();
@@ -442,7 +442,19 @@ const App = () => {
   };
 
   const submitResult = () => {
+    setLoading(true);
     getImage();
+    pause();
+
+    const data = localStorageGet('guesses');
+
+    if (data && data.guesses) {
+      getResults(data.guesses);
+    }
+
+    console.log(results);
+
+    setLoading(false);
     toggleSubmitModal();
   };
 
@@ -510,9 +522,12 @@ const App = () => {
             <Route
               path={routes.crossword}
               element={
-                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                <CrosswordPage gameRef={gameRef} />
-                // </PrivateRoute>
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <CrosswordPage
+                    gameRef={gameRef}
+                    crosswordRef={crosswordRef}
+                  />
+                </PrivateRoute>
               }
             />
             <Route

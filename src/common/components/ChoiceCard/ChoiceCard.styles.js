@@ -1,5 +1,7 @@
 export const styles = {
   card: {
+    display: 'flex',
+    flexDirection: 'column',
     border: theme => `1px solid ${theme.palette.success.main}`,
     borderRadius: '8px',
     width: '100%',
@@ -39,6 +41,7 @@ export const styles = {
   actions: {
     display: 'flex',
     padding: '0',
+    marginTop: 'auto',
   },
   start: {
     mr: '16px',

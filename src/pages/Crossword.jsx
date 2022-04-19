@@ -24,10 +24,7 @@ const Crossword = ({ gameRef }) => {
       </Helmet>
 
       <AppContainer>
-        {/* <Box sx={styles.wrapper}> */}
         <Game gameRef={gameRef} />
-        {/* <Hints /> */}
-        {/* </Box> */}
       </AppContainer>
     </>
   );

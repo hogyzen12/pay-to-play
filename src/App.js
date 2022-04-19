@@ -4,6 +4,7 @@ import { Box, Typography, Backdrop, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import { useScreenshot } from 'use-react-screenshot';
 import { confirmAlert } from 'react-confirm-alert';
+import { useTimer } from 'react-timer-hook';
 
 import * as splToken from '@solana/spl-token';
 import { Token, TOKEN_PROGRAM_ID } from '@solana/spl-token';
@@ -38,6 +39,10 @@ import { routes } from './routes';
 import AppLayout from 'common/layout/AppLayout';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
+const timeAmount = 3600; // one hour
+const expiryTimestamp = new Date();
+expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + timeAmount);
+
 let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
 let shadowRequiredToPlay = 1.0 * LAMPORTS_PER_SOL;
 let diamondsRequiredToPlay = 1;
@@ -61,6 +66,13 @@ const App = () => {
   const [image, takeScreenshot] = useScreenshot();
   const navigate = useNavigate();
   const gameRef = useRef();
+  const { seconds, minutes, isRunning, start, restart, pause } = useTimer({
+    expiryTimestamp,
+    onExpire: () => {
+      console.warn('onExpire called');
+      navigate(routes.home);
+    },
+  });
 
   /*
    * Connection to the Solana cluster
@@ -76,6 +88,16 @@ const App = () => {
    */
 
   useEffect(() => {
+    console.log('isRunning', isRunning);
+  }, [isRunning]);
+
+  useEffect(() => {
+    resetTimer();
+    start();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     if (provider && !provider.isConnected) {
       provider.connect();
     }
@@ -84,8 +106,6 @@ const App = () => {
   useEffect(() => {
     if (provider) {
       provider.on('connect', async () => {
-        console.log('wallet got connected', provider.publicKey);
-
         setAlertState({
           open: true,
           message: 'wallet got connected',
@@ -94,9 +114,8 @@ const App = () => {
 
         setProviderPub(provider.publicKey);
       });
-      provider.on('disconnect', () => {
-        console.log('Disconnected from wallet');
 
+      provider.on('disconnect', () => {
         setAlertState({
           open: true,
           message: 'Disconnected from wallet',
@@ -107,7 +126,6 @@ const App = () => {
   }, [provider]);
 
   const loginHandler = () => {
-    console.log('connectWallet :>> ', provider);
     if (!provider && window.solana) {
       setProvider(window.solana);
     } else if (!provider) {
@@ -405,20 +423,18 @@ const App = () => {
     setAlertState(initialAlersState);
   };
 
-  const handleOpenSubmitModal = () => {
-    setOpenSubmitModal(true);
+  const toggleSubmitModal = () => {
+    setOpenSubmitModal(!openSubmitModal);
   };
 
-  const handleCloseSubmitModal = () => {
-    setOpenSubmitModal(false);
+  const toggleSuccessModal = () => {
+    setOpenSuccessModal(!openSuccessModal);
   };
 
-  const handleOpenSuccessModal = () => {
-    setOpenSuccessModal(true);
-  };
-
-  const handleCloseSuccessModal = () => {
-    setOpenSuccessModal(false);
+  const resetTimer = () => {
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + 3599);
+    restart(time);
   };
 
   const getImage = () => {
@@ -427,10 +443,8 @@ const App = () => {
 
   const submitResult = () => {
     getImage();
-    handleOpenSubmitModal();
+    toggleSubmitModal();
   };
-
-  const resetResult = () => {};
 
   return (
     <>
@@ -440,10 +454,13 @@ const App = () => {
             path={routes.home}
             element={
               <AppLayout
-                providerPubKey={providerPubKey}
+                start={start}
+                seconds={seconds}
+                minutes={minutes}
+                resetTimer={resetTimer}
                 loginHandler={loginHandler}
-                resetResult={resetResult}
                 submitResult={submitResult}
+                providerPubKey={providerPubKey}
               />
             }
           >
@@ -493,9 +510,9 @@ const App = () => {
             <Route
               path={routes.crossword}
               element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <CrosswordPage gameRef={gameRef} resetResult={resetResult} />
-                </PrivateRoute>
+                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                <CrosswordPage gameRef={gameRef} />
+                // </PrivateRoute>
               }
             />
             <Route
@@ -515,13 +532,12 @@ const App = () => {
       <Notification alertState={alertState} onAlertClose={onAlertClose} />
       <ModalSuccess
         openSuccessModal={openSuccessModal}
-        handleCloseSuccessModal={handleCloseSuccessModal}
+        toggleSuccessModal={toggleSuccessModal}
       />
       <ModalSubmit
         openSubmitModal={openSubmitModal}
-        handleCloseSubmitModal={handleCloseSubmitModal}
-        handleOpenSubmitModal={handleOpenSubmitModal}
-        handleOpenSuccessModal={handleOpenSuccessModal}
+        toggleSubmitModal={toggleSubmitModal}
+        toggleSuccessModal={toggleSuccessModal}
       />
     </>
   );

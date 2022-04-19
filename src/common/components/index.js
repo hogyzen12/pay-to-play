@@ -3,7 +3,6 @@ export { default as ChoiceCard } from './ChoiceCard/ChoiceCard';
 export { default as Game } from './Game/Game';
 export { default as Tabs } from './Tabs/Tabs';
 export { default as Hints } from './Hints/Hints';
-export { default as Timer } from './Timer/Timer';
 export { default as Swipeable } from './Swipable/Swipeable';
 export { default as ModalSubmit } from './ModalSubmit/ModalSubmit';
 export { default as ModalSuccess } from './ModalSuccess/ModalSuccess';

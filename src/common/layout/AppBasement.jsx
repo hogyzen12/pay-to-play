@@ -8,9 +8,10 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
-import { Button, Swipeable } from '../components';
+import { Button, Swipeable } from 'common/components';
 import { staticContent } from '../static/content';
 
+const { know, reset, submit, technical } = staticContent.footer;
 const styles = {
   link: {
     color: 'custom.white',
@@ -24,7 +25,7 @@ const styles = {
   },
   toolbar: {
     display: 'flex',
-    flexDirection: { xs: 'column', md: 'row' },
+    flexDirection: { xs: 'column-reverse', md: 'row' },
     justifyContent: { md: 'space-between' },
   },
   technical: {
@@ -32,20 +33,23 @@ const styles = {
   },
   buttons: {
     display: 'flex',
+    flexDirection: { xs: 'column-reverse', md: 'row' },
+    width: { xs: '100%', md: 'fit-content' },
     gap: '16px',
+    paddingBottom: { xs: '32px', md: '0' },
+    borderBottom: { xs: '1px solid #404040', md: 'none' },
   },
   reset: {
     padding: '16px 24px',
   },
 };
 
-const AppBasement = ({ resetResult, submitResult, toggleDrawer, open }) => {
+const AppBasement = ({ open, resetTimer, submitResult, toggleDrawer }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
-  const { know, reset, submit, technical } = staticContent.footer;
 
   const handleReset = () => {
-    resetResult();
+    if (resetTimer) resetTimer();
   };
 
   const handleSubmit = () => {

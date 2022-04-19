@@ -36,6 +36,7 @@ export const staticContent = {
   header: {
     walletButton: 'Connect wallet',
     connected: 'Connected',
+    notConnected: 'Not connected',
   },
   pages: {
     home: {

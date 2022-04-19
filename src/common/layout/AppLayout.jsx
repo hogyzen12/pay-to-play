@@ -22,9 +22,11 @@ const styles = {
 };
 
 const AppLayout = ({
+  seconds,
+  minutes,
+  resetTimer,
   providerPubKey,
   loginHandler,
-  resetResult,
   submitResult,
 }) => {
   const [open, setOpen] = useState(false);
@@ -35,13 +37,13 @@ const AppLayout = ({
     setShowBasement(location.pathname === routes.crossword);
   }, [location]);
 
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
+  const toggleDrawer = () => setOpen(!open);
 
   return (
     <Box sx={styles.layout}>
       <AppBar
+        seconds={seconds}
+        minutes={minutes}
         providerPubKey={providerPubKey}
         loginHandler={loginHandler}
         toggleDrawer={toggleDrawer}
@@ -54,7 +56,7 @@ const AppLayout = ({
       {showBasement && (
         <AppBasement
           open={open}
-          resetResult={resetResult}
+          resetTimer={resetTimer}
           submitResult={submitResult}
           toggleDrawer={toggleDrawer}
         />

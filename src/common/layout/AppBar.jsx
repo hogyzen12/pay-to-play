@@ -12,7 +12,6 @@ import {
 } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import { ReactComponent as Logo } from 'assets/icons/diamond.svg';
-import { Timer } from 'common/components';
 import { staticContent } from 'common/static/content';
 import { routes } from 'routes';
 
@@ -43,15 +42,34 @@ const styles = {
     color: theme => theme.palette.custom.apple,
     ml: '16px',
   },
+  notConnected: {
+    color: '#FF0000',
+    ml: '16px',
+  },
   burgerBtn: { color: '#fff' },
+  timer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  time: {
+    color: 'custom.white',
+    // marginRight: '16px',
+  },
 };
 
-const AppBar = ({ providerPubKey, loginHandler, toggleDrawer }) => {
+const AppBar = ({
+  seconds,
+  minutes,
+  providerPubKey,
+  loginHandler,
+  toggleDrawer,
+}) => {
   const location = useLocation();
   const navigate = useNavigate();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
-  const { connected, walletButton } = staticContent.header;
+  const { connected, notConnected, walletButton } = staticContent.header;
 
   const handleConnectWallet = () => {
     if (loginHandler) loginHandler();
@@ -64,7 +82,9 @@ const AppBar = ({ providerPubKey, loginHandler, toggleDrawer }) => {
   const homeWalletStatus = () => (
     <>
       <Typography sx={styles.key}>{providerPubKey?.toBase58()}</Typography>
-      <Typography sx={styles.connected}>{connected}</Typography>
+      <Typography sx={providerPubKey ? styles.connected : styles.notConnected}>
+        {providerPubKey ? connected : notConnected}
+      </Typography>
     </>
   );
 
@@ -88,7 +108,13 @@ const AppBar = ({ providerPubKey, loginHandler, toggleDrawer }) => {
           <Logo width="32" />
         </IconButton>
 
-        {location.pathname !== routes.home && <Timer />}
+        {location.pathname !== routes.home && (
+          <Box sx={styles.timer}>
+            <Typography sx={styles.time} variant="h3">
+              {minutes} : {seconds}
+            </Typography>
+          </Box>
+        )}
 
         <Box sx={styles.wallet}>
           {location.pathname === routes.home && !providerPubKey && (

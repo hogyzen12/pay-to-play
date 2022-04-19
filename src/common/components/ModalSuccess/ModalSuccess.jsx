@@ -14,14 +14,14 @@ import { Button } from 'common/components';
 import { staticContent } from 'common/static/content';
 import { styles } from './ModalSuccess.styles';
 
-const ModalSuccess = ({ openSuccessModal, handleCloseSuccessModal }) => {
+const ModalSuccess = ({ openSuccessModal, toggleSuccessModal }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   const { title, description } = staticContent.pages.crossword.successModal;
 
   const modalContent = () => (
     <Box sx={matches ? styles.content : styles.contentMobile}>
-      <IconButton sx={styles.closeIcon} onClick={handleCloseSuccessModal}>
+      <IconButton sx={styles.closeIcon} onClick={toggleSuccessModal}>
         <CloseIcon sx={styles.icon} />
       </IconButton>
       <CheckmarkImage />
@@ -31,7 +31,7 @@ const ModalSuccess = ({ openSuccessModal, handleCloseSuccessModal }) => {
       </Typography>
       <Button
         sx={styles.button}
-        onClick={handleCloseSuccessModal}
+        onClick={toggleSuccessModal}
         title="Got it"
         customStyles={{
           maxWidth: { xs: '160px' },
@@ -43,13 +43,13 @@ const ModalSuccess = ({ openSuccessModal, handleCloseSuccessModal }) => {
   return (
     <>
       {matches ? (
-        <SuccessModal open={openSuccessModal} onClose={handleCloseSuccessModal}>
+        <SuccessModal open={openSuccessModal} onClose={toggleSuccessModal}>
           {modalContent()}
         </SuccessModal>
       ) : (
         <Drawer
           open={openSuccessModal}
-          onClose={handleCloseSuccessModal}
+          onClose={toggleSuccessModal}
           anchor="bottom"
         >
           {modalContent()}

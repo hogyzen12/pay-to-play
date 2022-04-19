@@ -25,6 +25,7 @@ const Game = ({ gameRef }) => {
 
   useEffect(() => {
     const crossRef = crosswordRef.current;
+    crossRef.fillAllAnswers();
     console.log('crossRef', crossRef);
   }, [crosswordRef]);
 

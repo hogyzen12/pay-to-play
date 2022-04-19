@@ -17,9 +17,8 @@ import { styles } from './ModalSubmit.styles';
 
 const ModalSubmit = ({
   openSubmitModal,
-  handleCloseSubmitModal,
-  handleOpenSubmitModal,
-  handleOpenSuccessModal,
+  toggleSubmitModal,
+  toggleSuccessModal,
 }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
@@ -27,8 +26,8 @@ const ModalSubmit = ({
     staticContent.pages.crossword.submitModal;
 
   const handleSubmit = () => {
-    handleCloseSubmitModal();
-    handleOpenSuccessModal();
+    toggleSubmitModal();
+    toggleSuccessModal();
   };
 
   const modalContent = () => (
@@ -98,15 +97,14 @@ const ModalSubmit = ({
   return (
     <>
       {matches ? (
-        <SubmitModal open={openSubmitModal} onClose={handleCloseSubmitModal}>
+        <SubmitModal open={openSubmitModal} onClose={toggleSubmitModal}>
           {modalContent()}
         </SubmitModal>
       ) : (
         <Drawer
           anchor="bottom"
           open={openSubmitModal}
-          // onOpen={handleOpenSubmitModal}
-          onClose={handleCloseSubmitModal}
+          onClose={toggleSubmitModal}
         >
           {modalContent()}
         </Drawer>

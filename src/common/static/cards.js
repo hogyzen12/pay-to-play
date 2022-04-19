@@ -35,7 +35,7 @@ export const cards = [
   {
     title: 'Alpha-DAO Proposal #18',
     description:
-      'An update on an existing AlphaDAO investment in the infrastructure sector, containing juicy alpha sourced from the depths of Discord.',
+      "The Diamond Hands NFT project is backed by Cryptonary's team of leading industry experts and one of the biggest established communities in the crypto space.",
     image: alpha,
     available: true,
     redirect: routes.alpha,

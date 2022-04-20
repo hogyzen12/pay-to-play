@@ -59,12 +59,13 @@ code {
 }
 
 .direction {
-  width: 50%;
+  width: 100%;
 }
 
 .header {
   margin: 0;
   padding: 0;
+  margin-bottom: 10px;
 }
 
 .clue {
@@ -73,4 +74,11 @@ code {
 
 .clue:hover {
   cursor: pointer;
+  color: #cdccf5;
+}
+
+@media (min-width: 768px) {
+  .direction {
+    width: 50%;
+  }
 }

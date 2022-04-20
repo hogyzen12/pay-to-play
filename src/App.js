@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState, useRef } from 'react';
+import { Suspense, useEffect, useState, useRef, useReducer } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { Box, Typography, Backdrop, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
@@ -36,8 +36,8 @@ import 'common/utils/bufferFill';
 import { PrivateRoute } from 'common/utils/PrivateRoute';
 import { initialAlersState } from 'common/static/alert';
 import { localStorageGet } from 'common/utils/localStorage';
-import { getResults } from 'common/utils/getResults';
-import { results } from 'common/static/results';
+import { fillAnswers } from 'common/utils/fillAnswers';
+import { initialResults } from 'common/static/results';
 import { routes } from './routes';
 import AppLayout from 'common/layout/AppLayout';
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -49,23 +49,22 @@ expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + timeAmount);
 let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
 let shadowRequiredToPlay = 1.0 * LAMPORTS_PER_SOL;
 let diamondsRequiredToPlay = 1;
-
 const web3 = require('@solana/web3.js');
 const NETWORK = clusterApiUrl('mainnet-beta');
+const tokenMint = new PublicKey('FdSBbLHK8hfc6BSqjrhQZaGj7jgd5vfPcchDB2RDAQFA');
+const shadowMint = new PublicKey('SHDWyBxihqiCj6YekG2GUr7wqKLeLAMK1gHZck9pL6y');
 const gameWalletPublicKey = new PublicKey(
   'CproxWoLCk4QrCd3VJNUpo3QZf3bjEnTN1FuBcRbZYaw',
 );
-const tokenMint = new PublicKey('FdSBbLHK8hfc6BSqjrhQZaGj7jgd5vfPcchDB2RDAQFA');
-const shadowMint = new PublicKey('SHDWyBxihqiCj6YekG2GUr7wqKLeLAMK1gHZck9pL6y');
 
 const App = () => {
   const [provider, setProvider] = useState();
+  const [loading, setLoading] = useState(false);
   const [providerPubKey, setProviderPub] = useState();
-  const [alertState, setAlertState] = useState(initialAlersState);
   const [openSubmitModal, setOpenSubmitModal] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const [transferTokenStatus, setTransferTokenStatus] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [alertState, setAlertState] = useState(initialAlersState);
   const [image, takeScreenshot] = useScreenshot();
   const navigate = useNavigate();
   const gameRef = useRef();
@@ -449,10 +448,9 @@ const App = () => {
     const data = localStorageGet('guesses');
 
     if (data && data.guesses) {
-      getResults(data.guesses);
+      fillAnswers('across', data.guesses);
+      fillAnswers('down', data.guesses);
     }
-
-    console.log(results);
 
     setLoading(false);
     toggleSubmitModal();
@@ -522,12 +520,9 @@ const App = () => {
             <Route
               path={routes.crossword}
               element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <CrosswordPage
-                    gameRef={gameRef}
-                    crosswordRef={crosswordRef}
-                  />
-                </PrivateRoute>
+                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                <CrosswordPage gameRef={gameRef} />
+                // </PrivateRoute>
               }
             />
             <Route

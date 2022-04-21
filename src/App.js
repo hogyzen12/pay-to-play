@@ -92,7 +92,7 @@ const App = () => {
 
   useEffect(() => {
     if (openSubmitModal) pause();
-  }, [openSubmitModal, pause, resume, start]);
+  }, [openSubmitModal, pause]);
 
   useEffect(() => {
     resetTimer();
@@ -529,9 +529,9 @@ const App = () => {
             <Route
               path={routes.crossword}
               element={
-                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                <CrosswordPage gameRef={gameRef} />
-                // </PrivateRoute>
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <CrosswordPage gameRef={gameRef} />
+                </PrivateRoute>
               }
             />
             <Route

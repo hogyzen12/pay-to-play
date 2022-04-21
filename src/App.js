@@ -449,15 +449,12 @@ const App = () => {
   };
 
   const getTimeDuration = () => {
-    const spentMilliseconds = timeAmount - expiryTimestamp.getMilliseconds();
-    const duration = new Date(spentMilliseconds);
-    const minutes = duration.getMinutes().toString();
-    const seconds = duration.getSeconds().toString();
+    const min = (59 - minutes).toString();
+    const sec = (60 - seconds).toString();
+    const formattedMinutes = min.length === 1 ? `0${min}` : min;
+    const formattedSeconds = sec.length === 1 ? `0${sec}` : sec;
 
-    console.log('minutes :>> ', minutes.length);
-    console.log('seconds :>> ', seconds.length);
-
-    setTimeDuration(`${minutes}:${seconds}`);
+    setTimeDuration(`${formattedMinutes}:${formattedSeconds}`);
   };
 
   const submitResult = () => {
@@ -529,9 +526,9 @@ const App = () => {
             <Route
               path={routes.crossword}
               element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <CrosswordPage gameRef={gameRef} />
-                </PrivateRoute>
+                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                <CrosswordPage gameRef={gameRef} />
+                // </PrivateRoute>
               }
             />
             <Route
@@ -555,6 +552,7 @@ const App = () => {
       />
       <ModalSubmit
         timeDuration={timeDuration}
+        initialResults={initialResults}
         openSubmitModal={openSubmitModal}
         toggleSubmitModal={toggleSubmitModal}
         toggleSuccessModal={toggleSuccessModal}

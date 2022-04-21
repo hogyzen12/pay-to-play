@@ -7,9 +7,10 @@ import {
   CardActions,
   Typography,
 } from '@mui/material';
+import { motion } from 'framer-motion';
 import { PayButton } from 'common/components';
-import staticContent from 'common/static/content.json';
 import { styles } from './ChoiceCard.styles';
+import staticContent from 'common/static/content.json';
 
 const SOLamount = '0.1';
 const DHMTamount = '1';
@@ -24,11 +25,19 @@ const ChoiceCard = ({
   description,
   selectedPage,
   handleClickSOL,
+  transitionDelay,
   handleClickDHMT,
   handleClickSHDW,
 }) => {
   return (
-    <Card sx={styles.card}>
+    <Card
+      sx={styles.card}
+      component={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ delay: transitionDelay }}
+    >
       <CardMedia
         sx={styles.image}
         alt={title}

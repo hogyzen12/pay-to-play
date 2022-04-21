@@ -1,13 +1,13 @@
-import { Suspense, useEffect, useState, useRef, useReducer } from 'react';
+import { Suspense, useEffect, useState, useRef } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { Box, Typography, Backdrop, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import { useScreenshot } from 'use-react-screenshot';
 import { confirmAlert } from 'react-confirm-alert';
 import { useTimer } from 'react-timer-hook';
-
-import * as splToken from '@solana/spl-token';
 import { Token, TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import * as splToken from '@solana/spl-token';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import {
   clusterApiUrl,
   Connection,
@@ -32,7 +32,6 @@ import {
 import { transferCustomToken } from 'common/utils/transferToken';
 import { transferDiamondToken } from 'common/utils/transferDiamond';
 import 'common/utils/bufferFill';
-
 import { PrivateRoute } from 'common/utils/PrivateRoute';
 import { initialAlersState } from 'common/static/alert';
 import { localStorageGet } from 'common/utils/localStorage';
@@ -40,15 +39,13 @@ import { fillAnswers } from 'common/utils/fillAnswers';
 import { initialResults } from 'common/static/results';
 import { routes } from './routes';
 import AppLayout from 'common/layout/AppLayout';
-import 'react-confirm-alert/src/react-confirm-alert.css';
-
-const timeAmount = 3600; // one hour
-const expiryTimestamp = new Date();
-expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + timeAmount);
 
 let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
 let shadowRequiredToPlay = 1.0 * LAMPORTS_PER_SOL;
 let diamondsRequiredToPlay = 1;
+const timeAmount = 3600; // one hour
+const expiryTimestamp = new Date();
+expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + timeAmount);
 const web3 = require('@solana/web3.js');
 const NETWORK = clusterApiUrl('mainnet-beta');
 const tokenMint = new PublicKey('FdSBbLHK8hfc6BSqjrhQZaGj7jgd5vfPcchDB2RDAQFA');
@@ -207,7 +204,7 @@ const App = () => {
                 }}
                 variant="h3"
               >
-                Oops!!! You do not have enough balance
+                You do not have enough balance
               </Typography>
               <Typography sx={{ textAlign: 'center' }}>
                 Please fund your wallet with{' '}
@@ -247,12 +244,14 @@ const App = () => {
 
     if (!result.status) {
       setTransferTokenStatus(result.status);
-      // alert('Error in sending the tokens, Please try again!!!');
+
+      setLoading(false);
       setAlertState({
         open: true,
         message: 'Error in sending the tokens, Please try again!!!',
         severity: 'error',
       });
+
       return;
     }
 
@@ -262,8 +261,6 @@ const App = () => {
 
     setTransferTokenStatus(result.status);
     setLoading(false);
-    // history.push('/stack');
-    // navigate('/crossword');
     navigate(selectedItem);
   };
 
@@ -358,7 +355,7 @@ const App = () => {
                 }}
                 variant="h3"
               >
-                Oops!!! You do need more SOL for gas fees
+                You do need more SOL for gas fees
               </Typography>
               <Typography sx={{ textAlign: 'center' }}>
                 You need to have at least 1 DMND to play the game.
@@ -399,12 +396,14 @@ const App = () => {
 
     if (!result.status) {
       setTransferTokenStatus(result.status);
-      // alert('Error in sending the tokens, Please try again!!!');
+
+      setLoading(false);
       setAlertState({
         open: true,
         message: 'Error in sending the tokens, Please try again!!!',
         severity: 'error',
       });
+
       return;
     }
 
@@ -441,7 +440,6 @@ const App = () => {
   };
 
   const submitResult = () => {
-    setLoading(true);
     getImage();
     pause();
 
@@ -474,15 +472,6 @@ const App = () => {
               />
             }
           >
-            {/* <Route
-              index
-              element={
-                <HomePage
-                  handleClickSOL={handlePaySOL}
-                  handleClickDHMT={handlePayDHMT}
-                />
-              }
-            /> */}
             <Route
               index
               element={

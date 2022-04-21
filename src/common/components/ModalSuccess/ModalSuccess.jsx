@@ -1,4 +1,6 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Box,
   Drawer,
@@ -11,13 +13,21 @@ import {
 import { Close as CloseIcon } from '@mui/icons-material';
 import { ReactComponent as CheckmarkImage } from 'assets/icons/checkmark.svg';
 import { Button } from 'common/components';
-import staticContent from 'common/static/content.json';
+import { routes } from 'routes';
 import { styles } from './ModalSuccess.styles';
+import staticContent from 'common/static/content.json';
+
+const { title, description } = staticContent.pages.crossword.successModal;
 
 const ModalSuccess = ({ openSuccessModal, toggleSuccessModal }) => {
+  const navigate = useNavigate();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
-  const { title, description } = staticContent.pages.crossword.successModal;
+
+  const handleClick = () => {
+    toggleSuccessModal();
+    navigate(routes.home);
+  };
 
   const modalContent = () => (
     <Box sx={matches ? styles.content : styles.contentMobile}>
@@ -31,7 +41,7 @@ const ModalSuccess = ({ openSuccessModal, toggleSuccessModal }) => {
       </Typography>
       <Button
         sx={styles.button}
-        onClick={toggleSuccessModal}
+        onClick={handleClick}
         title="Got it"
         customStyles={{
           maxWidth: { xs: '160px' },
@@ -43,9 +53,18 @@ const ModalSuccess = ({ openSuccessModal, toggleSuccessModal }) => {
   return (
     <>
       {matches ? (
-        <SuccessModal open={openSuccessModal} onClose={toggleSuccessModal}>
-          {modalContent()}
-        </SuccessModal>
+        <AnimatePresence>
+          <SuccessModal
+            open={openSuccessModal}
+            onClose={toggleSuccessModal}
+            component={motion.div}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {modalContent()}
+          </SuccessModal>
+        </AnimatePresence>
       ) : (
         <Drawer
           open={openSuccessModal}

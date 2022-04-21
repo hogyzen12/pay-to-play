@@ -11,6 +11,7 @@ import data from 'common/static/crossword.json';
 import { styles } from './Game.styles';
 
 const { hints } = staticContent.pages.crossword;
+
 const theme = {
   textColor: '909090',
   gridBackground: '#404040',
@@ -18,7 +19,7 @@ const theme = {
   cellBorder: '#404040',
   numberColor: '#141414',
   focusBackground: '#CDCCF5',
-  highlightBackground: '#EEEEFC',
+  highlightBackground: '#CDCCF5', // #EEEEFC
 };
 
 const Game = ({ gameRef }) => {

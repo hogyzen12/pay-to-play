@@ -1,17 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-// import { Box } from '@mui/material';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Box } from '@mui/material';
 import { Game, Hints } from 'common/components';
 import staticContent from 'common/static/content.json';
 import AppContainer from 'common/layout/AppContainer';
-
-// const styles = {
-//   wrapper: {
-//     display: 'flex',
-//     flexDirection: { xs: 'column', md: 'row' },
-//     gap: '24px',
-//   },
-// };
 
 const Crossword = ({ gameRef }) => {
   const { title, description } = staticContent.meta.crossword;
@@ -24,7 +17,16 @@ const Crossword = ({ gameRef }) => {
       </Helmet>
 
       <AppContainer>
-        <Game gameRef={gameRef} />
+        <AnimatePresence>
+          <Box
+            component={motion.div}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <Game gameRef={gameRef} />
+          </Box>
+        </AnimatePresence>
       </AppContainer>
     </>
   );

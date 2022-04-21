@@ -22,6 +22,14 @@ const styles = {
     gridArea: 'AppBasement',
     borderTop: theme => `1px solid ${theme.palette.success.main}`,
     padding: '36px 0',
+    footerSticky: {
+      position: 'sticky',
+      bottom: 0,
+      gridArea: 'AppBasement',
+      borderTop: theme => `1px solid ${theme.palette.success.main}`,
+      padding: '36px 0',
+      bgcolor: 'custom.black',
+    },
   },
   toolbar: {
     display: 'flex',

@@ -4,11 +4,14 @@ import { Answer } from 'common/components';
 import staticContent from 'common/static/content.json';
 import { styles } from './Tabs.styles';
 
+const { across, down } = staticContent.pages.crossword.submitModal;
+
 const BasicTabs = ({ customStyles = {}, initialResults }) => {
   const [value, setValue] = useState(0);
-  const { across, down } = staticContent.pages.crossword.submitModal;
 
-  const handleChange = (event, newValue) => setValue(newValue);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <Box sx={{ ...styles.wrapper, ...customStyles }}>

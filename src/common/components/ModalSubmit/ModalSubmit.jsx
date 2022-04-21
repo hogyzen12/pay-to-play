@@ -9,6 +9,7 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
+import { motion } from 'framer-motion';
 import { Button, Answer, Tabs } from 'common/components';
 import { ReactComponent as AcrossIcon } from 'assets/icons/across.svg';
 import { ReactComponent as DownIcon } from 'assets/icons/down.svg';
@@ -112,7 +113,15 @@ const ModalSubmit = ({
   return (
     <>
       {matches ? (
-        <SubmitModal open={openSubmitModal} onClose={toggleSubmitModal}>
+        <SubmitModal
+          component={motion.div}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ delay: 0.1 }}
+          open={openSubmitModal}
+          onClose={toggleSubmitModal}
+        >
           {modalContent()}
         </SubmitModal>
       ) : (

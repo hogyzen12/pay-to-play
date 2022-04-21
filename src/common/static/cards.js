@@ -13,6 +13,7 @@ export const cards = [
     image: premium,
     available: true,
     redirect: routes.premium,
+    transitionDelay: 0.1,
     payment: {
       sol: true,
       dhmt: true,
@@ -26,6 +27,7 @@ export const cards = [
     image: premia,
     available: true,
     redirect: routes.premia,
+    transitionDelay: 0.2,
     payment: {
       sol: true,
       dhmt: true,
@@ -39,6 +41,7 @@ export const cards = [
     image: alpha,
     available: true,
     redirect: routes.alpha,
+    transitionDelay: 0.3,
     payment: {
       sol: false,
       dhmt: true,
@@ -52,6 +55,7 @@ export const cards = [
     image: game,
     available: false,
     redirect: routes.crossword,
+    transitionDelay: 0.4,
     payment: {
       sol: true,
       dhmt: true,
@@ -65,6 +69,7 @@ export const cards = [
     image: discount,
     available: false,
     redirect: routes.discount,
+    transitionDelay: 0.5,
     payment: {
       sol: true,
       dhmt: true,

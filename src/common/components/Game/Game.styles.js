@@ -15,13 +15,14 @@ export const styles = {
   title: {
     fontSize: '24px',
     lineHeight: '21.6px',
-    marginBottom: { xs: '8px', md: '20px' },
+    marginBottom: '20px',
   },
   hints: {
     // width: { xs: '100%', md: '50%' }
   },
   clues: {
     display: 'flex',
+    flexDirection: { xs: 'column', md: 'row' },
     gap: '16px',
   },
 };

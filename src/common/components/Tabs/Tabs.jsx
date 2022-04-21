@@ -4,11 +4,14 @@ import { Answer } from 'common/components';
 import staticContent from 'common/static/content.json';
 import { styles } from './Tabs.styles';
 
-const BasicTabs = ({ customStyles = {} }) => {
-  const [value, setValue] = useState(0);
-  const { across, down } = staticContent.pages.crossword.submitModal;
+const { across, down } = staticContent.pages.crossword.submitModal;
 
-  const handleChange = (event, newValue) => setValue(newValue);
+const BasicTabs = ({ customStyles = {}, initialResults }) => {
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <Box sx={{ ...styles.wrapper, ...customStyles }}>
@@ -37,26 +40,26 @@ const BasicTabs = ({ customStyles = {} }) => {
 
       {value === 0 && (
         <Box>
-          <Answer number="1" question="Dui adipiscing vitae dui" />
-          <Answer number="2" question="Dui adipiscing vitae dui" />
-          <Answer number="3" question="Dui adipiscing vitae dui" />
-          <Answer number="4" question="Dui adipiscing vitae dui" />
-          <Answer number="5" question="Dui adipiscing vitae dui" />
-          <Answer number="6" question="Dui adipiscing vitae dui" />
-          <Answer number="7" question="Dui adipiscing vitae dui" />
-          <Answer number="8" question="Dui adipiscing vitae dui" />
+          {initialResults.across.map((result, index) => (
+            <Answer
+              key={index}
+              number={result.number}
+              question={result.clue}
+              answer={result.answer}
+            />
+          ))}
         </Box>
       )}
       {value === 1 && (
         <Box>
-          <Answer number="9" question="Dui adipiscing vitae dui" />
-          <Answer number="10" question="Dui adipiscing vitae dui" />
-          <Answer number="11" question="Dui adipiscing vitae dui" />
-          <Answer number="12" question="Dui adipiscing vitae dui" />
-          <Answer number="13" question="Dui adipiscing vitae dui" />
-          <Answer number="14" question="Dui adipiscing vitae dui" />
-          <Answer number="15" question="Dui adipiscing vitae dui" />
-          <Answer number="16" question="Dui adipiscing vitae dui" />
+          {initialResults.down.map(result => (
+            <Answer
+              key={result.number}
+              number={result.number}
+              question={result.clue}
+              answer={result.answer}
+            />
+          ))}
         </Box>
       )}
     </Box>

@@ -9,6 +9,7 @@ export const styles = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     maxWidth: '1020px',
+    maxHeight: { md: '90%' },
     width: '100%',
     bgcolor: theme => theme.palette.info.main,
     padding: { xs: '32px 16px', md: '32px' },
@@ -68,6 +69,8 @@ export const styles = {
   answersList: {
     listStyleType: 'none',
     padding: '0',
+    maxHeight: { md: '332px' },
+    overflowY: 'scroll',
   },
   footer: {
     display: 'flex',

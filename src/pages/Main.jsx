@@ -39,7 +39,15 @@ const Main = ({ handleClickSOL, handleClickDHMT, handleClickSHDW }) => {
         <Box sx={styles.choice}>
           {cards.map(
             (
-              { title, description, image, redirect, available, payment },
+              {
+                title,
+                description,
+                image,
+                redirect,
+                available,
+                payment,
+                transitionDelay,
+              },
               index,
             ) => (
               <ChoiceCard
@@ -51,6 +59,7 @@ const Main = ({ handleClickSOL, handleClickDHMT, handleClickSHDW }) => {
                 selectedPage={redirect}
                 description={description}
                 handleClickSOL={handleClickSOL}
+                transitionDelay={transitionDelay}
                 handleClickDHMT={handleClickDHMT}
                 handleClickSHDW={handleClickSHDW}
               />

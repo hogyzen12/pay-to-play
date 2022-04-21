@@ -61,18 +61,21 @@ const App = () => {
   const [openSubmitModal, setOpenSubmitModal] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const [transferTokenStatus, setTransferTokenStatus] = useState(false);
+  const [timeDuration, setTimeDuration] = useState('00:00');
   const [alertState, setAlertState] = useState(initialAlersState);
   const [image, takeScreenshot] = useScreenshot();
   const navigate = useNavigate();
   const gameRef = useRef();
   const crosswordRef = useRef();
-  const { seconds, minutes, isRunning, start, restart, pause } = useTimer({
-    expiryTimestamp,
-    onExpire: () => {
-      console.warn('onExpire called');
-      navigate(routes.home);
-    },
-  });
+  const { seconds, minutes, isRunning, start, restart, pause, resume } =
+    useTimer({
+      expiryTimestamp,
+      autoStart: true,
+      onExpire: () => {
+        console.warn('onExpire called');
+        navigate(routes.home);
+      },
+    });
 
   /*
    * Connection to the Solana cluster
@@ -88,8 +91,12 @@ const App = () => {
    */
 
   useEffect(() => {
+    if (openSubmitModal) pause();
+  }, [openSubmitModal, pause]);
+
+  useEffect(() => {
     resetTimer();
-    start();
+    // start();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -423,6 +430,8 @@ const App = () => {
 
   const toggleSubmitModal = () => {
     setOpenSubmitModal(!openSubmitModal);
+
+    if (openSubmitModal) resume();
   };
 
   const toggleSuccessModal = () => {
@@ -439,9 +448,21 @@ const App = () => {
     takeScreenshot(gameRef.current);
   };
 
+  const getTimeDuration = () => {
+    const spentMilliseconds = timeAmount - expiryTimestamp.getMilliseconds();
+    const duration = new Date(spentMilliseconds);
+    const minutes = duration.getMinutes().toString();
+    const seconds = duration.getSeconds().toString();
+
+    console.log('minutes :>> ', minutes.length);
+    console.log('seconds :>> ', seconds.length);
+
+    setTimeDuration(`${minutes}:${seconds}`);
+  };
+
   const submitResult = () => {
+    getTimeDuration();
     getImage();
-    pause();
 
     const data = localStorageGet('guesses');
 
@@ -450,7 +471,6 @@ const App = () => {
       fillAnswers('down', data.guesses);
     }
 
-    setLoading(false);
     toggleSubmitModal();
   };
 
@@ -509,9 +529,9 @@ const App = () => {
             <Route
               path={routes.crossword}
               element={
-                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                <CrosswordPage gameRef={gameRef} />
-                // </PrivateRoute>
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <CrosswordPage gameRef={gameRef} />
+                </PrivateRoute>
               }
             />
             <Route
@@ -534,6 +554,7 @@ const App = () => {
         toggleSuccessModal={toggleSuccessModal}
       />
       <ModalSubmit
+        timeDuration={timeDuration}
         openSubmitModal={openSubmitModal}
         toggleSubmitModal={toggleSubmitModal}
         toggleSuccessModal={toggleSuccessModal}

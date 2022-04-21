@@ -8,10 +8,12 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
+import { useSticky } from 'common/hooks/useSticky';
 import { Button, Swipeable } from 'common/components';
 import staticContent from 'common/static/content.json';
 
 const { know, reset, submit, technical } = staticContent.footer;
+
 const styles = {
   link: {
     color: 'custom.white',
@@ -22,14 +24,14 @@ const styles = {
     gridArea: 'AppBasement',
     borderTop: theme => `1px solid ${theme.palette.success.main}`,
     padding: '36px 0',
-    footerSticky: {
-      position: 'sticky',
-      bottom: 0,
-      gridArea: 'AppBasement',
-      borderTop: theme => `1px solid ${theme.palette.success.main}`,
-      padding: '36px 0',
-      bgcolor: 'custom.black',
-    },
+  },
+  footerSticky: {
+    position: 'sticky',
+    bottom: 0,
+    gridArea: 'AppBasement',
+    borderTop: 'none',
+    padding: '36px 0',
+    bgcolor: 'custom.black',
   },
   toolbar: {
     display: 'flex',
@@ -61,6 +63,7 @@ const AppBasement = ({
 }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const { sticky } = useSticky();
 
   const handleReset = () => {
     if (resetTimer) resetTimer();
@@ -94,7 +97,7 @@ const AppBasement = ({
         <Button
           title={submit}
           onClick={handleSubmit}
-          // disabled={!providerPubKey}
+          // disabled={!providerPubKey} // !TODO: uncomment when app ready
         />
       </Box>
     </Toolbar>
@@ -103,7 +106,10 @@ const AppBasement = ({
   return (
     <>
       {matches ? (
-        <Box sx={styles.footer} component="footer">
+        <Box
+          sx={sticky ? styles.footerSticky : styles.footer}
+          component="footer"
+        >
           {basementToolbar()}
         </Box>
       ) : (

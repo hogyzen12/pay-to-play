@@ -21,10 +21,9 @@ const { time, guessed, title, across, button, down, something } =
 
 const ModalSubmit = ({
   timeDuration,
-  // initialResults,
   openSubmitModal,
   toggleSubmitModal,
-  toggleSuccessModal,
+  submitResults,
 }) => {
   const [totalGuesses, setTotalGuesses] = useState(0);
   const theme = useTheme();
@@ -34,25 +33,15 @@ const ModalSubmit = ({
     if (openSubmitModal) getGuessesTotal();
   }, [openSubmitModal]);
 
-  const handleSubmit = () => {
-    toggleSubmitModal();
-    toggleSuccessModal();
-  };
+  const handleSubmit = () => submitResults();
 
   const getGuessesTotal = () => {
-    console.log('initialResults :>> ', initialResults);
     initialResults.across.map(guess => {
-      if (guess.answer.length > 0) {
-        console.log('across :>> ', guess);
-        setTotalGuesses(prevState => prevState + 1);
-      }
+      if (guess.answer.length > 0) setTotalGuesses(prevState => prevState + 1);
     });
 
     initialResults.down.map(guess => {
-      if (guess.answer.length > 0) {
-        console.log('down :>> ', guess);
-        setTotalGuesses(prevState => prevState + 1);
-      }
+      if (guess.answer.length > 0) setTotalGuesses(prevState => prevState + 1);
     });
   };
 

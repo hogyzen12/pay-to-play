@@ -486,7 +486,10 @@ const App = () => {
     toggleSuccessModal();
 
     const img = dataURLtoFile(image, 'gridSnapshot');
-    console.log('img', img);
+    console.log('img', img); // !TODO: screenshot file object
+
+    // initialResults // !TODO: use this variable --> it's a results object
+    console.log('initialResults', initialResults);
   };
 
   return (

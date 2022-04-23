@@ -2,11 +2,11 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Box } from '@mui/material';
-import { Game, Hints } from 'common/components';
+import { Game } from 'common/components';
 import staticContent from 'common/static/content.json';
 import AppContainer from 'common/layout/AppContainer';
 
-const Crossword = ({ gameRef }) => {
+const Crossword = ({ gameRef, gameReseted, setGameReseted }) => {
   const { title, description } = staticContent.meta.crossword;
 
   return (
@@ -24,7 +24,11 @@ const Crossword = ({ gameRef }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <Game gameRef={gameRef} />
+            <Game
+              gameRef={gameRef}
+              gameReseted={gameReseted}
+              setGameReseted={setGameReseted}
+            />
           </Box>
         </AnimatePresence>
       </AppContainer>

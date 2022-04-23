@@ -56,6 +56,9 @@ const styles = {
     color: 'custom.white',
     // marginRight: '16px',
   },
+  timeEnd: {
+    color: '#FF0000',
+  },
 };
 
 const AppBar = ({
@@ -110,8 +113,12 @@ const AppBar = ({
 
         {location.pathname !== routes.home && (
           <Box sx={styles.timer}>
-            <Typography sx={styles.time} variant="h3">
-              {minutes} : {seconds}
+            <Typography
+              sx={minutes === 0 && seconds <= 10 ? styles.timeEnd : styles.time}
+              variant="h3"
+            >
+              {minutes < 10 ? `0${minutes}` : minutes} :
+              {seconds < 10 ? `0${seconds}` : seconds}
             </Typography>
           </Box>
         )}

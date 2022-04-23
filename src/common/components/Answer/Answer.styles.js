@@ -18,11 +18,17 @@ export const styles = {
   answer: {
     fontSize: '14px',
     lineHeight: '14px',
+    marginRight: '8px',
   },
   question: {
+    maxWidth: '56%',
+    width: '100%',
     fontSize: '14px',
     lineHeight: '14px',
     marginLeft: 'auto',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
     color: theme => theme.palette.success.contrastText,
   },
 };

@@ -71,6 +71,7 @@ code {
 
 .clue {
   background-color: transparent !important;
+  margin-bottom: 2px;
 }
 
 .clue:hover {

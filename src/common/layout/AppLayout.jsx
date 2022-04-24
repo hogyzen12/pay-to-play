@@ -27,7 +27,7 @@ const AppLayout = ({
   resetTimer,
   providerPubKey,
   loginHandler,
-  submitResult,
+  generateResults,
 }) => {
   const [open, setOpen] = useState(false);
   const [showBasement, setShowBasement] = useState(false);
@@ -57,9 +57,9 @@ const AppLayout = ({
         <AppBasement
           open={open}
           resetTimer={resetTimer}
-          submitResult={submitResult}
           toggleDrawer={toggleDrawer}
           providerPubKey={providerPubKey}
+          generateResults={generateResults}
         />
       )}
     </Box>

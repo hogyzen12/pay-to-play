@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Typography,
   Link,
   Modal as SubmitModal,
-  // SwipeableDrawer,
   Drawer,
   useTheme,
   useMediaQuery,
 } from '@mui/material';
-// import { motion } from 'framer-motion';
 import { Button, Answer, Tabs } from 'common/components';
 import { ReactComponent as AcrossIcon } from 'assets/icons/across.svg';
 import { ReactComponent as DownIcon } from 'assets/icons/down.svg';
@@ -17,20 +15,34 @@ import { initialResults } from 'common/static/results';
 import staticContent from 'common/static/content.json';
 import { styles } from './ModalSubmit.styles';
 
+const totalQuestions = 30;
+const { time, guessed, title, across, button, down, something } =
+  staticContent.pages.crossword.submitModal;
+
 const ModalSubmit = ({
   timeDuration,
   openSubmitModal,
   toggleSubmitModal,
-  toggleSuccessModal,
+  submitResults,
 }) => {
+  const [totalGuesses, setTotalGuesses] = useState(0);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
-  const { time, guessed, title, across, button, down, something } =
-    staticContent.pages.crossword.submitModal;
 
-  const handleSubmit = () => {
-    toggleSubmitModal();
-    toggleSuccessModal();
+  useEffect(() => {
+    if (openSubmitModal) getGuessesTotal();
+  }, [openSubmitModal]);
+
+  const handleSubmit = () => submitResults();
+
+  const getGuessesTotal = () => {
+    initialResults.across.map(guess => {
+      if (guess.answer.length > 0) setTotalGuesses(prevState => prevState + 1);
+    });
+
+    initialResults.down.map(guess => {
+      if (guess.answer.length > 0) setTotalGuesses(prevState => prevState + 1);
+    });
   };
 
   const modalContent = () => (
@@ -51,7 +63,7 @@ const ModalSubmit = ({
               {guessed}
             </Typography>
             <Typography sx={styles.statsResult} variant="h3">
-              16/19
+              {totalGuesses}/{totalQuestions}
             </Typography>
           </Box>
         </Box>
@@ -114,15 +126,7 @@ const ModalSubmit = ({
   return (
     <>
       {matches ? (
-        <SubmitModal
-          // component={motion.div}
-          // initial={{ opacity: 0 }}
-          // animate={{ opacity: 1 }}
-          // exit={{ opacity: 0 }}
-          // transition={{ delay: 0.1 }}
-          open={openSubmitModal}
-          onClose={toggleSubmitModal}
-        >
+        <SubmitModal open={openSubmitModal} onClose={toggleSubmitModal}>
           {modalContent()}
         </SubmitModal>
       ) : (

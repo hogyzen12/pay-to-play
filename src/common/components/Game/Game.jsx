@@ -1,14 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Box, Typography } from '@mui/material';
 import {
   CrosswordProvider,
   CrosswordGrid,
   DirectionClues,
 } from '@jaredreisinger/react-crossword';
-import { Box, Typography } from '@mui/material';
-import { localStorageGet } from 'common/utils/localStorage';
+import { styles } from './Game.styles';
 import staticContent from 'common/static/content.json';
 import data from 'common/static/crossword.json';
-import { styles } from './Game.styles';
 
 const { hints } = staticContent.pages.crossword;
 
@@ -22,13 +21,17 @@ const theme = {
   highlightBackground: '#CDCCF5', // #EEEEFC
 };
 
-const Game = ({ gameRef }) => {
+const Game = ({ gameRef, gameReseted, setGameReseted }) => {
   const crosswordRef = useRef();
 
   useEffect(() => {
     const crossRef = crosswordRef.current;
-    console.log('crossRef', crossRef);
-  }, [crosswordRef]);
+
+    if (crossRef && gameReseted) {
+      crossRef.reset();
+      setGameReseted(false);
+    }
+  }, [gameReseted, setGameReseted]);
 
   return (
     <Box sx={styles.game}>
@@ -36,15 +39,7 @@ const Game = ({ gameRef }) => {
         data={data}
         theme={theme}
         ref={crosswordRef}
-        onLoadedCorrect={loaded => {
-          console.log('loaded', loaded);
-        }}
-        onCellChange={(row, col, char) => {
-          console.log(row, col, char);
-        }}
-        onAnswerComplete={(direction, number, correct, answer) => {
-          console.log('answer', direction, number, correct, answer);
-        }}
+        onCellChange={(row, col, char) => console.log(row, col, char)}
       >
         <Box sx={styles.grid} ref={gameRef}>
           <CrosswordGrid />

@@ -57,9 +57,9 @@ const styles = {
 const AppBasement = ({
   open,
   resetTimer,
-  submitResult,
   toggleDrawer,
   providerPubKey,
+  generateResults,
 }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
@@ -70,8 +70,8 @@ const AppBasement = ({
   };
 
   const handleSubmit = () => {
-    submitResult();
     toggleDrawer();
+    generateResults();
   };
 
   const basementToolbar = () => (

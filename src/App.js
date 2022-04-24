@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useState, useRef } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { Box, Typography, Backdrop, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import { useScreenshot } from 'use-react-screenshot';
@@ -34,7 +34,7 @@ import { transferDiamondToken } from 'common/utils/transferDiamond';
 import 'common/utils/bufferFill';
 import { PrivateRoute } from 'common/utils/PrivateRoute';
 import { initialAlersState } from 'common/static/alert';
-import { localStorageGet } from 'common/utils/localStorage';
+import { localStorageGet, localStorageSet } from 'common/utils/localStorage';
 import { fillAnswers } from 'common/utils/fillAnswers';
 import { initialResults } from 'common/static/results';
 import { routes } from './routes';
@@ -43,7 +43,7 @@ import AppLayout from 'common/layout/AppLayout';
 let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
 let shadowRequiredToPlay = 1.0 * LAMPORTS_PER_SOL;
 let diamondsRequiredToPlay = 1;
-const timeAmount = 3600; // one hour
+const timeAmount = 3600; // one hour 3600
 const expiryTimestamp = new Date();
 expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + timeAmount);
 const web3 = require('@solana/web3.js');
@@ -58,24 +58,26 @@ const App = () => {
   const [provider, setProvider] = useState();
   const [loading, setLoading] = useState(false);
   const [providerPubKey, setProviderPub] = useState();
+  const [gameReseted, setGameReseted] = useState(false);
+  const [timeDuration, setTimeDuration] = useState('00:00');
   const [openSubmitModal, setOpenSubmitModal] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const [transferTokenStatus, setTransferTokenStatus] = useState(false);
-  const [timeDuration, setTimeDuration] = useState('00:00');
   const [alertState, setAlertState] = useState(initialAlersState);
+
   const [image, takeScreenshot] = useScreenshot();
   const navigate = useNavigate();
+  const location = useLocation();
   const gameRef = useRef();
-  const crosswordRef = useRef();
-  const { seconds, minutes, isRunning, start, restart, pause, resume } =
-    useTimer({
-      expiryTimestamp,
-      autoStart: true,
-      onExpire: () => {
-        console.warn('onExpire called');
-        navigate(routes.home);
-      },
-    });
+  const { seconds, minutes, start, restart, pause, resume } = useTimer({
+    expiryTimestamp,
+    autoStart: true,
+    onExpire: () => {
+      location.pathname === routes.crossword
+        ? generateResults()
+        : navigate(routes.home);
+    },
+  });
 
   /*
    * Connection to the Solana cluster
@@ -93,12 +95,6 @@ const App = () => {
   useEffect(() => {
     if (openSubmitModal) pause();
   }, [openSubmitModal, pause]);
-
-  useEffect(() => {
-    resetTimer();
-    // start();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     if (provider && !provider.isConnected) {
@@ -441,26 +437,36 @@ const App = () => {
   const resetTimer = () => {
     const time = new Date();
     time.setSeconds(time.getSeconds() + 3599);
+    setGameReseted(true);
     restart(time);
   };
 
-  const getImage = () => {
-    takeScreenshot(gameRef.current);
+  const getImage = async () => {
+    await takeScreenshot(gameRef.current);
+  };
+
+  const dataURLtoFile = (dataurl, filename) => {
+    let arr = dataurl.split(','),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
   };
 
   const getTimeDuration = () => {
-    const spentMilliseconds = timeAmount - expiryTimestamp.getMilliseconds();
-    const duration = new Date(spentMilliseconds);
-    const minutes = duration.getMinutes().toString();
-    const seconds = duration.getSeconds().toString();
+    const min = (59 - minutes).toString();
+    const sec = (60 - seconds).toString();
+    const formattedMinutes = min.length === 1 ? `0${min}` : min;
+    const formattedSeconds = sec.length === 1 ? `0${sec}` : sec;
 
-    console.log('minutes :>> ', minutes.length);
-    console.log('seconds :>> ', seconds.length);
-
-    setTimeDuration(`${minutes}:${seconds}`);
+    setTimeDuration(`${formattedMinutes}:${formattedSeconds}`);
   };
 
-  const submitResult = () => {
+  const generateResults = () => {
     getTimeDuration();
     getImage();
 
@@ -471,7 +477,19 @@ const App = () => {
       fillAnswers('down', data.guesses);
     }
 
+    localStorageSet('results', initialResults);
     toggleSubmitModal();
+  };
+
+  const submitResults = () => {
+    toggleSubmitModal();
+    toggleSuccessModal();
+
+    const img = dataURLtoFile(image, 'gridSnapshot');
+    console.log('img', img); // !TODO: screenshot file object
+
+    // initialResults // !TODO: use this variable --> it's a results object
+    console.log('initialResults', initialResults);
   };
 
   return (
@@ -487,7 +505,7 @@ const App = () => {
                 minutes={minutes}
                 resetTimer={resetTimer}
                 loginHandler={loginHandler}
-                submitResult={submitResult}
+                generateResults={generateResults}
                 providerPubKey={providerPubKey}
               />
             }
@@ -529,9 +547,13 @@ const App = () => {
             <Route
               path={routes.crossword}
               element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <CrosswordPage gameRef={gameRef} />
-                </PrivateRoute>
+                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                <CrosswordPage
+                  gameRef={gameRef}
+                  gameReseted={gameReseted}
+                  setGameReseted={setGameReseted}
+                />
+                // </PrivateRoute>
               }
             />
             <Route
@@ -555,6 +577,8 @@ const App = () => {
       />
       <ModalSubmit
         timeDuration={timeDuration}
+        submitResults={submitResults}
+        initialResults={initialResults}
         openSubmitModal={openSubmitModal}
         toggleSubmitModal={toggleSubmitModal}
         toggleSuccessModal={toggleSuccessModal}

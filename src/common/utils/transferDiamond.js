@@ -24,6 +24,17 @@ const createDiamondTransferTransaction = async (
       TOKEN_PROGRAM_ID,
     ),
   );
+
+  await transaction.add(
+    new web3.TransactionInstruction({
+      keys: [{ pubkey: ownerPubkey, isSigner: true, isWritable: true }],
+      data: Buffer.from('Purchase from DH', 'utf-8'),
+      programId: new web3.PublicKey(
+        'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr',
+      ),
+    }),
+  );
+
   transaction.feePayer = ownerPubkey;
   console.log('Getting recent blockhash');
   transaction.recentBlockhash = (

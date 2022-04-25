@@ -9,10 +9,12 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { useSticky } from 'common/hooks/useSticky';
-import { Button, Swipeable } from 'common/components';
+import { Button, Swipeable, PayButton } from 'common/components';
 import staticContent from 'common/static/content.json';
 
+const DHMTamount = '1';
 const { know, reset, submit, technical } = staticContent.footer;
+const { dhmt, sol, shdw, start, comming } = staticContent.pages.main;
 
 const styles = {
   link: {
@@ -60,6 +62,8 @@ const AppBasement = ({
   toggleDrawer,
   providerPubKey,
   generateResults,
+  handleClickDHMT,
+  gameTransferTokenStatus,
 }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
@@ -94,11 +98,15 @@ const AppBasement = ({
         >
           {reset}
         </MuiButton>
-        <Button
-          title={submit}
-          onClick={handleSubmit}
-          // disabled={!providerPubKey} // !TODO: uncomment when app ready
-        />
+        {gameTransferTokenStatus ? (
+          <Button title={submit} onClick={handleSubmit} />
+        ) : (
+          <PayButton
+            amount={dhmt}
+            currency={DHMTamount}
+            handlePay={handleClickDHMT}
+          />
+        )}
       </Box>
     </Toolbar>
   );

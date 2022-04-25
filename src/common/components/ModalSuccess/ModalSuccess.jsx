@@ -29,6 +29,11 @@ const ModalSuccess = ({ openSuccessModal, toggleSuccessModal }) => {
     navigate(routes.home);
   };
 
+  const handleClose = () => {
+    toggleSuccessModal();
+    navigate(routes.home);
+  };
+
   const modalContent = () => (
     <Box sx={matches ? styles.content : styles.contentMobile}>
       <IconButton sx={styles.closeIcon} onClick={toggleSuccessModal}>
@@ -56,7 +61,7 @@ const ModalSuccess = ({ openSuccessModal, toggleSuccessModal }) => {
         <AnimatePresence>
           <SuccessModal
             open={openSuccessModal}
-            onClose={toggleSuccessModal}
+            onClose={handleClose}
             component={motion.div}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -66,11 +71,7 @@ const ModalSuccess = ({ openSuccessModal, toggleSuccessModal }) => {
           </SuccessModal>
         </AnimatePresence>
       ) : (
-        <Drawer
-          open={openSuccessModal}
-          onClose={toggleSuccessModal}
-          anchor="bottom"
-        >
+        <Drawer open={openSuccessModal} onClose={handleClose} anchor="bottom">
           {modalContent()}
         </Drawer>
       )}

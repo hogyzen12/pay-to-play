@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Typography,
@@ -12,8 +13,9 @@ import { Button, Answer, Tabs } from 'common/components';
 import { ReactComponent as AcrossIcon } from 'assets/icons/across.svg';
 import { ReactComponent as DownIcon } from 'assets/icons/down.svg';
 import { initialResults } from 'common/static/results';
-import staticContent from 'common/static/content.json';
+import { routes } from 'routes';
 import { styles } from './ModalSubmit.styles';
+import staticContent from 'common/static/content.json';
 
 const totalQuestions = 30;
 const { time, guessed, title, across, button, down, something } =
@@ -26,6 +28,7 @@ const ModalSubmit = ({
   submitResults,
 }) => {
   const [totalGuesses, setTotalGuesses] = useState(0);
+  const navigate = useNavigate();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -33,7 +36,14 @@ const ModalSubmit = ({
     if (openSubmitModal) getGuessesTotal();
   }, [openSubmitModal]);
 
-  const handleSubmit = () => submitResults();
+  const handleSubmit = () => {
+    submitResults();
+  };
+
+  const handleClose = () => {
+    toggleSubmitModal();
+    navigate(routes.home);
+  };
 
   const getGuessesTotal = () => {
     initialResults.across.map(guess => {
@@ -126,15 +136,11 @@ const ModalSubmit = ({
   return (
     <>
       {matches ? (
-        <SubmitModal open={openSubmitModal} onClose={toggleSubmitModal}>
+        <SubmitModal open={openSubmitModal} onClose={handleClose}>
           {modalContent()}
         </SubmitModal>
       ) : (
-        <Drawer
-          anchor="bottom"
-          open={openSubmitModal}
-          onClose={toggleSubmitModal}
-        >
+        <Drawer anchor="bottom" open={openSubmitModal} onClose={handleClose}>
           {modalContent()}
         </Drawer>
       )}

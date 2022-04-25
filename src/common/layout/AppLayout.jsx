@@ -25,9 +25,11 @@ const AppLayout = ({
   seconds,
   minutes,
   resetTimer,
-  providerPubKey,
   loginHandler,
+  providerPubKey,
   generateResults,
+  handleClickDHMT,
+  gameTransferTokenStatus,
 }) => {
   const [open, setOpen] = useState(false);
   const [showBasement, setShowBasement] = useState(false);
@@ -60,6 +62,8 @@ const AppLayout = ({
           toggleDrawer={toggleDrawer}
           providerPubKey={providerPubKey}
           generateResults={generateResults}
+          handleClickDHMT={handleClickDHMT}
+          gameTransferTokenStatus={gameTransferTokenStatus}
         />
       )}
     </Box>

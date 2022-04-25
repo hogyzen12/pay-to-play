@@ -63,6 +63,7 @@ const App = () => {
   const [openSubmitModal, setOpenSubmitModal] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const [transferTokenStatus, setTransferTokenStatus] = useState(false);
+  const [gameTransferTokenStatus, setGameTransferTokenStatus] = useState(false);
   const [alertState, setAlertState] = useState(initialAlersState);
 
   const [image, takeScreenshot] = useScreenshot();
@@ -97,9 +98,7 @@ const App = () => {
   }, [openSubmitModal, pause]);
 
   useEffect(() => {
-    if (provider && !provider.isConnected) {
-      provider.connect();
-    }
+    if (provider && !provider.isConnected) provider.connect();
   }, [provider]);
 
   useEffect(() => {
@@ -269,6 +268,7 @@ const App = () => {
 
   const handlePayDHMT = async (selectedItem, currency) => {
     const isSHDW = currency === 'SHDW';
+    console.log('isSHDW :>> ', isSHDW);
     /*
      * Flow to play the game
      * 1. Check if the user is logged in
@@ -413,11 +413,15 @@ const App = () => {
     /*
      * If the status is true, that means transaction got successful and we can proceed
      */
-    setTransferTokenStatus(result.status);
+
+    console.log('result.status', result.status);
+    location.pathname === routes.crossword
+      ? setGameTransferTokenStatus(result.status)
+      : setTransferTokenStatus(result.status);
     setLoading(false);
     // history.push('/stack');
     // navigate('/crossword');
-    navigate(selectedItem);
+    location.pathname === routes.home && navigate(selectedItem);
   };
 
   const onAlertClose = () => {
@@ -505,8 +509,10 @@ const App = () => {
                 minutes={minutes}
                 resetTimer={resetTimer}
                 loginHandler={loginHandler}
-                generateResults={generateResults}
+                handleClickDHMT={handlePayDHMT}
                 providerPubKey={providerPubKey}
+                generateResults={generateResults}
+                gameTransferTokenStatus={gameTransferTokenStatus}
               />
             }
           >

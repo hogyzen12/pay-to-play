@@ -268,7 +268,6 @@ const App = () => {
 
   const handlePayDHMT = async (selectedItem, currency) => {
     const isSHDW = currency === 'SHDW';
-    console.log('isSHDW :>> ', isSHDW);
     /*
      * Flow to play the game
      * 1. Check if the user is logged in
@@ -489,11 +488,33 @@ const App = () => {
     toggleSubmitModal();
     toggleSuccessModal();
 
-    const img = dataURLtoFile(image, 'gridSnapshot');
-    console.log('img', img); // !TODO: screenshot file object
+    const acrossAxisString =
+      initialResults.across.reduce((acc, item) => {
+        acc += item.answer ? `| ${item.answer} ` : `|  `;
 
-    // initialResults // !TODO: use this variable --> it's a results object
-    console.log('initialResults', initialResults);
+        return acc;
+      }, '') + '|';
+
+    const downAxisString =
+      initialResults.down.reduce((acc, item) => {
+        acc += item.answer ? `| ${item.answer} ` : `|  `;
+
+        return acc;
+      }, '') + '|';
+
+    const totalResultsString = (acrossAxisString + downAxisString).replace(
+      '||',
+      '|',
+    );
+
+    const img = dataURLtoFile(image, 'gridSnapshot');
+    console.log('grid snapshot', img);
+
+    /**
+     * @param {string} acrossAxisString : across axis guesses
+     * @param {string} downAxisString : donw axis guesses
+     * @param {string} totalResultsString : acrossAxisString + downAxisString
+     */
   };
 
   return (
@@ -553,13 +574,13 @@ const App = () => {
             <Route
               path={routes.crossword}
               element={
-                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                <CrosswordPage
-                  gameRef={gameRef}
-                  gameReseted={gameReseted}
-                  setGameReseted={setGameReseted}
-                />
-                // </PrivateRoute>
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <CrosswordPage
+                    gameRef={gameRef}
+                    gameReseted={gameReseted}
+                    setGameReseted={setGameReseted}
+                  />
+                </PrivateRoute>
               }
             />
             <Route

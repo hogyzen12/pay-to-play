@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Box,
+  Link,
   Drawer,
   Modal as SuccessModal,
   Typography,
@@ -19,10 +20,15 @@ import staticContent from 'common/static/content.json';
 
 const { title, description } = staticContent.pages.crossword.successModal;
 
-const ModalSuccess = ({ openSuccessModal, toggleSuccessModal }) => {
+const ModalSuccess = ({
+  openSuccessModal,
+  toggleSuccessModal,
+  transactionSignature,
+}) => {
   const navigate = useNavigate();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const link = `https://solscan.io/tx/${transactionSignature}`;
 
   const handleClick = () => {
     toggleSuccessModal();
@@ -41,9 +47,10 @@ const ModalSuccess = ({ openSuccessModal, toggleSuccessModal }) => {
       </IconButton>
       <CheckmarkImage />
       <Typography sx={styles.title}>{title}</Typography>
-      <Typography sx={styles.description} variant="body2">
+      {/* <Typography sx={styles.description} variant="body2">
         {description}
-      </Typography>
+      </Typography> */}
+      <Link href={link}>Transaction Status</Link>
       <Button
         sx={styles.button}
         onClick={handleClick}

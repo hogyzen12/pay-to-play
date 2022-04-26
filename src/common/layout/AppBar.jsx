@@ -15,6 +15,8 @@ import { ReactComponent as Logo } from 'assets/icons/diamond.svg';
 import staticContent from 'common/static/content.json';
 import { routes } from 'routes';
 
+const { connected, notConnected, walletButton } = staticContent.header;
+
 const styles = {
   header: {
     gridArea: 'AppBar',
@@ -72,7 +74,6 @@ const AppBar = ({
   const navigate = useNavigate();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
-  const { connected, notConnected, walletButton } = staticContent.header;
 
   const handleConnectWallet = () => {
     if (loginHandler) loginHandler();

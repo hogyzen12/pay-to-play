@@ -12,14 +12,15 @@ import { useSticky } from 'common/hooks/useSticky';
 import { Button, Swipeable, PayButton } from 'common/components';
 import staticContent from 'common/static/content.json';
 
-const DHMTamount = '1';
+const { connected, notConnected } = staticContent.header;
 const { know, reset, submit, technical } = staticContent.footer;
-const { dhmt, sol, shdw, start, comming } = staticContent.pages.main;
+const { dhmt } = staticContent.pages.main;
+const DHMTamount = '1';
 
 const styles = {
   link: {
     color: 'custom.white',
-    ml: { md: '8px' },
+    ml: '8px',
     textDecoration: 'underline',
   },
   footer: {
@@ -54,6 +55,20 @@ const styles = {
   reset: {
     padding: '16px 24px',
   },
+  key: {
+    maxWidth: '120px',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+  },
+  connected: {
+    color: theme => theme.palette.custom.apple,
+    ml: '16px',
+  },
+  notConnected: {
+    color: '#FF0000',
+    ml: '16px',
+  },
 };
 
 const AppBasement = ({
@@ -80,6 +95,15 @@ const AppBasement = ({
 
   const basementToolbar = () => (
     <Toolbar sx={styles.toolbar}>
+      <Box>
+        <Typography sx={styles.key}>{providerPubKey?.toBase58()}</Typography>
+        <Typography
+          sx={providerPubKey ? styles.connected : styles.notConnected}
+        >
+          {providerPubKey ? connected : notConnected}
+        </Typography>
+      </Box>
+
       <Box sx={styles.technical}>
         <Typography variant="body1" color="text.secondary">
           {technical}

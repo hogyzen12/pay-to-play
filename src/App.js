@@ -58,6 +58,7 @@ const gameWalletPublicKey = new PublicKey(
 const App = () => {
   const [provider, setProvider] = useState();
   const [loading, setLoading] = useState(false);
+  const [transactionSignature, setTransactionSignature] = useState('');
   const [providerPubKey, setProviderPub] = useState();
   const [gameReseted, setGameReseted] = useState(false);
   const [timeDuration, setTimeDuration] = useState('00:00');
@@ -577,6 +578,10 @@ const App = () => {
      */
 
     console.log('result.status', result.status);
+    if (result.signature) {
+      setTransactionSignature(result.signature);
+    }
+
     setLoading(false);
 
     /**
@@ -643,13 +648,13 @@ const App = () => {
             <Route
               path={routes.crossword}
               element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <CrosswordPage
-                    gameRef={gameRef}
-                    gameReseted={gameReseted}
-                    setGameReseted={setGameReseted}
-                  />
-                </PrivateRoute>
+                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                <CrosswordPage
+                  gameRef={gameRef}
+                  gameReseted={gameReseted}
+                  setGameReseted={setGameReseted}
+                />
+                // </PrivateRoute>
               }
             />
             <Route
@@ -668,6 +673,7 @@ const App = () => {
       <Loader isLoading={loading} />
       <Notification alertState={alertState} onAlertClose={onAlertClose} />
       <ModalSuccess
+        transactionSignature={transactionSignature}
         openSuccessModal={openSuccessModal}
         toggleSuccessModal={toggleSuccessModal}
       />

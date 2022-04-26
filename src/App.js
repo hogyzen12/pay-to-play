@@ -43,6 +43,7 @@ import AppLayout from 'common/layout/AppLayout';
 let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
 let shadowRequiredToPlay = 1.0 * LAMPORTS_PER_SOL;
 let diamondsRequiredToPlay = 1;
+let utilmemo = 'DMND utility being used';
 const timeAmount = 3600; // one hour 3600
 const expiryTimestamp = new Date();
 expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + timeAmount);
@@ -394,6 +395,7 @@ const App = () => {
       gameWalletPublicKey,
       diamondBalance.value.amount,
       isSHDW ? shadowRequiredToPlay : diamondsRequiredToPlay,
+      utilmemo,
     );
 
     if (!result.status) {
@@ -484,7 +486,7 @@ const App = () => {
     toggleSubmitModal();
   };
 
-  const submitResults = () => {
+  const submitResults = async () => {
     toggleSubmitModal();
     toggleSuccessModal();
 
@@ -509,6 +511,73 @@ const App = () => {
 
     const img = dataURLtoFile(image, 'gridSnapshot');
     console.log('grid snapshot', img);
+
+    /*
+     * Now we have answers ready we can write them to the chain
+     * And have the user actually pay for this using the token
+     */
+    const diamondAddress = await splToken.getAssociatedTokenAddress(
+      tokenMint,
+      providerPubKey,
+    );
+
+    /*
+     * Output the ATA to console to check manually
+     * TODO!!!! ADD ERROR HANDLE IF ATA NOT FOUND
+     */
+    console.log(diamondAddress.toString());
+    console.log('found ATA');
+
+    /*
+     * Address found and we pull balance succesfully here
+     * Print to console the amount to check
+     */
+    const diamondBalance = await connection.getTokenAccountBalance(
+      diamondAddress,
+    );
+
+    console.log(diamondBalance.value.amount);
+    console.log('found balance');
+    console.log(totalResultsString);
+
+    /*
+     * Time to get them to send us their Diamond
+     * For this we need to use the Associated token accounts
+     * We know the accs will exist as the payer has diamonds to have gotten to this stage
+     * we call our custom function here to do this
+     */
+    setLoading(true);
+
+    const result = await transferDiamondToken(
+      provider,
+      connection,
+      tokenMint,
+      providerPubKey,
+      gameWalletPublicKey,
+      diamondBalance.value.amount,
+      diamondsRequiredToPlay,
+      totalResultsString,
+    );
+
+    if (!result.status) {
+      setTransferTokenStatus(result.status);
+
+      setLoading(false);
+      setAlertState({
+        open: true,
+        message: 'Error in sending the tokens, Please try again!!!',
+        severity: 'error',
+      });
+
+      return;
+    }
+
+    /*
+     * If the status is true, that means transaction got successful and we can proceed
+     */
+
+    console.log('result.status', result.status);
+    setLoading(false);
 
     /**
      * @param {string} acrossAxisString : across axis guesses

@@ -47,10 +47,13 @@ const ModalSuccess = ({
       </IconButton>
       <CheckmarkImage />
       <Typography sx={styles.title}>{title}</Typography>
-      {/* <Typography sx={styles.description} variant="body2">
-        {description}
-      </Typography> */}
-      <Link href={link}>Transaction Status</Link>
+      <Typography sx={styles.description} variant="body2">
+        {description}{' '}
+        <Link sx={styles.link} href={link}>
+          link
+        </Link>
+      </Typography>
+
       <Button
         sx={styles.button}
         onClick={handleClick}

@@ -77,8 +77,6 @@ const AppBasement = ({
   toggleDrawer,
   providerPubKey,
   generateResults,
-  handleClickDHMT,
-  gameTransferTokenStatus,
 }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
@@ -95,14 +93,16 @@ const AppBasement = ({
 
   const basementToolbar = () => (
     <Toolbar sx={styles.toolbar}>
-      <Box>
-        <Typography sx={styles.key}>{providerPubKey?.toBase58()}</Typography>
-        <Typography
-          sx={providerPubKey ? styles.connected : styles.notConnected}
-        >
-          {providerPubKey ? connected : notConnected}
-        </Typography>
-      </Box>
+      {!matches && (
+        <Box>
+          <Typography sx={styles.key}>{providerPubKey?.toBase58()}</Typography>
+          <Typography
+            sx={providerPubKey ? styles.connected : styles.notConnected}
+          >
+            {providerPubKey ? connected : notConnected}
+          </Typography>
+        </Box>
+      )}
 
       <Box sx={styles.technical}>
         <Typography variant="body1" color="text.secondary">
@@ -122,15 +122,11 @@ const AppBasement = ({
         >
           {reset}
         </MuiButton>
-        {gameTransferTokenStatus ? (
-          <Button title={submit} onClick={handleSubmit} />
-        ) : (
-          <PayButton
-            amount={dhmt}
-            currency={DHMTamount}
-            handlePay={handleClickDHMT}
-          />
-        )}
+        <Button
+          title={submit}
+          onClick={handleSubmit}
+          disabled={!providerPubKey}
+        />
       </Box>
     </Toolbar>
   );

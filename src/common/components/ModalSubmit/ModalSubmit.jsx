@@ -128,7 +128,7 @@ const ModalSubmit = ({
         <Link sx={styles.link} href="#">
           {something}
         </Link>
-        <Button title={button} onClick={handleSubmit} />
+        <Button title={`${button} (1 DMND)`} onClick={handleSubmit} />
       </Box>
     </Box>
   );

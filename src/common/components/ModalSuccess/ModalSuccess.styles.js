@@ -42,5 +42,8 @@ export const styles = {
     marginBottom: { xs: '58px', md: '32px' },
     color: theme => theme.palette.text.secondary,
   },
+  link: {
+    color: 'custom.white',
+  },
   button: {},
 };

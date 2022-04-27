@@ -417,13 +417,9 @@ const App = () => {
      */
 
     console.log('result.status', result.status);
-    location.pathname === routes.crossword
-      ? setGameTransferTokenStatus(result.status)
-      : setTransferTokenStatus(result.status);
+    setTransferTokenStatus(result.status);
     setLoading(false);
-    // history.push('/stack');
-    // navigate('/crossword');
-    location.pathname === routes.home && navigate(selectedItem);
+    navigate(selectedItem);
   };
 
   const onAlertClose = () => {
@@ -489,7 +485,6 @@ const App = () => {
 
   const submitResults = async () => {
     toggleSubmitModal();
-    toggleSuccessModal();
 
     const acrossAxisString =
       initialResults.across.reduce((acc, item) => {
@@ -580,6 +575,7 @@ const App = () => {
     console.log('result.status', result.status);
     if (result.signature) {
       setTransactionSignature(result.signature);
+      toggleSuccessModal();
     }
 
     setLoading(false);
@@ -607,7 +603,6 @@ const App = () => {
                 handleClickDHMT={handlePayDHMT}
                 providerPubKey={providerPubKey}
                 generateResults={generateResults}
-                gameTransferTokenStatus={gameTransferTokenStatus}
               />
             }
           >
@@ -648,13 +643,13 @@ const App = () => {
             <Route
               path={routes.crossword}
               element={
-                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                <CrosswordPage
-                  gameRef={gameRef}
-                  gameReseted={gameReseted}
-                  setGameReseted={setGameReseted}
-                />
-                // </PrivateRoute>
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <CrosswordPage
+                    gameRef={gameRef}
+                    gameReseted={gameReseted}
+                    setGameReseted={setGameReseted}
+                  />
+                </PrivateRoute>
               }
             />
             <Route
@@ -681,6 +676,7 @@ const App = () => {
         timeDuration={timeDuration}
         submitResults={submitResults}
         initialResults={initialResults}
+        providerPubKey={providerPubKey}
         openSubmitModal={openSubmitModal}
         toggleSubmitModal={toggleSubmitModal}
         toggleSuccessModal={toggleSuccessModal}

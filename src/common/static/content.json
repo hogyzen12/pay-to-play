@@ -1,9 +1,5 @@
 {
   "meta": {
-    "home": {
-      "title": "Diamond Hands Utility",
-      "description": "The one stop to make the most of the utility offered by DMNDS for DH holders."
-    },
     "main": {
       "title": "Diamond Hands Utility",
       "description": "The one stop to make the most of the utility offered by DMNDS for DH holders."
@@ -39,16 +35,6 @@
     "notConnected": "Not connected"
   },
   "pages": {
-    "home": {
-      "title": "Diamond Hands NFT Game",
-      "description": "The Diamond Hands NFT project is backed by Cryptonary’s team of leading industry experts and one of the biggest established communities in the crypto space. ",
-      "howToPlay": "How to play",
-      "howToDescription": "Click/tap on the initial square of a word-space within the crossword grid. The word-space you select is highlighted, as is the corresponding clue. Use your keyboard or device keypad to type in the answer.",
-      "howToDescriptionSecond": "Click/tap on a square in the crossword grid to toggle the word direction from Across to Down (or vice versa). Click/tap on any clue in the Clue Panel to highlight the corresponding word-space in the grid.",
-      "selectPayment": "Select Payment to start game:",
-      "sol": "SOL",
-      "dhmt": "DMND"
-    },
     "main": {
       "pageTitle": "Welcome to diamond hands page",
       "sol": "SOL",
@@ -57,8 +43,6 @@
       "start": "Select Payment:",
       "comming": "Coming soon"
     },
-    "articles": {},
-    "discount": {},
     "crossword": {
       "hints": "Hints",
       "successModal": {

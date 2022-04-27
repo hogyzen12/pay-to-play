@@ -1,9 +1,5 @@
 import { lazy } from 'react';
 
-export const HomePage = lazy(() =>
-  import('./pages/Home' /* webpackChunkName: "HomePage" */),
-);
-
 export const MainPage = lazy(() =>
   import('./pages/Main' /* webpackChunkName: "MainPage" */),
 );

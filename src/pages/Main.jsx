@@ -6,7 +6,7 @@ import { cards } from 'common/static/cards';
 import staticContent from 'common/static/content.json';
 import AppContainer from 'common/layout/AppContainer';
 
-const { title, description } = staticContent.meta.home;
+const { title, description } = staticContent.meta.main;
 
 const styles = {
   container: {

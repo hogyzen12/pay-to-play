@@ -2,10 +2,9 @@ import { Suspense, useEffect, useState, useRef } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { Box, Typography, Backdrop, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
-import { useScreenshot } from 'use-react-screenshot';
 import { confirmAlert } from 'react-confirm-alert';
 import { useTimer } from 'react-timer-hook';
-import { Token, TOKEN_PROGRAM_ID } from '@solana/spl-token';
+// import { Token, TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import * as splToken from '@solana/spl-token';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import {
@@ -29,46 +28,43 @@ import {
   ModalSubmit,
   ModalSuccess,
 } from 'common/components';
+import { localStorageGet, localStorageSet } from 'common/utils/localStorage';
 import { transferCustomToken } from 'common/utils/transferToken';
 import { transferDiamondToken } from 'common/utils/transferDiamond';
-import 'common/utils/bufferFill';
-import { PrivateRoute } from 'common/utils/PrivateRoute';
 import { initialAlersState } from 'common/static/alert';
-import { localStorageGet, localStorageSet } from 'common/utils/localStorage';
-import { fillAnswers } from 'common/utils/fillAnswers';
 import { initialResults } from 'common/static/results';
+import { PrivateRoute } from 'common/utils/PrivateRoute';
+import { fillAnswers } from 'common/utils/fillAnswers';
 import { routes } from './routes';
+import {
+  NETWORK,
+  diamondsRequiredToPlay,
+  expiryTimestamp,
+  gameWalletPublicKey,
+  shadowMint,
+  shadowRequiredToPlay,
+  timeAmount,
+  tokenMint,
+  utilmemo,
+} from 'common/static/constants';
+import 'common/utils/bufferFill';
 import AppLayout from 'common/layout/AppLayout';
 
 let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
-let shadowRequiredToPlay = 1.0 * LAMPORTS_PER_SOL;
-let diamondsRequiredToPlay = 1;
-let utilmemo = 'DMND utility being used';
-const timeAmount = 3600; // one hour 3600
-const expiryTimestamp = new Date();
 expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + timeAmount);
-const web3 = require('@solana/web3.js');
-const NETWORK = clusterApiUrl('mainnet-beta');
-const tokenMint = new PublicKey('FdSBbLHK8hfc6BSqjrhQZaGj7jgd5vfPcchDB2RDAQFA');
-const shadowMint = new PublicKey('SHDWyBxihqiCj6YekG2GUr7wqKLeLAMK1gHZck9pL6y');
-const gameWalletPublicKey = new PublicKey(
-  'CproxWoLCk4QrCd3VJNUpo3QZf3bjEnTN1FuBcRbZYaw',
-);
 
 const App = () => {
-  const [provider, setProvider] = useState();
-  const [loading, setLoading] = useState(false);
-  const [transactionSignature, setTransactionSignature] = useState('');
-  const [providerPubKey, setProviderPub] = useState();
-  const [gameReseted, setGameReseted] = useState(false);
-  const [timeDuration, setTimeDuration] = useState('00:00');
-  const [openSubmitModal, setOpenSubmitModal] = useState(false);
-  const [openSuccessModal, setOpenSuccessModal] = useState(false);
-  const [transferTokenStatus, setTransferTokenStatus] = useState(false);
-  const [gameTransferTokenStatus, setGameTransferTokenStatus] = useState(false);
   const [alertState, setAlertState] = useState(initialAlersState);
+  const [transactionSignature, setTransactionSignature] = useState('');
+  const [transferTokenStatus, setTransferTokenStatus] = useState(false);
+  const [openSuccessModal, setOpenSuccessModal] = useState(false);
+  const [openSubmitModal, setOpenSubmitModal] = useState(false);
+  const [gameReseted, setGameReseted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [timeDuration, setTimeDuration] = useState('00:00');
+  const [providerPubKey, setProviderPub] = useState();
+  const [provider, setProvider] = useState();
 
-  const [image, takeScreenshot] = useScreenshot();
   const navigate = useNavigate();
   const location = useLocation();
   const gameRef = useRef();
@@ -86,7 +82,7 @@ const App = () => {
    * Connection to the Solana cluster
    */
 
-  const connection = new web3.Connection(NETWORK, 'confirmed');
+  const connection = new Connection(NETWORK, 'confirmed');
 
   /*
    * React will call this useEffect everytime there is update in the provider variable.
@@ -151,7 +147,6 @@ const App = () => {
      */
 
     if (!providerPubKey) {
-      // alert('Ooops... Please login via wallet');
       setAlertState({
         open: true,
         message: 'Please connect your wallet',
@@ -169,6 +164,12 @@ const App = () => {
     const balanceInLamports = accountBalance ? parseInt(accountBalance) : 0;
 
     if (balanceInLamports < lamportsRequiredToPlay) {
+      // setAlertState({
+      //   open: true,
+      //   message: 'Not enough balance, please fund your wallet',
+      //   severity: 'info',
+      // });
+
       // alert("Not enough balance, please fund your wallet")
       const fundNeededToPlay = lamportsRequiredToPlay - balanceInLamports;
       const optionsNoBalance = {
@@ -265,6 +266,7 @@ const App = () => {
 
     setTransferTokenStatus(result.status);
     setLoading(false);
+
     navigate(selectedItem);
   };
 
@@ -280,7 +282,6 @@ const App = () => {
      */
 
     if (!providerPubKey) {
-      // alert('Ooops... Please login via wallet');
       setAlertState({
         open: true,
         message: 'Please connect your wallet',
@@ -443,22 +444,6 @@ const App = () => {
     restart(time);
   };
 
-  const getImage = async () => {
-    await takeScreenshot(gameRef.current);
-  };
-
-  const dataURLtoFile = (dataurl, filename) => {
-    let arr = dataurl.split(','),
-      mime = arr[0].match(/:(.*?);/)[1],
-      bstr = atob(arr[1]),
-      n = bstr.length,
-      u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new File([u8arr], filename, { type: mime });
-  };
-
   const getTimeDuration = () => {
     const min = (59 - minutes).toString();
     const sec = (60 - seconds).toString();
@@ -470,7 +455,6 @@ const App = () => {
 
   const generateResults = () => {
     getTimeDuration();
-    getImage();
 
     const data = localStorageGet('guesses');
 
@@ -504,9 +488,6 @@ const App = () => {
       '||',
       '|',
     );
-
-    const img = dataURLtoFile(image, 'gridSnapshot');
-    console.log('grid snapshot', img);
 
     /*
      * Now we have answers ready we can write them to the chain
@@ -573,6 +554,7 @@ const App = () => {
      */
 
     console.log('result.status', result.status);
+
     if (result.signature) {
       setTransactionSignature(result.signature);
       toggleSuccessModal();
@@ -643,13 +625,13 @@ const App = () => {
             <Route
               path={routes.crossword}
               element={
-                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                <CrosswordPage
-                  gameRef={gameRef}
-                  gameReseted={gameReseted}
-                  setGameReseted={setGameReseted}
-                />
-                // </PrivateRoute>
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <CrosswordPage
+                    gameRef={gameRef}
+                    gameReseted={gameReseted}
+                    setGameReseted={setGameReseted}
+                  />
+                </PrivateRoute>
               }
             />
             <Route

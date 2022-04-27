@@ -49,7 +49,7 @@ const ModalSuccess = ({
       <Typography sx={styles.title}>{title}</Typography>
       <Typography sx={styles.description} variant="body2">
         {description}{' '}
-        <Link sx={styles.link} href={link}>
+        <Link sx={styles.link} href={link} target="_blank">
           link
         </Link>
       </Typography>

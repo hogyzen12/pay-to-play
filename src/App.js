@@ -643,13 +643,13 @@ const App = () => {
             <Route
               path={routes.crossword}
               element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <CrosswordPage
-                    gameRef={gameRef}
-                    gameReseted={gameReseted}
-                    setGameReseted={setGameReseted}
-                  />
-                </PrivateRoute>
+                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                <CrosswordPage
+                  gameRef={gameRef}
+                  gameReseted={gameReseted}
+                  setGameReseted={setGameReseted}
+                />
+                // </PrivateRoute>
               }
             />
             <Route

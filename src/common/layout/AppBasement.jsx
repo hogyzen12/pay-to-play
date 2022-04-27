@@ -43,6 +43,7 @@ const styles = {
   },
   technical: {
     display: 'flex',
+    padding: { xs: '32px 0', md: '0' },
   },
   buttons: {
     display: 'flex',
@@ -69,6 +70,13 @@ const styles = {
     color: '#FF0000',
     ml: '16px',
   },
+  provider: {
+    display: 'flex',
+    width: '100%',
+    paddingTop: '32px',
+    justifyContent: 'center',
+    borderTop: theme => `1px solid ${theme.palette.success.main}`,
+  },
 };
 
 const AppBasement = ({
@@ -94,7 +102,7 @@ const AppBasement = ({
   const basementToolbar = () => (
     <Toolbar sx={styles.toolbar}>
       {!matches && (
-        <Box>
+        <Box sx={styles.provider}>
           <Typography sx={styles.key}>{providerPubKey?.toBase58()}</Typography>
           <Typography
             sx={providerPubKey ? styles.connected : styles.notConnected}

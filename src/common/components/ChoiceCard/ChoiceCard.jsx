@@ -9,12 +9,10 @@ import {
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import { PayButton } from 'common/components';
+import { SOLamount, DHMTamount, SHDWamount } from 'common/static/constants';
 import { styles } from './ChoiceCard.styles';
 import staticContent from 'common/static/content.json';
 
-const SOLamount = '0.1';
-const DHMTamount = '1';
-const SHDWamount = '1';
 const { dhmt, sol, shdw, start, comming } = staticContent.pages.main;
 
 const ChoiceCard = ({

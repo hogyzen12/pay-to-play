@@ -6,19 +6,17 @@ import AppContainer from 'common/layout/AppContainer';
 
 const { title, description } = staticContent.meta.discount;
 
-const Discount = () => {
-  return (
-    <>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-      </Helmet>
+const Discount = () => (
+  <>
+    <Helmet>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+    </Helmet>
 
-      <AppContainer>
-        <Box>Discount</Box>
-      </AppContainer>
-    </>
-  );
-};
+    <AppContainer>
+      <Box>Discount</Box>
+    </AppContainer>
+  </>
+);
 
 export default Discount;

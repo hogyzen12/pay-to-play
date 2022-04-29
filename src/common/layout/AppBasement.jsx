@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSticky } from 'common/hooks/useSticky';
 import {
   Box,
   Toolbar,
@@ -8,14 +9,12 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
-import { useSticky } from 'common/hooks/useSticky';
-import { Button, Swipeable, PayButton } from 'common/components';
+import { Button, Swipeable } from 'common/components';
+import { initialResults } from 'common/static/results';
 import staticContent from 'common/static/content.json';
 
 const { connected, notConnected } = staticContent.header;
 const { know, reset, submit, technical } = staticContent.footer;
-const { dhmt } = staticContent.pages.main;
-const DHMTamount = '1';
 
 const styles = {
   link: {
@@ -92,9 +91,17 @@ const AppBasement = ({
 
   const handleReset = () => {
     if (resetTimer) resetTimer();
+
+    initialResults.across.forEach(item => {
+      item.answer = '';
+    });
+    initialResults.down.forEach(item => {
+      item.answer = '';
+    });
   };
 
   const handleSubmit = () => {
+    console.log('initialResults', initialResults);
     toggleDrawer();
     generateResults();
   };

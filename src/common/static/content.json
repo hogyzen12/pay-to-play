@@ -48,6 +48,7 @@
       "successModal": {
         "title": "Submitted Successfully!",
         "description": "Thank you for your submission! You can check your submission by clicking on",
+        "link": "link",
         "button": "Got it"
       },
       "submitModal": {

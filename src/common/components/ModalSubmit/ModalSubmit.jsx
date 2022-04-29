@@ -15,9 +15,9 @@ import { ReactComponent as DownIcon } from 'assets/icons/down.svg';
 import { initialResults } from 'common/static/results';
 import { routes } from 'routes';
 import { styles } from './ModalSubmit.styles';
+import { totalQuestions } from 'common/static/constants';
 import staticContent from 'common/static/content.json';
 
-const totalQuestions = 30;
 const { time, guessed, title, across, button, down, something } =
   staticContent.pages.crossword.submitModal;
 
@@ -33,7 +33,11 @@ const ModalSubmit = ({
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
   useEffect(() => {
-    if (openSubmitModal) getGuessesTotal();
+    if (openSubmitModal) {
+      setTotalGuesses(0);
+      getGuessesTotal('across');
+      getGuessesTotal('down');
+    }
   }, [openSubmitModal]);
 
   const handleSubmit = () => {
@@ -42,15 +46,11 @@ const ModalSubmit = ({
 
   const handleClose = () => {
     toggleSubmitModal();
-    navigate(routes.home);
+    // navigate(routes.home);
   };
 
-  const getGuessesTotal = () => {
-    initialResults.across.map(guess => {
-      if (guess.answer.length > 0) setTotalGuesses(prevState => prevState + 1);
-    });
-
-    initialResults.down.map(guess => {
+  const getGuessesTotal = axis => {
+    initialResults[axis].map(guess => {
       if (guess.answer.length > 0) setTotalGuesses(prevState => prevState + 1);
     });
   };

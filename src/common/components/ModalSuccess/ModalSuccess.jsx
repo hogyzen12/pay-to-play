@@ -16,9 +16,11 @@ import { ReactComponent as CheckmarkImage } from 'assets/icons/checkmark.svg';
 import { Button } from 'common/components';
 import { routes } from 'routes';
 import { styles } from './ModalSuccess.styles';
+import { txLink } from 'common/static/constants';
 import staticContent from 'common/static/content.json';
 
-const { title, description } = staticContent.pages.crossword.successModal;
+const { title, description, button, link } =
+  staticContent.pages.crossword.successModal;
 
 const ModalSuccess = ({
   openSuccessModal,
@@ -28,7 +30,7 @@ const ModalSuccess = ({
   const navigate = useNavigate();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
-  const link = `https://solscan.io/tx/${transactionSignature}`;
+  const TXID = `${txLink}/${transactionSignature}`;
 
   const handleClick = () => {
     toggleSuccessModal();
@@ -49,15 +51,15 @@ const ModalSuccess = ({
       <Typography sx={styles.title}>{title}</Typography>
       <Typography sx={styles.description} variant="body2">
         {description}{' '}
-        <Link sx={styles.link} href={link} target="_blank">
-          link
+        <Link sx={styles.link} href={TXID} target="_blank">
+          {link}
         </Link>
       </Typography>
 
       <Button
         sx={styles.button}
         onClick={handleClick}
-        title="Got it"
+        title={button}
         customStyles={{
           maxWidth: { xs: '160px' },
         }}

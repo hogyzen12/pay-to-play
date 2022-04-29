@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Tabs, Tab, Box, Typography } from '@mui/material';
 import { Answer } from 'common/components';
-import staticContent from 'common/static/content.json';
 import { styles } from './Tabs.styles';
+import staticContent from 'common/static/content.json';
 
 const { across, down } = staticContent.pages.crossword.submitModal;
 
 const BasicTabs = ({ customStyles = {}, initialResults }) => {
-  const [value, setValue] = useState(0);
+  const [activeTab, setActiveTab] = useState(0);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setActiveTab(newValue);
   };
 
   return (
@@ -24,7 +24,7 @@ const BasicTabs = ({ customStyles = {}, initialResults }) => {
             },
           }}
           sx={styles.tabs}
-          value={value}
+          value={activeTab}
           onChange={handleChange}
         >
           <Tab
@@ -38,7 +38,7 @@ const BasicTabs = ({ customStyles = {}, initialResults }) => {
         </Tabs>
       </Box>
 
-      {value === 0 && (
+      {activeTab === 0 && (
         <Box>
           {initialResults.across.map((result, index) => (
             <Answer
@@ -50,7 +50,7 @@ const BasicTabs = ({ customStyles = {}, initialResults }) => {
           ))}
         </Box>
       )}
-      {value === 1 && (
+      {activeTab === 1 && (
         <Box>
           {initialResults.down.map(result => (
             <Answer

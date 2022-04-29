@@ -3,7 +3,9 @@ import { Button as MuiButton } from '@mui/material';
 import { styles } from './Button.styles';
 
 const Button = ({ onClick, disabled, title = 'Submit', customStyles = {} }) => {
-  const handleClick = () => onClick();
+  const handleClick = () => {
+    if (onClick) onClick();
+  };
 
   return (
     <MuiButton

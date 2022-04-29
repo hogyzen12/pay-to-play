@@ -31,7 +31,7 @@ import {
 import { localStorageGet, localStorageSet } from 'common/utils/localStorage';
 import { transferCustomToken } from 'common/utils/transferToken';
 import { transferDiamondToken } from 'common/utils/transferDiamond';
-import { initialAlersState } from 'common/static/alert';
+import { initialAlersState } from 'common/static/constants';
 import { initialResults } from 'common/static/results';
 import { PrivateRoute } from 'common/utils/PrivateRoute';
 import { fillAnswers } from 'common/utils/fillAnswers';
@@ -253,7 +253,7 @@ const App = () => {
       setLoading(false);
       setAlertState({
         open: true,
-        message: 'Error in sending the tokens, Please try again!!!',
+        message: 'Error in sending the tokens, Please try again',
         severity: 'error',
       });
 
@@ -304,8 +304,8 @@ const App = () => {
      * Output the ATA to console to check manually
      * TODO!!!! ADD ERROR HANDLE IF ATA NOT FOUND
      */
-    console.log(diamondAddress.toString());
-    console.log('found ATA');
+    // console.log(diamondAddress.toString());
+    // console.log('found ATA');
 
     /*
      * Address found and we pull balance succesfully here
@@ -315,8 +315,8 @@ const App = () => {
       diamondAddress,
     );
 
-    console.log(diamondBalance.value.amount);
-    console.log('found balance');
+    // console.log(diamondBalance.value.amount);
+    // console.log('found balance');
 
     /*
      * Go here and check to see they can afford with diamonds
@@ -406,7 +406,7 @@ const App = () => {
       setLoading(false);
       setAlertState({
         open: true,
-        message: 'Error in sending the tokens, Please try again!!!',
+        message: 'Error in sending the tokens, Please try again',
         severity: 'error',
       });
 
@@ -417,7 +417,7 @@ const App = () => {
      * If the status is true, that means transaction got successful and we can proceed
      */
 
-    console.log('result.status', result.status);
+    // console.log('result.status', result.status);
     setTransferTokenStatus(result.status);
     setLoading(false);
     navigate(selectedItem);
@@ -502,8 +502,8 @@ const App = () => {
      * Output the ATA to console to check manually
      * TODO!!!! ADD ERROR HANDLE IF ATA NOT FOUND
      */
-    console.log(diamondAddress.toString());
-    console.log('found ATA');
+    // console.log(diamondAddress.toString());
+    // console.log('found ATA');
 
     /*
      * Address found and we pull balance succesfully here
@@ -513,9 +513,9 @@ const App = () => {
       diamondAddress,
     );
 
-    console.log(diamondBalance.value.amount);
-    console.log('found balance');
-    console.log(totalResultsString);
+    // console.log(diamondBalance.value.amount);
+    // console.log('found balance');
+    // console.log(totalResultsString);
 
     /*
      * Time to get them to send us their Diamond
@@ -542,7 +542,7 @@ const App = () => {
       setLoading(false);
       setAlertState({
         open: true,
-        message: 'Error in sending the tokens, Please try again!!!',
+        message: 'Error in sending the tokens, Please try again',
         severity: 'error',
       });
 
@@ -553,7 +553,7 @@ const App = () => {
      * If the status is true, that means transaction got successful and we can proceed
      */
 
-    console.log('result.status', result.status);
+    // console.log('result.status', result.status);
 
     if (result.signature) {
       setTransactionSignature(result.signature);
@@ -561,12 +561,6 @@ const App = () => {
     }
 
     setLoading(false);
-
-    /**
-     * @param {string} acrossAxisString : across axis guesses
-     * @param {string} downAxisString : donw axis guesses
-     * @param {string} totalResultsString : acrossAxisString + downAxisString
-     */
   };
 
   return (
@@ -625,13 +619,13 @@ const App = () => {
             <Route
               path={routes.crossword}
               element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <CrosswordPage
-                    gameRef={gameRef}
-                    gameReseted={gameReseted}
-                    setGameReseted={setGameReseted}
-                  />
-                </PrivateRoute>
+                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                <CrosswordPage
+                  gameRef={gameRef}
+                  gameReseted={gameReseted}
+                  setGameReseted={setGameReseted}
+                />
+                // </PrivateRoute>
               }
             />
             <Route
@@ -647,22 +641,28 @@ const App = () => {
         </Routes>
       </Suspense>
 
+      {location.pathname === routes.crossword && (
+        <ModalSuccess
+          transactionSignature={transactionSignature}
+          openSuccessModal={openSuccessModal}
+          toggleSuccessModal={toggleSuccessModal}
+        />
+      )}
+
+      {location.pathname === routes.crossword && (
+        <ModalSubmit
+          timeDuration={timeDuration}
+          submitResults={submitResults}
+          initialResults={initialResults}
+          providerPubKey={providerPubKey}
+          openSubmitModal={openSubmitModal}
+          toggleSubmitModal={toggleSubmitModal}
+          toggleSuccessModal={toggleSuccessModal}
+        />
+      )}
+
       <Loader isLoading={loading} />
       <Notification alertState={alertState} onAlertClose={onAlertClose} />
-      <ModalSuccess
-        transactionSignature={transactionSignature}
-        openSuccessModal={openSuccessModal}
-        toggleSuccessModal={toggleSuccessModal}
-      />
-      <ModalSubmit
-        timeDuration={timeDuration}
-        submitResults={submitResults}
-        initialResults={initialResults}
-        providerPubKey={providerPubKey}
-        openSubmitModal={openSubmitModal}
-        toggleSubmitModal={toggleSubmitModal}
-        toggleSuccessModal={toggleSuccessModal}
-      />
     </>
   );
 };

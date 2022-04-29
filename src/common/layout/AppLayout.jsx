@@ -37,16 +37,18 @@ const AppLayout = ({
     setShowBasement(location.pathname === routes.crossword);
   }, [location]);
 
-  const toggleDrawer = () => setOpen(!open);
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
 
   return (
     <Box sx={styles.layout}>
       <AppBar
         seconds={seconds}
         minutes={minutes}
-        providerPubKey={providerPubKey}
         loginHandler={loginHandler}
         toggleDrawer={toggleDrawer}
+        providerPubKey={providerPubKey}
       />
 
       <AppWrapper>

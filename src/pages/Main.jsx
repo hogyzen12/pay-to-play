@@ -27,48 +27,46 @@ const styles = {
   },
 };
 
-const Main = ({ handleClickSOL, handleClickDHMT, handleClickSHDW }) => {
-  return (
-    <>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-      </Helmet>
+const Main = ({ handleClickSOL, handleClickDHMT, handleClickSHDW }) => (
+  <>
+    <Helmet>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+    </Helmet>
 
-      <AppContainer customStyles={styles.container} size="xl">
-        <Box sx={styles.choice}>
-          {cards.map(
-            (
-              {
-                title,
-                description,
-                image,
-                redirect,
-                available,
-                payment,
-                transitionDelay,
-              },
-              index,
-            ) => (
-              <ChoiceCard
-                key={index}
-                title={title}
-                image={image}
-                payment={payment}
-                available={available}
-                selectedPage={redirect}
-                description={description}
-                handleClickSOL={handleClickSOL}
-                transitionDelay={transitionDelay}
-                handleClickDHMT={handleClickDHMT}
-                handleClickSHDW={handleClickSHDW}
-              />
-            ),
-          )}
-        </Box>
-      </AppContainer>
-    </>
-  );
-};
+    <AppContainer customStyles={styles.container} size="xl">
+      <Box sx={styles.choice}>
+        {cards.map(
+          (
+            {
+              title,
+              description,
+              image,
+              redirect,
+              available,
+              payment,
+              transitionDelay,
+            },
+            index,
+          ) => (
+            <ChoiceCard
+              key={index}
+              title={title}
+              image={image}
+              payment={payment}
+              available={available}
+              selectedPage={redirect}
+              description={description}
+              handleClickSOL={handleClickSOL}
+              transitionDelay={transitionDelay}
+              handleClickDHMT={handleClickDHMT}
+              handleClickSHDW={handleClickSHDW}
+            />
+          ),
+        )}
+      </Box>
+    </AppContainer>
+  </>
+);
 
 export default Main;

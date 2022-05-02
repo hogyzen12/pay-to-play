@@ -5,7 +5,7 @@
       "description": "The one stop to make the most of the utility offered by DMNDS for DH holders."
     },
     "raffle": {
-      "title": "Diamond Hands Raffle",
+      "title": "Diamond Hands Raffles",
       "description": "The one stop to make the most of the utility offered by DMNDS for DH holders."
     },
     "premium": {
@@ -46,6 +46,12 @@
       "shdw": "SHDW",
       "start": "Select Payment:",
       "comming": "Coming soon"
+    },
+    "raffle": {
+      "sold": "sold",
+      "winners": "winners",
+      "ends": "Ends in",
+      "closed": "Raffle closed!"
     },
     "crossword": {
       "hints": "Hints",

@@ -1,17 +1,31 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
-import { PayButton } from 'common/components';
+import { Ticket } from 'common/components';
 import { Box } from '@mui/material';
-import { DHMTamount } from 'common/static/constants';
-import { routes } from 'routes';
 import AppContainer from 'common/layout/AppContainer';
 import staticContent from 'common/static/content.json';
+import { tickets } from 'common/static/tickets';
 
 const { title, description } = staticContent.meta.raffle;
-const { dhmt } = staticContent.pages.main;
 
-const styles = {};
+const styles = {
+  container: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  tickets: {
+    display: 'grid',
+    gridTemplateColumns: {
+      xs: '1fr',
+      xl: 'repeat(1, 1fr)',
+    },
+    gridTemplateRows: { xs: 'repeat(5, 1fr)', md: 'repeat(1, 1fr)' },
+    gridColumnGap: { md: '16px' },
+    gridRowGap: '16px',
+  },
+};
 
 const Raffle = ({ handleClickDHMT }) => {
   return (
@@ -25,8 +39,8 @@ const Raffle = ({ handleClickDHMT }) => {
         size="md"
         customStyles={{
           display: 'flex',
-          justifyContent: 'center',
           alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <AnimatePresence>
@@ -35,14 +49,24 @@ const Raffle = ({ handleClickDHMT }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            sx={styles.tickets}
           >
-            <PayButton
-              title="Purchase raffle entry (1 DMND)"
-              currency={dhmt}
-              amount={DHMTamount}
-              handlePay={handleClickDHMT}
-              selectedPage={routes.home}
-            />
+            {tickets.map(
+              (
+                { title, description, image, redirect, transitionDelay },
+                index,
+              ) => (
+                <Ticket
+                  key={index}
+                  title={title}
+                  image={image}
+                  redirect={redirect}
+                  description={description}
+                  handlePay={handleClickDHMT}
+                  transitionDelay={transitionDelay}
+                />
+              ),
+            )}
           </Box>
         </AnimatePresence>
       </AppContainer>

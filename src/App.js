@@ -73,10 +73,6 @@ const App = () => {
     expiryTimestamp,
     autoStart: true,
     onExpire: () => {
-      // location.pathname === routes.crossword
-      //   ? generateResults()
-      //   : navigate(routes.home);
-
       switch (location.pathname) {
         case routes.crossword:
           return generateResults();
@@ -441,6 +437,14 @@ const App = () => {
     navigate(selectedItem);
   };
 
+  const handlePayRaffle = async (selectedItem, currency) => {
+    console.log('Raffle pay button clicked');
+
+    /*
+     * Purchase raffle entry handler
+     */
+  };
+
   const onAlertClose = () => {
     setAlertState(initialAlersState);
   };
@@ -612,9 +616,9 @@ const App = () => {
             <Route
               path={routes.raffle}
               element={
-                <PrivateRoute transferTokenStatus={providerPubKey}>
-                  <RafflePage handleClickDHMT={handlePayDHMT} />
-                </PrivateRoute>
+                // <PrivateRoute transferTokenStatus={providerPubKey}>
+                <RafflePage handleClickDHMT={handlePayRaffle} />
+                // </PrivateRoute>
               }
             />
             <Route

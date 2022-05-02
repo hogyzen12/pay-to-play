@@ -25,7 +25,6 @@ const ChoiceCard = ({
   handleClickSOL,
   transitionDelay,
   handleClickDHMT,
-  handleClickSHDW,
 }) => {
   return (
     <Card
@@ -80,7 +79,15 @@ const ChoiceCard = ({
                 <PayButton
                   currency={shdw}
                   amount={SHDWamount}
-                  handlePay={handleClickSHDW}
+                  handlePay={handleClickDHMT}
+                  selectedPage={selectedPage}
+                />
+              )}
+              {payment.free && (
+                <PayButton
+                  title="Open"
+                  currency="free"
+                  handlePay={handleClickDHMT}
                   selectedPage={selectedPage}
                 />
               )}

@@ -14,6 +14,7 @@ import {
   PublicKey,
 } from '@solana/web3.js';
 import {
+  RafflePage,
   AlphaPage,
   PremiaPage,
   PremiumPage,
@@ -21,6 +22,7 @@ import {
   CrosswordPage,
   NotFoundPage,
   MainPage,
+  routes,
 } from './routes';
 import {
   Loader,
@@ -35,7 +37,6 @@ import { initialAlersState } from 'common/static/constants';
 import { initialResults } from 'common/static/results';
 import { PrivateRoute } from 'common/utils/PrivateRoute';
 import { fillAnswers } from 'common/utils/fillAnswers';
-import { routes } from './routes';
 import {
   NETWORK,
   diamondsRequiredToPlay,
@@ -72,9 +73,18 @@ const App = () => {
     expiryTimestamp,
     autoStart: true,
     onExpire: () => {
-      location.pathname === routes.crossword
-        ? generateResults()
-        : navigate(routes.home);
+      // location.pathname === routes.crossword
+      //   ? generateResults()
+      //   : navigate(routes.home);
+
+      switch (location.pathname) {
+        case routes.crossword:
+          return generateResults();
+        case routes.raffle:
+          return pause();
+        default:
+          navigate(routes.home);
+      }
     },
   });
 
@@ -272,6 +282,8 @@ const App = () => {
 
   const handlePayDHMT = async (selectedItem, currency) => {
     const isSHDW = currency === 'SHDW';
+    const isFree = currency === 'free';
+
     /*
      * Flow to play the game
      * 1. Check if the user is logged in
@@ -287,6 +299,12 @@ const App = () => {
         message: 'Please connect your wallet',
         severity: 'info',
       });
+
+      return;
+    }
+
+    if (isFree) {
+      navigate(routes.raffle);
 
       return;
     }
@@ -588,8 +606,15 @@ const App = () => {
                 <MainPage
                   handleClickSOL={handlePaySOL}
                   handleClickDHMT={handlePayDHMT}
-                  handleClickSHDW={handlePayDHMT}
                 />
+              }
+            />
+            <Route
+              path={routes.raffle}
+              element={
+                <PrivateRoute transferTokenStatus={providerPubKey}>
+                  <RafflePage handleClickDHMT={handlePayDHMT} />
+                </PrivateRoute>
               }
             />
             <Route
@@ -619,13 +644,13 @@ const App = () => {
             <Route
               path={routes.crossword}
               element={
-                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                <CrosswordPage
-                  gameRef={gameRef}
-                  gameReseted={gameReseted}
-                  setGameReseted={setGameReseted}
-                />
-                // </PrivateRoute>
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <CrosswordPage
+                    gameRef={gameRef}
+                    gameReseted={gameReseted}
+                    setGameReseted={setGameReseted}
+                  />
+                </PrivateRoute>
               }
             />
             <Route

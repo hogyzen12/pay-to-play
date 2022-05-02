@@ -4,6 +4,10 @@ export const MainPage = lazy(() =>
   import('./pages/Main' /* webpackChunkName: "MainPage" */),
 );
 
+export const RafflePage = lazy(() =>
+  import('./pages/Raffle' /* webpackChunkName: "RafflePage" */),
+);
+
 export const PremiumPage = lazy(() =>
   import('./pages/Premium' /* webpackChunkName: "PremiumPage" */),
 );
@@ -31,6 +35,7 @@ export const NotFoundPage = lazy(() =>
 export const routes = {
   home: '/',
   alpha: '/alpha',
+  raffle: '/raffle',
   premia: '/premia',
   premium: '/premium',
   discount: '/discount',

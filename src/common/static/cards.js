@@ -18,6 +18,7 @@ export const cards = [
       sol: true,
       dhmt: true,
       shdw: false,
+      free: false,
     },
   },
   {
@@ -32,6 +33,7 @@ export const cards = [
       sol: true,
       dhmt: true,
       shdw: false,
+      free: false,
     },
   },
   {
@@ -46,6 +48,7 @@ export const cards = [
       sol: false,
       dhmt: true,
       shdw: true,
+      free: false,
     },
   },
   {
@@ -60,6 +63,21 @@ export const cards = [
       sol: false,
       dhmt: true,
       shdw: false,
+      free: false,
+    },
+  },
+  {
+    title: 'Raffle page',
+    description: 'Raffle page description',
+    image: discount,
+    available: true,
+    redirect: routes.raffle,
+    transitionDelay: 0.6,
+    payment: {
+      sol: false,
+      dhmt: false,
+      shdw: false,
+      free: true,
     },
   },
   {
@@ -74,6 +92,7 @@ export const cards = [
       sol: true,
       dhmt: true,
       shdw: false,
+      free: false,
     },
   },
 ];

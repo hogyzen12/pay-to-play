@@ -27,7 +27,7 @@ const styles = {
   },
 };
 
-const Main = ({ handleClickSOL, handleClickDHMT, handleClickSHDW }) => (
+const Main = ({ handleClickSOL, handleClickDHMT }) => (
   <>
     <Helmet>
       <title>{title}</title>
@@ -60,7 +60,6 @@ const Main = ({ handleClickSOL, handleClickDHMT, handleClickSHDW }) => (
               handleClickSOL={handleClickSOL}
               transitionDelay={transitionDelay}
               handleClickDHMT={handleClickDHMT}
-              handleClickSHDW={handleClickSHDW}
             />
           ),
         )}

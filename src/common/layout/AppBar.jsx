@@ -66,8 +66,9 @@ const styles = {
 const AppBar = ({
   seconds,
   minutes,
+  provider,
+  setProvider,
   providerPubKey,
-  loginHandler,
   toggleDrawer,
 }) => {
   const location = useLocation();
@@ -75,8 +76,15 @@ const AppBar = ({
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
-  const handleConnectWallet = () => {
-    if (loginHandler) loginHandler();
+  const loginHandler = () => {
+    if (!provider && window.solana) {
+      setProvider(window.solana);
+    } else if (!provider) {
+      console.log('No provider found');
+      return;
+    } else if (provider && !provider.isConnected) {
+      provider.connect();
+    }
   };
 
   const handleBurgerClick = () => {
@@ -133,7 +141,7 @@ const AppBar = ({
               color="secondary"
               variant="contained"
               sx={styles.button}
-              onClick={handleConnectWallet}
+              onClick={loginHandler}
             >
               {walletButton}
             </Button>

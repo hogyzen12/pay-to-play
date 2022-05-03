@@ -25,9 +25,10 @@ const AppLayout = ({
   seconds,
   minutes,
   resetTimer,
-  loginHandler,
   providerPubKey,
   generateResults,
+  provider,
+  setProvider,
 }) => {
   const [open, setOpen] = useState(false);
   const [showBasement, setShowBasement] = useState(false);
@@ -46,7 +47,8 @@ const AppLayout = ({
       <AppBar
         seconds={seconds}
         minutes={minutes}
-        loginHandler={loginHandler}
+        provider={provider}
+        setProvider={setProvider}
         toggleDrawer={toggleDrawer}
         providerPubKey={providerPubKey}
       />

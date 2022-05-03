@@ -38,7 +38,7 @@ export const theme = {
   highlightBackground: '#CDCCF5', // #EEEEFC
 };
 
-export const initialAlersState = {
+export const initialAlertState = {
   open: false,
   message: '',
   severity: undefined,

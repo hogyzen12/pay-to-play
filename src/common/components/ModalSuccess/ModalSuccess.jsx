@@ -32,11 +32,6 @@ const ModalSuccess = ({
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   const TXID = `${txLink}/${transactionSignature}`;
 
-  const handleClick = () => {
-    toggleSuccessModal();
-    navigate(routes.home);
-  };
-
   const handleClose = () => {
     toggleSuccessModal();
     navigate(routes.home);
@@ -44,7 +39,7 @@ const ModalSuccess = ({
 
   const modalContent = () => (
     <Box sx={matches ? styles.content : styles.contentMobile}>
-      <IconButton sx={styles.closeIcon} onClick={toggleSuccessModal}>
+      <IconButton sx={styles.closeIcon} onClick={handleClose}>
         <CloseIcon sx={styles.icon} />
       </IconButton>
       <CheckmarkImage />
@@ -58,7 +53,7 @@ const ModalSuccess = ({
 
       <Button
         sx={styles.button}
-        onClick={handleClick}
+        onClick={handleClose}
         title={button}
         customStyles={{
           maxWidth: { xs: '160px' },

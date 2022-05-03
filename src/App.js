@@ -33,7 +33,7 @@ import {
 import { localStorageGet, localStorageSet } from 'common/utils/localStorage';
 import { transferCustomToken } from 'common/utils/transferToken';
 import { transferDiamondToken } from 'common/utils/transferDiamond';
-import { initialAlersState } from 'common/static/constants';
+import { initialAlertState } from 'common/static/constants';
 import { initialResults } from 'common/static/results';
 import { PrivateRoute } from 'common/utils/PrivateRoute';
 import { fillAnswers } from 'common/utils/fillAnswers';
@@ -57,7 +57,7 @@ let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
 expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + timeAmount);
 
 const App = () => {
-  const [alertState, setAlertState] = useState(initialAlersState);
+  const [alertState, setAlertState] = useState(initialAlertState);
   const [transactionSignature, setTransactionSignature] = useState('');
   const [transferTokenStatus, setTransferTokenStatus] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
@@ -71,6 +71,7 @@ const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const gameRef = useRef();
+
   const { seconds, minutes, start, restart, pause, resume } = useTimer({
     expiryTimestamp,
     autoStart: true,
@@ -112,7 +113,7 @@ const App = () => {
       provider.on('connect', async () => {
         setAlertState({
           open: true,
-          message: 'wallet got connected',
+          message: 'Wallet got connected',
           severity: 'success',
         });
 
@@ -128,17 +129,6 @@ const App = () => {
       });
     }
   }, [provider]);
-
-  const loginHandler = () => {
-    if (!provider && window.solana) {
-      setProvider(window.solana);
-    } else if (!provider) {
-      console.log('No provider found');
-      return;
-    } else if (provider && !provider.isConnected) {
-      provider.connect();
-    }
-  };
 
   const handlePaySOL = async (selectedItem, currency) => {
     /*
@@ -279,6 +269,7 @@ const App = () => {
   };
 
   const handlePayDHMT = async (selectedItem, currency) => {
+    const isSOL = currency === 'SOL';
     const isSHDW = currency === 'SHDW';
     const isFree = currency === 'free';
 
@@ -452,12 +443,11 @@ const App = () => {
   };
 
   const handlePayRaffle = async (selectedItem, currency) => {
-    console.log('Raffle pay button clicked');
-
     /*
      * Check if the user has diamonds in their wallet
      * And use the value to check if they can afford the game
      */
+
     const diamondAddress = await splToken.getAssociatedTokenAddress(
       tokenMint,
       providerPubKey,
@@ -468,6 +458,7 @@ const App = () => {
      * set ticket serial number appropiately
      * Using a dedicated wallet for the raffle to ensure init correctly
      */
+
     const raffleAddress = await splToken.getAssociatedTokenAddress(
       tokenMint,
       raffleWalletPublicKey,
@@ -619,19 +610,13 @@ const App = () => {
      */
   };
 
-  const onAlertClose = () => {
-    setAlertState(initialAlersState);
-  };
-
   const toggleSubmitModal = () => {
     setOpenSubmitModal(!openSubmitModal);
 
     if (openSubmitModal) resume();
   };
 
-  const toggleSuccessModal = () => {
-    setOpenSuccessModal(!openSuccessModal);
-  };
+  const toggleSuccessModal = () => setOpenSuccessModal(!openSuccessModal);
 
   const resetTimer = () => {
     const time = new Date();
@@ -771,10 +756,12 @@ const App = () => {
                 seconds={seconds}
                 minutes={minutes}
                 resetTimer={resetTimer}
-                loginHandler={loginHandler}
+                // loginHandler={loginHandler}
                 handleClickDHMT={handlePayDHMT}
                 providerPubKey={providerPubKey}
                 generateResults={generateResults}
+                provider={provider}
+                setProvider={setProvider}
               />
             }
           >
@@ -865,7 +852,7 @@ const App = () => {
       )}
 
       <Loader isLoading={loading} />
-      <Notification alertState={alertState} onAlertClose={onAlertClose} />
+      <Notification alertState={alertState} setAlertState={setAlertState} />
     </>
   );
 };

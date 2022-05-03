@@ -27,7 +27,7 @@ const styles = {
   },
 };
 
-const Raffle = ({ handleClickDHMT }) => {
+const Raffle = ({ providerPubKey, setAlertState, setLoading, provider }) => {
   return (
     <>
       <Helmet>
@@ -62,8 +62,11 @@ const Raffle = ({ handleClickDHMT }) => {
                   image={image}
                   redirect={redirect}
                   description={description}
-                  handlePay={handleClickDHMT}
                   transitionDelay={transitionDelay}
+                  providerPubKey={providerPubKey}
+                  setAlertState={setAlertState}
+                  setLoading={setLoading}
+                  provider={provider}
                 />
               ),
             )}

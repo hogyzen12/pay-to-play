@@ -9,9 +9,7 @@ export const styles = {
     borderRadius: '6px',
     marginBottom: '20px',
   },
-  content: {
-    // mb: '32px',
-  },
+  content: {},
   title: {
     fontSize: '28px',
     textAlign: 'center',
@@ -22,16 +20,15 @@ export const styles = {
     justifyContent: 'center',
     gap: '20px',
   },
-  sold: {
-    // padding: '16px 20px',
-  },
-  winners: {
-    // padding: '16px 20px',
-  },
+  sold: {},
+  winners: {},
   countdown: {
     textAlign: 'center',
-    color: 'red',
     padding: '20px 0',
+    color: 'green',
+  },
+  closed: {
+    color: 'red',
   },
   actions: {
     padding: '0',

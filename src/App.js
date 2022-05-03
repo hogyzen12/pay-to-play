@@ -46,7 +46,9 @@ import {
   shadowRequiredToPlay,
   timeAmount,
   tokenMint,
-  utilmemo,
+  utilMemo,
+  raffleWalletPublicKey,
+  raffleMemo,
 } from 'common/static/constants';
 import 'common/utils/bufferFill';
 import AppLayout from 'common/layout/AppLayout';
@@ -414,7 +416,7 @@ const App = () => {
         gameWalletPublicKey,
         diamondBalance.value.amount,
         isSHDW ? shadowRequiredToPlay : diamondsRequiredToPlay,
-        utilmemo,
+        utilMemo,
       );
 
       if (!result.status) {
@@ -451,6 +453,166 @@ const App = () => {
 
   const handlePayRaffle = async (selectedItem, currency) => {
     console.log('Raffle pay button clicked');
+
+    /*
+     * Check if the user has diamonds in their wallet
+     * And use the value to check if they can afford the game
+     */
+    const diamondAddress = await splToken.getAssociatedTokenAddress(
+      tokenMint,
+      providerPubKey,
+    );
+
+    /*
+     * Check how many entries have been made
+     * set ticket serial number appropiately
+     * Using a dedicated wallet for the raffle to ensure init correctly
+     */
+    const raffleAddress = await splToken.getAssociatedTokenAddress(
+      tokenMint,
+      raffleWalletPublicKey,
+    );
+
+    /*
+     * Output the ATA to console to check manually
+     * TODO!!!! ADD ERROR HANDLE IF ATA NOT FOUND
+     */
+    console.log(diamondAddress.toString());
+    console.log(raffleAddress.toString());
+    console.log('found ATA');
+
+    /*
+     * Address found and we pull balance succesfully here
+     * Print to console the amount to check
+     */
+
+    try {
+      const diamondBalance = await connection.getTokenAccountBalance(
+        diamondAddress,
+      );
+
+      const raffleBalance = await connection.getTokenAccountBalance(
+        raffleAddress,
+      );
+
+      console.log(raffleBalance.value.uiAmount);
+      const entryValue = raffleBalance.value.uiAmount + 1;
+      console.log(entryValue);
+      const raffleEntryMemo = raffleMemo + entryValue.toString();
+      console.log(raffleEntryMemo);
+
+      /*
+       * Go here and check to see they can afford with diamonds
+       */
+      if (diamondBalance?.value?.amount < 1) {
+        // alert("Not enough balance, please fund your wallet")
+        const optionsNoBalance = {
+          childrenElement: () => <div />,
+          customUI: ({ onClose }) => (
+            <Backdrop open={true} onClick={onClose}>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  maxWidth: { xs: '90%', md: '600px' },
+                  width: '100%',
+                  bgcolor: '#1D1D1D',
+                  padding: '16px 16px 32px',
+                  borderRadius: '8px',
+                }}
+              >
+                <IconButton
+                  sx={{
+                    display: 'block',
+                    padding: '0',
+                    margin: '0',
+                    marginLeft: 'auto',
+                    marginBottom: '20px',
+                  }}
+                  onClick={onClose}
+                >
+                  <CloseIcon sx={{ color: '#A2A2A2' }} />
+                </IconButton>
+                <Typography
+                  sx={{
+                    mb: '16px',
+                    fontSize: '32px',
+                    textAlign: 'center',
+                  }}
+                  variant="h3"
+                >
+                  You do need more SOL for gas fees
+                </Typography>
+                <Typography sx={{ textAlign: 'center' }}>
+                  You need to have at least 1 DMND to play the game.
+                </Typography>
+              </Box>
+            </Backdrop>
+          ),
+          closeOnEscape: true,
+          closeOnClickOutside: true,
+          willUnmount: () => {},
+          afterClose: () => {},
+          onClickOutside: () => {},
+          onKeypressEscape: () => {},
+          overlayClassName: 'overlay-custom-class-name',
+        };
+
+        confirmAlert(optionsNoBalance);
+        return;
+      }
+
+      /*
+       * Time to get them to send us their Diamond
+       * For this we need to use the Associated token accounts
+       * We know the accs will exist as the payer has diamonds to have gotten to this stage
+       * we call our custom function here to do this
+       */
+      setLoading(true);
+
+      const result = await transferDiamondToken(
+        provider,
+        connection,
+        tokenMint,
+        providerPubKey,
+        raffleWalletPublicKey,
+        diamondBalance.value.amount,
+        diamondsRequiredToPlay,
+        raffleEntryMemo,
+      );
+
+      if (!result.status) {
+        setTransferTokenStatus(result.status);
+
+        setLoading(false);
+        setAlertState({
+          open: true,
+          message: 'Error in sending the tokens, Please try again',
+          severity: 'error',
+        });
+
+        return;
+      }
+
+      /*
+       * If the status is true, that means transaction got successful and we can proceed
+       */
+
+      // console.log('result.status', result.status);
+      setTransferTokenStatus(result.status);
+      setLoading(false);
+      navigate(selectedItem);
+    } catch (error) {
+      console.log('SHDW error :>> ', error);
+
+      setAlertState({
+        open: true,
+        message: 'Failed to get token account balance',
+        severity: 'error',
+      });
+    }
 
     /*
      * Purchase raffle entry handler

@@ -2,7 +2,8 @@ import { clusterApiUrl, LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
 
 export let shadowRequiredToPlay = 1.0 * LAMPORTS_PER_SOL;
 export let diamondsRequiredToPlay = 1;
-export let utilmemo = 'DMND utility being used';
+export let utilMemo = 'DMND utility being used';
+export let raffleMemo = 'Raffle entry ';
 
 export const NETWORK = clusterApiUrl('mainnet-beta');
 export const expiryTimestamp = new Date();
@@ -15,6 +16,9 @@ export const shadowMint = new PublicKey(
 );
 export const gameWalletPublicKey = new PublicKey(
   'CproxWoLCk4QrCd3VJNUpo3QZf3bjEnTN1FuBcRbZYaw',
+);
+export const raffleWalletPublicKey = new PublicKey(
+  'CprokaooYxRJSzA3T7t2rHGjiYZZtUSk9jFpxxGSuSza',
 );
 
 export const txLink = 'https://solscan.io/tx';

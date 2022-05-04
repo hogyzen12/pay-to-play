@@ -1,0 +1,68 @@
+export const styles = {
+  card: {
+    display: 'flex',
+    flexDirection: 'column',
+    border: theme => `1px solid ${theme.palette.success.main}`,
+    borderRadius: '8px',
+    width: '100%',
+    maxWidth: { xs: '100%', md: '457px' },
+    padding: '24px',
+    // mb: { xs: '24px', md: '32px' },
+  },
+  image: {
+    marginBottom: '20px',
+    borderRadius: '8px',
+  },
+  mediaBox: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    bgcolor: '#1E1D21',
+    borderRadius: '8px',
+    maxWidth: '640px',
+    width: '100%',
+    height: '200px',
+    mb: '16px',
+  },
+  content: {
+    mb: '32px',
+  },
+  title: {
+    fontSize: { xs: '20px', lg: '24px', xl: '32px' },
+    lineHeight: { xs: '22.4px', md: '28.8px' },
+    color: 'custom.white',
+    mb: '16px',
+  },
+  description: {
+    fontSize: '14px',
+    lineHeight: '22.4px',
+    color: theme => theme.palette.success.contrastText,
+  },
+  actions: {
+    display: 'flex',
+    padding: '0',
+    marginTop: 'auto',
+  },
+  start: {
+    mr: '16px',
+  },
+  buttons: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+  },
+  soon: {
+    lineHeight: { xs: '14px' },
+    maxHeight: '42px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '10px 16px',
+    width: 'fit-content',
+    borderRadius: '4px',
+    pointerEvents: 'none',
+    userSelect: 'none',
+    color: theme => theme.palette.success.main,
+    border: theme => `1px solid ${theme.palette.success.main}`,
+  },
+};

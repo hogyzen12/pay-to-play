@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "main": {
+      "title": "Diamond Hands Utility",
+      "description": "The one stop to make the most of the utility offered by DMNDS for DH holders."
+    },
+    "raffle": {
+      "title": "Diamond Hands Raffles",
+      "description": "The one stop to make the most of the utility offered by DMNDS for DH holders."
+    },
+    "premium": {
+      "title": "Team Choice",
+      "description": "I mean it says in the title - SHOW ME THE MONEY!!"
+    },
+    "premia": {
+      "title": "Diamond Hands Premia",
+      "description": "I’m no sorcerer, but after months of deep research, I’m confident I can leave the crystal ball at home, and still give you some grade-A alpha. - Max"
+    },
+    "alpha": {
+      "title": "Alpha-DAO Proposal #18",
+      "description": "The Diamond Hands NFT project is backed by Cryptonary's team of leading industry experts and one of the biggest established communities in the crypto space."
+    },
+    "discount": {
+      "title": "Diamond Hands Discount",
+      "description": "Diamond Hands Discount"
+    },
+    "crossword": {
+      "title": "Diamond Hands Crossword",
+      "description": "Diamond Hands Crossword"
+    },
+    "notFound": {
+      "title": "Not Found",
+      "description": "Page doesn't exist"
+    }
+  },
+  "header": {
+    "walletButton": "Connect wallet",
+    "connected": "Connected",
+    "notConnected": "Not connected"
+  },
+  "pages": {
+    "main": {
+      "pageTitle": "Welcome to diamond hands page",
+      "sol": "SOL",
+      "dhmt": "DMND",
+      "shdw": "SHDW",
+      "start": "Select Payment:",
+      "comming": "Coming soon"
+    },
+    "raffle": {
+      "sold": "sold",
+      "winners": "Possible Winner",
+      "ends": "Ends in",
+      "closed": "Raffle closed!"
+    },
+    "crossword": {
+      "hints": "Hints",
+      "successModal": {
+        "title": "Submitted Successfully!",
+        "description": "Thank you for your submission! You can check your submission by clicking on",
+        "link": "link",
+        "button": "Got it"
+      },
+      "submitModal": {
+        "title": "Submit your answers",
+        "time": "Time:",
+        "guessed": "Words guessed:",
+        "across": "Across",
+        "down": "Down",
+        "something": "Something isnt right?",
+        "button": "Submit"
+      }
+    },
+    "notFound": {
+      "message": "Sorry, this page does not exist",
+      "redirect": "You will be redirected to home page in 5 seconds"
+    }
+  },
+  "footer": {
+    "technical": "Technical problems?",
+    "know": "Let us know",
+    "reset": "Reset",
+    "submit": "Submit"
+  }
+}

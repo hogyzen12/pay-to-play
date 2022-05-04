@@ -1,8 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Ticket } from 'common/components';
-import { Box } from '@mui/material';
+import { Ticket, FAQs } from 'common/components';
+import { Box, Typography } from '@mui/material';
 import AppContainer from 'common/layout/AppContainer';
 import staticContent from 'common/static/content.json';
 import { tickets } from 'common/static/tickets';
@@ -17,13 +17,15 @@ const styles = {
   },
   tickets: {
     display: 'grid',
+    justifyContent: 'center',
     gridTemplateColumns: {
       xs: '1fr',
-      xl: 'repeat(1, 1fr)',
+      md: 'repeat(2, 1fr)',
     },
     gridTemplateRows: { xs: 'repeat(5, 1fr)', md: 'repeat(1, 1fr)' },
-    gridColumnGap: { md: '16px' },
-    gridRowGap: '16px',
+    gridColumnGap: { md: '24px' },
+    gridRowGap: '24px',
+    mb: '48px',
   },
 };
 
@@ -39,10 +41,15 @@ const Raffle = ({ providerPubKey, setAlertState, setLoading, provider }) => {
         size="md"
         customStyles={{
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'center',
+          // justifyContent: 'center',
         }}
       >
+        <Typography sx={{ padding: '32px 0' }} variant="h2" component="h2">
+          Diamond Hands Raffle
+        </Typography>
+
         <AnimatePresence>
           <Box
             component={motion.div}
@@ -53,7 +60,14 @@ const Raffle = ({ providerPubKey, setAlertState, setLoading, provider }) => {
           >
             {tickets.map(
               (
-                { title, description, image, redirect, transitionDelay },
+                {
+                  title,
+                  description,
+                  image,
+                  redirect,
+                  transitionDelay,
+                  dateTime,
+                },
                 index,
               ) => (
                 <Ticket
@@ -61,6 +75,7 @@ const Raffle = ({ providerPubKey, setAlertState, setLoading, provider }) => {
                   title={title}
                   image={image}
                   redirect={redirect}
+                  dateTime={dateTime}
                   description={description}
                   transitionDelay={transitionDelay}
                   providerPubKey={providerPubKey}
@@ -72,6 +87,8 @@ const Raffle = ({ providerPubKey, setAlertState, setLoading, provider }) => {
             )}
           </Box>
         </AnimatePresence>
+
+        <FAQs />
       </AppContainer>
     </>
   );

@@ -49,12 +49,16 @@ const Ticket = ({
   setAlertState,
   setLoading,
   provider,
+  start,
+  end,
+  date,
 }) => {
   const [rafflesSold, setRafflesSold] = useState(0);
   const [raffleOpen, setRaffleOpen] = useState(true);
-  // const [isFixed, setIsFixed] = useState(
-  //   start && end && date ? start.getTime() - Date.now() < 0 : false,
-  // );
+  const [isFixed, setIsFixed] = useState(
+    start && end && date ? start.getTime() - Date.now() < 0 : false,
+  );
+
   const navigate = useNavigate();
   const connection = new Connection(NETWORK, 'confirmed');
 
@@ -241,53 +245,54 @@ const Ticket = ({
 
     setAlertState({
       open: true,
-      message: 'Transaction successful',
+      message: `Raffle entry ${entryValue}`,
       severity: 'success',
     });
-    // navigate(routes.home);
+
+    setTimeout(() => {
+      navigate(routes.home);
+    }, 3000);
   };
 
-  // const renderCountdown = ({ days, hours, minutes, seconds, completed }) => {
-  //   hours += days * 24;
+  const renderCountdown = ({ days, hours, minutes, seconds, completed }) => {
+    hours += days * 24;
 
-  //   if (completed) {
-  //     return status ? (
-  //       <Box sx={styles.done} component="span">
-  //         {status}
-  //       </Box>
-  //     ) : null;
-  //   } else {
-  //     return (
-  //       <Box sx={styles.root} style={style}>
-  //         {isFixed && (
-  //           <Paper sx={styles.paper} elevation={0}>
-  //             <Box sx={styles.item} component="span">
-  //               +
-  //             </Box>
-  //           </Paper>
-  //         )}
-  //         <Paper sx={styles.paper} elevation={0}>
-  //           <Box sx={styles.item} component="span">
-  //             {hours < 10 ? `0${hours}` : hours}
-  //           </Box>
-  //           <Box component="span">hrs</Box>
-  //         </Paper>
-  //         <Paper sx={styles.paper} elevation={0}>
-  //           <Box sx={styles.item} component="span">
-  //             {minutes < 10 ? `0${minutes}` : minutes}
-  //           </Box>
-  //           <Box component="span">mins</Box>
-  //         </Paper>
-  //         <Paper sx={styles.paper} elevation={0}>
-  //           <Box sx={styles.item} component="span">
-  //             {seconds < 10 ? `0${seconds}` : seconds}
-  //           </Box>
-  //           <Box component="span">secs</Box>
-  //         </Paper>
-  //       </Box>
-  //     );
-  //   }
-  // };
+    if (completed) {
+      <Box sx={styles.done} component="span">
+        Closed
+      </Box>;
+    } else {
+      return (
+        <Box sx={styles.root}>
+          {isFixed && (
+            <Paper sx={styles.paper} elevation={0}>
+              <Box sx={styles.item} component="span">
+                +
+              </Box>
+            </Paper>
+          )}
+          <Paper sx={styles.paper} elevation={0}>
+            <Box sx={styles.item} component="span">
+              {hours < 10 ? `0${hours}` : hours}
+            </Box>
+            <Box component="span">hrs</Box>
+          </Paper>
+          <Paper sx={styles.paper} elevation={0}>
+            <Box sx={styles.item} component="span">
+              {minutes < 10 ? `0${minutes}` : minutes}
+            </Box>
+            <Box component="span">mins</Box>
+          </Paper>
+          <Paper sx={styles.paper} elevation={0}>
+            <Box sx={styles.item} component="span">
+              {seconds < 10 ? `0${seconds}` : seconds}
+            </Box>
+            <Box component="span">secs</Box>
+          </Paper>
+        </Box>
+      );
+    }
+  };
 
   return (
     <Card
@@ -307,7 +312,7 @@ const Ticket = ({
       />
 
       <CardContent sx={styles.content}>
-        <Typography sx={styles.title} variant="h2">
+        <Typography sx={styles.title} variant="h3">
           {title}
         </Typography>
 
@@ -320,20 +325,19 @@ const Ticket = ({
           </Typography>
         </Box>
 
-        <Typography
-          sx={raffleOpen ? styles.countdown : styles.closed}
-          variant="h3"
-        >
-          {raffleOpen ? ends : closed}
-          {/* <Typography sx={{ color: '#fff', ml: '6px' }} component="span">
-            <Countdown
-              date={start}
-              now={() => end.getTime()}
-              onComplete={() => setIsFixed(false)}
-              renderer={renderCountdown}
-            />
-          </Typography> */}
-        </Typography>
+        <Box sx={styles.status}>
+          <Typography
+            sx={raffleOpen ? styles.countdown : styles.closed}
+            variant="h3"
+          >
+            {raffleOpen ? ends : closed}
+          </Typography>
+          <Countdown
+            date={date}
+            onComplete={() => {}}
+            renderer={renderCountdown}
+          />
+        </Box>
       </CardContent>
 
       <CardActions sx={styles.actions} disableSpacing>

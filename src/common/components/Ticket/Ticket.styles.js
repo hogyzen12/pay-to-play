@@ -4,12 +4,17 @@ export const styles = {
     borderRadius: '8px',
     maxWidth: '328px',
     boxShadow: '0px 0px 15px -3px rgba(255,255,255,0.1)',
+    '&:hover': {
+      boxShadow: '0px 0px 15px -3px rgba(255,255,255,0.3)',
+    },
   },
   image: {
     borderRadius: '6px',
     marginBottom: '20px',
   },
-  content: {},
+  status: {
+    display: 'flex',
+  },
   title: {
     fontSize: '28px',
     textAlign: 'center',

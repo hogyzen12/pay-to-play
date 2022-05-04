@@ -4,7 +4,7 @@ import { routes } from 'routes';
 
 export const tickets = [
   {
-    title: 'Degen Trash Panda',
+    title: 'Degen Trash Panda #7934',
     image: raffle,
     redirect: routes.home,
     transitionDelay: 0.1,

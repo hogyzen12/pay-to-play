@@ -49,7 +49,7 @@
     },
     "raffle": {
       "sold": "sold",
-      "winners": "winners",
+      "winners": "Possible Winner",
       "ends": "Ends in",
       "closed": "Raffle closed!"
     },

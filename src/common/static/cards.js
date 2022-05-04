@@ -57,7 +57,7 @@ export const cards = [
     description:
       'Currently under construction - a skill based game that will test your crypto knowledge.',
     image: game,
-    available: true,
+    available: false,
     redirect: routes.crossword,
     transitionDelay: 0.4,
     payment: {
@@ -71,7 +71,7 @@ export const cards = [
     title: 'Raffle page',
     description: 'Raffle page description',
     image: raffle,
-    available: true,
+    available: false,
     redirect: routes.raffle,
     transitionDelay: 0.6,
     payment: {

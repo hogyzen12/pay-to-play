@@ -1,8 +1,6 @@
 import raffle from 'assets/image/raffle.png';
 import { routes } from 'routes';
 
-export const date = date => new Date(date).getTime() / 1000;
-
 export const tickets = [
   {
     title: 'Degen Trash Panda #7934',

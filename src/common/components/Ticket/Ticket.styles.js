@@ -1,15 +1,16 @@
 export const styles = {
   ticket: {
-    position: 'relative',
     display: 'flex',
+    position: 'relative',
     flexDirection: 'column',
     padding: '20px',
     borderRadius: '8px',
-    maxWidth: '328px',
+    maxWidth: { xs: '100%', md: '328px' },
     boxShadow: '0px 0px 15px -3px rgba(255,255,255,0.1)',
     '&:hover': {
       boxShadow: '0px 0px 15px -3px rgba(255,255,255,0.3)',
     },
+    minHeight: { xs: '500px', md: 'fit-content' },
   },
   image: {
     borderRadius: '6px',
@@ -37,7 +38,6 @@ export const styles = {
   },
   countdown: {
     textAlign: 'center',
-    // padding: '20px 0',
     color: 'green',
   },
   closed: {
@@ -47,6 +47,7 @@ export const styles = {
     transform: 'rotate(8deg)',
     bottom: '60px',
     position: 'absolute',
+    userSelect: 'none',
   },
   actions: {
     padding: '0',

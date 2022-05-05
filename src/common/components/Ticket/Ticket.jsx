@@ -251,10 +251,10 @@ const Ticket = ({
     <Card
       sx={styles.ticket}
       exit={{ opacity: 0 }}
-      component={motion.div}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={transitionDelay}
+      component={motion.div}
     >
       <CardMedia
         sx={styles.image}

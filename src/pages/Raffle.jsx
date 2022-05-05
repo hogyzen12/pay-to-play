@@ -8,6 +8,7 @@ import AppContainer from 'common/layout/AppContainer';
 import staticContent from 'common/static/content.json';
 
 const { title, description } = staticContent.meta.raffle;
+const { pageTitle } = staticContent.pages.raffle;
 
 const styles = {
   container: {
@@ -22,10 +23,11 @@ const styles = {
       xs: '1fr',
       md: 'repeat(2, 1fr)',
     },
-    gridTemplateRows: { xs: 'repeat(5, 1fr)', md: 'repeat(1, 1fr)' },
+    gridTemplateRows: { xs: 'repeat(1, 1fr)', md: 'repeat(1, 1fr)' },
     gridColumnGap: { md: '24px' },
     gridRowGap: '24px',
     mb: '48px',
+    width: '100%',
   },
 };
 
@@ -46,7 +48,7 @@ const Raffle = ({ providerPubKey, setAlertState, setLoading, provider }) => {
         }}
       >
         <Typography sx={{ padding: '32px 0' }} variant="h2" component="h2">
-          Diamond Hands Raffle
+          {pageTitle}
         </Typography>
 
         <AnimatePresence>

@@ -1,0 +1,41 @@
+export const styles = {
+  paper: {
+    bgcolor: 'transparent',
+    margin: '0',
+  },
+  root: {
+    display: 'flex',
+    padding: theme => theme.spacing(0),
+    '& > *': {
+      margin: theme => theme.spacing(0.5),
+      width: theme => theme.spacing(6),
+      height: theme => theme.spacing(6),
+      display: 'flex',
+      flexDirection: 'column',
+      alignContent: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
+      bgcolor: '#384457',
+      color: 'custom.white',
+      borderRadius: 1,
+      fontSize: 12,
+    },
+  },
+  done: {
+    display: 'flex',
+    margin: theme => theme.spacing(1),
+    padding: theme => theme.spacing(1.5),
+    flexDirection: 'column',
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    bgcolor: '#384457',
+    color: 'custom.white',
+    borderRadius: 1,
+    fontWeight: 700,
+    fontSize: 18,
+  },
+  item: {
+    fontSize: 20,
+  },
+};

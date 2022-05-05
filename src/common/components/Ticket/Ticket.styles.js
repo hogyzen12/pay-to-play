@@ -1,5 +1,8 @@
 export const styles = {
   ticket: {
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
     padding: '20px',
     borderRadius: '8px',
     maxWidth: '328px',
@@ -12,28 +15,38 @@ export const styles = {
     borderRadius: '6px',
     marginBottom: '20px',
   },
-  status: {
-    display: 'flex',
-  },
   title: {
-    fontSize: '28px',
+    fontFamily: 'Bebas Neue',
+    fontSize: '32px',
     textAlign: 'center',
-    marginBottom: '16px',
+    marginBottom: '24px',
   },
   stats: {
     display: 'flex',
     justifyContent: 'center',
-    gap: '20px',
+    gap: '40px',
   },
   sold: {},
   winners: {},
+  status: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '20px',
+    padding: '20px 0',
+  },
   countdown: {
     textAlign: 'center',
-    padding: '20px 0',
+    // padding: '20px 0',
     color: 'green',
   },
   closed: {
+    fontFamily: 'Bebas Neue',
+    fontSize: '32px',
     color: 'red',
+    transform: 'rotate(8deg)',
+    bottom: '60px',
+    position: 'absolute',
   },
   actions: {
     padding: '0',

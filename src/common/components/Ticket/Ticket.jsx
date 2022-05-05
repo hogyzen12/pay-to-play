@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import * as splToken from '@solana/spl-token';
+import { useNavigate } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert';
-import Countdown from 'react-countdown';
-import {
-  clusterApiUrl,
-  Connection,
-  LAMPORTS_PER_SOL,
-  PublicKey,
-} from '@solana/web3.js';
+import { Connection } from '@solana/web3.js';
+import { Close as CloseIcon } from '@mui/icons-material';
 import {
   Box,
   Card,
@@ -18,11 +13,8 @@ import {
   Typography,
   Backdrop,
   IconButton,
-  Paper,
 } from '@mui/material';
-import { routes } from 'routes';
 import { motion } from 'framer-motion';
-import { Close as CloseIcon } from '@mui/icons-material';
 
 import {
   NETWORK,
@@ -31,10 +23,12 @@ import {
   raffleWalletPublicKey,
   raffleMemo,
 } from 'common/static/constants';
+import { useCountdown } from 'common/hooks/useCountdown';
+import { PayButton, Countdown } from 'common/components';
 import { transferDiamondToken } from 'common/utils/transferDiamond';
-import { PayButton } from 'common/components';
 import { DHMTamount, diamondsRequiredToPlay } from 'common/static/constants';
 import { styles } from './Ticket.styles';
+import { routes } from 'routes';
 import staticContent from 'common/static/content.json';
 
 const { dhmt } = staticContent.pages.main;
@@ -49,18 +43,17 @@ const Ticket = ({
   setAlertState,
   setLoading,
   provider,
-  start,
-  end,
-  date,
+  targetDate,
+  targetTime,
 }) => {
   const [rafflesSold, setRafflesSold] = useState(0);
   const [raffleOpen, setRaffleOpen] = useState(true);
-  const [isFixed, setIsFixed] = useState(
-    start && end && date ? start.getTime() - Date.now() < 0 : false,
-  );
-
   const navigate = useNavigate();
   const connection = new Connection(NETWORK, 'confirmed');
+  const { days, hours, minutes, seconds, isExpired } = useCountdown(
+    targetDate,
+    targetTime,
+  );
 
   useEffect(() => {
     const getRaffle = async () => {
@@ -240,58 +233,18 @@ const Ticket = ({
      * If the status is true, that means transaction got successful and we can proceed
      */
 
-    setRafflesSold(entryValue);
     setLoading(false);
-
     setAlertState({
       open: true,
       message: `Raffle entry ${entryValue}`,
       severity: 'success',
     });
 
+    setRafflesSold(entryValue);
+
     setTimeout(() => {
       navigate(routes.home);
     }, 3000);
-  };
-
-  const renderCountdown = ({ days, hours, minutes, seconds, completed }) => {
-    hours += days * 24;
-
-    if (completed) {
-      <Box sx={styles.done} component="span">
-        Closed
-      </Box>;
-    } else {
-      return (
-        <Box sx={styles.root}>
-          {isFixed && (
-            <Paper sx={styles.paper} elevation={0}>
-              <Box sx={styles.item} component="span">
-                +
-              </Box>
-            </Paper>
-          )}
-          <Paper sx={styles.paper} elevation={0}>
-            <Box sx={styles.item} component="span">
-              {hours < 10 ? `0${hours}` : hours}
-            </Box>
-            <Box component="span">hrs</Box>
-          </Paper>
-          <Paper sx={styles.paper} elevation={0}>
-            <Box sx={styles.item} component="span">
-              {minutes < 10 ? `0${minutes}` : minutes}
-            </Box>
-            <Box component="span">mins</Box>
-          </Paper>
-          <Paper sx={styles.paper} elevation={0}>
-            <Box sx={styles.item} component="span">
-              {seconds < 10 ? `0${seconds}` : seconds}
-            </Box>
-            <Box component="span">secs</Box>
-          </Paper>
-        </Box>
-      );
-    }
   };
 
   return (
@@ -312,36 +265,39 @@ const Ticket = ({
       />
 
       <CardContent sx={styles.content}>
-        <Typography sx={styles.title} variant="h3">
-          {title}
-        </Typography>
+        <Typography sx={styles.title}>{title}</Typography>
 
         <Box sx={styles.stats}>
           <Typography sx={styles.sold} component="span">
             {rafflesSold} {sold}
           </Typography>
           <Typography sx={styles.winners} component="span">
-            {raffleOpen ? '1' : '0'} {winners}
+            {!isExpired ? '1' : '0'} {winners}
           </Typography>
         </Box>
 
         <Box sx={styles.status}>
           <Typography
-            sx={raffleOpen ? styles.countdown : styles.closed}
-            variant="h3"
+            sx={!isExpired ? styles.countdown : styles.closed}
+            variant={isExpired ? '' : 'h3'}
           >
-            {raffleOpen ? ends : closed}
+            {!isExpired ? ends : closed}
           </Typography>
-          <Countdown
-            date={date}
-            onComplete={() => {}}
-            renderer={renderCountdown}
-          />
+
+          {!isExpired && (
+            <Countdown
+              days={days}
+              hours={hours}
+              minutes={minutes}
+              seconds={seconds}
+              isExpired={isExpired}
+            />
+          )}
         </Box>
       </CardContent>
 
       <CardActions sx={styles.actions} disableSpacing>
-        {raffleOpen && (
+        {!isExpired && (
           <PayButton
             title="Purchase raffle entry (1 DMND)"
             currency={dhmt}

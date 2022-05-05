@@ -1,6 +1,6 @@
 import React from 'react';
 import { Paper, Box } from '@mui/material';
-import { styles } from './Countdown.styles.js';
+import { styles } from './Countdown.styles';
 
 const Countdown = ({ days, hours, minutes, seconds }) => {
   return (

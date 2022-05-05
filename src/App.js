@@ -72,7 +72,7 @@ const App = () => {
   const location = useLocation();
   const gameRef = useRef();
 
-  const { seconds, minutes, start, restart, pause, resume } = useTimer({
+  const { minutes, seconds, start, restart, pause, resume } = useTimer({
     expiryTimestamp,
     autoStart: true,
     onExpire: () => {
@@ -583,7 +583,6 @@ const App = () => {
             path={routes.home}
             element={
               <AppLayout
-                start={start}
                 seconds={seconds}
                 minutes={minutes}
                 resetTimer={resetTimer}

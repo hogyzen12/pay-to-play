@@ -101,7 +101,6 @@ const AppBasement = ({
   };
 
   const handleSubmit = () => {
-    console.log('initialResults', initialResults);
     toggleDrawer();
     generateResults();
   };

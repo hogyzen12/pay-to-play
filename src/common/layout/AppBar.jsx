@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -12,8 +12,8 @@ import {
 } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import { ReactComponent as Logo } from 'assets/icons/diamond.svg';
-import staticContent from 'common/static/content.json';
 import { routes } from 'routes';
+import staticContent from 'common/static/content.json';
 
 const { connected, notConnected, walletButton } = staticContent.header;
 

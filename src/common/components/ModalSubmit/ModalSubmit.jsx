@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Typography,
@@ -11,9 +10,7 @@ import {
 } from '@mui/material';
 import { Button, Answer, Tabs } from 'common/components';
 import { ReactComponent as AcrossIcon } from 'assets/icons/across.svg';
-import { ReactComponent as DownIcon } from 'assets/icons/down.svg';
 import { initialResults } from 'common/static/results';
-import { routes } from 'routes';
 import { styles } from './ModalSubmit.styles';
 import { totalQuestions } from 'common/static/constants';
 import staticContent from 'common/static/content.json';
@@ -28,7 +25,6 @@ const ModalSubmit = ({
   submitResults,
 }) => {
   const [totalGuesses, setTotalGuesses] = useState(0);
-  const navigate = useNavigate();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -46,7 +42,6 @@ const ModalSubmit = ({
 
   const handleClose = () => {
     toggleSubmitModal();
-    // navigate(routes.home);
   };
 
   const getGuessesTotal = axis => {
@@ -105,7 +100,7 @@ const ModalSubmit = ({
                 <Typography sx={styles.axisTitle} variant="h3">
                   {down}
                 </Typography>
-                <DownIcon />
+                <AcrossIcon style={{ transform: 'rotate(90deg)' }} />
               </Box>
               <Box sx={styles.answersList} component="ul">
                 {initialResults.down.map(result => (

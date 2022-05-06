@@ -1,23 +1,24 @@
-import raffle from 'assets/image/raffle.png';
+import raffle from 'assets/image/lionel_trashi.png';
+import raffle2 from 'assets/image/count_trashula.png';
 import { routes } from 'routes';
 
 export const tickets = [
   {
     title: 'Degen Trash Panda #7934',
     image: raffle,
-    redirect: routes.home,
+    redirect: routes.raffle,
     transitionDelay: 0.1,
     buttonText: 'Purchase raffle entry (1 DMND)',
-    targetDate: 'May 25, 2022',
-    targetTime: '18:00:00',
+    targetDate: 'May 13, 2022',
+    targetTime: '15:00:00',
   },
   {
-    title: 'Degen Test Panda #7171',
-    image: raffle,
-    redirect: routes.home,
+    title: 'Degen Trash Panda #601',
+    image: raffle2,
+    redirect: routes.raffle,
     transitionDelay: 0.2,
     buttonText: 'Purchase raffle entry (1 DMND)',
-    targetDate: 'May 1, 2022',
-    targetTime: '13:00:00',
+    targetDate: 'May 13, 2022',
+    targetTime: '15:00:00',
   },
 ];

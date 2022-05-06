@@ -22,6 +22,8 @@ import {
   utilMemo,
   raffleWalletPublicKey,
   raffleMemo,
+  raffleTwoWalletPublicKey,
+  raffleTwoMemo,
 } from 'common/static/constants';
 import { useCountdown } from 'common/hooks/useCountdown';
 import { PayButton, Countdown } from 'common/components';
@@ -47,6 +49,7 @@ const Ticket = ({
   targetTime,
 }) => {
   const [rafflesSold, setRafflesSold] = useState(0);
+  const [rafflesTwoSold, setRafflesTwoSold] = useState(0);
   const [raffleOpen, setRaffleOpen] = useState(true);
   const navigate = useNavigate();
   const connection = new Connection(NETWORK, 'confirmed');
@@ -66,8 +69,20 @@ const Ticket = ({
         raffleAddress,
       );
 
+      const raffleTwoAddress = await splToken.getAssociatedTokenAddress(
+        tokenMint,
+        raffleTwoWalletPublicKey,
+      );
+
+      const raffleTwoBalance = await connection.getTokenAccountBalance(
+        raffleTwoAddress,
+      );
+
       const entryValue = raffleBalance.value.uiAmount;
+      const entryTwoValue = raffleTwoBalance.value.uiAmount;
+
       setRafflesSold(entryValue);
+      setRafflesTwoSold(entryTwoValue);
     };
 
     getRaffle();
@@ -241,9 +256,183 @@ const Ticket = ({
     });
 
     setRafflesSold(entryValue);
+    setRafflesTwoSold(entryValue);
 
     setTimeout(() => {
-      navigate(routes.home);
+      navigate(routes.raffle);
+    }, 3000);
+  };
+  //ADDING IN PAYMENT LOGIC AND BUTTON FOR RAFFLE TWO HERE
+  const handlePayRaffleTwo = async (selectedItem, currency) => {
+    if (!providerPubKey) {
+      setAlertState({
+        open: true,
+        message: 'Please connect your wallet',
+        severity: 'info',
+      });
+
+      return;
+    }
+
+    /*
+     * Check if the user has diamonds in their wallet
+     * And use the value to check if they can afford the game
+     */
+
+    const diamondAddress = await splToken.getAssociatedTokenAddress(
+      tokenMint,
+      providerPubKey,
+    );
+
+    /*
+     * Check how many entries have been made
+     * set ticket serial number appropiately
+     * Using a dedicated wallet for the raffle to ensure init correctly
+     */
+
+    const raffleTwoAddress = await splToken.getAssociatedTokenAddress(
+      tokenMint,
+      raffleTwoWalletPublicKey,
+    );
+
+    /*
+     * Output the ATA to console to check manually
+     * TODO!!!! ADD ERROR HANDLE IF ATA NOT FOUND
+     */
+    console.log(diamondAddress.toString());
+    console.log(raffleTwoAddress.toString());
+    console.log('found ATA');
+
+    /*
+     * Address found and we pull balance succesfully here
+     * Print to console the amount to check
+     */
+
+    const diamondBalance = await connection.getTokenAccountBalance(
+      diamondAddress,
+    );
+
+    const raffleTwoBalance = await connection.getTokenAccountBalance(
+      raffleTwoAddress,
+    );
+
+    console.log(raffleTwoBalance.value.uiAmount);
+
+    const entryValue = raffleTwoBalance.value.uiAmount + 1;
+    console.log(entryValue);
+
+    const raffleEntryMemo = raffleTwoMemo + entryValue.toString();
+    console.log(raffleEntryMemo);
+
+    /*
+     * Go here and check to see they can afford with diamonds
+     */
+    if (diamondBalance?.value?.amount < 1) {
+      // alert("Not enough balance, please fund your wallet")
+      const optionsNoBalance = {
+        childrenElement: () => <div />,
+        customUI: ({ onClose }) => (
+          <Backdrop open={true} onClick={onClose}>
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                maxWidth: { xs: '90%', md: '600px' },
+                width: '100%',
+                bgcolor: '#1D1D1D',
+                padding: '16px 16px 32px',
+                borderRadius: '8px',
+              }}
+            >
+              <IconButton
+                sx={{
+                  display: 'block',
+                  padding: '0',
+                  margin: '0',
+                  marginLeft: 'auto',
+                  marginBottom: '20px',
+                }}
+                onClick={onClose}
+              >
+                <CloseIcon sx={{ color: '#A2A2A2' }} />
+              </IconButton>
+              <Typography
+                sx={{
+                  mb: '16px',
+                  fontSize: '32px',
+                  textAlign: 'center',
+                }}
+                variant="h3"
+              >
+                You do need more SOL for gas fees
+              </Typography>
+              <Typography sx={{ textAlign: 'center' }}>
+                You need to have at least 1 DMND to play the game.
+              </Typography>
+            </Box>
+          </Backdrop>
+        ),
+        closeOnEscape: true,
+        closeOnClickOutside: true,
+        willUnmount: () => {},
+        afterClose: () => {},
+        onClickOutside: () => {},
+        onKeypressEscape: () => {},
+        overlayClassName: 'overlay-custom-class-name',
+      };
+
+      confirmAlert(optionsNoBalance);
+      return;
+    }
+
+    /*
+     * Time to get them to send us their Diamond
+     * For this we need to use the Associated token accounts
+     * We know the accs will exist as the payer has diamonds to have gotten to this stage
+     * we call our custom function here to do this
+     */
+    setLoading(true);
+
+    const result = await transferDiamondToken(
+      provider,
+      connection,
+      tokenMint,
+      providerPubKey,
+      raffleTwoWalletPublicKey,
+      diamondBalance.value.amount,
+      diamondsRequiredToPlay,
+      raffleEntryMemo,
+    );
+
+    if (!result.status) {
+      setLoading(false);
+      setAlertState({
+        open: true,
+        message: 'Error in sending the tokens, Please try again',
+        severity: 'error',
+      });
+
+      return;
+    }
+
+    /*
+     * If the status is true, that means transaction got successful and we can proceed
+     */
+
+    setLoading(false);
+    setAlertState({
+      open: true,
+      message: `Raffle entry ${entryValue}`,
+      severity: 'success',
+    });
+
+    setRafflesSold(entryValue);
+    setRafflesTwoSold(entryValue);
+
+    setTimeout(() => {
+      navigate(routes.raffle);
     }, 3000);
   };
 

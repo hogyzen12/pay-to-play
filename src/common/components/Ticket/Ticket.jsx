@@ -230,7 +230,7 @@ const Ticket = ({
     setLoading(false);
     setAlertState({
       open: true,
-      duration: 8000,
+      duration: 7000,
       severity: 'info',
       message: `Raffle entry ${entryValue}`,
       tx: `${txLink}/${result.signature}`,

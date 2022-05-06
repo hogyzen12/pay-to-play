@@ -6,6 +6,7 @@ import { Close as CloseIcon } from '@mui/icons-material';
 import {
   Box,
   Card,
+  Link,
   CardMedia,
   CardContent,
   CardActions,
@@ -15,7 +16,7 @@ import {
 } from '@mui/material';
 import { motion } from 'framer-motion';
 
-import { NETWORK, tokenMint } from 'common/static/constants';
+import { NETWORK, tokenMint, txLink } from 'common/static/constants';
 import { useCountdown } from 'common/hooks/useCountdown';
 import { PayButton, Countdown } from 'common/components';
 import { transferDiamondToken } from 'common/utils/transferDiamond';
@@ -229,8 +230,10 @@ const Ticket = ({
     setLoading(false);
     setAlertState({
       open: true,
+      duration: 8000,
+      severity: 'info',
       message: `Raffle entry ${entryValue}`,
-      severity: 'success',
+      tx: `${txLink}/${result.signature}`,
     });
 
     setRafflesSold(entryValue);

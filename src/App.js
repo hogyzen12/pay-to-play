@@ -4,15 +4,9 @@ import { Box, Typography, Backdrop, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import { confirmAlert } from 'react-confirm-alert';
 import { useTimer } from 'react-timer-hook';
-// import { Token, TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import * as splToken from '@solana/spl-token';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import {
-  clusterApiUrl,
-  Connection,
-  LAMPORTS_PER_SOL,
-  PublicKey,
-} from '@solana/web3.js';
+import { Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
 import {
   RafflePage,
   AlphaPage,
@@ -47,8 +41,6 @@ import {
   timeAmount,
   tokenMint,
   utilMemo,
-  raffleWalletPublicKey,
-  raffleMemo,
 } from 'common/static/constants';
 import 'common/utils/bufferFill';
 import AppLayout from 'common/layout/AppLayout';
@@ -606,14 +598,14 @@ const App = () => {
             <Route
               path={routes.raffle}
               element={
-                // <PrivateRoute transferTokenStatus={providerPubKey}>
-                <RafflePage
-                  providerPubKey={providerPubKey}
-                  setAlertState={setAlertState}
-                  setLoading={setLoading}
-                  provider={provider}
-                />
-                // </PrivateRoute>
+                <PrivateRoute transferTokenStatus={providerPubKey}>
+                  <RafflePage
+                    providerPubKey={providerPubKey}
+                    setAlertState={setAlertState}
+                    setLoading={setLoading}
+                    provider={provider}
+                  />
+                </PrivateRoute>
               }
             />
             <Route

@@ -57,7 +57,7 @@ export const cards = [
     description:
       'Currently under construction - a skill based game that will test your crypto knowledge.',
     image: game,
-    available: true,
+    available: false,
     redirect: routes.crossword,
     transitionDelay: 0.4,
     payment: {
@@ -69,7 +69,8 @@ export const cards = [
   },
   {
     title: 'Raffle page',
-    description: 'Raffle page description',
+    description:
+      'NFT raffles with entries available ONLY in DMNDS! Will you get lucky ?',
     image: raffle,
     available: true,
     redirect: routes.raffle,

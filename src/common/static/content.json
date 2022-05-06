@@ -6,7 +6,7 @@
     },
     "raffle": {
       "title": "Diamond Hands Raffles",
-      "description": "The one stop to make the most of the utility offered by DMNDS for DH holders."
+      "description": "NFT raffles with entries available ONLY in DMNDS! Will you get lucky ?"
     },
     "premium": {
       "title": "Team Choice",
@@ -40,11 +40,11 @@
   },
   "pages": {
     "main": {
-      "pageTitle": "Welcome to diamond hands page",
+      "pageTitle": "Welcome to the Diamond Hands utility page",
       "sol": "SOL",
       "dhmt": "DMND",
       "shdw": "SHDW",
-      "start": "Select Payment:",
+      "start": "Select Option:",
       "comming": "Coming soon"
     },
     "raffle": {

@@ -19,10 +19,10 @@ export const gameWalletPublicKey = new PublicKey(
   'CproxWoLCk4QrCd3VJNUpo3QZf3bjEnTN1FuBcRbZYaw',
 );
 export const raffleWalletPublicKey = new PublicKey(
-  'RfLnyLf4hf8eRaGKrKpHfjHqgcSv8X1ocysdW53xCqF',
+  'RfLEqoqP9KDrJXurCppiQSbPz2VfsmMbijEq9ffh3uv',
 );
 export const raffleTwoWalletPublicKey = new PublicKey(
-  'RfLQPVzYJkDZeJg4XF4uoa5Bnu7yQtymRQSPmLdAEDr',
+  'RfLzaUVd3BYbonSiztTGho1RKKxmmnce97p2AWDJvAE',
 );
 
 export const txLink = 'https://solscan.io/tx';

@@ -606,14 +606,14 @@ const App = () => {
             <Route
               path={routes.raffle}
               element={
-                <PrivateRoute transferTokenStatus={providerPubKey}>
-                  <RafflePage
-                    providerPubKey={providerPubKey}
-                    setAlertState={setAlertState}
-                    setLoading={setLoading}
-                    provider={provider}
-                  />
-                </PrivateRoute>
+                // <PrivateRoute transferTokenStatus={providerPubKey}>
+                <RafflePage
+                  providerPubKey={providerPubKey}
+                  setAlertState={setAlertState}
+                  setLoading={setLoading}
+                  provider={provider}
+                />
+                // </PrivateRoute>
               }
             />
             <Route

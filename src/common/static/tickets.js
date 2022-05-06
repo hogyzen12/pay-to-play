@@ -2,6 +2,13 @@ import raffle from 'assets/image/lionel_trashi.png';
 import raffle2 from 'assets/image/count_trashula.png';
 import { routes } from 'routes';
 
+import {
+  raffleMemo,
+  raffleTwoMemo,
+  raffleWalletPublicKey,
+  raffleTwoWalletPublicKey,
+} from './constants';
+
 export const tickets = [
   {
     title: 'Degen Trash Panda #7934',
@@ -11,6 +18,8 @@ export const tickets = [
     buttonText: 'Purchase raffle entry (1 DMND)',
     targetDate: 'May 13, 2022',
     targetTime: '15:00:00',
+    raffleMemo: raffleMemo,
+    raffleWalletPublicKey: raffleWalletPublicKey,
   },
   {
     title: 'Degen Trash Panda #601',
@@ -20,5 +29,7 @@ export const tickets = [
     buttonText: 'Purchase raffle entry (1 DMND)',
     targetDate: 'May 13, 2022',
     targetTime: '15:00:00',
+    raffleMemo: raffleTwoMemo,
+    raffleWalletPublicKey: raffleTwoWalletPublicKey,
   },
 ];

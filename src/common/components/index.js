@@ -6,7 +6,7 @@ export { default as Loader } from './Loader/Loader';
 export { default as Button } from './Button/Button';
 export { default as Answer } from './Answer/Answer';
 export { default as Swipeable } from './Swipable/Swipeable';
-export { default as Countdown } from './CountDown/CountDown';
+export { default as Countdown } from './Countdown/Countdown';
 export { default as Accordion } from './Accordion/Accordion';
 export { default as PayButton } from './PayButton/PayButton';
 export { default as ChoiceCard } from './ChoiceCard/ChoiceCard';

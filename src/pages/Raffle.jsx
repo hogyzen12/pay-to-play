@@ -16,6 +16,11 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
   },
+  containerCustom: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
   tickets: {
     display: 'grid',
     justifyContent: 'center',
@@ -29,6 +34,7 @@ const styles = {
     mb: '48px',
     width: '100%',
   },
+  title: { padding: '32px 0' },
 };
 
 const Raffle = ({ providerPubKey, setAlertState, setLoading, provider }) => {
@@ -39,15 +45,8 @@ const Raffle = ({ providerPubKey, setAlertState, setLoading, provider }) => {
         <meta name="description" content={description} />
       </Helmet>
 
-      <AppContainer
-        size="md"
-        customStyles={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Typography sx={{ padding: '32px 0' }} variant="h2" component="h2">
+      <AppContainer size="md" customStyles={styles.containerCustom}>
+        <Typography sx={styles.title} variant="h2" component="h2">
           {pageTitle}
         </Typography>
 
@@ -59,35 +58,16 @@ const Raffle = ({ providerPubKey, setAlertState, setLoading, provider }) => {
             exit={{ opacity: 0 }}
             sx={styles.tickets}
           >
-            {tickets.map(
-              (
-                {
-                  title,
-                  description,
-                  image,
-                  redirect,
-                  transitionDelay,
-                  targetDate,
-                  targetTime,
-                },
-                index,
-              ) => (
-                <Ticket
-                  key={index}
-                  title={title}
-                  image={image}
-                  redirect={redirect}
-                  targetDate={targetDate}
-                  targetTime={targetTime}
-                  description={description}
-                  transitionDelay={transitionDelay}
-                  providerPubKey={providerPubKey}
-                  setAlertState={setAlertState}
-                  setLoading={setLoading}
-                  provider={provider}
-                />
-              ),
-            )}
+            {tickets.map((ticket, index) => (
+              <Ticket
+                key={index}
+                providerPubKey={providerPubKey}
+                setAlertState={setAlertState}
+                setLoading={setLoading}
+                provider={provider}
+                {...ticket}
+              />
+            ))}
           </Box>
         </AnimatePresence>
 

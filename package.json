@@ -28,6 +28,7 @@
     "react-confirm-alert": "^2.8.0",
     "react-dom": "^17.0.2",
     "react-helmet-async": "^1.2.3",
+    "react-hook-form": "^7.31.1",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "react-timer-hook": "^3.0.5",

@@ -28,6 +28,10 @@ export const CrosswordPage = lazy(() =>
   import('./pages/Crossword' /* webpackChunkName: "CrosswordPage" */),
 );
 
+export const MembershipPage = lazy(() =>
+  import('./pages/Membership' /* webpackChunkName: "MembershipPage" */),
+);
+
 export const NotFoundPage = lazy(() =>
   import('./pages/NotFound' /* webpackChunkName: "NotFoundPage" */),
 );
@@ -40,5 +44,6 @@ export const routes = {
   premium: '/premium',
   discount: '/discount',
   crossword: '/crossword',
+  membership: '/membership',
   notFound: '*',
 };

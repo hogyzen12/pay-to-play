@@ -74,6 +74,20 @@ export const cards = [
     image: raffle,
     available: true,
     redirect: routes.raffle,
+    transitionDelay: 0.5,
+    payment: {
+      sol: false,
+      dhmt: false,
+      shdw: false,
+      free: true,
+    },
+  },
+  {
+    title: 'Claim CPro membership',
+    description: 'Claim CPro membership',
+    image: raffle,
+    available: true,
+    redirect: routes.membership,
     transitionDelay: 0.6,
     payment: {
       sol: false,
@@ -89,7 +103,7 @@ export const cards = [
     image: discount,
     available: false,
     redirect: routes.discount,
-    transitionDelay: 0.5,
+    transitionDelay: 0.7,
     payment: {
       sol: true,
       dhmt: true,

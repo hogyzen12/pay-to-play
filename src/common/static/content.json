@@ -28,6 +28,10 @@
       "title": "Diamond Hands Crossword",
       "description": "Diamond Hands Crossword"
     },
+    "membership": {
+      "title": "Diamond Hands CPro Membership",
+      "description": "CPro Membership"
+    },
     "notFound": {
       "title": "Not Found",
       "description": "Page doesn't exist"
@@ -53,6 +57,9 @@
       "winners": "Possible Winner",
       "ends": "Ends in",
       "closed": "Raffle closed!"
+    },
+    "membership": {
+      "pageTitle": "Claim CPro membership"
     },
     "crossword": {
       "hints": "Hints",

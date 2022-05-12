@@ -121,7 +121,8 @@ const AppBar = ({
         </IconButton>
 
         {location.pathname !== routes.home &&
-          location.pathname !== routes.raffle && (
+          location.pathname !== routes.raffle &&
+          location.pathname !== routes.membership && (
             <Box sx={styles.timer}>
               <Typography
                 sx={

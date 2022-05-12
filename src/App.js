@@ -14,6 +14,7 @@ import {
   PremiumPage,
   DiscountPage,
   CrosswordPage,
+  MembershipPage,
   NotFoundPage,
   MainPage,
   routes,
@@ -283,7 +284,13 @@ const App = () => {
       return;
     }
 
-    if (isFree) {
+    if (isFree && selectedItem === routes.membership) {
+      navigate(routes.membership);
+
+      return;
+    }
+
+    if (isFree && selectedItem === routes.raffle) {
       navigate(routes.raffle);
 
       return;
@@ -605,6 +612,14 @@ const App = () => {
                     setLoading={setLoading}
                     provider={provider}
                   />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={routes.membership}
+              element={
+                <PrivateRoute transferTokenStatus={providerPubKey}>
+                  <MembershipPage />
                 </PrivateRoute>
               }
             />

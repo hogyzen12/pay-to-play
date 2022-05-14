@@ -153,6 +153,14 @@ let theme = createTheme({
         },
       },
     },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        root: {
+          paddingLeft: '24px',
+          paddingRight: '24px',
+        },
+      },
+    },
   },
 });
 

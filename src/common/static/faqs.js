@@ -1,4 +1,4 @@
-export const FAQsData = {
+export const raffleFAQs = {
   title: 'FAQs',
   items: [
     {
@@ -24,5 +24,21 @@ export const FAQsData = {
     //   title: 'Who’s behind Diamond Hands?',
     //   description: 'How much does one Diamond Hands NFT cost?',
     // },
+  ],
+};
+
+export const membershipFAQs = {
+  title: 'FAQs',
+  items: [
+    {
+      id: 1,
+      title: 'How it works?',
+      description: 'test ',
+    },
+    {
+      id: 2,
+      title: 'How it works?',
+      description: 'test',
+    },
   ],
 };

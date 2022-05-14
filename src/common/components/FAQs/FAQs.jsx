@@ -1,15 +1,14 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { Accordion } from 'common/components';
-import { FAQsData } from 'common/static/faqs';
 import { styles } from './FAQs.styles';
 
-const FAQs = () => {
+const FAQs = ({ dataFAQs }) => {
   return (
     <Box sx={styles.faq}>
-      <Typography sx={styles.title}>{FAQsData.title}</Typography>
+      <Typography sx={styles.title}>{dataFAQs.title}</Typography>
 
-      {FAQsData.items.map(({ title, description, id }) => (
+      {dataFAQs.items.map(({ title, description, id }) => (
         <Accordion key={id} id={id} title={title} description={description} />
       ))}
     </Box>

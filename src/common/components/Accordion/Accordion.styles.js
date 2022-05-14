@@ -1,6 +1,6 @@
 export const styles = {
   item: {
-    bgcolor: 'info.main',
+    bgcolor: '#191819',
     marginBottom: '8px',
     borderRadius: '4px',
     '&.Mui-expanded': {
@@ -10,7 +10,7 @@ export const styles = {
   },
   icon: { color: 'custom.white' },
   title: {},
-  description: { color: '#A2A2A2' },
+  description: { fontSize: '14px', lineHeight: '24px', color: '#A2A2A2' },
   detailsExpanded: {
     paddingTop: '0',
     paddingLeft: '24px',

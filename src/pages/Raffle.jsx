@@ -4,6 +4,7 @@ import { Box, Typography } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Ticket, FAQs } from 'common/components';
 import { tickets } from 'common/static/tickets';
+import { raffleFAQs } from 'common/static/faqs';
 import AppContainer from 'common/layout/AppContainer';
 import staticContent from 'common/static/content.json';
 
@@ -71,7 +72,7 @@ const Raffle = ({ providerPubKey, setAlertState, setLoading, provider }) => {
           </Box>
         </AnimatePresence>
 
-        <FAQs />
+        <FAQs dataFAQs={raffleFAQs} />
       </AppContainer>
     </>
   );

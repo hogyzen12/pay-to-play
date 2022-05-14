@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { Controller, useForm } from 'react-hook-form';
 import { Box, Typography, TextField, Button } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FAQs } from 'common/components';
+import { raffleFAQs } from 'common/static/faqs';
 import AppContainer from 'common/layout/AppContainer';
 import staticContent from 'common/static/content.json';
 
@@ -11,6 +13,7 @@ const { title, description } = staticContent.meta.membership;
 const styles = {
   container: {
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -86,6 +89,8 @@ const Membership = () => {
             </Box>
           </Box>
         </AnimatePresence>
+
+        <FAQs dataFAQs={raffleFAQs} />
       </AppContainer>
     </>
   );

@@ -114,6 +114,10 @@ const Membership = () => {
                       value={value}
                       label="Your email"
                       sx={styles.input}
+                      InputLabelProps={{
+                        style: { color: '#A2A2A2' },
+                      }}
+                      inputProps={{ sx: { color: '#fff' } }}
                     />
                   )}
                 />
@@ -126,6 +130,9 @@ const Membership = () => {
                       value={value}
                       label="Text Value"
                       sx={styles.input}
+                      InputLabelProps={{
+                        style: { color: '#A2A2A2' },
+                      }}
                     />
                   )}
                 />

@@ -8,7 +8,7 @@ export const styles = {
       mb: '8px',
     },
   },
-  icon: { color: 'custom.white' },
+  icon: { color: 'custom.white', fontSize: '16px' },
   title: {},
   description: { fontSize: '14px', lineHeight: '24px', color: '#A2A2A2' },
   detailsExpanded: {

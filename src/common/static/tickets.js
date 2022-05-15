@@ -27,7 +27,7 @@ export const tickets = [
     redirect: routes.raffle,
     transitionDelay: 0.2,
     buttonText: 'Purchase raffle entry (1 DMND)',
-    targetDate: 'May 13, 2022',
+    targetDate: 'May 17, 2022',
     targetTime: '15:00:00',
     raffleMemo: raffleTwoMemo,
     raffleWalletPublicKey: raffleTwoWalletPublicKey,

@@ -42,6 +42,7 @@ const Ticket = ({
   raffleWalletPublicKey,
 }) => {
   const [rafflesSold, setRafflesSold] = useState(0);
+  const [winner, setWinner] = useState('Will Smith');
   const connection = new Connection(NETWORK, 'confirmed');
   const { days, hours, minutes, seconds, isExpired } = useCountdown(
     targetDate,
@@ -261,10 +262,16 @@ const Ticket = ({
 
         <Box sx={styles.stats}>
           <Typography sx={styles.sold} component="span">
-            {rafflesSold} {sold}
+            {rafflesSold}{' '}
+            <Typography sx={isExpired ? styles.soldOut : null} component="span">
+              {sold}
+            </Typography>
           </Typography>
           <Typography sx={styles.winners} component="span">
-            {!isExpired ? '1' : '0'} {winners}
+            {!isExpired ? '1' : 'Winner:'}{' '}
+            <Typography sx={isExpired ? styles.soldOut : null} component="span">
+              {!isExpired ? winners : winner}
+            </Typography>
           </Typography>
         </Box>
 

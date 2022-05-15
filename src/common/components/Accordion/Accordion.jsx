@@ -20,7 +20,7 @@ const Accordion = ({ id, title, description }) => {
       <AccordionSummary
         expandIcon={
           expanded === id ? (
-            <RemoveIcon sx={styles.icon} />
+            <RemoveIcon width={20} sx={styles.icon} />
           ) : (
             <AddIcon sx={styles.icon} />
           )

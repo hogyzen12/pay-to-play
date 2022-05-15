@@ -1,6 +1,6 @@
 import game from 'assets/image/game.jpg';
 import alpha from 'assets/image/alpha.png';
-import raffle from 'assets/image/image.png';
+import raffle from 'assets/image/raffle.png';
 import premia from 'assets/image/premia.jpg';
 import premium from 'assets/image/premium.png';
 import discount from 'assets/image/discount.jpg';

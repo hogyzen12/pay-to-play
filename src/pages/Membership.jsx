@@ -41,34 +41,44 @@ const styles = {
     zIndex: 50,
   },
   form: {
+    position: 'relative',
     display: 'flex',
+    flexDirection: { xs: 'column', md: 'row' },
     gap: '10px',
-    mb: '32px',
+    mb: '38px',
   },
-  input: {},
+  input: {
+    width: '100%',
+  },
   btn: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: { xs: '', md: '10px 16px' },
-    width: 'fit-content',
-    border: theme => `1px solid ${theme.palette.success.main}`,
-    '&:hover': {
-      borderColor: '#FFF',
-    },
+    padding: { xs: '10px 16px', md: '10px 24px' },
+    width: { xs: '100%', md: 'fit-content' },
+    background: 'linear-gradient(90deg, #FBC7D4 0%, #9796F0 100%), #4AAF47',
+    border: 'none',
+    color: '#000',
+    minHeight: '56px',
+    minWidth: { md: '150px' },
   },
 };
 
 const Membership = () => {
-  const { handleSubmit, reset, control } = useForm({
+  const {
+    handleSubmit,
+    reset,
+    control,
+    formState: { errors },
+  } = useForm({
+    mode: 'onBlur',
     defaultValues: {
       email: '',
-      inputValue: '',
     },
   });
 
-  const onSubmit = ({ inputValue }) => {
-    console.log('inputValue on button click -->', inputValue);
+  const onSubmit = ({ email }) => {
+    console.log('inputValue on button click -->', email);
 
     /*
      * put your code here. InputValue is available after submit
@@ -108,7 +118,19 @@ const Membership = () => {
                 <Controller
                   name="email"
                   control={control}
-                  render={({ field: { onChange, value } }) => (
+                  defaultValue=""
+                  rules={{
+                    required: 'Email is required',
+                    pattern: {
+                      value:
+                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                      message: 'Please enter a valid email',
+                    },
+                  }}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
                     <TextField
                       onChange={onChange}
                       value={value}
@@ -118,24 +140,17 @@ const Membership = () => {
                         style: { color: '#A2A2A2' },
                       }}
                       inputProps={{ sx: { color: '#fff' } }}
+                      error={!!error}
                     />
                   )}
                 />
-                <Controller
-                  name="inputValue"
-                  control={control}
-                  render={({ field: { onChange, value } }) => (
-                    <TextField
-                      onChange={onChange}
-                      value={value}
-                      label="Text Value"
-                      sx={styles.input}
-                      InputLabelProps={{
-                        style: { color: '#A2A2A2' },
-                      }}
-                    />
-                  )}
-                />
+                {errors?.email && (
+                  <Typography
+                    sx={{ position: 'absolute', bottom: '-28px', color: 'red' }}
+                  >
+                    {errors.email.message}
+                  </Typography>
+                )}
 
                 <Button sx={styles.btn} variant="contained" type="submit">
                   Submit

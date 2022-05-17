@@ -16,6 +16,9 @@ import AppContainer from 'common/layout/AppContainer';
 import staticContent from 'common/static/content.json';
 import dhandsImage from 'assets/image/dh.png';
 
+const sha1 = require('sha1');
+const { dhmt } = staticContent.pages.main;
+
 const { title, description } = staticContent.meta.membership;
 
 const styles = {
@@ -24,6 +27,9 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  box: {
+    mb: '32px',
   },
   mediaBox: {
     position: 'relative',
@@ -45,7 +51,7 @@ const styles = {
     display: 'flex',
     flexDirection: { xs: 'column', md: 'row' },
     gap: '10px',
-    mb: '38px',
+    mb: '4px',
   },
   input: {
     width: '100%',
@@ -62,27 +68,49 @@ const styles = {
     minHeight: '56px',
     minWidth: { md: '150px' },
   },
+  error: { color: 'red', height: '25px' },
 };
 
-const Membership = () => {
+const Membership = ({ handlePayDHMT }) => {
   const {
     handleSubmit,
     reset,
     control,
     formState: { errors },
   } = useForm({
-    mode: 'onBlur',
+    validate: ['onSubmit'],
+    revalidate: ['onSubmit', 'onBlur'],
     defaultValues: {
       email: '',
     },
   });
 
-  const onSubmit = ({ email }) => {
-    console.log('inputValue on button click -->', email);
+  const stringToHash = string => {
+    let hash = 0;
 
-    /*
-     * put your code here. InputValue is available after submit
-     */
+    if (string.length === 0) return hash;
+
+    for (let i = 0; i < string.length; i++) {
+      let char = string.charCodeAt(i);
+      hash = (hash << 5) - hash + char;
+      hash = hash & hash;
+    }
+
+    return hash;
+  };
+
+  const onSubmit = ({ email }) => {
+    console.log('email', email);
+
+    const hashInteger = stringToHash(email); // 1381219982
+    const hashString = sha1(email); // d69d400a821e8881d85a4ce9f29665ff5215d6bc
+
+    console.log('hashInteger', hashInteger);
+    console.log('hashString', hashString);
+
+    handlePayDHMT(null, dhmt, hashString);
+
+    reset();
   };
 
   return (
@@ -99,7 +127,7 @@ const Membership = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            sx={styles.tickets}
+            sx={styles.box}
           >
             <Card>
               <Box sx={styles.mediaBox}>
@@ -120,7 +148,7 @@ const Membership = () => {
                   control={control}
                   defaultValue=""
                   rules={{
-                    required: 'Email is required',
+                    required: 'Enter your email address',
                     pattern: {
                       value:
                         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -134,7 +162,7 @@ const Membership = () => {
                     <TextField
                       onChange={onChange}
                       value={value}
-                      label="Your email"
+                      label="Email address"
                       sx={styles.input}
                       InputLabelProps={{
                         style: { color: '#A2A2A2' },
@@ -144,18 +172,15 @@ const Membership = () => {
                     />
                   )}
                 />
-                {errors?.email && (
-                  <Typography
-                    sx={{ position: 'absolute', bottom: '-28px', color: 'red' }}
-                  >
-                    {errors.email.message}
-                  </Typography>
-                )}
 
                 <Button sx={styles.btn} variant="contained" type="submit">
                   Submit
                 </Button>
               </Box>
+
+              <Typography sx={styles.error}>
+                {errors?.email?.message}
+              </Typography>
             </Card>
           </Box>
         </AnimatePresence>

@@ -261,7 +261,7 @@ const App = () => {
     navigate(selectedItem);
   };
 
-  const handlePayDHMT = async (selectedItem, currency) => {
+  const handlePayDHMT = async (selectedItem, currency, hashMemo) => {
     const isSHDW = currency === 'SHDW';
     const isFree = currency === 'free';
 
@@ -405,7 +405,7 @@ const App = () => {
         gameWalletPublicKey,
         diamondBalance.value.amount,
         isSHDW ? shadowRequiredToPlay : diamondsRequiredToPlay,
-        utilMemo,
+        hashMemo ? hashMemo : utilMemo,
       );
 
       if (!result.status) {
@@ -619,7 +619,7 @@ const App = () => {
               path={routes.membership}
               element={
                 <PrivateRoute transferTokenStatus={providerPubKey}>
-                  <MembershipPage />
+                  <MembershipPage handlePayDHMT={handlePayDHMT} />
                 </PrivateRoute>
               }
             />

@@ -8,8 +8,14 @@ const FAQs = ({ dataFAQs }) => {
     <Box sx={styles.faq}>
       <Typography sx={styles.title}>{dataFAQs.title}</Typography>
 
-      {dataFAQs.items.map(({ title, description, id }) => (
-        <Accordion key={id} id={id} title={title} description={description} />
+      {dataFAQs.items.map(({ title, description, id, archive }) => (
+        <Accordion
+          key={id}
+          id={id}
+          title={title}
+          description={description}
+          archive={archive}
+        />
       ))}
     </Box>
   );

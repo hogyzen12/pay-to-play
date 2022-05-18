@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+  Box,
   Typography,
   Accordion as AccordionItem,
   AccordionSummary,
@@ -8,7 +9,7 @@ import {
 import { Add as AddIcon, Remove as RemoveIcon } from '@mui/icons-material';
 import { styles } from './Accordion.styles';
 
-const Accordion = ({ id, title, description }) => {
+const Accordion = ({ id, title, archive, description }) => {
   const [expanded, setExpanded] = useState(0);
 
   const handleChange = itemID => {
@@ -35,6 +36,16 @@ const Accordion = ({ id, title, description }) => {
           <Typography sx={styles.description} variant="body2" component="p">
             {description}
           </Typography>
+        )}
+
+        {archive && (
+          <Box component="ul">
+            {archive.map(item => (
+              <Box key={item.id} component="li">
+                {item.text}
+              </Box>
+            ))}
+          </Box>
         )}
       </AccordionDetails>
     </AccordionItem>

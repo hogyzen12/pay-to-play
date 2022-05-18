@@ -13,11 +13,6 @@ const { pageTitle } = staticContent.pages.raffle;
 
 const styles = {
   container: {
-    // display: 'flex',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-  containerCustom: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -41,7 +36,7 @@ const styles = {
   faqs: {
     display: 'flex',
     flexDirection: { xs: 'column', lg: 'row' },
-    gap: '20px',
+    gap: '8px',
   },
 };
 
@@ -53,7 +48,7 @@ const Raffle = ({ providerPubKey, setAlertState, setLoading, provider }) => {
         <meta name="description" content={description} />
       </Helmet>
 
-      <AppContainer size="xl" customStyles={styles.containerCustom}>
+      <AppContainer size="xl" customStyles={styles.container}>
         <Typography sx={styles.title} variant="h2" component="h2">
           {pageTitle}
         </Typography>

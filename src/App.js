@@ -16,6 +16,7 @@ import {
   CrosswordPage,
   MembershipPage,
   NotFoundPage,
+  TestPage,
   MainPage,
   routes,
 } from './routes';
@@ -620,6 +621,30 @@ const App = () => {
               element={
                 <PrivateRoute transferTokenStatus={providerPubKey}>
                   <MembershipPage handlePayDHMT={handlePayDHMT} />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={routes.test1}
+              element={
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <TestPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={routes.test2}
+              element={
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <TestPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={routes.test3}
+              element={
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <TestPage />
                 </PrivateRoute>
               }
             />

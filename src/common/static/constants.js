@@ -2,6 +2,7 @@ import { clusterApiUrl, LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
 
 export let shadowRequiredToPlay = 1.0 * LAMPORTS_PER_SOL;
 export let diamondsRequiredToPlay = 1;
+
 export let utilMemo = 'DMND utility being used';
 export let raffleMemo = 'Lionel Trashi Raffle Entry ';
 export let raffleTwoMemo = 'Count Trashula Raffle Entry ';

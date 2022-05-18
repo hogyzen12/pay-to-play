@@ -1,5 +1,9 @@
 import { lazy } from 'react';
 
+export const TestPage = lazy(() =>
+  import('./pages/Test' /* webpackChunkName: "TestPage" */),
+);
+
 export const MainPage = lazy(() =>
   import('./pages/Main' /* webpackChunkName: "MainPage" */),
 );
@@ -38,6 +42,9 @@ export const NotFoundPage = lazy(() =>
 
 export const routes = {
   home: '/',
+  test1: '/test1',
+  test2: '/test2',
+  test3: '/test3',
   alpha: '/alpha',
   raffle: '/raffle',
   premia: '/premia',

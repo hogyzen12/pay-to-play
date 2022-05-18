@@ -12,8 +12,8 @@ import {
 } from '@mui/material';
 import staticContent from 'common/static/content.json';
 import AppContainer from 'common/layout/AppContainer';
-import graph from 'assets/image/premium/graph1.png';
-import graphSecond from 'assets/image/premium/graph2.png';
+import graph from 'assets/image/articles/premium/graph1.png';
+import graphSecond from 'assets/image/articles/premium/graph2.png';
 
 const { title, description } = staticContent.meta.premium;
 

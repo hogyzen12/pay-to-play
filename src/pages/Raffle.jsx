@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Ticket, FAQs } from 'common/components';
 import { tickets } from 'common/static/tickets';
-import { raffleFAQs } from 'common/static/faqs';
+import { raffleFAQs, raffleArchive } from 'common/static/faqs';
 import AppContainer from 'common/layout/AppContainer';
 import staticContent from 'common/static/content.json';
 
@@ -13,14 +13,15 @@ const { pageTitle } = staticContent.pages.raffle;
 
 const styles = {
   container: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // display: 'flex',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
   containerCustom: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   tickets: {
     display: 'grid',
@@ -28,14 +29,20 @@ const styles = {
     gridTemplateColumns: {
       xs: '1fr',
       md: 'repeat(2, 1fr)',
+      lg: 'repeat(3, 1fr)',
     },
     gridTemplateRows: { xs: 'repeat(1, 1fr)', md: 'repeat(1, 1fr)' },
     gridColumnGap: { md: '24px' },
     gridRowGap: '24px',
     mb: '48px',
-    width: '100%',
+    // width: '100%',
   },
   title: { padding: '32px 0' },
+  faqs: {
+    display: 'flex',
+    flexDirection: { xs: 'column', lg: 'row' },
+    gap: '20px',
+  },
 };
 
 const Raffle = ({ providerPubKey, setAlertState, setLoading, provider }) => {
@@ -46,7 +53,7 @@ const Raffle = ({ providerPubKey, setAlertState, setLoading, provider }) => {
         <meta name="description" content={description} />
       </Helmet>
 
-      <AppContainer size="md" customStyles={styles.containerCustom}>
+      <AppContainer size="xl" customStyles={styles.containerCustom}>
         <Typography sx={styles.title} variant="h2" component="h2">
           {pageTitle}
         </Typography>
@@ -72,7 +79,10 @@ const Raffle = ({ providerPubKey, setAlertState, setLoading, provider }) => {
           </Box>
         </AnimatePresence>
 
-        <FAQs dataFAQs={raffleFAQs} />
+        <Box sx={styles.faqs}>
+          <FAQs dataFAQs={raffleFAQs} />
+          <FAQs dataFAQs={raffleArchive} />
+        </Box>
       </AppContainer>
     </>
   );

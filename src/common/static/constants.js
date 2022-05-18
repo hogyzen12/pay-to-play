@@ -5,9 +5,7 @@ export let diamondsRequiredToPlay = 1;
 export let utilMemo = 'DMND utility being used';
 export let raffleMemo = 'Lionel Trashi Raffle Entry ';
 export let raffleTwoMemo = 'Count Trashula Raffle Entry ';
-
-export const NETWORK = clusterApiUrl('mainnet-beta');
-export const expiryTimestamp = new Date();
+export let raffleThreeMemo = 'Count Trashula Raffle Entry '; // !HAS TO BE REPLACED
 
 export const tokenMint = new PublicKey(
   'FdSBbLHK8hfc6BSqjrhQZaGj7jgd5vfPcchDB2RDAQFA',
@@ -24,14 +22,20 @@ export const raffleWalletPublicKey = new PublicKey(
 export const raffleTwoWalletPublicKey = new PublicKey(
   'RfLzaUVd3BYbonSiztTGho1RKKxmmnce97p2AWDJvAE',
 );
+export const raffleThreeWalletPublicKey = new PublicKey(
+  'RfLzaUVd3BYbonSiztTGho1RKKxmmnce97p2AWDJvAE', // !HAS TO BE REPLACED
+);
 
+export const NETWORK = clusterApiUrl('mainnet-beta');
 export const txLink = 'https://solscan.io/tx';
+export const expiryTimestamp = new Date();
 export const totalQuestions = 30;
 export const SOLamount = '0.1';
 export const DHMTamount = '1';
 export const SHDWamount = '1';
 export const timeAmount = 3600; // one hour 3600
 
+// Crossword game theme config
 export const theme = {
   textColor: '909090',
   gridBackground: '#404040',

@@ -13,17 +13,17 @@ import {
 import staticContent from 'common/static/content.json';
 import AppContainer from 'common/layout/AppContainer';
 
-import premia from 'assets/image/premia.jpg';
-import g1 from 'assets/image/premia/1.jpeg';
-import g2 from 'assets/image/premia/2.jpeg';
-import g4 from 'assets/image/premia/4.jpeg';
-import g5 from 'assets/image/premia/5.jpeg';
-import g6 from 'assets/image/premia/6.jpeg';
-import g9 from 'assets/image/premia/9.jpeg';
-import g3 from 'assets/image/premia/3.jpg';
-import g10 from 'assets/image/premia/10.jpg';
-import g8 from 'assets/image/premia/8.png';
-import g16 from 'assets/image/premia/16.png';
+import premia from 'assets/image/cards/premia.jpg';
+import g1 from 'assets/image/articles/premia/1.jpeg';
+import g2 from 'assets/image/articles/premia/2.jpeg';
+import g4 from 'assets/image/articles/premia/4.jpeg';
+import g5 from 'assets/image/articles/premia/5.jpeg';
+import g6 from 'assets/image/articles/premia/6.jpeg';
+import g9 from 'assets/image/articles/premia/9.jpeg';
+import g3 from 'assets/image/articles/premia/3.jpg';
+import g10 from 'assets/image/articles/premia/10.jpg';
+import g8 from 'assets/image/articles/premia/8.png';
+import g16 from 'assets/image/articles/premia/16.png';
 
 const { title, description } = staticContent.meta.premia;
 

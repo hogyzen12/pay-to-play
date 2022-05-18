@@ -1,9 +1,9 @@
-import game from 'assets/image/game.jpg';
-import alpha from 'assets/image/alpha.png';
-import raffle from 'assets/image/raffle.png';
-import premia from 'assets/image/premia.jpg';
-import premium from 'assets/image/premium.png';
-import discount from 'assets/image/discount.jpg';
+import game from 'assets/image/cards/game.jpg';
+import alpha from 'assets/image/cards/alpha.png';
+import raffle from 'assets/image/cards/raffle.png';
+import premia from 'assets/image/cards/premia.jpg';
+import premium from 'assets/image/cards/premium.png';
+import discount from 'assets/image/cards/discount.jpg';
 
 import { routes } from 'routes';
 

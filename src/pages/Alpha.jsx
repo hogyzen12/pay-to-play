@@ -11,10 +11,10 @@ import {
 } from '@mui/material';
 import staticContent from 'common/static/content.json';
 import AppContainer from 'common/layout/AppContainer';
-import alpha from 'assets/image/alpha.png';
-import g1 from 'assets/image/alpha/1.png';
-import g2 from 'assets/image/alpha/2.png';
-import g3 from 'assets/image/alpha/3.png';
+import alpha from 'assets/image/cards/alpha.png';
+import g1 from 'assets/image/articles/alpha/1.png';
+import g2 from 'assets/image/articles/alpha/2.png';
+import g3 from 'assets/image/articles/alpha/3.png';
 
 const { title, description } = staticContent.meta.alpha;
 

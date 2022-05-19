@@ -1,15 +1,7 @@
 import { lazy } from 'react';
 
-export const TestPage = lazy(() =>
-  import('./pages/Test' /* webpackChunkName: "TestPage" */),
-);
-
 export const MainPage = lazy(() =>
   import('./pages/Main' /* webpackChunkName: "MainPage" */),
-);
-
-export const RafflePage = lazy(() =>
-  import('./pages/Raffle' /* webpackChunkName: "RafflePage" */),
 );
 
 export const PremiumPage = lazy(() =>
@@ -24,8 +16,24 @@ export const AlphaPage = lazy(() =>
   import('./pages/Alpha' /* webpackChunkName: "AlphaPage" */),
 );
 
+export const MultiChainPage = lazy(() =>
+  import('./pages/MultiChain' /* webpackChunkName: "MultiChainPage" */),
+);
+
+export const AlivePage = lazy(() =>
+  import('./pages/Alive' /* webpackChunkName: "AlivePage" */),
+);
+
+export const TeleportPage = lazy(() =>
+  import('./pages/Teleport' /* webpackChunkName: "TeleportPage" */),
+);
+
 export const DiscountPage = lazy(() =>
   import('./pages/Discount' /* webpackChunkName: "DiscountPage" */),
+);
+
+export const RafflePage = lazy(() =>
+  import('./pages/Raffle' /* webpackChunkName: "RafflePage" */),
 );
 
 export const CrosswordPage = lazy(() =>
@@ -42,12 +50,12 @@ export const NotFoundPage = lazy(() =>
 
 export const routes = {
   home: '/',
-  test1: '/test1',
-  test2: '/test2',
-  test3: '/test3',
+  alive: '/alive',
   alpha: '/alpha',
   raffle: '/raffle',
   premia: '/premia',
+  teleport: '/teleport',
+  universe: '/universe',
   premium: '/premium',
   discount: '/discount',
   crossword: '/crossword',

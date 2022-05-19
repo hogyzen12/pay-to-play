@@ -8,16 +8,18 @@ import * as splToken from '@solana/spl-token';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
 import {
-  RafflePage,
+  MainPage,
+  AlivePage,
   AlphaPage,
   PremiaPage,
   PremiumPage,
+  TeleportPage,
+  MultiChainPage,
+  MembershipPage,
   DiscountPage,
   CrosswordPage,
-  MembershipPage,
+  RafflePage,
   NotFoundPage,
-  TestPage,
-  MainPage,
   routes,
 } from './routes';
 import {
@@ -625,26 +627,26 @@ const App = () => {
               }
             />
             <Route
-              path={routes.test1}
+              path={routes.universe}
               element={
                 <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <TestPage />
+                  <MultiChainPage />
                 </PrivateRoute>
               }
             />
             <Route
-              path={routes.test2}
+              path={routes.alive}
               element={
                 <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <TestPage />
+                  <AlivePage />
                 </PrivateRoute>
               }
             />
             <Route
-              path={routes.test3}
+              path={routes.teleport}
               element={
                 <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <TestPage />
+                  <TeleportPage />
                 </PrivateRoute>
               }
             />

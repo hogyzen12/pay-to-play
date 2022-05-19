@@ -4,16 +4,20 @@ import raffle from 'assets/image/cards/raffle.png';
 import premia from 'assets/image/cards/premia.jpg';
 import premium from 'assets/image/cards/premium.png';
 import discount from 'assets/image/cards/discount.jpg';
+import universe from 'assets/image/cards/universe.png';
+import alive from 'assets/image/cards/alive.png';
+import teleport from 'assets/image/cards/teleport.png';
 
 import { routes } from 'routes';
 
 export const cards = [
   {
-    title: 'Test',
-    description: 'Test',
-    image: premium,
-    available: false,
-    redirect: routes.test1,
+    title: 'The Multi-Chain Universe & Thesis',
+    description:
+      'If you are a true DeFi degen, you will likely have lost track of the number of wallets you have used over the past couple...',
+    image: universe,
+    available: true,
+    redirect: routes.universe,
     transitionDelay: 0.1,
     payment: {
       sol: true,
@@ -23,11 +27,12 @@ export const cards = [
     },
   },
   {
-    title: 'Test',
-    description: 'Test',
-    image: premium,
-    available: false,
-    redirect: routes.test2,
+    title: '30X: Alive & Well or...?',
+    description:
+      'The question is no longer which chain will succeed and render the rest of them obsolete. As we have seen with Layer 1 SZN throughout...',
+    image: alive,
+    available: true,
+    redirect: routes.alive,
     transitionDelay: 0.2,
     payment: {
       sol: true,
@@ -37,11 +42,12 @@ export const cards = [
     },
   },
   {
-    title: 'Test',
-    description: 'Test',
-    image: premium,
-    available: false,
-    redirect: routes.test3,
+    title: 'Simply Teleport your Coins',
+    description:
+      'We have outlined the problem in the first part of this series - how to move assets and information efficiently and safely between otherwise isolated...',
+    image: teleport,
+    available: true,
+    redirect: routes.teleport,
     transitionDelay: 0.3,
     payment: {
       sol: true,

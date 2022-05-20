@@ -4,9 +4,17 @@
       "title": "Diamond Hands Utility",
       "description": "The one stop to make the most of the utility offered by DMNDS for DH holders."
     },
-    "raffle": {
-      "title": "Diamond Hands Raffles",
-      "description": "NFT raffles with entries available ONLY in DMNDS! Will you get lucky ?"
+    "universe": {
+      "title": "Team Choice",
+      "description": "I mean it says in the title - SHOW ME THE MONEY!!"
+    },
+    "alive": {
+      "title": "Team Choice",
+      "description": "I mean it says in the title - SHOW ME THE MONEY!!"
+    },
+    "teleport": {
+      "title": "Team Choice",
+      "description": "I mean it says in the title - SHOW ME THE MONEY!!"
     },
     "premium": {
       "title": "Team Choice",
@@ -23,6 +31,10 @@
     "discount": {
       "title": "Diamond Hands Discount",
       "description": "Diamond Hands Discount"
+    },
+    "raffle": {
+      "title": "Diamond Hands Raffles",
+      "description": "NFT raffles with entries available ONLY in DMNDS! Will you get lucky ?"
     },
     "crossword": {
       "title": "Diamond Hands Crossword",

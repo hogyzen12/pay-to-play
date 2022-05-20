@@ -13,7 +13,7 @@ import {
 import staticContent from 'common/static/content.json';
 import AppContainer from 'common/layout/AppContainer';
 
-const { title, description } = staticContent.meta.premium;
+const { title, description } = staticContent.meta.teleport;
 
 const styles = {
   title: {

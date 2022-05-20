@@ -4,9 +4,9 @@ export let shadowRequiredToPlay = 1.0 * LAMPORTS_PER_SOL;
 export let diamondsRequiredToPlay = 1;
 
 export let utilMemo = 'DMND utility being used';
-export let raffleMemo = 'Lionel Trashi Raffle Entry ';
-export let raffleTwoMemo = 'Count Trashula Raffle Entry ';
-export let raffleThreeMemo = 'Count Trashula Raffle Entry '; // !HAS TO BE REPLACED
+export let raffleMemo = 'Geexolotls Raffle Entry ';
+export let raffleTwoMemo = 'Bridged Raffle Entry ';
+export let raffleThreeMemo = 'Diamonds Game Entry ';
 
 export const tokenMint = new PublicKey(
   'FdSBbLHK8hfc6BSqjrhQZaGj7jgd5vfPcchDB2RDAQFA',
@@ -18,13 +18,13 @@ export const gameWalletPublicKey = new PublicKey(
   'CproxWoLCk4QrCd3VJNUpo3QZf3bjEnTN1FuBcRbZYaw',
 );
 export const raffleWalletPublicKey = new PublicKey(
-  'RfLEqoqP9KDrJXurCppiQSbPz2VfsmMbijEq9ffh3uv',
+  'RfLMVUiXmxmxry79R2qNaxwTBhCriyMxZkBCRe9SUKE',
 );
 export const raffleTwoWalletPublicKey = new PublicKey(
-  'RfLzaUVd3BYbonSiztTGho1RKKxmmnce97p2AWDJvAE',
+  'RfL6fnU4HGRWuzK7Ty9x9Wh74iUUfKZYCEx2eqwyGrG',
 );
 export const raffleThreeWalletPublicKey = new PublicKey(
-  'RfLzaUVd3BYbonSiztTGho1RKKxmmnce97p2AWDJvAE', // !HAS TO BE REPLACED
+  'RfLp216Smd15xDGbJKb6gxYUPyKj2aLoMPhzRNNcYke',
 );
 
 export const NETWORK = clusterApiUrl('mainnet-beta');

@@ -1,5 +1,6 @@
-import raffle from 'assets/image/raffles/lionel_trashi.png';
-import raffle2 from 'assets/image/raffles/count_trashula.png';
+import raffle from 'assets/image/raffles/geexolotls.gif';
+import raffle2 from 'assets/image/raffles/bridged.png';
+import raffle3 from 'assets/image/raffles/diamonds_game.png';
 import { routes } from 'routes';
 
 import {
@@ -35,33 +36,33 @@ export const tickets = [
   //   raffleWalletPublicKey: raffleTwoWalletPublicKey,
   // },
   {
-    title: 'Degen Test Panda #777',
-    image: raffle2,
+    title: 'GEEXOLOTLS WL spots',
+    image: raffle,
     redirect: routes.raffle,
     transitionDelay: 0.1,
     buttonText: 'Purchase raffle entry (1 DMND)',
     targetDate: 'May 25, 2022',
     targetTime: '15:00:00',
-    raffleMemo: raffleThreeMemo,
-    raffleWalletPublicKey: raffleThreeWalletPublicKey,
+    raffleMemo: raffleMemo,
+    raffleWalletPublicKey: raffleWalletPublicKey,
   },
   {
-    title: 'Degen Test Panda #777',
+    title: 'The Bridged #2302',
     image: raffle2,
     redirect: routes.raffle,
     transitionDelay: 0.2,
     buttonText: 'Purchase raffle entry (1 DMND)',
-    targetDate: 'May 26, 2022',
+    targetDate: 'May 27, 2022',
     targetTime: '15:00:00',
-    raffleMemo: raffleThreeMemo,
-    raffleWalletPublicKey: raffleThreeWalletPublicKey,
+    raffleMemo: raffleTwoMemo,
+    raffleWalletPublicKey: raffleTwoWalletPublicKey,
   },
   {
-    title: 'Degen Test Panda #777',
-    image: raffle2,
+    title: 'Diamonds Game',
+    image: raffle3,
     redirect: routes.raffle,
     transitionDelay: 0.3,
-    buttonText: 'Purchase raffle entry (1 DMND)',
+    buttonText: 'Purchase game entry (1 DMND)',
     targetDate: 'May 27, 2022',
     targetTime: '15:00:00',
     raffleMemo: raffleThreeMemo,

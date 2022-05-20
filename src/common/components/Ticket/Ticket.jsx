@@ -268,7 +268,7 @@ const Ticket = ({
             </Typography>
           </Typography>
           <Typography sx={styles.winners} component="span">
-            {!isExpired ? '1' : 'Winner:'}{' '}
+            {!isExpired ? '30' : 'Winner:'}{' '}
             <Typography sx={isExpired ? styles.soldOut : null} component="span">
               {!isExpired ? winners : winner}
             </Typography>

@@ -25,11 +25,12 @@ import { styles } from './Ticket.styles';
 import staticContent from 'common/static/content.json';
 
 const { dhmt } = staticContent.pages.main;
-const { sold, winners, closed, ends } = staticContent.pages.raffle;
+const { sold, possible, closed, ends } = staticContent.pages.raffle;
 
 const Ticket = ({
   title,
   image,
+  possibleWinners,
   selectedPage,
   transitionDelay,
   providerPubKey,
@@ -43,6 +44,7 @@ const Ticket = ({
 }) => {
   const [rafflesSold, setRafflesSold] = useState(0);
   const [winner, setWinner] = useState('Will Smith');
+  const [winners, setWinners] = useState(1);
   const connection = new Connection(NETWORK, 'confirmed');
   const { days, hours, minutes, seconds, isExpired } = useCountdown(
     targetDate,
@@ -69,6 +71,13 @@ const Ticket = ({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (possibleWinners && rafflesSold) {
+      const res = Math.floor(rafflesSold / 10);
+      setWinners(res.toFixed(0));
+    }
+  }, [possibleWinners, rafflesSold]);
 
   const handlePayRaffle = async (selectedItem, currency) => {
     if (!providerPubKey) {
@@ -268,9 +277,9 @@ const Ticket = ({
             </Typography>
           </Typography>
           <Typography sx={styles.winners} component="span">
-            {!isExpired ? '30' : 'Winner:'}{' '}
+            {!isExpired ? winners : 'Winner:'}{' '}
             <Typography sx={isExpired ? styles.soldOut : null} component="span">
-              {!isExpired ? winners : winner}
+              {!isExpired ? possible : winner}
             </Typography>
           </Typography>
         </Box>

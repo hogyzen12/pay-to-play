@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import staticContent from 'common/static/content.json';
 import AppContainer from 'common/layout/AppContainer';
+import universe from 'assets/image/cards/universe.png';
 
 const { title, description } = staticContent.meta.universe;
 
@@ -51,6 +52,7 @@ const MultiChain = () => (
           exit={{ opacity: 0 }}
           sx={{ userSelect: 'none' }}
         >
+          <CardMedia sx={{ mb: '32px' }} component="img" src={universe} />
           <Typography sx={styles.regular}>
             &nbsp; If you are a true DeFi degen, you will likely have lost track
             of the number of wallets you have used over the past couple of

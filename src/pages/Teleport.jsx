@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import staticContent from 'common/static/content.json';
 import AppContainer from 'common/layout/AppContainer';
+import teleport from 'assets/image/cards/teleport.png';
 
 const { title, description } = staticContent.meta.teleport;
 
@@ -51,6 +52,7 @@ const Teleport = () => (
           exit={{ opacity: 0 }}
           sx={{ userSelect: 'none' }}
         >
+          <CardMedia src={teleport} sx={{ mb: '24px' }} component="img" />
           <Typography sx={styles.regular}>
             We have outlined the problem in the first part of this series - how
             to move assets and information efficiently and safely between

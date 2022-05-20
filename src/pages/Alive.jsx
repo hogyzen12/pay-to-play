@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import staticContent from 'common/static/content.json';
 import AppContainer from 'common/layout/AppContainer';
+import alive from 'assets/image/cards/alive.png';
 
 const { title, description } = staticContent.meta.alive;
 
@@ -51,6 +52,7 @@ const Alive = () => (
           exit={{ opacity: 0 }}
           sx={{ userSelect: 'none' }}
         >
+          <CardMedia sx={{ mb: '24px' }} src={alive} component="img" />
           <Typography sx={styles.regular}>
             The question is no longer which chain will succeed and render the
             rest of them obsolete. As we have seen with Layer 1 SZN throughout

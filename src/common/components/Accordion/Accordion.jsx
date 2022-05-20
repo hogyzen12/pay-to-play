@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {
   Box,
+  Link,
   Typography,
   Accordion as AccordionItem,
   AccordionSummary,
@@ -40,9 +41,21 @@ const Accordion = ({ id, title, archive, description }) => {
 
         {archive && (
           <Box component="ul">
-            {archive.map(item => (
-              <Box key={item.id} component="li">
-                {item.text}
+            {archive.map(({ text, link, id }) => (
+              <Box key={id} component="li">
+                {text && (
+                  <Typography
+                    sx={{ ...styles.text, display: link ? 'inline' : 'block' }}
+                    component="span"
+                  >
+                    {text}
+                  </Typography>
+                )}{' '}
+                {link && (
+                  <Link sx={styles.link} href={link} target="_blank">
+                    open
+                  </Link>
+                )}
               </Box>
             ))}
           </Box>

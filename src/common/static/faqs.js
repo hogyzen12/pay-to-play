@@ -42,10 +42,12 @@ export const raffleArchive = {
         {
           id: uuidv4(),
           text: 'Winner: Ticket #274',
+          link: '',
         },
         {
           id: uuidv4(),
-          text: 'Winning Entry: https://solscan.io/tx/3uXDWGWQmkV8bKdqGwBBAJYn4ZiBx5hbi52fVN3YQRJNQrQSeYgN7wgNcD1ZE5vriLe8GPryuvLdQYeQ4obFyCRd',
+          text: 'Winning Entry:',
+          link: 'https://solscan.io/tx/3uXDWGWQmkV8bKdqGwBBAJYn4ZiBx5hbi52fVN3YQRJNQrQSeYgN7wgNcD1ZE5vriLe8GPryuvLdQYeQ4obFyCRd',
         },
         {
           id: uuidv4(),
@@ -53,11 +55,13 @@ export const raffleArchive = {
         },
         {
           id: uuidv4(),
-          text: 'Payout: https://solscan.io/tx/48NFCw9fCeYAPyXsqdKBh4Utnn3fyTRu7f3nMmbSVKDr5KmZ3BCvsf57NTRKiJapc4NoAQ1K2dEGSbkoqmcb3azk',
+          text: 'Payout:',
+          link: 'https://solscan.io/tx/48NFCw9fCeYAPyXsqdKBh4Utnn3fyTRu7f3nMmbSVKDr5KmZ3BCvsf57NTRKiJapc4NoAQ1K2dEGSbkoqmcb3azk',
         },
         {
           id: uuidv4(),
           text: 'Entry Wallet: RfLEqoqP9KDrJXurCppiQSbPz2VfsmMbijEq9ffh3uv',
+          link: '',
         },
       ],
     },
@@ -70,10 +74,12 @@ export const raffleArchive = {
         {
           id: uuidv4(),
           text: 'Winner: Ticket #334',
+          link: '',
         },
         {
           id: uuidv4(),
-          text: 'Winning Entry: https://solscan.io/tx/3DKiDBmijVpr2Vykb9bKPDCbLe3q78CnBxf77bfLhfWBu9wUPWyTgRGYEJch4VkqoxoDBJcmYSJmksau8qWW3NZU',
+          text: 'Winning Entry:',
+          link: 'https://solscan.io/tx/3DKiDBmijVpr2Vykb9bKPDCbLe3q78CnBxf77bfLhfWBu9wUPWyTgRGYEJch4VkqoxoDBJcmYSJmksau8qWW3NZU',
         },
         {
           id: uuidv4(),
@@ -81,11 +87,13 @@ export const raffleArchive = {
         },
         {
           id: uuidv4(),
-          text: 'Payout: https://solscan.io/tx/3WKTEdeqHLtSsK9CtmYHSAKA8JvYNsh2cdRTJwFXskj1HHabsNAWssHNDzzid3oHwqFwmwGL4ZpF5MThMqgwEB4b',
+          text: 'Payout:',
+          link: 'https://solscan.io/tx/3WKTEdeqHLtSsK9CtmYHSAKA8JvYNsh2cdRTJwFXskj1HHabsNAWssHNDzzid3oHwqFwmwGL4ZpF5MThMqgwEB4b',
         },
         {
           id: uuidv4(),
           text: 'Entry Wallet: RfLzaUVd3BYbonSiztTGho1RKKxmmnce97p2AWDJvAE',
+          link: '',
         },
       ],
     },

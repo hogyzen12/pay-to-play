@@ -30,7 +30,6 @@ const styles = {
     gridColumnGap: { md: '24px' },
     gridRowGap: '24px',
     mb: '48px',
-    // width: '100%',
   },
   title: { padding: '32px 0' },
   faqs: {
@@ -75,7 +74,10 @@ const Raffle = ({ providerPubKey, setAlertState, setLoading, provider }) => {
         </AnimatePresence>
 
         <Box sx={styles.faqs}>
-          <FAQs dataFAQs={raffleFAQs} />
+          <FAQs
+            customStyles={{ mb: { xs: '48px', md: '0' } }}
+            dataFAQs={raffleFAQs}
+          />
           <FAQs dataFAQs={raffleArchive} />
         </Box>
       </AppContainer>

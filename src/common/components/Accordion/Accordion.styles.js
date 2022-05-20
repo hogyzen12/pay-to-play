@@ -21,4 +21,11 @@ export const styles = {
     paddingLeft: '24px',
     paddingRight: '24px',
   },
+  text: {
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    maxWidth: { xs: '240px', md: '400px' },
+  },
+  link: { color: '#512DA8' },
 };

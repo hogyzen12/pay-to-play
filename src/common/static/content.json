@@ -66,7 +66,7 @@
     "raffle": {
       "pageTitle": "Diamond Hands Raffle",
       "sold": "Sold",
-      "winners": "Possible Winner",
+      "possible": "Possible Winner",
       "ends": "Ends in",
       "closed": "Raffle closed!"
     },

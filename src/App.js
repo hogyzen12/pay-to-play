@@ -629,17 +629,17 @@ const App = () => {
             <Route
               path={routes.universe}
               element={
-                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                <MultiChainPage />
-                // </PrivateRoute>
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <MultiChainPage />
+                </PrivateRoute>
               }
             />
             <Route
               path={routes.alive}
               element={
-                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                <AlivePage />
-                // </PrivateRoute>
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <AlivePage />
+                </PrivateRoute>
               }
             />
             <Route

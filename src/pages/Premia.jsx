@@ -204,9 +204,9 @@ const Premia = () => (
           </Typography>
 
           <List>
-            <ListItem sx={{ padding: '0 0 0 16px' }}>
+            <List sx={{ padding: '0 0 0 16px' }}>
               <ListItemText>&#9679;{'  '}</ListItemText>
-            </ListItem>
+            </List>
             <ListItem sx={{ padding: '0 0 0 16px' }}>
               <ListItemText sx={styles.italicText}>
                 &#9679;{'  '}Community put forward proposals and vote on all

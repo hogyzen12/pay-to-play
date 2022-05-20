@@ -47,7 +47,7 @@ export const tickets = [
     targetTime: '15:00:00',
     raffleMemo: raffleMemo,
     raffleWalletPublicKey: raffleWalletPublicKey,
-    possibleWinners: false,
+    possibleWinners: 30,
   },
   {
     title: 'The Bridged #2302',
@@ -59,7 +59,7 @@ export const tickets = [
     targetTime: '15:00:00',
     raffleMemo: raffleTwoMemo,
     raffleWalletPublicKey: raffleTwoWalletPublicKey,
-    possibleWinners: false,
+    possibleWinners: 1,
   },
   {
     title: 'Diamonds Game',
@@ -71,6 +71,6 @@ export const tickets = [
     targetTime: '15:00:00',
     raffleMemo: raffleThreeMemo,
     raffleWalletPublicKey: raffleThreeWalletPublicKey,
-    possibleWinners: true,
+    possibleWinners: 0,
   },
 ];

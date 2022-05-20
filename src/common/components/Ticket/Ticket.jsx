@@ -44,7 +44,7 @@ const Ticket = ({
 }) => {
   const [rafflesSold, setRafflesSold] = useState(0);
   const [winner, setWinner] = useState('Will Smith');
-  const [winners, setWinners] = useState(1);
+  const [winners, setWinners] = useState(0);
   const connection = new Connection(NETWORK, 'confirmed');
   const { days, hours, minutes, seconds, isExpired } = useCountdown(
     targetDate,
@@ -73,11 +73,18 @@ const Ticket = ({
   }, []);
 
   useEffect(() => {
-    if (possibleWinners && rafflesSold) {
+    if (isExpired) {
+      setWinners(0);
+
+      return;
+    }
+    if (!possibleWinners && rafflesSold) {
       const res = Math.floor(rafflesSold / 10);
       setWinners(res.toFixed(0));
+    } else {
+      setWinners(possibleWinners);
     }
-  }, [possibleWinners, rafflesSold]);
+  }, [possibleWinners, rafflesSold, isExpired]);
 
   const handlePayRaffle = async (selectedItem, currency) => {
     if (!providerPubKey) {
@@ -277,9 +284,9 @@ const Ticket = ({
             </Typography>
           </Typography>
           <Typography sx={styles.winners} component="span">
-            {!isExpired ? winners : 'Winner:'}{' '}
-            <Typography sx={isExpired ? styles.soldOut : null} component="span">
-              {!isExpired ? possible : winner}
+            {winners}{' '}
+            <Typography component="span">
+              {winners > 1 ? `${possible}s` : possible}
             </Typography>
           </Typography>
         </Box>

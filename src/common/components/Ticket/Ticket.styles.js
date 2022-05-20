@@ -27,13 +27,6 @@ export const styles = {
     justifyContent: 'center',
     gap: '40px',
   },
-  sold: {
-    textTransform: 'uppercase',
-  },
-  soldOut: {
-    textTransform: 'uppercase',
-    color: 'red',
-  },
   winners: {},
   status: {
     display: 'flex',

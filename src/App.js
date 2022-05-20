@@ -645,9 +645,9 @@ const App = () => {
             <Route
               path={routes.teleport}
               element={
-                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                <TeleportPage />
-                // </PrivateRoute>
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <TeleportPage />
+                </PrivateRoute>
               }
             />
             <Route

@@ -85,30 +85,8 @@ const Membership = ({ handlePayDHMT }) => {
     },
   });
 
-  const stringToHash = string => {
-    let hash = 0;
-
-    if (string.length === 0) return hash;
-
-    for (let i = 0; i < string.length; i++) {
-      let char = string.charCodeAt(i);
-      hash = (hash << 5) - hash + char;
-      hash = hash & hash;
-    }
-
-    return hash;
-  };
-
   const onSubmit = ({ email }) => {
-    console.log('email', email);
-
-    const hashInteger = stringToHash(email); // 1381219982
-    const hashString = sha1(email); // d69d400a821e8881d85a4ce9f29665ff5215d6bc
-
-    console.log('hashInteger', hashInteger);
-    console.log('hashString', hashString);
-
-    handlePayDHMT(null, dhmt, hashString);
+    handlePayDHMT(null, dhmt, sha1(email));
 
     reset();
   };

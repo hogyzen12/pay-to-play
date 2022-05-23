@@ -105,11 +105,11 @@ export const cards = [
     description:
       'Being worked on at the moment - you will be able to claim a discount on any CoinDrip Merch!',
     image: discount,
-    available: false,
+    available: true,
     redirect: routes.discount,
     transitionDelay: 0.7,
     payment: {
-      sol: true,
+      sol: false,
       dhmt: true,
       shdw: false,
       free: false,

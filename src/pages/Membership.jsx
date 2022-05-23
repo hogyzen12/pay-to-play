@@ -17,8 +17,8 @@ import staticContent from 'common/static/content.json';
 import dhandsImage from 'assets/image/dh.png';
 
 const sha1 = require('sha1');
-const { dhmt } = staticContent.pages.main;
 
+const { dhmt } = staticContent.pages.main;
 const { title, description } = staticContent.meta.membership;
 
 const styles = {

@@ -265,6 +265,10 @@ const App = () => {
   };
 
   const handlePayDHMT = async (selectedItem, currency, hashMemo) => {
+    console.log('selectedItem', selectedItem);
+    console.log('currency', currency);
+    console.log('hashMemo', hashMemo);
+
     const isSHDW = currency === 'SHDW';
     const isFree = currency === 'free';
 
@@ -428,10 +432,16 @@ const App = () => {
        * If the status is true, that means transaction got successful and we can proceed
        */
 
+      setAlertState({
+        open: true,
+        message: 'Submitted transaction confirmed',
+        severity: 'success',
+      });
+
       // console.log('result.status', result.status);
       setTransferTokenStatus(result.status);
       setLoading(false);
-      navigate(selectedItem);
+      selectedItem && navigate(selectedItem);
     } catch (error) {
       console.log('SHDW error :>> ', error);
 

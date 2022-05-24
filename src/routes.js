@@ -28,16 +28,16 @@ export const TeleportPage = lazy(() =>
   import('./pages/Teleport' /* webpackChunkName: "TeleportPage" */),
 );
 
-export const DiscountPage = lazy(() =>
-  import('./pages/Discount' /* webpackChunkName: "DiscountPage" */),
-);
-
 export const RafflePage = lazy(() =>
   import('./pages/Raffle' /* webpackChunkName: "RafflePage" */),
 );
 
 export const CrosswordPage = lazy(() =>
   import('./pages/Crossword' /* webpackChunkName: "CrosswordPage" */),
+);
+
+export const MerchandisePage = lazy(() =>
+  import('./pages/Merchandise' /* webpackChunkName: "MerchandisePage" */),
 );
 
 export const MembershipPage = lazy(() =>
@@ -57,7 +57,7 @@ export const routes = {
   teleport: '/teleport',
   universe: '/universe',
   premium: '/premium',
-  discount: '/discount',
+  merchandise: '/merchandise',
   crossword: '/crossword',
   membership: '/membership',
   notFound: '*',

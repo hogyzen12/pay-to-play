@@ -17,7 +17,7 @@ import {
   TeleportPage,
   MultiChainPage,
   MembershipPage,
-  DiscountPage,
+  MerchandisePage,
   CrosswordPage,
   RafflePage,
   NotFoundPage,
@@ -70,20 +70,23 @@ const App = () => {
   const location = useLocation();
   const gameRef = useRef();
 
-  const { minutes, seconds, start, restart, pause, resume } = useTimer({
-    expiryTimestamp,
-    autoStart: true,
-    onExpire: () => {
-      switch (location.pathname) {
-        case routes.crossword:
-          return generateResults();
-        case routes.raffle:
-          return pause();
-        default:
-          navigate(routes.home);
-      }
-    },
-  });
+  const { minutes, seconds, start, restart, pause, resume, isRunning } =
+    useTimer({
+      expiryTimestamp,
+      autoStart: true,
+      onExpire: () => {
+        switch (location.pathname) {
+          case routes.crossword:
+            return generateResults();
+          case routes.raffle:
+          case routes.membership:
+          case routes.merchandise:
+            return pause();
+          default:
+            navigate(routes.home);
+        }
+      },
+    });
 
   /*
    * Connection to the Solana cluster
@@ -97,6 +100,10 @@ const App = () => {
    * 1. connect -> This method gets triggered when the wallet connection is successful
    * 2. disconnect -> This callback method gets triggered when the wallet gets disconnected from the application
    */
+
+  useEffect(() => {
+    console.log('isRunning', isRunning);
+  }, [isRunning]);
 
   useEffect(() => {
     if (openSubmitModal) pause();
@@ -448,10 +455,10 @@ const App = () => {
 
         emailjs
           .send(
-            process.env.REACT_APP_SERVICE_ID,
-            process.env.REACT_APP_TEMPLATE_ID,
+            process.env.REACT_APP_SERVICE_ID || '',
+            process.env.REACT_APP_TEMPLATE_ID || '',
             templateParams,
-            process.env.REACT_APP_PUBKEY,
+            process.env.REACT_APP_PUBKEY || '',
           )
           .then(console.log)
           .catch(console.log);
@@ -728,11 +735,11 @@ const App = () => {
               }
             />
             <Route
-              path={routes.discount}
+              path={routes.merchandise}
               element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <DiscountPage />
-                </PrivateRoute>
+                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                <MerchandisePage />
+                // </PrivateRoute>
               }
             />
           </Route>

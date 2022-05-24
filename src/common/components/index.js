@@ -1,6 +1,7 @@
 export { default as FAQs } from './FAQs/FAQs';
 export { default as Game } from './Game/Game';
 export { default as Tabs } from './Tabs/Tabs';
+export { default as Form } from './Form/Form';
 export { default as Ticket } from './Ticket/Ticket';
 export { default as Loader } from './Loader/Loader';
 export { default as Button } from './Button/Button';

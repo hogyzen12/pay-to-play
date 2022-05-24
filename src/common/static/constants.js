@@ -2,7 +2,6 @@ import { clusterApiUrl, LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
 
 export let shadowRequiredToPlay = 1.0 * LAMPORTS_PER_SOL;
 export let diamondsRequiredToPlay = 1;
-
 export let utilMemo = 'DMND utility being used';
 export let raffleMemo = 'Geexolotls Raffle Entry ';
 export let raffleTwoMemo = 'Bridged Raffle Entry ';
@@ -53,3 +52,6 @@ export const initialAlertState = {
   severity: undefined,
   tx: '',
 };
+
+export const emailPattern =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

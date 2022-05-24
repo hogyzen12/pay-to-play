@@ -7,6 +7,7 @@ import discount from 'assets/image/cards/discount.jpg';
 import universe from 'assets/image/cards/universe.png';
 import alive from 'assets/image/cards/alive.png';
 import teleport from 'assets/image/cards/teleport.png';
+import cpro from 'assets/image/cards/cpro.png';
 
 import { routes } from 'routes';
 
@@ -74,7 +75,7 @@ export const cards = [
   {
     title: 'Claim CPro membership',
     description: 'Claim CPro membership',
-    image: raffle,
+    image: cpro,
     available: true,
     redirect: routes.membership,
     transitionDelay: 0.5,
@@ -83,21 +84,6 @@ export const cards = [
       dhmt: false,
       shdw: false,
       free: true,
-    },
-  },
-  {
-    title: 'Diamond Hands NFT Game',
-    description:
-      'Currently under construction - a skill based game that will test your crypto knowledge.',
-    image: game,
-    available: false,
-    redirect: routes.crossword,
-    transitionDelay: 0.6,
-    payment: {
-      sol: false,
-      dhmt: true,
-      shdw: false,
-      free: false,
     },
   },
   {
@@ -156,6 +142,21 @@ export const cards = [
       sol: false,
       dhmt: true,
       shdw: true,
+      free: false,
+    },
+  },
+  {
+    title: 'Diamond Hands NFT Game',
+    description:
+      'Currently under construction - a skill based game that will test your crypto knowledge.',
+    image: game,
+    available: false,
+    redirect: routes.crossword,
+    transitionDelay: 0.6,
+    payment: {
+      sol: false,
+      dhmt: true,
+      shdw: false,
       free: false,
     },
   },

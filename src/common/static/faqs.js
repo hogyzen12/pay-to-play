@@ -115,3 +115,15 @@ export const membershipFAQs = {
     },
   ],
 };
+
+export const merchFAQs = {
+  title: '',
+  items: [
+    {
+      id: uuidv4(),
+      title: 'How to claim!',
+      description:
+        'In order to claim your merch airdrop you will need to have a DH hoodie or t-shirt token in your wallet. These tokens have been airdropped to the owners of the eligible NFTs. The first step is to enter ANY email address you have access to. It does not have to be your CPro one. The last day to submit/claim will be the 30th of this month. All codes will be sent out by the 31st.	Now you’ve filled in your email it’s time to claim your airdrop. Open up your Solana wallet and find your DH Hoodie or DH Tshirt tokens. Now send your tokens to:	MrchFrUf6zQqWpSKosEymtd1jDHjQC9RxxzbcCyqi4r. If you send 2 tokens - you will receive 2 codes, 4 tokens - 4 codes etc.. Each token corresponds to 1 merch airdrop. Once your transaction goes through look up the transaction on solscan and paste the link into the transaction link field. If you need to see how to do this check out the example videos below !! ',
+    },
+  ],
+};

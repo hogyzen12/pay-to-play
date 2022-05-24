@@ -9,6 +9,7 @@ import {
   TextField,
   Button,
 } from '@mui/material';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { FAQs } from 'common/components';
 import { raffleFAQs } from 'common/static/faqs';
@@ -86,7 +87,9 @@ const Membership = ({ handlePayDHMT }) => {
   });
 
   const onSubmit = ({ email }) => {
-    handlePayDHMT(null, dhmt, sha1(email));
+    if (email) {
+      handlePayDHMT(null, dhmt, sha1(email), email);
+    }
 
     reset();
   };

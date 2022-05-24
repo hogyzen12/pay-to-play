@@ -5,6 +5,7 @@ import { Close as CloseIcon } from '@mui/icons-material';
 import { confirmAlert } from 'react-confirm-alert';
 import { useTimer } from 'react-timer-hook';
 import * as splToken from '@solana/spl-token';
+import emailjs from '@emailjs/browser';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
 import {
@@ -45,6 +46,7 @@ import {
   timeAmount,
   tokenMint,
   utilMemo,
+  txLink,
 } from 'common/static/constants';
 import 'common/utils/bufferFill';
 import AppLayout from 'common/layout/AppLayout';
@@ -264,7 +266,12 @@ const App = () => {
     navigate(selectedItem);
   };
 
-  const handlePayDHMT = async (selectedItem, currency, hashMemo) => {
+  const handlePayDHMT = async (
+    selectedItem,
+    currency,
+    hashMemo,
+    emailAddress,
+  ) => {
     console.log('selectedItem', selectedItem);
     console.log('currency', currency);
     console.log('hashMemo', hashMemo);
@@ -428,9 +435,33 @@ const App = () => {
         return;
       }
 
+      if (emailAddress) {
+        const templateParams = {
+          to_email: emailAddress,
+          my_html: `
+						<span>You can check your transaction status:</span>
+						<a href="${txLink}/${result.signature}">
+							here
+						</a>
+						`,
+        };
+
+        emailjs
+          .send(
+            process.env.REACT_APP_SERVICE_ID,
+            process.env.REACT_APP_TEMPLATE_ID,
+            templateParams,
+            process.env.REACT_APP_PUBKEY,
+          )
+          .then(console.log)
+          .catch(console.log);
+      }
+
       /*
        * If the status is true, that means transaction got successful and we can proceed
        */
+
+      console.log('result.signature', result.signature);
 
       setAlertState({
         open: true,

@@ -4,6 +4,10 @@ export const MainPage = lazy(() =>
   import('./pages/Main' /* webpackChunkName: "MainPage" */),
 );
 
+export const FuturePage = lazy(() =>
+  import('./pages/Future' /* webpackChunkName: "FuturePage" */),
+);
+
 export const PremiumPage = lazy(() =>
   import('./pages/Premium' /* webpackChunkName: "PremiumPage" */),
 );
@@ -14,6 +18,10 @@ export const PremiaPage = lazy(() =>
 
 export const AlphaPage = lazy(() =>
   import('./pages/Alpha' /* webpackChunkName: "AlphaPage" */),
+);
+
+export const AlphaTwentyPage = lazy(() =>
+  import('./pages/AlphaTwenty' /* webpackChunkName: "AlphaTwentyPage" */),
 );
 
 export const MultiChainPage = lazy(() =>
@@ -53,12 +61,14 @@ export const routes = {
   alive: '/alive',
   alpha: '/alpha',
   raffle: '/raffle',
+  future: '/future',
   premia: '/premia',
+  premium: '/premium',
   teleport: '/teleport',
   universe: '/universe',
-  premium: '/premium',
-  merchandise: '/merchandise',
   crossword: '/crossword',
   membership: '/membership',
+  merchandise: '/merchandise',
+  alphaTwenty: '/alpha-twenty',
   notFound: '*',
 };

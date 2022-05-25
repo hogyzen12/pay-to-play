@@ -8,10 +8,42 @@ import universe from 'assets/image/cards/universe.png';
 import alive from 'assets/image/cards/alive.png';
 import teleport from 'assets/image/cards/teleport.png';
 import cpro from 'assets/image/cards/cpro.png';
+import dao20 from 'assets/image/cards/dao20.png';
+import future from 'assets/image/cards/future.png';
 
 import { routes } from 'routes';
 
 export const cards = [
+  {
+    title: 'Leaping Into the Future(s)',
+    description:
+      'The Babylonian dynasty King Hammurabi is not someone we mention often at Cryptonary. The Ancient Mesopotamia ruler, famous for establishing early written laws, could be...',
+    image: future,
+    available: true,
+    redirect: routes.universe,
+    transitionDelay: 0.1,
+    payment: {
+      sol: true,
+      dhmt: true,
+      shdw: false,
+      free: false,
+    },
+  },
+  {
+    title: 'Alpha DAO: Proposal #20',
+    description:
+      'Alpha-DAO is a new Decentralized Autonomous Organization created by seasoned crypto researchers. Disclaimer: This is not investment nor investment advice. Only you are responsible for...',
+    image: dao20,
+    available: true,
+    redirect: routes.universe,
+    transitionDelay: 0.2,
+    payment: {
+      sol: true,
+      dhmt: true,
+      shdw: false,
+      free: false,
+    },
+  },
   {
     title: 'The Multi-Chain Universe & Thesis',
     description:
@@ -19,7 +51,7 @@ export const cards = [
     image: universe,
     available: true,
     redirect: routes.universe,
-    transitionDelay: 0.1,
+    transitionDelay: 0.3,
     payment: {
       sol: true,
       dhmt: true,
@@ -34,7 +66,7 @@ export const cards = [
     image: alive,
     available: true,
     redirect: routes.alive,
-    transitionDelay: 0.2,
+    transitionDelay: 0.4,
     payment: {
       sol: true,
       dhmt: true,
@@ -49,7 +81,7 @@ export const cards = [
     image: teleport,
     available: true,
     redirect: routes.teleport,
-    transitionDelay: 0.3,
+    transitionDelay: 0.5,
     payment: {
       sol: true,
       dhmt: true,
@@ -64,7 +96,7 @@ export const cards = [
     image: raffle,
     available: true,
     redirect: routes.raffle,
-    transitionDelay: 0.4,
+    transitionDelay: 0.6,
     payment: {
       sol: false,
       dhmt: false,
@@ -78,7 +110,7 @@ export const cards = [
     image: cpro,
     available: true,
     redirect: routes.membership,
-    transitionDelay: 0.5,
+    transitionDelay: 0.7,
     payment: {
       sol: false,
       dhmt: false,
@@ -93,7 +125,7 @@ export const cards = [
     image: discount,
     available: true,
     redirect: routes.discount,
-    transitionDelay: 0.7,
+    transitionDelay: 0.8,
     payment: {
       sol: false,
       dhmt: true,
@@ -107,7 +139,7 @@ export const cards = [
     image: premium,
     available: true,
     redirect: routes.premium,
-    transitionDelay: 0.8,
+    transitionDelay: 0.9,
     payment: {
       sol: true,
       dhmt: true,
@@ -122,7 +154,7 @@ export const cards = [
     image: premia,
     available: true,
     redirect: routes.premia,
-    transitionDelay: 0.9,
+    transitionDelay: 1,
     payment: {
       sol: true,
       dhmt: true,
@@ -137,7 +169,7 @@ export const cards = [
     image: alpha,
     available: true,
     redirect: routes.alpha,
-    transitionDelay: 1,
+    transitionDelay: 1.2,
     payment: {
       sol: false,
       dhmt: true,
@@ -152,7 +184,7 @@ export const cards = [
     image: game,
     available: false,
     redirect: routes.crossword,
-    transitionDelay: 0.6,
+    transitionDelay: 1.2,
     payment: {
       sol: false,
       dhmt: true,

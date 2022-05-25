@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   CardMedia,
   Typography,
-  Link,
   Box,
   List,
   ListItem,

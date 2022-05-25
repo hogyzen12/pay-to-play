@@ -24,8 +24,16 @@
       "title": "Diamond Hands Premia",
       "description": "I’m no sorcerer, but after months of deep research, I’m confident I can leave the crystal ball at home, and still give you some grade-A alpha. - Max"
     },
+    "future": {
+      "title": "Diamond Hands Future",
+      "description": "I’m no sorcerer, but after months of deep research, I’m confident I can leave the crystal ball at home, and still give you some grade-A alpha. - Max"
+    },
     "alpha": {
       "title": "Alpha-DAO Proposal #18",
+      "description": "The Diamond Hands NFT project is backed by Cryptonary's team of leading industry experts and one of the biggest established communities in the crypto space."
+    },
+    "alphaTwenty": {
+      "title": "Alpha-DAO Proposal #20",
       "description": "The Diamond Hands NFT project is backed by Cryptonary's team of leading industry experts and one of the biggest established communities in the crypto space."
     },
     "merchandise": {

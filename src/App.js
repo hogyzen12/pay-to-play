@@ -12,12 +12,14 @@ import {
   MainPage,
   AlivePage,
   AlphaPage,
+  FuturePage,
   PremiaPage,
   PremiumPage,
   TeleportPage,
   MultiChainPage,
   MembershipPage,
   MerchandisePage,
+  AlphaTwentyPage,
   CrosswordPage,
   RafflePage,
   NotFoundPage,
@@ -100,10 +102,6 @@ const App = () => {
    * 1. connect -> This method gets triggered when the wallet connection is successful
    * 2. disconnect -> This callback method gets triggered when the wallet gets disconnected from the application
    */
-
-  useEffect(() => {
-    console.log('isRunning', isRunning);
-  }, [isRunning]);
 
   useEffect(() => {
     if (openSubmitModal) pause();
@@ -675,6 +673,26 @@ const App = () => {
               }
             />
             <Route
+              path={routes.crossword}
+              element={
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <CrosswordPage
+                    gameRef={gameRef}
+                    gameReseted={gameReseted}
+                    setGameReseted={setGameReseted}
+                  />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={routes.merchandise}
+              element={
+                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <MerchandisePage />
+                </PrivateRoute>
+              }
+            />
+            <Route
               path={routes.universe}
               element={
                 <PrivateRoute transferTokenStatus={transferTokenStatus}>
@@ -723,23 +741,19 @@ const App = () => {
               }
             />
             <Route
-              path={routes.crossword}
+              path={routes.alphaTwenty}
               element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <CrosswordPage
-                    gameRef={gameRef}
-                    gameReseted={gameReseted}
-                    setGameReseted={setGameReseted}
-                  />
+                <PrivateRoute transferTokenStatus={providerPubKey}>
+                  <AlphaTwentyPage handlePayDHMT={handlePayDHMT} />
                 </PrivateRoute>
               }
             />
             <Route
-              path={routes.merchandise}
+              path={routes.future}
               element={
-                // <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                <MerchandisePage />
-                // </PrivateRoute>
+                <PrivateRoute transferTokenStatus={providerPubKey}>
+                  <FuturePage handlePayDHMT={handlePayDHMT} />
+                </PrivateRoute>
               }
             />
           </Route>

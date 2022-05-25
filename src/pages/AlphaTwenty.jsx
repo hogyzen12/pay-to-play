@@ -58,14 +58,12 @@ const AlphaTwenty = () => (
             Alpha-DAO is a new Decentralized Autonomous Organization created by
             seasoned crypto researchers.
           </Typography>
-          <Typography sx={styles.regular}>
-            <strong>
-              Disclaimer: This is not investment nor investment advice. Only you
-              are responsible for any capital-related decisions you make and
-              only you are accountable for the results.
-            </strong>
+          <Typography sx={{ ...styles.regular, ...styles.boldText }}>
+            Disclaimer: This is not investment nor investment advice. Only you
+            are responsible for any capital-related decisions you make and only
+            you are accountable for the results.
           </Typography>
-          <Typography sx={styles.regular}>
+          <Typography sx={{ ...styles.regular, mb: '32px' }}>
             The information made available in this report is{' '}
             <strong>NOT</strong> for replication. The purpose is to share the
             thought process behind the DAO’s decision making – additionally,
@@ -74,7 +72,7 @@ const AlphaTwenty = () => (
             <strong>DO NOT REPLICATE</strong>. &nbsp;
             <span className="notion-enable-hover" data-token-index="0">
               Asset
-            </span>
+            </span>{' '}
             Friktion Airdrop and Lightning OG NFT
           </Typography>
 
@@ -88,7 +86,7 @@ const AlphaTwenty = () => (
             owning a Lightning OG NFT are all involved.
           </Typography>
           <Link
-            sx={styles.link}
+            sx={{ ...styles.link, display: 'block', mb: '32px' }}
             href="https://www.cryptonary.com/research/friktion-deep-dive/"
             target="_blank"
           >
@@ -98,7 +96,7 @@ const AlphaTwenty = () => (
           <Typography sx={styles.title} variant="h3">
             Proposal
           </Typography>
-          <Typography sx={styles.regular}>
+          <Typography sx={{ ...styles.regular, mb: '32px' }}>
             Use Phantom wallets to qualify for Friktion airdrop by using the
             platform, buying the NFT and testing Entropy exchange. I propose a 7
             SOL limit on the purchase price of each Lightning OG NFT (was 5, 7
@@ -116,7 +114,7 @@ const AlphaTwenty = () => (
             data-block-id="f1948b97-09ba-4ee5-9cc7-4e31a5764444"
           />
           <CardMedia
-            sx={{ mb: '24px' }}
+            sx={{ mb: '32px' }}
             src="https://www.cryptonary.com/wp-content/uploads/2022/05/A-DAO-2.png"
             component="img"
             data-block-id="14dbe401-bc65-4c2f-a16c-90215e689865"
@@ -126,7 +124,7 @@ const AlphaTwenty = () => (
             Strategy and Execution
           </Typography>
 
-          <Typography sx={styles.regular}>
+          <Typography sx={{ ...styles.regular, mb: '32px' }}>
             If we have access/ability to use multiple addresses, this would be
             preferred. I would ideally like to use 5 Phantom wallets for the
             airdrop farming, although I’m not sure of the logistical set up of
@@ -194,7 +192,7 @@ const AlphaTwenty = () => (
             the remaining 60% with a view of evaluating their position when more
             is known about the airdrop.
           </Typography>
-          <Typography sx={styles.regular}>
+          <Typography sx={{ ...styles.regular, mb: '32px' }}>
             For the Volt positions, I propose we leave the funds in there until
             we hear more about the airdrop, potentially moving them around
             depending on market movements and Volt performance, but I will keep
@@ -213,8 +211,7 @@ const AlphaTwenty = () => (
             the remaining 60% with a view of evaluating their position when more
             is known about the airdrop.
           </Typography>
-          <Typography sx={styles.regular}>
-            {' '}
+          <Typography sx={{ ...styles.regular, mb: '32px' }}>
             For the Volt positions, I propose we leave the funds in there until
             we hear more about the airdrop, potentially moving them around
             depending on market movements and Volt performance, but I will keep
@@ -224,14 +221,6 @@ const AlphaTwenty = () => (
           <Typography sx={styles.title} variant="h3">
             Proposal 20 has been executed
           </Typography>
-
-          <CardMedia
-            sx={{ mb: '24px' }}
-            src="https://a.slack-edge.com/production-standard-emoji-assets/13.0/apple-medium/2705@2x.png"
-            component="img"
-          />
-          <Typography sx={styles.regular}></Typography>
-          <Typography sx={styles.regular}></Typography>
 
           <List
             sx={{
@@ -259,25 +248,45 @@ const AlphaTwenty = () => (
             <ListItem sx={styles.listItem}>
               <ListItemText>
                 &#9679;{'  '}HVGHY5kUKC6i67GZW1ERbPK3MhpjLv9r2whxTKFP2r5n{' '}
-                <i data-stringify-type="italic">Karim’s Alpha-DAO address</i>
+                <Typography
+                  sx={{ ...styles.boldText, ...styles.italicText }}
+                  component="span"
+                >
+                  Karim’s Alpha-DAO address
+                </Typography>
               </ListItemText>
             </ListItem>
             <ListItem sx={styles.listItem}>
               <ListItemText>
                 &#9679;{'  '}HDskPhzeAbAhTmzQawoj7HFPAZXVEgFQW9F9wqY16m5o{' '}
-                <i data-stringify-type="italic">Alpha-DAO 2</i>
+                <Typography
+                  sx={{ ...styles.boldText, ...styles.italicText }}
+                  component="span"
+                >
+                  Alpha-DAO 2
+                </Typography>
               </ListItemText>
             </ListItem>
             <ListItem sx={styles.listItem}>
               <ListItemText>
                 &#9679;{'  '}GnpT5ktV3ENpuhr8CZTtquUuJ7oArE1LYSRKCayzpSry{' '}
-                <i data-stringify-type="italic">Friktion Airdrop 1</i>
+                <Typography
+                  sx={{ ...styles.boldText, ...styles.italicText }}
+                  component="span"
+                >
+                  Friktion Airdrop 1
+                </Typography>
               </ListItemText>
             </ListItem>
             <ListItem sx={styles.listItem}>
               <ListItemText>
                 &#9679;{'  '}8WJg1SNrMtqX18entSkfPjfNcK7tXum72tspzQJL8iW4{' '}
-                <i data-stringify-type="italic">Friktion Airdrop 2</i>
+                <Typography
+                  sx={{ ...styles.boldText, ...styles.italicText }}
+                  component="span"
+                >
+                  Friktion Airdrop 2
+                </Typography>
               </ListItemText>
             </ListItem>
           </List>

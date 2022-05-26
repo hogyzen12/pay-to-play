@@ -65,14 +65,20 @@ const AlphaTwenty = () => (
           </Typography>
           <Typography sx={{ ...styles.regular, mb: '32px' }}>
             The information made available in this report is{' '}
-            <strong>NOT</strong> for replication. The purpose is to share the
-            thought process behind the DAO’s decision making – additionally,
-            this is a <strong>HIGH RISK</strong> journey for the DAO which means
-            capital has also been allocated in accordance with this. Once again,{' '}
-            <strong>DO NOT REPLICATE</strong>. &nbsp;
-            <span className="notion-enable-hover" data-token-index="0">
+            <Typography sx={styles.boldText} component="span">
+              NOT
+            </Typography>{' '}
+            for replication. The purpose is to share the thought process behind
+            the DAO’s decision making – additionally, this is a{' '}
+            <Typography sx={styles.boldText} component="span">
+              HIGH RISK
+            </Typography>{' '}
+            journey for the DAO which means capital has also been allocated in
+            accordance with this. Once again, <strong>DO NOT REPLICATE</strong>.
+            &nbsp;
+            <Typography sx={styles.regular} component="span">
               Asset
-            </span>{' '}
+            </Typography>{' '}
             Friktion Airdrop and Lightning OG NFT
           </Typography>
 
@@ -248,10 +254,7 @@ const AlphaTwenty = () => (
             <ListItem sx={styles.listItem}>
               <ListItemText>
                 &#9679;{'  '}HVGHY5kUKC6i67GZW1ERbPK3MhpjLv9r2whxTKFP2r5n{' '}
-                <Typography
-                  sx={{ ...styles.boldText, ...styles.italicText }}
-                  component="span"
-                >
+                <Typography sx={{ ...styles.boldText }} component="span">
                   Karim’s Alpha-DAO address
                 </Typography>
               </ListItemText>
@@ -259,10 +262,7 @@ const AlphaTwenty = () => (
             <ListItem sx={styles.listItem}>
               <ListItemText>
                 &#9679;{'  '}HDskPhzeAbAhTmzQawoj7HFPAZXVEgFQW9F9wqY16m5o{' '}
-                <Typography
-                  sx={{ ...styles.boldText, ...styles.italicText }}
-                  component="span"
-                >
+                <Typography sx={{ ...styles.boldText }} component="span">
                   Alpha-DAO 2
                 </Typography>
               </ListItemText>
@@ -270,10 +270,7 @@ const AlphaTwenty = () => (
             <ListItem sx={styles.listItem}>
               <ListItemText>
                 &#9679;{'  '}GnpT5ktV3ENpuhr8CZTtquUuJ7oArE1LYSRKCayzpSry{' '}
-                <Typography
-                  sx={{ ...styles.boldText, ...styles.italicText }}
-                  component="span"
-                >
+                <Typography sx={{ ...styles.boldText }} component="span">
                   Friktion Airdrop 1
                 </Typography>
               </ListItemText>
@@ -281,10 +278,7 @@ const AlphaTwenty = () => (
             <ListItem sx={styles.listItem}>
               <ListItemText>
                 &#9679;{'  '}8WJg1SNrMtqX18entSkfPjfNcK7tXum72tspzQJL8iW4{' '}
-                <Typography
-                  sx={{ ...styles.boldText, ...styles.italicText }}
-                  component="span"
-                >
+                <Typography sx={{ ...styles.boldText }} component="span">
                   Friktion Airdrop 2
                 </Typography>
               </ListItemText>

@@ -4,6 +4,10 @@
       "title": "Diamond Hands Utility",
       "description": "The one stop to make the most of the utility offered by DMNDS for DH holders."
     },
+    "articles": {
+      "title": "Diamond Hands Articles",
+      "description": "The one stop to make the most of the utility offered by DMNDS for DH holders."
+    },
     "universe": {
       "title": "Multi-Chain Universe & Thesis",
       "description": "If you are a true DeFi degen, you will likely have lost track of the number of wallets you have used..."
@@ -77,6 +81,9 @@
       "possible": "Possible Winner",
       "ends": "Ends in",
       "closed": "Raffle closed!"
+    },
+    "articles": {
+      "pageTitle": "Diamond Hands Articles"
     },
     "membership": {
       "pageTitle": "Claim CPro membership"

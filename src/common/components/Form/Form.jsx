@@ -3,7 +3,8 @@ import { Controller, useForm } from 'react-hook-form';
 import { Box, Typography, TextField, Button } from '@mui/material';
 import { styles } from './Form.styles';
 import staticContent from 'common/static/content.json';
-import { emailPattern } from 'common/static/constants';
+import { emailPattern } from 'common/static/regex';
+import { checkProfilesRequest } from 'common/api/api';
 
 const sha1 = require('sha1');
 const { dhmt } = staticContent.pages.main;
@@ -22,8 +23,11 @@ const Form = ({ handlePayDHMT }) => {
     },
   });
 
-  const onSubmit = ({ email }) => {
-    if (email) handlePayDHMT(null, dhmt, sha1(email), email);
+  const onSubmit = async ({ email }) => {
+    if (!email) return;
+
+    await handlePayDHMT(null, dhmt, sha1(email), email);
+    await checkProfilesRequest(email);
 
     reset();
   };

@@ -7,7 +7,7 @@ import {
 } from '@jaredreisinger/react-crossword';
 import staticContent from 'common/static/content.json';
 import data from 'common/static/crossword.json';
-import { theme } from 'common/static/constants';
+import { theme } from 'common/static/theme';
 import { styles } from './Game.styles';
 
 const { hints } = staticContent.pages.crossword;

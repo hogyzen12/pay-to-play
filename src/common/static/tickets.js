@@ -4,12 +4,14 @@ import raffle3 from 'assets/image/raffles/diamonds_game.png';
 import { routes } from 'routes';
 
 import {
-  raffleMemo,
-  raffleTwoMemo,
-  raffleThreeMemo,
-  raffleWalletPublicKey,
-  raffleTwoWalletPublicKey,
-  raffleThreeWalletPublicKey,
+  geexolotlsRaffleMemo,
+  bridgedRaffleMemo,
+  diamondsGameRaffleMemo,
+  testMemo,
+  geexolotlsRafflePublicKey,
+  bridgedRafflePublicKey,
+  diamondsGameRafflePublicKey,
+  testRafflePublicKey,
 } from './constants';
 
 export const tickets = [
@@ -45,8 +47,8 @@ export const tickets = [
     buttonText: 'Purchase raffle entry (1 DMND)',
     targetDate: 'May 25, 2022',
     targetTime: '15:00:00',
-    raffleMemo: raffleMemo,
-    raffleWalletPublicKey: raffleWalletPublicKey,
+    raffleMemo: geexolotlsRaffleMemo,
+    raffleWalletPublicKey: geexolotlsRafflePublicKey,
     possibleWinners: 30,
   },
   {
@@ -57,8 +59,8 @@ export const tickets = [
     buttonText: 'Purchase raffle entry (1 DMND)',
     targetDate: 'May 27, 2022',
     targetTime: '15:00:00',
-    raffleMemo: raffleTwoMemo,
-    raffleWalletPublicKey: raffleTwoWalletPublicKey,
+    raffleMemo: bridgedRaffleMemo,
+    raffleWalletPublicKey: bridgedRafflePublicKey,
     possibleWinners: 1,
   },
   {
@@ -69,8 +71,20 @@ export const tickets = [
     buttonText: 'Purchase game entry (1 DMND)',
     targetDate: 'May 27, 2022',
     targetTime: '15:00:00',
-    raffleMemo: raffleThreeMemo,
-    raffleWalletPublicKey: raffleThreeWalletPublicKey,
+    raffleMemo: diamondsGameRaffleMemo,
+    raffleWalletPublicKey: diamondsGameRafflePublicKey,
     possibleWinners: 0,
+  },
+  {
+    title: 'New Raffle',
+    image: raffle3,
+    redirect: routes.raffle,
+    transitionDelay: 0.4,
+    buttonText: 'Purchase game entry (1 DMND)',
+    targetDate: 'Jun 27, 2022',
+    targetTime: '15:00:00',
+    raffleMemo: testMemo,
+    raffleWalletPublicKey: testRafflePublicKey,
+    possibleWinners: 1,
   },
 ];

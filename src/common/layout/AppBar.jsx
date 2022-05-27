@@ -109,6 +109,21 @@ const AppBar = ({
       </IconButton>
     );
 
+  const getTimerDisplayed = () => {
+    switch (location.pathname) {
+      case routes.home:
+      case `/${routes.raffle}`:
+      case `/${routes.membership}`:
+      case `/${routes.merchandise}`:
+      case `/${routes.articles}`:
+        return false;
+      default:
+        return true;
+    }
+  };
+
+  const displayTimer = getTimerDisplayed();
+
   return (
     <AppHeading sx={styles.header} position="static">
       <Toolbar sx={styles.toolbar}>
@@ -120,22 +135,17 @@ const AppBar = ({
           <Logo width="32" />
         </IconButton>
 
-        {location.pathname !== routes.home &&
-          location.pathname !== routes.raffle &&
-          location.pathname !== routes.membership &&
-          location.pathname !== routes.merchandise && (
-            <Box sx={styles.timer}>
-              <Typography
-                sx={
-                  minutes === 0 && seconds <= 10 ? styles.timeEnd : styles.time
-                }
-                variant="h3"
-              >
-                {minutes < 10 ? `0${minutes}` : minutes} :
-                {seconds < 10 ? `0${seconds}` : seconds}
-              </Typography>
-            </Box>
-          )}
+        {displayTimer && (
+          <Box sx={styles.timer}>
+            <Typography
+              sx={minutes === 0 && seconds <= 10 ? styles.timeEnd : styles.time}
+              variant="h3"
+            >
+              {minutes < 10 ? `0${minutes}` : minutes} :
+              {seconds < 10 ? `0${seconds}` : seconds}
+            </Typography>
+          </Box>
+        )}
 
         <Box sx={styles.wallet}>
           {location.pathname === routes.home && !providerPubKey && (

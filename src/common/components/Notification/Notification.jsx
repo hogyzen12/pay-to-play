@@ -1,6 +1,6 @@
 import React from 'react';
 import { Snackbar, Alert, AlertTitle, Link, Typography } from '@mui/material';
-import { initialAlertState } from 'common/static/constants';
+import { initialAlertState } from 'common/static/alert';
 import { styles } from './Notification.styles';
 
 const Notification = ({ alertState, setAlertState }) => {

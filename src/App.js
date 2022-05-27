@@ -10,20 +10,14 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
 import {
   MainPage,
-  AlivePage,
-  AlphaPage,
-  FuturePage,
-  PremiaPage,
-  PremiumPage,
-  TeleportPage,
-  MultiChainPage,
   MembershipPage,
   MerchandisePage,
-  AlphaTwentyPage,
   CrosswordPage,
   RafflePage,
   NotFoundPage,
+  ArticlesPage,
   routes,
+  articlesRoutes,
 } from './routes';
 import {
   Loader,
@@ -34,7 +28,7 @@ import {
 import { localStorageGet, localStorageSet } from 'common/utils/localStorage';
 import { transferCustomToken } from 'common/utils/transferToken';
 import { transferDiamondToken } from 'common/utils/transferDiamond';
-import { initialAlertState } from 'common/static/constants';
+import { initialAlertState } from 'common/static/alert';
 import { initialResults } from 'common/static/results';
 import { PrivateRoute } from 'common/utils/PrivateRoute';
 import { fillAnswers } from 'common/utils/fillAnswers';
@@ -52,6 +46,7 @@ import {
 } from 'common/static/constants';
 import 'common/utils/bufferFill';
 import AppLayout from 'common/layout/AppLayout';
+import ArticlesLayout from 'common/layout/ArticlesLayout';
 
 let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
 expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + timeAmount);
@@ -72,23 +67,22 @@ const App = () => {
   const location = useLocation();
   const gameRef = useRef();
 
-  const { minutes, seconds, start, restart, pause, resume, isRunning } =
-    useTimer({
-      expiryTimestamp,
-      autoStart: true,
-      onExpire: () => {
-        switch (location.pathname) {
-          case routes.crossword:
-            return generateResults();
-          case routes.raffle:
-          case routes.membership:
-          case routes.merchandise:
-            return pause();
-          default:
-            navigate(routes.home);
-        }
-      },
-    });
+  const { minutes, seconds, start, restart, pause, resume } = useTimer({
+    expiryTimestamp,
+    autoStart: true,
+    onExpire: () => {
+      switch (location.pathname) {
+        case routes.crossword:
+          return generateResults();
+        case routes.raffle:
+        case routes.membership:
+        case routes.merchandise:
+          return pause();
+        default:
+          navigate(routes.home);
+      }
+    },
+  });
 
   /*
    * Connection to the Solana cluster
@@ -277,10 +271,6 @@ const App = () => {
     hashMemo,
     emailAddress,
   ) => {
-    console.log('selectedItem', selectedItem);
-    console.log('currency', currency);
-    console.log('hashMemo', hashMemo);
-
     const isSHDW = currency === 'SHDW';
     const isFree = currency === 'free';
 
@@ -299,6 +289,12 @@ const App = () => {
         message: 'Please connect your wallet',
         severity: 'info',
       });
+
+      return;
+    }
+
+    if (isFree && selectedItem === routes.articles) {
+      navigate(routes.articles);
 
       return;
     }
@@ -692,71 +688,42 @@ const App = () => {
                 </PrivateRoute>
               }
             />
-            <Route
-              path={routes.universe}
-              element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <MultiChainPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path={routes.alive}
-              element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <AlivePage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path={routes.teleport}
-              element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <TeleportPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path={routes.premium}
-              element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <PremiumPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path={routes.premia}
-              element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <PremiaPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path={routes.alpha}
-              element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
-                  <AlphaPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path={routes.alphaTwenty}
-              element={
-                <PrivateRoute transferTokenStatus={providerPubKey}>
-                  <AlphaTwentyPage handlePayDHMT={handlePayDHMT} />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path={routes.future}
-              element={
-                <PrivateRoute transferTokenStatus={providerPubKey}>
-                  <FuturePage handlePayDHMT={handlePayDHMT} />
-                </PrivateRoute>
-              }
-            />
           </Route>
+
+          <Route
+            path={routes.articles}
+            element={
+              <ArticlesLayout
+                seconds={seconds}
+                minutes={minutes}
+                providerPubKey={providerPubKey}
+                provider={provider}
+                setProvider={setProvider}
+              />
+            }
+          >
+            <Route
+              index
+              element={
+                <ArticlesPage
+                  handleClickSOL={handlePaySOL}
+                  handleClickDHMT={handlePayDHMT}
+                />
+              }
+            />
+            {articlesRoutes.map(({ path, component: Article }) => (
+              <Route
+                key={path}
+                path={path}
+                element={
+                  <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                    <Article />
+                  </PrivateRoute>
+                }
+              />
+            ))}
+          </Route>
+
           <Route path={routes.notFound} element={<NotFoundPage />} />
         </Routes>
       </Suspense>

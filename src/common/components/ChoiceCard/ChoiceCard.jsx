@@ -25,10 +25,11 @@ const ChoiceCard = ({
   handleClickSOL,
   transitionDelay,
   handleClickDHMT,
+  customStyles = {},
 }) => {
   return (
     <Card
-      sx={styles.card}
+      sx={{ ...styles.card, ...customStyles }}
       component={motion.div}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

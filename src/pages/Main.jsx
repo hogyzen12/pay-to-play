@@ -3,8 +3,10 @@ import { Helmet } from 'react-helmet-async';
 import { Box } from '@mui/material';
 import { ChoiceCard } from 'common/components';
 import { cards } from 'common/static/cards';
+import { routes } from 'routes';
 import staticContent from 'common/static/content.json';
 import AppContainer from 'common/layout/AppContainer';
+import future from 'assets/image/cards/future.png';
 
 const { title, description } = staticContent.meta.main;
 
@@ -36,6 +38,23 @@ const Main = ({ handleClickSOL, handleClickDHMT }) => (
 
     <AppContainer customStyles={styles.container} size="xl">
       <Box sx={styles.choice}>
+        <ChoiceCard
+          title="Articles"
+          image={future}
+          payment={{
+            free: true,
+          }}
+          available={true}
+          selectedPage={routes.articles}
+          description="Open Articles list..."
+          transitionDelay={0.1}
+          handleClickSOL={handleClickSOL}
+          handleClickDHMT={handleClickDHMT}
+          customStyles={{
+            maxWidth: '100%',
+            gridColumn: { md: '1 / 3', xl: '1 / 4' },
+          }}
+        />
         {cards.map(
           (
             {

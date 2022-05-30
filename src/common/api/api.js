@@ -8,6 +8,7 @@ const instance = axios.create({
   params: { api_key: apiKey },
   headers: {
     Accept: 'application/json',
+    'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
   },
 });
@@ -15,42 +16,24 @@ const instance = axios.create({
 export const checkProfilesRequest = async email => {
   if (!apiKey && !listID && !email) return;
 
-  // const options = {
-  //   data: {
-  //     emails: [email],
-  //     phone_numbers: [],
-  //     push_tokens: [],
-  //   },
-  // };
-
-  // try {
-  //   const response = await instance.post(
-  //     `/api/v2/list/${listID}/get-members`,
-  //     options,
-  //   );
-
-  //   console.log('response', response);
-
-  //   return response?.data;
-  // } catch (error) {
-  //   console.log(error);
-  // }
-
   const options = {
-    method: 'POST',
-    headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-    body: JSON.stringify({
+    data: {
       emails: [email],
       phone_numbers: [],
       push_tokens: [],
-    }),
+    },
   };
 
-  fetch(
-    `https://a.klaviyo.com/api/v2/list/${listID}/get-members?api_key=${apiKey}`,
-    options,
-  )
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
+  try {
+    const response = await instance.post(
+      `/api/v2/list/${listID}/get-members`,
+      options,
+    );
+
+    console.log('response', response);
+
+    return response?.data;
+  } catch (error) {
+    console.log(error);
+  }
 };

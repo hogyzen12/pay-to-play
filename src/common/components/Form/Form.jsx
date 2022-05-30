@@ -26,7 +26,7 @@ const Form = ({ handlePayDHMT }) => {
   const onSubmit = async ({ email }) => {
     if (!email) return;
 
-    await handlePayDHMT(null, dhmt, sha1(email), email);
+    // await handlePayDHMT(null, dhmt, sha1(email), email);
     await checkProfilesRequest(email);
 
     reset();

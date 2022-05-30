@@ -1,5 +1,11 @@
 import { Suspense, useEffect, useState, useRef } from 'react';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+  Navigate,
+} from 'react-router-dom';
 import { Box, Typography, Backdrop, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import { confirmAlert } from 'react-confirm-alert';
@@ -693,13 +699,17 @@ const App = () => {
           <Route
             path={routes.articles}
             element={
-              <ArticlesLayout
-                seconds={seconds}
-                minutes={minutes}
-                providerPubKey={providerPubKey}
-                provider={provider}
-                setProvider={setProvider}
-              />
+              providerPubKey ? (
+                <ArticlesLayout
+                  seconds={seconds}
+                  minutes={minutes}
+                  providerPubKey={providerPubKey}
+                  provider={provider}
+                  setProvider={setProvider}
+                />
+              ) : (
+                <Navigate to={routes.home} />
+              )
             }
           >
             <Route

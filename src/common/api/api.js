@@ -15,24 +15,42 @@ const instance = axios.create({
 export const checkProfilesRequest = async email => {
   if (!apiKey && !listID && !email) return;
 
+  // const options = {
+  //   data: {
+  //     emails: [email],
+  //     phone_numbers: [],
+  //     push_tokens: [],
+  //   },
+  // };
+
+  // try {
+  //   const response = await instance.post(
+  //     `/api/v2/list/${listID}/get-members`,
+  //     options,
+  //   );
+
+  //   console.log('response', response);
+
+  //   return response?.data;
+  // } catch (error) {
+  //   console.log(error);
+  // }
+
   const options = {
-    data: {
+    method: 'POST',
+    headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({
       emails: [email],
       phone_numbers: [],
       push_tokens: [],
-    },
+    }),
   };
 
-  try {
-    const response = await instance.post(
-      `/api/v2/list/${listID}/get-members`,
-      options,
-    );
-
-    console.log('response', response);
-
-    return response?.data;
-  } catch (error) {
-    console.log(error);
-  }
+  fetch(
+    `https://a.klaviyo.com/api/v2/list/${listID}/get-members?api_key=${apiKey}`,
+    options,
+  )
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
 };

@@ -491,6 +491,12 @@ const App = () => {
     }
   };
 
+  const handleOpenMembership = () => {
+    /*
+     * Handle click membership card button
+     */
+  };
+
   const toggleSubmitModal = () => {
     setOpenSubmitModal(!openSubmitModal);
 
@@ -650,6 +656,7 @@ const App = () => {
                 <MainPage
                   handleClickSOL={handlePaySOL}
                   handleClickDHMT={handlePayDHMT}
+                  handleOpenMembership={handleOpenMembership}
                 />
               }
             />

@@ -5,6 +5,7 @@ import { AppContainer } from 'common/layout';
 import { cards } from 'common/static/cards';
 import staticContent from 'common/static/content.json';
 import withMetadata from 'common/hoc/withMetadata';
+import { routes } from 'routes';
 
 const { title, description } = staticContent.meta.main;
 
@@ -31,7 +32,7 @@ const styles = {
   },
 };
 
-const Main = ({ handleClickSOL, handleClickDHMT }) => (
+const Main = ({ handleClickSOL, handleClickDHMT, handleOpenMembership }) => (
   <>
     <AppContainer customStyles={styles.container} size="xl">
       <Box sx={styles.choice}>
@@ -46,7 +47,11 @@ const Main = ({ handleClickSOL, handleClickDHMT }) => (
             description={card.description}
             transitionDelay={card.transitionDelay}
             handleClickSOL={handleClickSOL}
-            handleClickDHMT={handleClickDHMT}
+            handleClickDHMT={
+              card.redirect === routes.membership
+                ? handleOpenMembership
+                : handleClickDHMT
+            }
             customStyles={index === 0 && styles.custom}
           />
         ))}

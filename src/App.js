@@ -53,6 +53,7 @@ import {
 import 'common/utils/bufferFill';
 import AppLayout from 'common/layout/AppLayout';
 import ArticlesLayout from 'common/layout/ArticlesLayout';
+import { getAllNFTs } from 'common/utils/getAllNFTs';
 
 let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
 expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + timeAmount);
@@ -491,10 +492,22 @@ const App = () => {
     }
   };
 
-  const handleOpenMembership = () => {
+  const handleOpenMembership = async () => {
     /*
      * Handle click membership card button
      */
+
+    if (!providerPubKey) {
+      setAlertState({
+        open: true,
+        message: 'Please connect your wallet',
+        severity: 'info',
+      });
+
+      return;
+    }
+
+    getAllNFTs(connection, providerPubKey);
   };
 
   const toggleSubmitModal = () => {

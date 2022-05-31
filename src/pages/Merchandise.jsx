@@ -1,14 +1,15 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardMedia, CardContent, Box } from '@mui/material';
+import { AppContainer } from 'common/layout';
 import { FAQs } from 'common/components';
-import staticContent from 'common/static/content.json';
 import { merchFAQs } from 'common/static/faqs';
-import AppContainer from 'common/layout/AppContainer';
+import withMetadata from 'common/hoc/withMetadata';
+import staticContent from 'common/static/content.json';
 import airdrop from 'assets/image/airdrop.jpg';
 
 const { title, description } = staticContent.meta.merchandise;
+
 const styles = {
   container: {
     display: 'flex',
@@ -33,31 +34,24 @@ const styles = {
 };
 
 const Merchandise = () => (
-  <>
-    <Helmet>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-    </Helmet>
-
-    <AppContainer size="xl" customStyles={styles.container}>
-      <AnimatePresence>
-        <Box
-          component={motion.div}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          <Card>
-            <CardMedia sx={styles.media} src={airdrop} component="img" />
-            <CardContent sx={styles.content}>
-              <Box sx={styles.box}></Box>
-              <FAQs dataFAQs={merchFAQs} customStyles={styles.faqs} />
-            </CardContent>
-          </Card>
-        </Box>
-      </AnimatePresence>
-    </AppContainer>
-  </>
+  <AppContainer size="xl" customStyles={styles.container}>
+    <AnimatePresence>
+      <Box
+        component={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <Card>
+          <CardMedia sx={styles.media} src={airdrop} component="img" />
+          <CardContent sx={styles.content}>
+            <Box sx={styles.box}></Box>
+            <FAQs dataFAQs={merchFAQs} customStyles={styles.faqs} />
+          </CardContent>
+        </Card>
+      </Box>
+    </AnimatePresence>
+  </AppContainer>
 );
 
-export default Merchandise;
+export default withMetadata({ title, description })(Merchandise);

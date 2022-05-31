@@ -1,10 +1,10 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Box, Typography } from '@mui/material';
+import { AppContainer } from 'common/layout';
 import { ChoiceCard } from 'common/components';
 import { articles } from 'common/static/articles';
+import withMetadata from 'common/hoc/withMetadata';
 import staticContent from 'common/static/content.json';
-import AppContainer from 'common/layout/AppContainer';
 
 const { title, description } = staticContent.meta.articles;
 const { pageTitle } = staticContent.pages.articles;
@@ -32,51 +32,29 @@ const styles = {
   },
 };
 
-const Articles = ({ handleClickSOL, handleClickDHMT }) => {
-  return (
-    <>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-      </Helmet>
+const Articles = ({ handleClickSOL, handleClickDHMT }) => (
+  <AppContainer size="xl" customStyles={styles.container}>
+    <Typography sx={styles.title} variant="h2" component="h2">
+      {pageTitle}
+    </Typography>
 
-      <AppContainer size="xl" customStyles={styles.container}>
-        <Typography sx={styles.title} variant="h2" component="h2">
-          {pageTitle}
-        </Typography>
+    <Box sx={styles.choice}>
+      {articles.map((article, index) => (
+        <ChoiceCard
+          key={index}
+          title={article.title}
+          image={article.image}
+          payment={article.payment}
+          available={article.available}
+          selectedPage={article.redirect}
+          description={article.description}
+          transitionDelay={article.transitionDelay}
+          handleClickSOL={handleClickSOL}
+          handleClickDHMT={handleClickDHMT}
+        />
+      ))}
+    </Box>
+  </AppContainer>
+);
 
-        <Box sx={styles.choice}>
-          {articles.map(
-            (
-              {
-                title,
-                description,
-                image,
-                redirect,
-                available,
-                payment,
-                transitionDelay,
-              },
-              index,
-            ) => (
-              <ChoiceCard
-                key={index}
-                title={title}
-                image={image}
-                payment={payment}
-                available={available}
-                selectedPage={redirect}
-                description={description}
-                handleClickSOL={handleClickSOL}
-                transitionDelay={transitionDelay}
-                handleClickDHMT={handleClickDHMT}
-              />
-            ),
-          )}
-        </Box>
-      </AppContainer>
-    </>
-  );
-};
-
-export default Articles;
+export default withMetadata({ title, description })(Articles);

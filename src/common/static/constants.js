@@ -39,3 +39,13 @@ export const diamondsGameRafflePublicKey = new PublicKey(
 export const testRafflePublicKey = new PublicKey(
   'RfLp216Smd15xDGbJKb6gxYUPyKj2aLoMPhzRNNcYke', // !TEST VALUE
 );
+
+export const initialAlertState = {
+  open: false,
+  message: '',
+  severity: undefined,
+  tx: '',
+};
+
+export const emailPattern =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

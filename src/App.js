@@ -34,7 +34,7 @@ import {
 import { localStorageGet, localStorageSet } from 'common/utils/localStorage';
 import { transferCustomToken } from 'common/utils/transferToken';
 import { transferDiamondToken } from 'common/utils/transferDiamond';
-import { initialAlertState } from 'common/static/alert';
+import { initialAlertState } from 'common/static/constants';
 import { initialResults } from 'common/static/results';
 import { PrivateRoute } from 'common/hoc/PrivateRoute';
 import { fillAnswers } from 'common/utils/fillAnswers';

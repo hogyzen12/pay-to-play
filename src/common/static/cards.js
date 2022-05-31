@@ -7,20 +7,20 @@ import future from 'assets/image/cards/future.png';
 import { routes } from 'routes';
 
 export const cards = [
-  // {
-  //   title: 'Articles',
-  //   description: 'Open Articles list...',
-  //   image: future,
-  //   available: true,
-  //   redirect: routes.articles,
-  //   transitionDelay: 0.1,
-  //   payment: {
-  //     sol: false,
-  //     dhmt: false,
-  //     shdw: false,
-  //     free: true,
-  //   },
-  // },
+  {
+    title: 'Articles',
+    description: 'Open Articles list...',
+    image: future,
+    available: true,
+    redirect: routes.articles,
+    transitionDelay: 0.1,
+    payment: {
+      sol: false,
+      dhmt: false,
+      shdw: false,
+      free: true,
+    },
+  },
   {
     title: 'Raffle page',
     description:

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -87,6 +87,19 @@ const AppBar = ({
     }
   };
 
+  const getTimerDisplayed = () => {
+    switch (location.pathname) {
+      case routes.home:
+      case `/${routes.raffle}`:
+      case `/${routes.membership}`:
+      case `/${routes.merchandise}`:
+      case `/${routes.articles}`:
+        return false;
+      default:
+        return true;
+    }
+  };
+
   const handleBurgerClick = () => {
     if (toggleDrawer) toggleDrawer(true);
   };
@@ -108,19 +121,6 @@ const AppBar = ({
         <MenuIcon />
       </IconButton>
     );
-
-  const getTimerDisplayed = () => {
-    switch (location.pathname) {
-      case routes.home:
-      case `/${routes.raffle}`:
-      case `/${routes.membership}`:
-      case `/${routes.merchandise}`:
-      case `/${routes.articles}`:
-        return false;
-      default:
-        return true;
-    }
-  };
 
   const displayTimer = getTimerDisplayed();
 

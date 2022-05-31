@@ -24,11 +24,6 @@ export const MembershipPage = lazy(() =>
   import('./pages/Membership' /* webpackChunkName: "MembershipPage" */),
 );
 
-export const NotFoundPage = lazy(() =>
-  import('./pages/NotFound' /* webpackChunkName: "NotFoundPage" */),
-);
-
-// ARTICLES
 export const FuturePage = lazy(() =>
   import('./pages/Future' /* webpackChunkName: "FuturePage" */),
 );
@@ -59,6 +54,10 @@ export const AlivePage = lazy(() =>
 
 export const TeleportPage = lazy(() =>
   import('./pages/Teleport' /* webpackChunkName: "TeleportPage" */),
+);
+
+export const NotFoundPage = lazy(() =>
+  import('./pages/NotFound' /* webpackChunkName: "NotFoundPage" */),
 );
 
 export const routes = {

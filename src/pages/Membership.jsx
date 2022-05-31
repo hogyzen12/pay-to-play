@@ -1,11 +1,10 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Card, CardMedia, Box } from '@mui/material';
-import { Form } from 'common/components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FAQs } from 'common/components';
+import { AppContainer } from 'common/layout';
+import { Form, FAQs } from 'common/components';
 import { raffleFAQs } from 'common/static/faqs';
-import AppContainer from 'common/layout/AppContainer';
+import withMetadata from 'common/hoc/withMetadata';
 import staticContent from 'common/static/content.json';
 import dhandsImage from 'assets/image/dh.png';
 
@@ -38,40 +37,27 @@ const styles = {
   },
 };
 
-const Membership = ({ handlePayDHMT }) => {
-  return (
-    <>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-      </Helmet>
-
-      <AppContainer size="md" customStyles={styles.container}>
-        <AnimatePresence>
-          <Box
-            component={motion.div}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            sx={styles.box}
-          >
-            <Card>
-              <Box sx={styles.mediaBox}>
-                <CardMedia
-                  sx={styles.media}
-                  src={dhandsImage}
-                  component="img"
-                />
-              </Box>
-              <Form handlePayDHMT={handlePayDHMT} />
-            </Card>
+const Membership = ({ handlePayDHMT }) => (
+  <AppContainer size="md" customStyles={styles.container}>
+    <AnimatePresence>
+      <Box
+        component={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        sx={styles.box}
+      >
+        <Card>
+          <Box sx={styles.mediaBox}>
+            <CardMedia sx={styles.media} src={dhandsImage} component="img" />
           </Box>
-        </AnimatePresence>
+          <Form handlePayDHMT={handlePayDHMT} />
+        </Card>
+      </Box>
+    </AnimatePresence>
 
-        <FAQs dataFAQs={raffleFAQs} />
-      </AppContainer>
-    </>
-  );
-};
+    <FAQs dataFAQs={raffleFAQs} />
+  </AppContainer>
+);
 
-export default Membership;
+export default withMetadata({ title, description })(Membership);

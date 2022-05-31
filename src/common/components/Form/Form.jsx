@@ -3,7 +3,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { Box, Typography, TextField, Button } from '@mui/material';
 import { styles } from './Form.styles';
 import staticContent from 'common/static/content.json';
-import { emailPattern } from 'common/static/regex';
+import { emailPattern } from 'common/static/constants';
 import { checkProfilesRequest } from 'common/api/api';
 
 const sha1 = require('sha1');

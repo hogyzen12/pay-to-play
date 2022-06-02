@@ -703,7 +703,11 @@ const App = () => {
             <Route
               path={routes.raffle}
               element={
-                providerPubKey ? <RafflePage /> : <Navigate to={routes.home} />
+                providerPubKey ? (
+                  <RafflePage connection={connection} />
+                ) : (
+                  <Navigate to={routes.home} />
+                )
               }
             />
             <Route

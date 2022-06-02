@@ -27,6 +27,7 @@ import { useCountdown } from 'common/hooks/useCountdown';
 import { PayButton, Countdown } from 'common/components';
 import { transferDiamondToken } from 'common/utils/transferDiamond';
 import { loaderActive, loaderDisabled } from 'redux/loader/loaderSlice';
+import { notificationOpened } from 'redux/notification/notificationSlice';
 import { styles } from './Ticket.styles';
 import staticContent from 'common/static/content.json';
 
@@ -39,7 +40,7 @@ const Ticket = ({
   possibleWinners,
   selectedPage,
   transitionDelay,
-  setAlertState,
+  connection,
   targetDate,
   targetTime,
   raffleMemo,
@@ -49,7 +50,6 @@ const Ticket = ({
   const [winner, setWinner] = useState('Will Smith');
   const [winners, setWinners] = useState(0);
   const dispatch = useDispatch();
-  const connection = new Connection(NETWORK, 'confirmed');
   const { provider, providerPubKey } = useSelector(state => state.provider);
   const { days, hours, minutes, seconds, isExpired } = useCountdown(
     targetDate,
@@ -93,11 +93,14 @@ const Ticket = ({
 
   const handlePayRaffle = async (selectedItem, currency) => {
     if (!providerPubKey) {
-      setAlertState({
-        open: true,
-        message: 'Please connect your wallet',
-        severity: 'info',
-      });
+      dispatch(
+        notificationOpened({
+          open: true,
+          message: 'Please connect your wallet',
+          severity: 'info',
+          tx: '',
+        }),
+      );
 
       return;
     }
@@ -237,11 +240,14 @@ const Ticket = ({
 
     if (!result.status) {
       dispatch(loaderDisabled());
-      setAlertState({
-        open: true,
-        message: 'Error in sending the tokens, Please try again',
-        severity: 'error',
-      });
+      dispatch(
+        notificationOpened({
+          open: true,
+          message: 'Error in sending the tokens, Please try again',
+          severity: 'error',
+          tx: '',
+        }),
+      );
 
       return;
     }
@@ -251,13 +257,15 @@ const Ticket = ({
      */
 
     dispatch(loaderDisabled());
-    setAlertState({
-      open: true,
-      duration: 7000,
-      severity: 'info',
-      message: `Raffle entry ${entryValue}`,
-      tx: `${txLink}/${result.signature}`,
-    });
+    dispatch(
+      notificationOpened({
+        open: true,
+        duration: 7000,
+        severity: 'info',
+        message: `Raffle entry ${entryValue}`,
+        tx: `${txLink}/${result.signature}`,
+      }),
+    );
 
     setRafflesSold(entryValue);
   };

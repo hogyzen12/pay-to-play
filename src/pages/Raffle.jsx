@@ -40,7 +40,7 @@ const styles = {
   },
 };
 
-const Raffle = ({ setAlertState }) => {
+const Raffle = ({ connection }) => {
   return (
     <AppContainer size="xl" customStyles={styles.container}>
       <Typography sx={styles.title} variant="h2" component="h2">
@@ -56,7 +56,7 @@ const Raffle = ({ setAlertState }) => {
           sx={styles.tickets}
         >
           {tickets.map((ticket, index) => (
-            <Ticket key={index} setAlertState={setAlertState} {...ticket} />
+            <Ticket key={index} connection={connection} {...ticket} />
           ))}
         </Box>
       </AnimatePresence>

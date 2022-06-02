@@ -7,6 +7,7 @@ import {
   DialogContent,
   DialogContentText,
   useMediaQuery,
+  Typography,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { styles } from './Confirmation.styles';
@@ -31,7 +32,7 @@ const Confirmation = ({ open, setOpen }) => {
       onClose={handleClose}
       PaperProps={{
         style: {
-          backgroundColor: '#404040',
+          backgroundColor: '#1D1D1D',
           width: '100%',
         },
       }}
@@ -46,7 +47,9 @@ const Confirmation = ({ open, setOpen }) => {
 
       <DialogActions sx={styles.actions}>
         <Button sx={styles.btn} onClick={handleClose}>
-          {agree}
+          <Typography sx={styles.btnText} variant="h3">
+            {agree}
+          </Typography>
         </Button>
       </DialogActions>
     </Dialog>

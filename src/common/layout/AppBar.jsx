@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Box,
   AppBar as AppHeading,
@@ -10,9 +11,11 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
+import { setProvider } from 'redux/provider/providerSlice';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import { ReactComponent as Logo } from 'assets/icons/diamond.svg';
 import { routes } from 'routes';
+import { getTimerDisplayed } from 'common/utils/misc';
 import staticContent from 'common/static/content.json';
 
 const { connected, notConnected, walletButton } = staticContent.header;
@@ -63,22 +66,17 @@ const styles = {
   },
 };
 
-const AppBar = ({
-  seconds,
-  minutes,
-  provider,
-  setProvider,
-  providerPubKey,
-  toggleDrawer,
-}) => {
+const AppBar = ({ hours, minutes, seconds, toggleDrawer }) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const { provider, providerPubKey } = useSelector(state => state.provider);
 
   const loginHandler = () => {
     if (!provider && window.solana) {
-      setProvider(window.solana);
+      dispatch(setProvider(window.solana));
     } else if (!provider) {
       console.log('No provider found');
       return;
@@ -87,42 +85,27 @@ const AppBar = ({
     }
   };
 
-  const getTimerDisplayed = () => {
-    switch (location.pathname) {
-      case routes.home:
-      case `/${routes.raffle}`:
-      case `/${routes.membership}`:
-      case `/${routes.merchandise}`:
-      case `/${routes.articles}`:
-        return false;
-      default:
-        return true;
-    }
-  };
-
   const handleBurgerClick = () => {
     if (toggleDrawer) toggleDrawer(true);
   };
 
-  const homeWalletStatus = () => (
-    <>
-      <Typography sx={styles.key}>{providerPubKey?.toBase58()}</Typography>
-      <Typography sx={providerPubKey ? styles.connected : styles.notConnected}>
-        {providerPubKey ? connected : notConnected}
-      </Typography>
-    </>
-  );
-
   const gameWalletStatus = () =>
     matches ? (
-      homeWalletStatus()
+      <>
+        <Typography sx={styles.key}>{providerPubKey?.toBase58()}</Typography>
+        <Typography
+          sx={providerPubKey ? styles.connected : styles.notConnected}
+        >
+          {providerPubKey ? connected : notConnected}
+        </Typography>
+      </>
     ) : (
       <IconButton sx={styles.burgerBtn} onClick={handleBurgerClick}>
         <MenuIcon />
       </IconButton>
     );
 
-  const displayTimer = getTimerDisplayed();
+  const displayTimer = getTimerDisplayed(location.pathname, routes);
 
   return (
     <AppHeading sx={styles.header} position="static">
@@ -141,7 +124,8 @@ const AppBar = ({
               sx={minutes === 0 && seconds <= 10 ? styles.timeEnd : styles.time}
               variant="h3"
             >
-              {minutes < 10 ? `0${minutes}` : minutes} :
+              {hours < 10 ? `0${hours}` : hours} :{' '}
+              {minutes < 10 ? `0${minutes}` : minutes} :{' '}
               {seconds < 10 ? `0${seconds}` : seconds}
             </Typography>
           </Box>
@@ -159,9 +143,18 @@ const AppBar = ({
             </Button>
           )}
 
-          {location.pathname !== routes.crossword &&
-            providerPubKey &&
-            homeWalletStatus()}
+          {location.pathname !== routes.crossword && providerPubKey && (
+            <>
+              <Typography sx={styles.key}>
+                {providerPubKey?.toBase58()}
+              </Typography>
+              <Typography
+                sx={providerPubKey ? styles.connected : styles.notConnected}
+              >
+                {providerPubKey ? connected : notConnected}
+              </Typography>
+            </>
+          )}
 
           {location.pathname === routes.crossword && gameWalletStatus()}
         </Box>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSticky } from 'common/hooks/useSticky';
+import { useSelector } from 'react-redux';
 import {
   Box,
   Toolbar,
@@ -9,6 +9,7 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
+import { useSticky } from 'common/hooks/useSticky';
 import { Button, Swipeable } from 'common/components';
 import { initialResults } from 'common/static/results';
 import staticContent from 'common/static/content.json';
@@ -78,16 +79,11 @@ const styles = {
   },
 };
 
-const AppBasement = ({
-  open,
-  resetTimer,
-  toggleDrawer,
-  providerPubKey,
-  generateResults,
-}) => {
+const AppBasement = ({ open, resetTimer, toggleDrawer, generateResults }) => {
+  const { providerPubKey } = useSelector(state => state.provider);
+  const { sticky } = useSticky();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
-  const { sticky } = useSticky();
 
   const handleReset = () => {
     if (resetTimer) resetTimer();

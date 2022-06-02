@@ -83,7 +83,12 @@
       "closed": "Raffle closed!"
     },
     "articles": {
-      "pageTitle": "Diamond Hands Articles"
+      "pageTitle": "Diamond Hands Articles",
+      "dialog": {
+        "title": "Important",
+        "description": "Limited time to read article",
+        "agree": "Understood"
+      }
     },
     "membership": {
       "pageTitle": "Claim CPro membership"

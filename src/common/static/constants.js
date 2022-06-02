@@ -7,7 +7,7 @@ export const totalQuestions = 30;
 export const SOLamount = '0.1';
 export const DHMTamount = '1';
 export const SHDWamount = '1';
-export const timeAmount = 3600; // one hour 3600
+export const timeAmount = 10; // one hour 3600
 
 export let shadowRequiredToPlay = 1.0 * LAMPORTS_PER_SOL;
 export let diamondsRequiredToPlay = 1;

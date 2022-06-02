@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AppContainer } from 'common/layout';
 import { Ticket, FAQs } from 'common/components';
+import { AppContainer } from 'common/layout';
 import { tickets } from 'common/static/tickets';
 import { raffleFAQs, raffleArchive } from 'common/static/faqs';
 import withMetadata from 'common/hoc/withMetadata';
@@ -40,41 +40,36 @@ const styles = {
   },
 };
 
-const Raffle = ({ providerPubKey, setAlertState, setLoading, provider }) => (
-  <AppContainer size="xl" customStyles={styles.container}>
-    <Typography sx={styles.title} variant="h2" component="h2">
-      {pageTitle}
-    </Typography>
+const Raffle = ({ setAlertState }) => {
+  return (
+    <AppContainer size="xl" customStyles={styles.container}>
+      <Typography sx={styles.title} variant="h2" component="h2">
+        {pageTitle}
+      </Typography>
 
-    <AnimatePresence>
-      <Box
-        component={motion.div}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        sx={styles.tickets}
-      >
-        {tickets.map((ticket, index) => (
-          <Ticket
-            key={index}
-            providerPubKey={providerPubKey}
-            setAlertState={setAlertState}
-            setLoading={setLoading}
-            provider={provider}
-            {...ticket}
-          />
-        ))}
+      <AnimatePresence>
+        <Box
+          component={motion.div}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          sx={styles.tickets}
+        >
+          {tickets.map((ticket, index) => (
+            <Ticket key={index} setAlertState={setAlertState} {...ticket} />
+          ))}
+        </Box>
+      </AnimatePresence>
+
+      <Box sx={styles.faqs}>
+        <FAQs
+          customStyles={{ mb: { xs: '48px', md: '0' } }}
+          dataFAQs={raffleFAQs}
+        />
+        <FAQs dataFAQs={raffleArchive} />
       </Box>
-    </AnimatePresence>
-
-    <Box sx={styles.faqs}>
-      <FAQs
-        customStyles={{ mb: { xs: '48px', md: '0' } }}
-        dataFAQs={raffleFAQs}
-      />
-      <FAQs dataFAQs={raffleArchive} />
-    </Box>
-  </AppContainer>
-);
+    </AppContainer>
+  );
+};
 
 export default withMetadata({ title, description })(Raffle);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { AppContainer } from 'common/layout';
 import { ChoiceCard } from 'common/components';
+import { AppContainer } from 'common/layout';
 import { articles } from 'common/static/articles';
 import withMetadata from 'common/hoc/withMetadata';
 import staticContent from 'common/static/content.json';

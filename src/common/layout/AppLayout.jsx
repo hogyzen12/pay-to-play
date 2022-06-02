@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
-import { routes } from 'routes';
 import AppBar from './AppBar';
 import AppWrapper from './AppWrapper';
 import AppBasement from './AppBasement';
+import { routes } from 'routes';
 
 const styles = {
   layout: {
@@ -22,35 +22,29 @@ const styles = {
 };
 
 const AppLayout = ({
+  hours,
   seconds,
   minutes,
   resetTimer,
-  providerPubKey,
   generateResults,
-  provider,
-  setProvider,
 }) => {
   const [open, setOpen] = useState(false);
   const [showBasement, setShowBasement] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    setShowBasement(location.pathname === routes.crossword);
+    setShowBasement(location.pathname === `/${routes.crossword}`);
   }, [location]);
 
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
+  const toggleDrawer = () => setOpen(!open);
 
   return (
     <Box sx={styles.layout}>
       <AppBar
+        hours={hours}
         seconds={seconds}
         minutes={minutes}
-        provider={provider}
-        setProvider={setProvider}
         toggleDrawer={toggleDrawer}
-        providerPubKey={providerPubKey}
       />
 
       <AppWrapper>
@@ -62,7 +56,6 @@ const AppLayout = ({
           open={open}
           resetTimer={resetTimer}
           toggleDrawer={toggleDrawer}
-          providerPubKey={providerPubKey}
           generateResults={generateResults}
         />
       )}

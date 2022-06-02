@@ -1,8 +1,10 @@
 import React, { StrictMode } from 'react';
+import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { HelmetProvider } from 'react-helmet-async';
+import store from 'redux/store';
 import theme from './common/theme/theme';
 import App from './App';
 import './index.css';
@@ -13,14 +15,16 @@ const root = createRoot(container);
 
 root.render(
   <StrictMode>
-    <HelmetProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ThemeProvider>
-    </HelmetProvider>
+    <Provider store={store}>
+      <HelmetProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ThemeProvider>
+      </HelmetProvider>
+    </Provider>
   </StrictMode>,
 );
 

@@ -51,13 +51,13 @@ export const cards = [
     },
   },
   {
-    title: 'Win Coindrip Merchandise',
+    title: 'Diamond Hands NFT Game',
     description:
-      'Being worked on at the moment - you will be able to claim a discount on any CoinDrip Merch!',
-    image: discount,
-    available: true,
-    redirect: routes.discount,
-    transitionDelay: 0.4,
+      'Currently under construction - a skill based game that will test your crypto knowledge.',
+    image: game,
+    available: false,
+    redirect: routes.crossword,
+    transitionDelay: 0.5,
     payment: {
       sol: false,
       dhmt: true,
@@ -66,13 +66,13 @@ export const cards = [
     },
   },
   {
-    title: 'Diamond Hands NFT Game',
+    title: 'Win Coindrip Merchandise',
     description:
-      'Currently under construction - a skill based game that will test your crypto knowledge.',
-    image: game,
-    available: false,
-    redirect: routes.crossword,
-    transitionDelay: 0.5,
+      'Being worked on at the moment - you will be able to claim a discount on any CoinDrip Merch!',
+    image: discount,
+    available: true,
+    redirect: routes.discount,
+    transitionDelay: 0.4,
     payment: {
       sol: false,
       dhmt: true,

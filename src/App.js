@@ -6,6 +6,7 @@ import {
   useLocation,
   Navigate,
 } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Box, Typography, Backdrop, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import { confirmAlert } from 'react-confirm-alert';
@@ -34,11 +35,11 @@ import {
 import { localStorageGet, localStorageSet } from 'common/utils/localStorage';
 import { transferCustomToken } from 'common/utils/transferToken';
 import { transferDiamondToken } from 'common/utils/transferDiamond';
-import { initialAlertState } from 'common/static/constants';
 import { initialResults } from 'common/static/results';
 import { PrivateRoute } from 'common/hoc/PrivateRoute';
 import { fillAnswers } from 'common/utils/fillAnswers';
 import {
+  initialAlertState,
   NETWORK,
   diamondsRequiredToPlay,
   expiryTimestamp,
@@ -52,8 +53,10 @@ import {
 } from 'common/static/constants';
 import 'common/utils/bufferFill';
 import AppLayout from 'common/layout/AppLayout';
-import ArticlesLayout from 'common/layout/ArticlesLayout';
+import { ArticlesLayout } from 'common/layout';
 import { getAllNFTs } from 'common/utils/getAllNFTs';
+import { loaderActive, loaderDisabled } from 'redux/loader/loaderSlice';
+import { setProviderPubKey } from 'redux/provider/providerSlice';
 
 let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
 expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + timeAmount);
@@ -64,19 +67,20 @@ const App = () => {
   const [transferTokenStatus, setTransferTokenStatus] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const [openSubmitModal, setOpenSubmitModal] = useState(false);
+  const [openAgreement, setOpenAgreement] = useState(true);
   const [gameReseted, setGameReseted] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [timeDuration, setTimeDuration] = useState('00:00');
-  const [providerPubKey, setProviderPub] = useState();
-  const [provider, setProvider] = useState();
+  const { isLoading } = useSelector(state => state.loader);
+  const { provider, providerPubKey } = useSelector(state => state.provider);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const gameRef = useRef();
 
-  const { minutes, seconds, start, restart, pause, resume } = useTimer({
+  const { hours, minutes, seconds, start, restart, pause, resume } = useTimer({
     expiryTimestamp,
-    autoStart: true,
+    autoStart: false,
     onExpire: () => {
       switch (location.pathname) {
         case routes.crossword:
@@ -105,8 +109,9 @@ const App = () => {
    */
 
   useEffect(() => {
-    if (openSubmitModal) pause();
-  }, [openSubmitModal, pause]);
+    !openAgreement ? start() : pause();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [openAgreement]);
 
   useEffect(() => {
     if (provider && !provider.isConnected) provider.connect();
@@ -121,7 +126,7 @@ const App = () => {
           severity: 'success',
         });
 
-        setProviderPub(provider.publicKey);
+        dispatch(setProviderPubKey(provider.publicKey));
       });
 
       provider.on('disconnect', () => {
@@ -132,7 +137,7 @@ const App = () => {
         });
       });
     }
-  }, [provider]);
+  }, [provider, dispatch]);
 
   const handlePaySOL = async (selectedItem, currency) => {
     /*
@@ -238,7 +243,7 @@ const App = () => {
      * If user has required SOL in the wallet, then deduct the amount
      */
 
-    setLoading(true);
+    dispatch(loaderActive());
     lamportsRequiredToPlay = lamportsRequiredToPlay / LAMPORTS_PER_SOL;
 
     const result = await transferCustomToken(
@@ -252,7 +257,7 @@ const App = () => {
     if (!result.status) {
       setTransferTokenStatus(result.status);
 
-      setLoading(false);
+      dispatch(loaderDisabled());
       setAlertState({
         open: true,
         message: 'Error in sending the tokens, Please try again',
@@ -267,7 +272,7 @@ const App = () => {
      */
 
     setTransferTokenStatus(result.status);
-    setLoading(false);
+    dispatch(loaderDisabled());
 
     navigate(selectedItem);
   };
@@ -280,6 +285,8 @@ const App = () => {
   ) => {
     const isSHDW = currency === 'SHDW';
     const isFree = currency === 'free';
+
+    console.log('currency', currency);
 
     /*
      * Flow to play the game
@@ -417,7 +424,8 @@ const App = () => {
        * We know the accs will exist as the payer has diamonds to have gotten to this stage
        * we call our custom function here to do this
        */
-      setLoading(true);
+
+      dispatch(loaderActive());
 
       const result = await transferDiamondToken(
         provider,
@@ -433,7 +441,7 @@ const App = () => {
       if (!result.status) {
         setTransferTokenStatus(result.status);
 
-        setLoading(false);
+        dispatch(loaderDisabled());
         setAlertState({
           open: true,
           message: 'Error in sending the tokens, Please try again',
@@ -479,7 +487,7 @@ const App = () => {
 
       // console.log('result.status', result.status);
       setTransferTokenStatus(result.status);
-      setLoading(false);
+      dispatch(loaderDisabled());
       selectedItem && navigate(selectedItem);
     } catch (error) {
       console.log('SHDW error :>> ', error);
@@ -604,7 +612,7 @@ const App = () => {
      * We know the accs will exist as the payer has diamonds to have gotten to this stage
      * we call our custom function here to do this
      */
-    setLoading(true);
+    dispatch(loaderActive());
 
     const result = await transferDiamondToken(
       provider,
@@ -620,7 +628,7 @@ const App = () => {
     if (!result.status) {
       setTransferTokenStatus(result.status);
 
-      setLoading(false);
+      dispatch(loaderDisabled());
       setAlertState({
         open: true,
         message: 'Error in sending the tokens, Please try again',
@@ -641,7 +649,7 @@ const App = () => {
       toggleSuccessModal();
     }
 
-    setLoading(false);
+    dispatch(loaderDisabled());
   };
 
   return (
@@ -652,14 +660,12 @@ const App = () => {
             path={routes.home}
             element={
               <AppLayout
+                hours={hours}
                 seconds={seconds}
                 minutes={minutes}
                 resetTimer={resetTimer}
                 handleClickDHMT={handlePayDHMT}
-                providerPubKey={providerPubKey}
                 generateResults={generateResults}
-                provider={provider}
-                setProvider={setProvider}
               />
             }
           >
@@ -677,12 +683,7 @@ const App = () => {
               path={routes.raffle}
               element={
                 <PrivateRoute transferTokenStatus={providerPubKey}>
-                  <RafflePage
-                    providerPubKey={providerPubKey}
-                    setAlertState={setAlertState}
-                    setLoading={setLoading}
-                    provider={provider}
-                  />
+                  <RafflePage setAlertState={setAlertState} />
                 </PrivateRoute>
               }
             />
@@ -721,11 +722,12 @@ const App = () => {
             element={
               providerPubKey ? (
                 <ArticlesLayout
+                  start={start}
+                  hours={hours}
                   seconds={seconds}
                   minutes={minutes}
-                  providerPubKey={providerPubKey}
-                  provider={provider}
-                  setProvider={setProvider}
+                  openAgreement={openAgreement}
+                  setOpenAgreement={setOpenAgreement}
                 />
               ) : (
                 <Navigate to={routes.home} />
@@ -768,17 +770,17 @@ const App = () => {
 
       {location.pathname === routes.crossword && (
         <ModalSubmit
+          pause={pause}
           timeDuration={timeDuration}
           submitResults={submitResults}
           initialResults={initialResults}
-          providerPubKey={providerPubKey}
           openSubmitModal={openSubmitModal}
           toggleSubmitModal={toggleSubmitModal}
           toggleSuccessModal={toggleSuccessModal}
         />
       )}
 
-      <Loader isLoading={loading} />
+      {isLoading && <Loader isLoading />}
       <Notification alertState={alertState} setAlertState={setAlertState} />
     </>
   );

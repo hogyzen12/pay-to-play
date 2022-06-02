@@ -14,3 +14,4 @@ export { default as ChoiceCard } from './ChoiceCard/ChoiceCard';
 export { default as ModalSubmit } from './ModalSubmit/ModalSubmit';
 export { default as ModalSuccess } from './ModalSuccess/ModalSuccess';
 export { default as Notification } from './Notification/Notification';
+export { default as Confirmation } from './Confirmation/Confirmation';

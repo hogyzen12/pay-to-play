@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import * as splToken from '@solana/spl-token';
 import { confirmAlert } from 'react-confirm-alert';
 import { Connection } from '@solana/web3.js';
@@ -6,7 +7,6 @@ import { Close as CloseIcon } from '@mui/icons-material';
 import {
   Box,
   Card,
-  Link,
   CardMedia,
   CardContent,
   CardActions,
@@ -16,11 +16,17 @@ import {
 } from '@mui/material';
 import { motion } from 'framer-motion';
 
-import { NETWORK, tokenMint, txLink } from 'common/static/constants';
+import {
+  NETWORK,
+  tokenMint,
+  txLink,
+  DHMTamount,
+  diamondsRequiredToPlay,
+} from 'common/static/constants';
 import { useCountdown } from 'common/hooks/useCountdown';
 import { PayButton, Countdown } from 'common/components';
 import { transferDiamondToken } from 'common/utils/transferDiamond';
-import { DHMTamount, diamondsRequiredToPlay } from 'common/static/constants';
+import { loaderActive, loaderDisabled } from 'redux/loader/loaderSlice';
 import { styles } from './Ticket.styles';
 import staticContent from 'common/static/content.json';
 
@@ -33,10 +39,8 @@ const Ticket = ({
   possibleWinners,
   selectedPage,
   transitionDelay,
-  providerPubKey,
   setAlertState,
-  setLoading,
-  provider,
+  // setLoading,
   targetDate,
   targetTime,
   raffleMemo,
@@ -45,7 +49,9 @@ const Ticket = ({
   const [rafflesSold, setRafflesSold] = useState(0);
   const [winner, setWinner] = useState('Will Smith');
   const [winners, setWinners] = useState(0);
+  const dispatch = useDispatch();
   const connection = new Connection(NETWORK, 'confirmed');
+  const { provider, providerPubKey } = useSelector(state => state.provider);
   const { days, hours, minutes, seconds, isExpired } = useCountdown(
     targetDate,
     targetTime,
@@ -216,7 +222,8 @@ const Ticket = ({
      * We know the accs will exist as the payer has diamonds to have gotten to this stage
      * we call our custom function here to do this
      */
-    setLoading(true);
+
+    dispatch(loaderActive());
 
     const result = await transferDiamondToken(
       provider,
@@ -230,7 +237,7 @@ const Ticket = ({
     );
 
     if (!result.status) {
-      setLoading(false);
+      dispatch(loaderDisabled());
       setAlertState({
         open: true,
         message: 'Error in sending the tokens, Please try again',
@@ -244,7 +251,7 @@ const Ticket = ({
      * If the status is true, that means transaction got successful and we can proceed
      */
 
-    setLoading(false);
+    dispatch(loaderDisabled());
     setAlertState({
       open: true,
       duration: 7000,

@@ -23,10 +23,15 @@ const ModalSubmit = ({
   openSubmitModal,
   toggleSubmitModal,
   submitResults,
+  pause,
 }) => {
   const [totalGuesses, setTotalGuesses] = useState(0);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
+
+  useEffect(() => {
+    if (openSubmitModal) pause();
+  }, [openSubmitModal, pause]);
 
   useEffect(() => {
     if (openSubmitModal) {

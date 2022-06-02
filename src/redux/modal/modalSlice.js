@@ -13,7 +13,7 @@ const modalSlice = createSlice({
       isModalOpen: true,
       modalType: action.payload,
     }),
-    modalClosed: state => initialState,
+    modalClosed: () => initialState,
   },
 });
 

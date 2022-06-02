@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Box,
   Typography,
@@ -11,42 +12,39 @@ import {
 import { Button, Answer, Tabs } from 'common/components';
 import { ReactComponent as AcrossIcon } from 'assets/icons/across.svg';
 import { initialResults } from 'common/static/results';
-import { styles } from './ModalSubmit.styles';
 import { totalQuestions } from 'common/static/constants';
+import { modalClosed } from 'redux/modal/modalSlice';
+import { styles } from './ModalSubmit.styles';
 import staticContent from 'common/static/content.json';
 
 const { time, guessed, title, across, button, down, something } =
   staticContent.pages.crossword.submitModal;
 
-const ModalSubmit = ({
-  timeDuration,
-  openSubmitModal,
-  toggleSubmitModal,
-  submitResults,
-  pause,
-}) => {
+const ModalSubmit = ({ timeDuration, submitResults, pause }) => {
   const [totalGuesses, setTotalGuesses] = useState(0);
+  const dispatch = useDispatch();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const { isModalOpen, modalType } = useSelector(state => state.modal);
 
   useEffect(() => {
-    if (openSubmitModal) pause();
-  }, [openSubmitModal, pause]);
+    if (isModalOpen && modalType === 'submit') pause();
+  }, [isModalOpen, modalType, pause]);
 
   useEffect(() => {
-    if (openSubmitModal) {
+    if (isModalOpen && modalType === 'submit') {
       setTotalGuesses(0);
       getGuessesTotal('across');
       getGuessesTotal('down');
     }
-  }, [openSubmitModal]);
+  }, [isModalOpen, modalType]);
 
   const handleSubmit = () => {
     submitResults();
   };
 
   const handleClose = () => {
-    toggleSubmitModal();
+    dispatch(modalClosed());
   };
 
   const getGuessesTotal = axis => {
@@ -136,11 +134,18 @@ const ModalSubmit = ({
   return (
     <>
       {matches ? (
-        <SubmitModal open={openSubmitModal} onClose={handleClose}>
+        <SubmitModal
+          open={isModalOpen && modalType === 'submit'}
+          onClose={handleClose}
+        >
           {modalContent()}
         </SubmitModal>
       ) : (
-        <Drawer anchor="bottom" open={openSubmitModal} onClose={handleClose}>
+        <Drawer
+          anchor="bottom"
+          open={isModalOpen && modalType === 'submit'}
+          onClose={handleClose}
+        >
           {modalContent()}
         </Drawer>
       )}

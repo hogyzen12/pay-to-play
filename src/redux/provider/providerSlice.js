@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   provider: null,
   providerPubKey: null,
+  transferTokenStatus: false,
 };
 
 const providerSlice = createSlice({
@@ -14,9 +15,14 @@ const providerSlice = createSlice({
       ...state,
       providerPubKey: action.payload,
     }),
+    setTransferTokenStatus: (state, action) => ({
+      ...state,
+      transferTokenStatus: action.payload,
+    }),
   },
 });
 
-export const { setProvider, setProviderPubKey } = providerSlice.actions;
+export const { setProvider, setProviderPubKey, setTransferTokenStatus } =
+  providerSlice.actions;
 
 export default providerSlice;

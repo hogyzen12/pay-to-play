@@ -11,11 +11,11 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
-import { setProvider } from 'redux/provider/providerSlice';
 import { Menu as MenuIcon } from '@mui/icons-material';
+import { setProvider } from 'redux/provider/providerSlice';
+import { getTimerDisplayed } from 'common/utils/misc';
 import { ReactComponent as Logo } from 'assets/icons/diamond.svg';
 import { routes } from 'routes';
-import { getTimerDisplayed } from 'common/utils/misc';
 import staticContent from 'common/static/content.json';
 
 const { connected, notConnected, walletButton } = staticContent.header;

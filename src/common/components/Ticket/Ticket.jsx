@@ -40,7 +40,6 @@ const Ticket = ({
   selectedPage,
   transitionDelay,
   setAlertState,
-  // setLoading,
   targetDate,
   targetTime,
   raffleMemo,

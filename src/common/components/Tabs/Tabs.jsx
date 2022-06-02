@@ -9,9 +9,7 @@ const { across, down } = staticContent.pages.crossword.submitModal;
 const BasicTabs = ({ customStyles = {}, initialResults }) => {
   const [activeTab, setActiveTab] = useState(0);
 
-  const handleChange = (event, newValue) => {
-    setActiveTab(newValue);
-  };
+  const handleChange = (event, newValue) => setActiveTab(newValue);
 
   return (
     <Box sx={{ ...styles.wrapper, ...customStyles }}>

@@ -1,36 +1,44 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Snackbar, Alert, AlertTitle, Link, Typography } from '@mui/material';
-import { initialAlertState } from 'common/static/constants';
+import { notificationClosed } from 'redux/notification/notificationSlice';
 import { styles } from './Notification.styles';
 
-const Notification = ({ alertState, setAlertState }) => {
-  const onAlertClose = () => setAlertState(initialAlertState);
+const Notification = () => {
+  const dispatch = useDispatch();
+  const { open, message, severity, tx } = useSelector(
+    state => state.notification,
+  );
+
+  const onAlertClose = () => {
+    dispatch(notificationClosed());
+  };
 
   return (
     <Snackbar
       anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-      open={alertState.open}
+      open={open}
       onClose={onAlertClose}
-      autoHideDuration={alertState.duration || 5000}
+      autoHideDuration={5000}
     >
       <Alert
         variant="filled"
         sx={styles.alert}
         onClose={onAlertClose}
-        severity={alertState.severity}
+        severity={severity}
       >
-        {alertState?.tx ? (
+        {tx ? (
           <>
-            <AlertTitle sx={styles.title}>{alertState.message}</AlertTitle>
+            <AlertTitle sx={styles.title}>{message}</AlertTitle>
             <Typography sx={styles.message}>
               Check{' '}
-              <Link sx={styles.link} href={alertState.tx} target="_blank">
+              <Link sx={styles.link} href={tx} target="_blank">
                 Transaction Details
               </Link>
             </Typography>
           </>
         ) : (
-          alertState.message
+          message
         )}
       </Alert>
     </Snackbar>

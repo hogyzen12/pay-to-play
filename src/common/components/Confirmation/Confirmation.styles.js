@@ -1,5 +1,5 @@
 export const styles = {
-  title: { color: 'red' },
+  title: { color: '#fff' },
   content: {},
   description: {},
   actions: {},

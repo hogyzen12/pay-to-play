@@ -7,10 +7,10 @@ import {
   Navigate,
 } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTimer } from 'react-timer-hook';
 import { Box, Typography, Backdrop, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import { confirmAlert } from 'react-confirm-alert';
-import { useTimer } from 'react-timer-hook';
 import * as splToken from '@solana/spl-token';
 import emailjs from '@emailjs/browser';
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -26,12 +26,7 @@ import {
   routes,
   articlesRoutes,
 } from './routes';
-import {
-  Loader,
-  Notification,
-  ModalSubmit,
-  ModalSuccess,
-} from 'common/components';
+import { Loader, Notification, Modal } from 'common/components';
 import { localStorageGet, localStorageSet } from 'common/utils/localStorage';
 import { transferCustomToken } from 'common/utils/transferToken';
 import { transferDiamondToken } from 'common/utils/transferDiamond';
@@ -39,7 +34,6 @@ import { initialResults } from 'common/static/results';
 import { PrivateRoute } from 'common/hoc/PrivateRoute';
 import { fillAnswers } from 'common/utils/fillAnswers';
 import {
-  initialAlertState,
   NETWORK,
   diamondsRequiredToPlay,
   expiryTimestamp,
@@ -56,33 +50,36 @@ import AppLayout from 'common/layout/AppLayout';
 import { ArticlesLayout } from 'common/layout';
 import { getAllNFTs } from 'common/utils/getAllNFTs';
 import { loaderActive, loaderDisabled } from 'redux/loader/loaderSlice';
-import { setProviderPubKey } from 'redux/provider/providerSlice';
+import { modalOpened } from 'redux/modal/modalSlice';
+import { notificationOpened } from 'redux/notification/notificationSlice';
+import {
+  setProviderPubKey,
+  setTransferTokenStatus,
+} from 'redux/provider/providerSlice';
 
 let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
 expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + timeAmount);
 
 const App = () => {
-  const [alertState, setAlertState] = useState(initialAlertState);
   const [transactionSignature, setTransactionSignature] = useState('');
-  const [transferTokenStatus, setTransferTokenStatus] = useState(false);
-  const [openSuccessModal, setOpenSuccessModal] = useState(false);
-  const [openSubmitModal, setOpenSubmitModal] = useState(false);
   const [openAgreement, setOpenAgreement] = useState(true);
   const [gameReseted, setGameReseted] = useState(false);
   const [timeDuration, setTimeDuration] = useState('00:00');
+
   const { isLoading } = useSelector(state => state.loader);
   const { provider, providerPubKey } = useSelector(state => state.provider);
+  const { isModalOpen, modalType } = useSelector(state => state.modal);
 
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
   const gameRef = useRef();
 
   const { hours, minutes, seconds, start, restart, pause, resume } = useTimer({
     expiryTimestamp,
     autoStart: false,
     onExpire: () => {
-      switch (location.pathname) {
+      switch (pathname) {
         case routes.crossword:
           return generateResults();
         case routes.raffle:
@@ -91,6 +88,7 @@ const App = () => {
           return pause();
         default:
           navigate(routes.home);
+          resetTimer();
       }
     },
   });
@@ -120,21 +118,26 @@ const App = () => {
   useEffect(() => {
     if (provider) {
       provider.on('connect', async () => {
-        setAlertState({
-          open: true,
-          message: 'Wallet got connected',
-          severity: 'success',
-        });
-
+        dispatch(
+          notificationOpened({
+            open: true,
+            message: 'Wallet got connected',
+            severity: 'success',
+            tx: '',
+          }),
+        );
         dispatch(setProviderPubKey(provider.publicKey));
       });
 
       provider.on('disconnect', () => {
-        setAlertState({
-          open: true,
-          message: 'Disconnected from wallet',
-          severity: 'error',
-        });
+        dispatch(
+          notificationOpened({
+            open: true,
+            message: 'Disconnected from wallet',
+            severity: 'error',
+            tx: '',
+          }),
+        );
       });
     }
   }, [provider, dispatch]);
@@ -154,11 +157,14 @@ const App = () => {
      */
 
     if (!providerPubKey) {
-      setAlertState({
-        open: true,
-        message: 'Please connect your wallet',
-        severity: 'info',
-      });
+      dispatch(
+        notificationOpened({
+          open: true,
+          message: 'Please connect your wallet',
+          severity: 'info',
+          tx: '',
+        }),
+      );
 
       return;
     }
@@ -171,13 +177,6 @@ const App = () => {
     const balanceInLamports = accountBalance ? parseInt(accountBalance) : 0;
 
     if (balanceInLamports < lamportsRequiredToPlay) {
-      // setAlertState({
-      //   open: true,
-      //   message: 'Not enough balance, please fund your wallet',
-      //   severity: 'info',
-      // });
-
-      // alert("Not enough balance, please fund your wallet")
       const fundNeededToPlay = lamportsRequiredToPlay - balanceInLamports;
       const optionsNoBalance = {
         childrenElement: () => <div />,
@@ -255,14 +254,17 @@ const App = () => {
     );
 
     if (!result.status) {
-      setTransferTokenStatus(result.status);
+      dispatch(setTransferTokenStatus(result.status));
 
       dispatch(loaderDisabled());
-      setAlertState({
-        open: true,
-        message: 'Error in sending the tokens, Please try again',
-        severity: 'error',
-      });
+      dispatch(
+        notificationOpened({
+          open: true,
+          message: 'Error in sending the tokens, Please try again',
+          severity: 'error',
+          tx: '',
+        }),
+      );
 
       return;
     }
@@ -271,7 +273,7 @@ const App = () => {
      * If the status is true, that means transaction got successful and we can proceed
      */
 
-    setTransferTokenStatus(result.status);
+    dispatch(setTransferTokenStatus(result.status));
     dispatch(loaderDisabled());
 
     navigate(selectedItem);
@@ -298,11 +300,14 @@ const App = () => {
      */
 
     if (!providerPubKey) {
-      setAlertState({
-        open: true,
-        message: 'Please connect your wallet',
-        severity: 'info',
-      });
+      dispatch(
+        notificationOpened({
+          open: true,
+          message: 'Please connect your wallet',
+          severity: 'info',
+          tx: '',
+        }),
+      );
 
       return;
     }
@@ -439,14 +444,17 @@ const App = () => {
       );
 
       if (!result.status) {
-        setTransferTokenStatus(result.status);
+        dispatch(setTransferTokenStatus(result.status));
 
         dispatch(loaderDisabled());
-        setAlertState({
-          open: true,
-          message: 'Error in sending the tokens, Please try again',
-          severity: 'error',
-        });
+        dispatch(
+          notificationOpened({
+            open: true,
+            message: 'Error in sending the tokens, Please try again',
+            severity: 'error',
+            tx: '',
+          }),
+        );
 
         return;
       }
@@ -479,24 +487,30 @@ const App = () => {
 
       console.log('result.signature', result.signature);
 
-      setAlertState({
-        open: true,
-        message: 'Submitted transaction confirmed',
-        severity: 'success',
-      });
+      dispatch(
+        notificationOpened({
+          open: true,
+          message: 'Submitted transaction confirmed',
+          severity: 'success',
+          tx: '',
+        }),
+      );
 
       // console.log('result.status', result.status);
-      setTransferTokenStatus(result.status);
+      dispatch(setTransferTokenStatus(result.status));
       dispatch(loaderDisabled());
       selectedItem && navigate(selectedItem);
     } catch (error) {
       console.log('SHDW error :>> ', error);
 
-      setAlertState({
-        open: true,
-        message: 'Failed to get token account balance',
-        severity: 'error',
-      });
+      dispatch(
+        notificationOpened({
+          open: true,
+          message: 'Failed to get token account balance',
+          severity: 'error',
+          tx: '',
+        }),
+      );
     }
   };
 
@@ -506,11 +520,14 @@ const App = () => {
      */
 
     if (!providerPubKey) {
-      setAlertState({
-        open: true,
-        message: 'Please connect your wallet',
-        severity: 'info',
-      });
+      dispatch(
+        notificationOpened({
+          open: true,
+          message: 'Please connect your wallet',
+          severity: 'info',
+          tx: '',
+        }),
+      );
 
       return;
     }
@@ -518,17 +535,19 @@ const App = () => {
     getAllNFTs(connection, providerPubKey);
   };
 
-  const toggleSubmitModal = () => {
-    setOpenSubmitModal(!openSubmitModal);
+  const openSubmitModal = () => {
+    dispatch(modalOpened('submit'));
 
-    if (openSubmitModal) resume();
+    if (isModalOpen && modalType === 'submit') resume();
   };
 
-  const toggleSuccessModal = () => setOpenSuccessModal(!openSuccessModal);
+  const openSuccessModal = () => {
+    dispatch(modalOpened('success'));
+  };
 
   const resetTimer = () => {
     const time = new Date();
-    time.setSeconds(time.getSeconds() + 3599);
+    time.setSeconds(time.getSeconds() + 10799);
     setGameReseted(true);
     restart(time);
   };
@@ -553,11 +572,11 @@ const App = () => {
     }
 
     localStorageSet('results', initialResults);
-    toggleSubmitModal();
+    openSubmitModal();
   };
 
   const submitResults = async () => {
-    toggleSubmitModal();
+    openSubmitModal();
 
     const acrossAxisString =
       initialResults.across.reduce((acc, item) => {
@@ -629,11 +648,14 @@ const App = () => {
       setTransferTokenStatus(result.status);
 
       dispatch(loaderDisabled());
-      setAlertState({
-        open: true,
-        message: 'Error in sending the tokens, Please try again',
-        severity: 'error',
-      });
+      dispatch(
+        notificationOpened({
+          open: true,
+          message: 'Error in sending the tokens, Please try again',
+          severity: 'error',
+          tx: '',
+        }),
+      );
 
       return;
     }
@@ -646,7 +668,7 @@ const App = () => {
 
     if (result.signature) {
       setTransactionSignature(result.signature);
-      toggleSuccessModal();
+      openSuccessModal();
     }
 
     dispatch(loaderDisabled());
@@ -664,7 +686,6 @@ const App = () => {
                 seconds={seconds}
                 minutes={minutes}
                 resetTimer={resetTimer}
-                handleClickDHMT={handlePayDHMT}
                 generateResults={generateResults}
               />
             }
@@ -682,23 +703,23 @@ const App = () => {
             <Route
               path={routes.raffle}
               element={
-                <PrivateRoute transferTokenStatus={providerPubKey}>
-                  <RafflePage setAlertState={setAlertState} />
-                </PrivateRoute>
+                providerPubKey ? <RafflePage /> : <Navigate to={routes.home} />
               }
             />
             <Route
               path={routes.membership}
               element={
-                <PrivateRoute transferTokenStatus={providerPubKey}>
+                providerPubKey ? (
                   <MembershipPage handlePayDHMT={handlePayDHMT} />
-                </PrivateRoute>
+                ) : (
+                  <Navigate to={routes.home} />
+                )
               }
             />
             <Route
               path={routes.crossword}
               element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                <PrivateRoute>
                   <CrosswordPage
                     gameRef={gameRef}
                     gameReseted={gameReseted}
@@ -710,7 +731,7 @@ const App = () => {
             <Route
               path={routes.merchandise}
               element={
-                <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                <PrivateRoute>
                   <MerchandisePage />
                 </PrivateRoute>
               }
@@ -722,7 +743,6 @@ const App = () => {
             element={
               providerPubKey ? (
                 <ArticlesLayout
-                  start={start}
                   hours={hours}
                   seconds={seconds}
                   minutes={minutes}
@@ -748,7 +768,7 @@ const App = () => {
                 key={path}
                 path={path}
                 element={
-                  <PrivateRoute transferTokenStatus={transferTokenStatus}>
+                  <PrivateRoute>
                     <Article />
                   </PrivateRoute>
                 }
@@ -760,28 +780,18 @@ const App = () => {
         </Routes>
       </Suspense>
 
-      {location.pathname === routes.crossword && (
-        <ModalSuccess
-          transactionSignature={transactionSignature}
-          openSuccessModal={openSuccessModal}
-          toggleSuccessModal={toggleSuccessModal}
-        />
-      )}
-
-      {location.pathname === routes.crossword && (
-        <ModalSubmit
+      {isModalOpen && pathname === routes.crossword && (
+        <Modal
           pause={pause}
           timeDuration={timeDuration}
           submitResults={submitResults}
           initialResults={initialResults}
-          openSubmitModal={openSubmitModal}
-          toggleSubmitModal={toggleSubmitModal}
-          toggleSuccessModal={toggleSuccessModal}
+          transactionSignature={transactionSignature}
         />
       )}
 
-      {isLoading && <Loader isLoading />}
-      <Notification alertState={alertState} setAlertState={setAlertState} />
+      <Loader isLoading={isLoading} />
+      <Notification />
     </>
   );
 };

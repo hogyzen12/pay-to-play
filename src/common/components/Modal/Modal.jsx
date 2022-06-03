@@ -6,14 +6,14 @@ import {
   ModalConfirmation,
 } from 'common/components';
 
-const Modal = ({ modalProps }) => {
+const Modal = ({ connection }) => {
   const { modalType } = useSelector(state => state.modal);
 
   return (
     <>
-      {modalType === 'submit' && <ModalSubmit {...modalProps} />}
-      {modalType === 'success' && <ModalSuccess {...modalProps} />}
-      {modalType === 'confirm' && <ModalConfirmation {...modalProps} />}
+      {modalType === 'submit' && <ModalSubmit connection={connection} />}
+      {modalType === 'success' && <ModalSuccess />}
+      {modalType === 'confirm' && <ModalConfirmation />}
     </>
   );
 };

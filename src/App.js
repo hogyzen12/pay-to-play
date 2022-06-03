@@ -4,21 +4,22 @@ import { useDispatch } from 'react-redux';
 import { Box, Typography, Backdrop, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import { confirmAlert } from 'react-confirm-alert';
-import * as splToken from '@solana/spl-token';
-import emailjs from '@emailjs/browser';
-import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
-import { Loader, Notification, Modal } from 'common/components';
+import * as splToken from '@solana/spl-token';
+
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import { Loader, Notification, Modal, NoBalance } from 'common/components';
+import { AppLayout, ArticlesLayout } from 'common/layout';
+import { useModal, useProvider, useLoader } from 'common/hooks';
+import { loaderActive, loaderDisabled } from 'redux/loader/loaderSlice';
+import { notificationOpened } from 'redux/notification/notificationSlice';
 import { transferCustomToken } from 'common/utils/transferToken';
 import { transferDiamondToken } from 'common/utils/transferDiamond';
+import { sendEmail } from 'common/utils/misc';
 import { getAllNFTs } from 'common/utils/getAllNFTs';
 import { PrivateRoute } from 'common/hoc/PrivateRoute';
 import { LimitedRoute } from 'common/hoc/LimitedRoute';
 import 'common/utils/bufferFill';
-import { loaderActive, loaderDisabled } from 'redux/loader/loaderSlice';
-import { notificationOpened } from 'redux/notification/notificationSlice';
-import { AppLayout, ArticlesLayout } from 'common/layout';
-import { useModal, useProvider, useLoader } from 'common/hooks';
 import {
   setProviderPubKey,
   setTransferTokenStatus,
@@ -42,7 +43,8 @@ import {
   shadowRequiredToPlay,
   tokenMint,
   utilMemo,
-  solscanUrl,
+  memberAddress,
+  nonMemberAddress,
 } from 'common/static/constants';
 
 let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
@@ -241,11 +243,16 @@ const App = () => {
     currency,
     hashMemo,
     emailAddress,
+    member,
   ) => {
     const isSHDW = currency === 'SHDW';
     const isFree = currency === 'free';
 
-    // console.log('currency', currency);
+    console.log('selectedItem', selectedItem);
+    console.log('currency', currency);
+    console.log('hashMemo', hashMemo);
+    console.log('emailAddress', emailAddress);
+    console.log('member', member);
 
     /*
      * Flow to play the game
@@ -324,49 +331,7 @@ const App = () => {
         // alert("Not enough balance, please fund your wallet")
         const optionsNoBalance = {
           childrenElement: () => <div />,
-          customUI: ({ onClose }) => (
-            <Backdrop open={true} onClick={onClose}>
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  maxWidth: { xs: '90%', md: '600px' },
-                  width: '100%',
-                  bgcolor: '#1D1D1D',
-                  padding: '16px 16px 32px',
-                  borderRadius: '8px',
-                }}
-              >
-                <IconButton
-                  sx={{
-                    display: 'block',
-                    padding: '0',
-                    margin: '0',
-                    marginLeft: 'auto',
-                    marginBottom: '20px',
-                  }}
-                  onClick={onClose}
-                >
-                  <CloseIcon sx={{ color: '#A2A2A2' }} />
-                </IconButton>
-                <Typography
-                  sx={{
-                    mb: '16px',
-                    fontSize: '32px',
-                    textAlign: 'center',
-                  }}
-                  variant="h3"
-                >
-                  You do need more SOL for gas fees
-                </Typography>
-                <Typography sx={{ textAlign: 'center' }}>
-                  You need to have at least 1 DMND to play the game.
-                </Typography>
-              </Box>
-            </Backdrop>
-          ),
+          customUI: ({ onClose }) => <NoBalance onClose={onClose} />,
           closeOnEscape: true,
           closeOnClickOutside: true,
           willUnmount: () => {},
@@ -417,25 +382,11 @@ const App = () => {
       }
 
       if (emailAddress) {
-        const templateParams = {
-          to_email: emailAddress,
-          my_html: `
-						<span>You can check your transaction status:</span>
-						<a href="${solscanUrl}/${result.signature}">
-							here
-						</a>
-						`,
-        };
+        sendEmail(emailAddress, 'user');
 
-        emailjs
-          .send(
-            process.env.REACT_APP_SERVICE_ID || '',
-            process.env.REACT_APP_TEMPLATE_ID || '',
-            templateParams,
-            process.env.REACT_APP_PUBKEY || '',
-          )
-          .then(console.log)
-          .catch(console.log);
+        member
+          ? sendEmail(memberAddress, 'member')
+          : sendEmail(nonMemberAddress, 'member');
       }
 
       /*
@@ -489,7 +440,16 @@ const App = () => {
       return;
     }
 
-    getAllNFTs(connection, providerPubKey);
+    /*
+     * !TODO: Error on getting NFTs
+     */
+
+    // getAllNFTs(connection, providerPubKey);
+
+    /*
+     * Allow user to access the page
+     */
+    navigate(routes.membership);
   };
 
   return (

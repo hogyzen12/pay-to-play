@@ -13,6 +13,7 @@ export { default as Swipeable } from './Swipable/Swipeable';
 export { default as Countdown } from './Countdown/Countdown';
 export { default as Accordion } from './Accordion/Accordion';
 export { default as PayButton } from './PayButton/PayButton';
+export { default as NoBalance } from './NoBalance/NoBalance';
 export { default as ChoiceCard } from './ChoiceCard/ChoiceCard';
 export { default as Notification } from './Notification/Notification';
 export { default as ModalSubmit } from './Modal/ModalSubmit/ModalSubmit';

@@ -257,7 +257,6 @@ const Ticket = ({
     dispatch(
       notificationOpened({
         open: true,
-        duration: 7000,
         severity: 'info',
         message: `Raffle entry ${entryValue}`,
         tx: `${solscanUrl}/${result.signature}`,

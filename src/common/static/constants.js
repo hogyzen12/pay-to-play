@@ -2,6 +2,8 @@ import { clusterApiUrl, LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
 
 export const NETWORK = clusterApiUrl('mainnet-beta');
 export const solscanUrl = 'https://solscan.io/tx';
+export const memberAddress = 'memberclaims@cryptonary.com';
+export const nonMemberAddress = 'nonmemberclaims@cryptonary.com';
 export const totalQuestions = 30;
 export const SOLamount = '0.1';
 export const DHMTamount = '1';

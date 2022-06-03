@@ -1,6 +1,8 @@
+import emailjs from '@emailjs/browser';
 import { localStorageGet, localStorageSet } from 'common/utils/localStorage';
 import { fillAnswers } from 'common/utils/fillAnswers';
 import { initialResults } from 'common/static/results';
+import { solscanUrl } from 'common/static/constants';
 
 export const toDate = value => {
   if (!value) return;
@@ -41,4 +43,39 @@ export const generateResults = () => {
   }
 
   localStorageSet('results', initialResults);
+};
+
+export const sendEmail = (emailAddress, role, signature) => {
+  const userTemplate = {
+    to_email: emailAddress,
+    my_html: `
+			<span>You can check your transaction status:</span>
+			<a href="${solscanUrl}/${signature}">
+				here
+			</a>
+			`,
+  };
+
+  const memberTemplate = {
+    to_email: emailAddress,
+    my_html: `
+			<span>You can check your transaction status:</span>
+			<a href="${solscanUrl}/${signature}">
+				here
+			</a>
+			`,
+  };
+
+  const userTemplateID = process.env.REACT_APP_TEMPLATE_ID;
+  const memberTemplateID = process.env.REACT_APP_TEMPLATE_PREMIUM_ID;
+
+  emailjs
+    .send(
+      process.env.REACT_APP_SERVICE_ID,
+      role === 'member' ? memberTemplateID : userTemplateID,
+      role === 'member' ? memberTemplate : userTemplate,
+      process.env.REACT_APP_PUBKEY,
+    )
+    .then(console.log)
+    .catch(console.log);
 };

@@ -47,7 +47,15 @@ const Game = () => {
 
   return (
     <Box sx={styles.game}>
-      <CrosswordProvider data={data} theme={theme} ref={crosswordRef}>
+      <CrosswordProvider
+        data={data}
+        theme={theme}
+        ref={crosswordRef}
+        onCellChange={(row, col, char) => console.log(row, col, char)}
+        onAnswerComplete={(direction, number, correct, answer) => {
+          console.log('answer', direction, number, correct, answer);
+        }}
+      >
         <Box sx={styles.grid}>
           <CrosswordGrid />
         </Box>

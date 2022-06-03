@@ -20,24 +20,20 @@ import staticContent from 'common/static/content.json';
 const { time, guessed, title, across, button, down, something } =
   staticContent.pages.crossword.submitModal;
 
-const ModalSubmit = ({ timeDuration, submitResults, pause }) => {
+const ModalSubmit = ({ submitResults }) => {
   const [totalGuesses, setTotalGuesses] = useState(0);
   const dispatch = useDispatch();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
-  const { isModalOpen, modalType } = useSelector(state => state.modal);
+  const { isModalOpen } = useSelector(state => state.modal);
 
   useEffect(() => {
-    if (isModalOpen && modalType === 'submit') pause();
-  }, [isModalOpen, modalType, pause]);
-
-  useEffect(() => {
-    if (isModalOpen && modalType === 'submit') {
+    if (isModalOpen) {
       setTotalGuesses(0);
       getGuessesTotal('across');
       getGuessesTotal('down');
     }
-  }, [isModalOpen, modalType]);
+  }, [isModalOpen]);
 
   const handleSubmit = () => {
     submitResults();
@@ -58,14 +54,14 @@ const ModalSubmit = ({ timeDuration, submitResults, pause }) => {
       <Box sx={styles.heading} component="header">
         <Typography sx={styles.title}>{title}</Typography>
         <Box sx={styles.statsWrapper}>
-          <Box sx={styles.stats}>
+          {/* <Box sx={styles.stats}>
             <Typography sx={styles.statsTitle} variant="h3">
               {time}
             </Typography>
             <Typography sx={styles.statsResult} variant="h3">
               {timeDuration}
             </Typography>
-          </Box>
+          </Box> */}
           <Box sx={styles.stats}>
             <Typography sx={styles.statsTitle} variant="h3">
               {guessed}
@@ -134,18 +130,11 @@ const ModalSubmit = ({ timeDuration, submitResults, pause }) => {
   return (
     <>
       {matches ? (
-        <SubmitModal
-          open={isModalOpen && modalType === 'submit'}
-          onClose={handleClose}
-        >
+        <SubmitModal open={isModalOpen} onClose={handleClose}>
           {modalContent()}
         </SubmitModal>
       ) : (
-        <Drawer
-          anchor="bottom"
-          open={isModalOpen && modalType === 'submit'}
-          onClose={handleClose}
-        >
+        <Drawer anchor="bottom" open={isModalOpen} onClose={handleClose}>
           {modalContent()}
         </Drawer>
       )}

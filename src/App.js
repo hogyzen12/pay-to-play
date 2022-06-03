@@ -107,6 +107,10 @@ const App = () => {
    */
 
   useEffect(() => {
+    if (isModalOpen) pause();
+  }, [isModalOpen, modalType, pause]);
+
+  useEffect(() => {
     !openAgreement ? start() : pause();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [openAgreement]);
@@ -784,10 +788,8 @@ const App = () => {
         </Routes>
       </Suspense>
 
-      {isModalOpen && pathname === routes.crossword && (
+      {isModalOpen && (
         <Modal
-          pause={pause}
-          timeDuration={timeDuration}
           submitResults={submitResults}
           initialResults={initialResults}
           transactionSignature={transactionSignature}

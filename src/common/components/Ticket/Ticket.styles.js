@@ -52,5 +52,6 @@ export const styles = {
     padding: '0',
     display: 'flex',
     justifyContent: 'center',
+    mt: 'auto',
   },
 };

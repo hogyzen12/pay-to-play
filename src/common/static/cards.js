@@ -2,7 +2,7 @@ import game from 'assets/image/cards/game.jpg';
 import raffle from 'assets/image/cards/raffle.png';
 import discount from 'assets/image/cards/discount.jpg';
 import cpro from 'assets/image/cards/cpro.png';
-import future from 'assets/image/cards/future.png';
+import future from 'assets/image/cards/articles_head.png';
 
 import { routes } from 'routes';
 

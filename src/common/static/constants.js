@@ -28,13 +28,13 @@ export const gameWalletPublicKey = new PublicKey(
   'CproxWoLCk4QrCd3VJNUpo3QZf3bjEnTN1FuBcRbZYaw',
 );
 export const portalsRafflePublicKey = new PublicKey(
-  'RfLMVUiXmxmxry79R2qNaxwTBhCriyMxZkBCRe9SUKE',
+  'Rf3PiAvNdy6KgHMXQhLr1fJPQujbvKmopHyoM6eP4jP',
 );
 export const tombstonedRafflePublicKey = new PublicKey(
-  'RfL6fnU4HGRWuzK7Ty9x9Wh74iUUfKZYCEx2eqwyGrG',
+  'Rf3XUKqNiDeXnLdf96xqddwMBtuC3EzVRYNVXeQGUc1',
 );
 export const diamondsGameRafflePublicKey = new PublicKey(
-  'RfLp216Smd15xDGbJKb6gxYUPyKj2aLoMPhzRNNcYke',
+  'gm2bnBrvoRQRhvU1d24FPgHmdMySfbxeYcXxvFAZkpc',
 );
 export const testRafflePublicKey = new PublicKey(
   'RfLp216Smd15xDGbJKb6gxYUPyKj2aLoMPhzRNNcYke', // !TEST VALUE

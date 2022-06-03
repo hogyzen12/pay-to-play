@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Box,
@@ -12,9 +12,10 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
+import { Logo, Timer } from 'common/components';
+import { useProvider } from 'common/hooks';
 import { setProvider } from 'redux/provider/providerSlice';
 import { getTimerDisplayed } from 'common/utils/misc';
-import { ReactComponent as Logo } from 'assets/icons/diamond.svg';
 import { routes } from 'routes';
 import staticContent from 'common/static/content.json';
 
@@ -52,27 +53,14 @@ const styles = {
     ml: '16px',
   },
   burgerBtn: { color: '#fff' },
-  timer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  time: {
-    color: 'custom.white',
-    // marginRight: '16px',
-  },
-  timeEnd: {
-    color: '#FF0000',
-  },
 };
 
-const AppBar = ({ hours, minutes, seconds, toggleDrawer }) => {
+const AppBar = ({ toggleDrawer }) => {
   const location = useLocation();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
-  const { provider, providerPubKey } = useSelector(state => state.provider);
+  const { provider, providerPubKey } = useProvider();
 
   const loginHandler = () => {
     if (!provider && window.solana) {
@@ -110,26 +98,8 @@ const AppBar = ({ hours, minutes, seconds, toggleDrawer }) => {
   return (
     <AppHeading sx={styles.header} position="static">
       <Toolbar sx={styles.toolbar}>
-        <IconButton
-          size="large"
-          edge="start"
-          onClick={() => navigate(routes.home)}
-        >
-          <Logo width="32" />
-        </IconButton>
-
-        {displayTimer && (
-          <Box sx={styles.timer}>
-            <Typography
-              sx={minutes === 0 && seconds <= 10 ? styles.timeEnd : styles.time}
-              variant="h3"
-            >
-              {hours < 10 ? `0${hours}` : hours} :{' '}
-              {minutes < 10 ? `0${minutes}` : minutes} :{' '}
-              {seconds < 10 ? `0${seconds}` : seconds}
-            </Typography>
-          </Box>
-        )}
+        <Logo />
+        {displayTimer && <Timer />}
 
         <Box sx={styles.wallet}>
           {location.pathname === routes.home && !providerPubKey && (

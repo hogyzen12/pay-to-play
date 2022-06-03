@@ -8,7 +8,7 @@ import staticContent from 'common/static/content.json';
 
 const { title, description } = staticContent.meta.crossword;
 
-const Crossword = ({ gameRef, gameReseted, setGameReseted }) => (
+const Crossword = () => (
   <AppContainer>
     <AnimatePresence>
       <Box
@@ -17,11 +17,7 @@ const Crossword = ({ gameRef, gameReseted, setGameReseted }) => (
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <Game
-          gameRef={gameRef}
-          gameReseted={gameReseted}
-          setGameReseted={setGameReseted}
-        />
+        <Game />
       </Box>
     </AnimatePresence>
   </AppContainer>

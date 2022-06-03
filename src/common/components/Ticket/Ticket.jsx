@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as splToken from '@solana/spl-token';
 import { confirmAlert } from 'react-confirm-alert';
-import { Connection } from '@solana/web3.js';
 import { Close as CloseIcon } from '@mui/icons-material';
 import {
   Box,
@@ -17,13 +16,12 @@ import {
 import { motion } from 'framer-motion';
 
 import {
-  NETWORK,
   tokenMint,
-  txLink,
+  solscanUrl,
   DHMTamount,
   diamondsRequiredToPlay,
 } from 'common/static/constants';
-import { useCountdown } from 'common/hooks/useCountdown';
+import { useCountdown } from 'common/hooks';
 import { PayButton, Countdown } from 'common/components';
 import { transferDiamondToken } from 'common/utils/transferDiamond';
 import { loaderActive, loaderDisabled } from 'redux/loader/loaderSlice';
@@ -47,7 +45,6 @@ const Ticket = ({
   raffleWalletPublicKey,
 }) => {
   const [rafflesSold, setRafflesSold] = useState(0);
-  const [winner, setWinner] = useState('Will Smith');
   const [winners, setWinners] = useState(0);
   const dispatch = useDispatch();
   const { provider, providerPubKey } = useSelector(state => state.provider);
@@ -263,7 +260,7 @@ const Ticket = ({
         duration: 7000,
         severity: 'info',
         message: `Raffle entry ${entryValue}`,
-        tx: `${txLink}/${result.signature}`,
+        tx: `${solscanUrl}/${result.signature}`,
       }),
     );
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export function useSticky() {
+function useSticky() {
   const [sticky, setSticky] = useState(true);
 
   useEffect(() => {
@@ -23,3 +23,5 @@ export function useSticky() {
 
   return { sticky };
 }
+
+export default useSticky;

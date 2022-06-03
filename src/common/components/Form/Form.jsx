@@ -2,7 +2,6 @@ import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Box, Typography, TextField, Button } from '@mui/material';
 import { emailPattern } from 'common/static/constants';
-import { checkProfilesRequest } from 'common/api/api';
 import { styles } from './Form.styles';
 import staticContent from 'common/static/content.json';
 
@@ -27,7 +26,6 @@ const Form = ({ handlePayDHMT }) => {
     if (!email) return;
 
     await handlePayDHMT(null, dhmt, sha1(email), email);
-    await checkProfilesRequest(email);
 
     reset();
   };

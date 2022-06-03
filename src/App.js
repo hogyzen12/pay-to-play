@@ -1,13 +1,6 @@
-import { Suspense, useEffect, useState, useRef } from 'react';
-import {
-  Routes,
-  Route,
-  useNavigate,
-  useLocation,
-  Navigate,
-} from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useTimer } from 'react-timer-hook';
+import { Suspense, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Box, Typography, Backdrop, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import { confirmAlert } from 'react-confirm-alert';
@@ -15,6 +8,21 @@ import * as splToken from '@solana/spl-token';
 import emailjs from '@emailjs/browser';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
+import { Loader, Notification, Modal } from 'common/components';
+import { transferCustomToken } from 'common/utils/transferToken';
+import { transferDiamondToken } from 'common/utils/transferDiamond';
+import { getAllNFTs } from 'common/utils/getAllNFTs';
+import { PrivateRoute } from 'common/hoc/PrivateRoute';
+import { LimitedRoute } from 'common/hoc/LimitedRoute';
+import 'common/utils/bufferFill';
+import { loaderActive, loaderDisabled } from 'redux/loader/loaderSlice';
+import { notificationOpened } from 'redux/notification/notificationSlice';
+import { AppLayout, ArticlesLayout } from 'common/layout';
+import { useModal, useProvider, useLoader } from 'common/hooks';
+import {
+  setProviderPubKey,
+  setTransferTokenStatus,
+} from 'redux/provider/providerSlice';
 import {
   MainPage,
   MembershipPage,
@@ -23,75 +31,29 @@ import {
   RafflePage,
   NotFoundPage,
   ArticlesPage,
-  routes,
   articlesRoutes,
+  routes,
 } from './routes';
-import { Loader, Notification, Modal } from 'common/components';
-import { localStorageGet, localStorageSet } from 'common/utils/localStorage';
-import { transferCustomToken } from 'common/utils/transferToken';
-import { transferDiamondToken } from 'common/utils/transferDiamond';
-import { initialResults } from 'common/static/results';
-import { PrivateRoute } from 'common/hoc/PrivateRoute';
-import { fillAnswers } from 'common/utils/fillAnswers';
 import {
   NETWORK,
   diamondsRequiredToPlay,
-  expiryTimestamp,
   gameWalletPublicKey,
   shadowMint,
   shadowRequiredToPlay,
-  timeAmount,
   tokenMint,
   utilMemo,
-  txLink,
+  solscanUrl,
 } from 'common/static/constants';
-import 'common/utils/bufferFill';
-import AppLayout from 'common/layout/AppLayout';
-import { ArticlesLayout } from 'common/layout';
-import { getAllNFTs } from 'common/utils/getAllNFTs';
-import { loaderActive, loaderDisabled } from 'redux/loader/loaderSlice';
-import { modalOpened } from 'redux/modal/modalSlice';
-import { notificationOpened } from 'redux/notification/notificationSlice';
-import {
-  setProviderPubKey,
-  setTransferTokenStatus,
-} from 'redux/provider/providerSlice';
 
 let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
-expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + timeAmount);
 
 const App = () => {
-  const [transactionSignature, setTransactionSignature] = useState('');
-  const [openAgreement, setOpenAgreement] = useState(true);
-  const [gameReseted, setGameReseted] = useState(false);
-  const [timeDuration, setTimeDuration] = useState('00:00');
-
-  const { isLoading } = useSelector(state => state.loader);
-  const { provider, providerPubKey } = useSelector(state => state.provider);
-  const { isModalOpen, modalType } = useSelector(state => state.modal);
-
-  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const gameRef = useRef();
 
-  const { hours, minutes, seconds, start, restart, pause, resume } = useTimer({
-    expiryTimestamp,
-    autoStart: false,
-    onExpire: () => {
-      switch (pathname) {
-        case routes.crossword:
-          return generateResults();
-        case routes.raffle:
-        case routes.membership:
-        case routes.merchandise:
-          return pause();
-        default:
-          navigate(routes.home);
-          resetTimer();
-      }
-    },
-  });
+  const { provider, providerPubKey } = useProvider();
+  const { isLoading } = useLoader();
+  const { isModalOpen } = useModal();
 
   /*
    * Connection to the Solana cluster
@@ -105,15 +67,6 @@ const App = () => {
    * 1. connect -> This method gets triggered when the wallet connection is successful
    * 2. disconnect -> This callback method gets triggered when the wallet gets disconnected from the application
    */
-
-  useEffect(() => {
-    if (isModalOpen) pause();
-  }, [isModalOpen, modalType, pause]);
-
-  useEffect(() => {
-    !openAgreement ? start() : pause();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [openAgreement]);
 
   useEffect(() => {
     if (provider && !provider.isConnected) provider.connect();
@@ -292,7 +245,7 @@ const App = () => {
     const isSHDW = currency === 'SHDW';
     const isFree = currency === 'free';
 
-    console.log('currency', currency);
+    // console.log('currency', currency);
 
     /*
      * Flow to play the game
@@ -468,7 +421,7 @@ const App = () => {
           to_email: emailAddress,
           my_html: `
 						<span>You can check your transaction status:</span>
-						<a href="${txLink}/${result.signature}">
+						<a href="${solscanUrl}/${result.signature}">
 							here
 						</a>
 						`,
@@ -539,161 +492,11 @@ const App = () => {
     getAllNFTs(connection, providerPubKey);
   };
 
-  const openSubmitModal = () => {
-    dispatch(modalOpened('submit'));
-
-    if (isModalOpen && modalType === 'submit') resume();
-  };
-
-  const openSuccessModal = () => {
-    dispatch(modalOpened('success'));
-  };
-
-  const resetTimer = () => {
-    const time = new Date();
-    time.setSeconds(time.getSeconds() + 10799);
-    setGameReseted(true);
-    restart(time);
-  };
-
-  const getTimeDuration = () => {
-    const min = (59 - minutes).toString();
-    const sec = (60 - seconds).toString();
-    const formattedMinutes = min.length === 1 ? `0${min}` : min;
-    const formattedSeconds = sec.length === 1 ? `0${sec}` : sec;
-
-    setTimeDuration(`${formattedMinutes}:${formattedSeconds}`);
-  };
-
-  const generateResults = () => {
-    getTimeDuration();
-
-    const data = localStorageGet('guesses');
-
-    if (data && data.guesses) {
-      fillAnswers('across', data.guesses);
-      fillAnswers('down', data.guesses);
-    }
-
-    localStorageSet('results', initialResults);
-    openSubmitModal();
-  };
-
-  const submitResults = async () => {
-    openSubmitModal();
-
-    const acrossAxisString =
-      initialResults.across.reduce((acc, item) => {
-        acc += item.answer ? `| ${item.answer} ` : `|  `;
-
-        return acc;
-      }, '') + '|';
-
-    const downAxisString =
-      initialResults.down.reduce((acc, item) => {
-        acc += item.answer ? `| ${item.answer} ` : `|  `;
-
-        return acc;
-      }, '') + '|';
-
-    const totalResultsString = (acrossAxisString + downAxisString).replace(
-      '||',
-      '|',
-    );
-
-    /*
-     * Now we have answers ready we can write them to the chain
-     * And have the user actually pay for this using the token
-     */
-    const diamondAddress = await splToken.getAssociatedTokenAddress(
-      tokenMint,
-      providerPubKey,
-    );
-
-    /*
-     * Output the ATA to console to check manually
-     * TODO!!!! ADD ERROR HANDLE IF ATA NOT FOUND
-     */
-    // console.log(diamondAddress.toString());
-    // console.log('found ATA');
-
-    /*
-     * Address found and we pull balance succesfully here
-     * Print to console the amount to check
-     */
-    const diamondBalance = await connection.getTokenAccountBalance(
-      diamondAddress,
-    );
-
-    // console.log(diamondBalance.value.amount);
-    // console.log('found balance');
-    // console.log(totalResultsString);
-
-    /*
-     * Time to get them to send us their Diamond
-     * For this we need to use the Associated token accounts
-     * We know the accs will exist as the payer has diamonds to have gotten to this stage
-     * we call our custom function here to do this
-     */
-    dispatch(loaderActive());
-
-    const result = await transferDiamondToken(
-      provider,
-      connection,
-      tokenMint,
-      providerPubKey,
-      gameWalletPublicKey,
-      diamondBalance.value.amount,
-      diamondsRequiredToPlay,
-      totalResultsString,
-    );
-
-    if (!result.status) {
-      setTransferTokenStatus(result.status);
-
-      dispatch(loaderDisabled());
-      dispatch(
-        notificationOpened({
-          open: true,
-          message: 'Error in sending the tokens, Please try again',
-          severity: 'error',
-          tx: '',
-        }),
-      );
-
-      return;
-    }
-
-    /*
-     * If the status is true, that means transaction got successful and we can proceed
-     */
-
-    // console.log('result.status', result.status);
-
-    if (result.signature) {
-      setTransactionSignature(result.signature);
-      openSuccessModal();
-    }
-
-    dispatch(loaderDisabled());
-  };
-
   return (
     <>
       <Suspense fallback={<Loader isLoading />}>
         <Routes>
-          <Route
-            path={routes.home}
-            element={
-              <AppLayout
-                hours={hours}
-                seconds={seconds}
-                minutes={minutes}
-                resetTimer={resetTimer}
-                generateResults={generateResults}
-              />
-            }
-          >
+          <Route path={routes.home} element={<AppLayout />}>
             <Route
               index
               element={
@@ -707,60 +510,32 @@ const App = () => {
             <Route
               path={routes.raffle}
               element={
-                providerPubKey ? (
-                  <RafflePage connection={connection} />
-                ) : (
-                  <Navigate to={routes.home} />
-                )
+                <LimitedRoute
+                  component={<RafflePage connection={connection} />}
+                />
               }
             />
             <Route
               path={routes.membership}
               element={
-                providerPubKey ? (
-                  <MembershipPage handlePayDHMT={handlePayDHMT} />
-                ) : (
-                  <Navigate to={routes.home} />
-                )
+                <LimitedRoute
+                  component={<MembershipPage handlePayDHMT={handlePayDHMT} />}
+                />
               }
             />
             <Route
               path={routes.crossword}
-              element={
-                <PrivateRoute>
-                  <CrosswordPage
-                    gameRef={gameRef}
-                    gameReseted={gameReseted}
-                    setGameReseted={setGameReseted}
-                  />
-                </PrivateRoute>
-              }
+              element={<PrivateRoute component={<CrosswordPage />} />}
             />
             <Route
               path={routes.merchandise}
-              element={
-                <PrivateRoute>
-                  <MerchandisePage />
-                </PrivateRoute>
-              }
+              element={<PrivateRoute component={<MerchandisePage />} />}
             />
           </Route>
 
           <Route
             path={routes.articles}
-            element={
-              providerPubKey ? (
-                <ArticlesLayout
-                  hours={hours}
-                  seconds={seconds}
-                  minutes={minutes}
-                  openAgreement={openAgreement}
-                  setOpenAgreement={setOpenAgreement}
-                />
-              ) : (
-                <Navigate to={routes.home} />
-              )
-            }
+            element={<LimitedRoute component={<ArticlesLayout />} />}
           >
             <Route
               index
@@ -775,11 +550,7 @@ const App = () => {
               <Route
                 key={path}
                 path={path}
-                element={
-                  <PrivateRoute>
-                    <Article />
-                  </PrivateRoute>
-                }
+                element={<PrivateRoute component={<Article />} />}
               />
             ))}
           </Route>
@@ -788,14 +559,7 @@ const App = () => {
         </Routes>
       </Suspense>
 
-      {isModalOpen && (
-        <Modal
-          submitResults={submitResults}
-          initialResults={initialResults}
-          transactionSignature={transactionSignature}
-        />
-      )}
-
+      {isModalOpen && <Modal connection={connection} />}
       <Loader isLoading={isLoading} />
       <Notification />
     </>

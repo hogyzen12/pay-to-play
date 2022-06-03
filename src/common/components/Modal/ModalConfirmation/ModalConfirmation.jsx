@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import {
   Button,
   Dialog,
@@ -9,25 +10,29 @@ import {
   useMediaQuery,
   Typography,
 } from '@mui/material';
+import { modalClosed } from 'redux/modal/modalSlice';
+import { useModal } from 'common/hooks';
 import { useTheme } from '@mui/material/styles';
-import { styles } from './Confirmation.styles';
+import { styles } from './ModalConfirmation.styles';
 import staticContent from 'common/static/content.json';
 
 const { title, description, agree } = staticContent.pages.articles.dialog;
 
-const Confirmation = ({ open, setOpen }) => {
+const ModalConfirmation = () => {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const { isModalOpen, modalType } = useModal();
 
   const handleClose = (event, reason) => {
     if (reason && reason === 'backdropClick') return;
 
-    setOpen(false);
+    dispatch(modalClosed());
   };
 
   return (
     <Dialog
-      open={open}
+      open={isModalOpen && modalType === 'confirm'}
       fullScreen={fullScreen}
       onClose={handleClose}
       PaperProps={{
@@ -56,4 +61,4 @@ const Confirmation = ({ open, setOpen }) => {
   );
 };
 
-export default Confirmation;
+export default ModalConfirmation;

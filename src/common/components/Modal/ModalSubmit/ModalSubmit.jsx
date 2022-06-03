@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import * as splToken from '@solana/spl-token';
 import {
   Box,
   Typography,
@@ -9,23 +10,36 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
+import {
+  setTransferTokenStatus,
+  setTransactionSignature,
+} from 'redux/provider/providerSlice';
+import { loaderActive, loaderDisabled } from 'redux/loader/loaderSlice';
+import { modalClosed, modalOpened } from 'redux/modal/modalSlice';
+import { notificationOpened } from 'redux/notification/notificationSlice';
+import { transferDiamondToken } from 'common/utils/transferDiamond';
 import { Button, Answer, Tabs } from 'common/components';
-import { ReactComponent as AcrossIcon } from 'assets/icons/across.svg';
+import {
+  totalQuestions,
+  tokenMint,
+  gameWalletPublicKey,
+  diamondsRequiredToPlay,
+} from 'common/static/constants';
 import { initialResults } from 'common/static/results';
-import { totalQuestions } from 'common/static/constants';
-import { modalClosed } from 'redux/modal/modalSlice';
+import { ReactComponent as AcrossIcon } from 'assets/icons/across.svg';
 import { styles } from './ModalSubmit.styles';
 import staticContent from 'common/static/content.json';
 
-const { time, guessed, title, across, button, down, something } =
+const { guessed, title, across, button, down, something } =
   staticContent.pages.crossword.submitModal;
 
-const ModalSubmit = ({ submitResults }) => {
+const ModalSubmit = ({ connection }) => {
   const [totalGuesses, setTotalGuesses] = useState(0);
   const dispatch = useDispatch();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   const { isModalOpen } = useSelector(state => state.modal);
+  const { provider, providerPubKey } = useSelector(state => state.provider);
 
   useEffect(() => {
     if (isModalOpen) {
@@ -34,10 +48,6 @@ const ModalSubmit = ({ submitResults }) => {
       getGuessesTotal('down');
     }
   }, [isModalOpen]);
-
-  const handleSubmit = () => {
-    submitResults();
-  };
 
   const handleClose = () => {
     dispatch(modalClosed());
@@ -49,19 +59,109 @@ const ModalSubmit = ({ submitResults }) => {
     });
   };
 
+  const handleSubmit = async () => {
+    // dispatch(modalOpened('submit'));
+
+    const acrossAxisString =
+      initialResults.across.reduce((acc, item) => {
+        acc += item.answer ? `| ${item.answer} ` : `|  `;
+
+        return acc;
+      }, '') + '|';
+
+    const downAxisString =
+      initialResults.down.reduce((acc, item) => {
+        acc += item.answer ? `| ${item.answer} ` : `|  `;
+
+        return acc;
+      }, '') + '|';
+
+    const totalResultsString = (acrossAxisString + downAxisString).replace(
+      '||',
+      '|',
+    );
+
+    /*
+     * Now we have answers ready we can write them to the chain
+     * And have the user actually pay for this using the token
+     */
+    const diamondAddress = await splToken.getAssociatedTokenAddress(
+      tokenMint,
+      providerPubKey,
+    );
+
+    /*
+     * Output the ATA to console to check manually
+     * TODO!!!! ADD ERROR HANDLE IF ATA NOT FOUND
+     */
+    // console.log(diamondAddress.toString());
+    // console.log('found ATA');
+
+    /*
+     * Address found and we pull balance succesfully here
+     * Print to console the amount to check
+     */
+    const diamondBalance = await connection.getTokenAccountBalance(
+      diamondAddress,
+    );
+
+    // console.log(diamondBalance.value.amount);
+    // console.log('found balance');
+    // console.log(totalResultsString);
+
+    /*
+     * Time to get them to send us their Diamond
+     * For this we need to use the Associated token accounts
+     * We know the accs will exist as the payer has diamonds to have gotten to this stage
+     * we call our custom function here to do this
+     */
+    dispatch(loaderActive());
+
+    const result = await transferDiamondToken(
+      provider,
+      connection,
+      tokenMint,
+      providerPubKey,
+      gameWalletPublicKey,
+      diamondBalance.value.amount,
+      diamondsRequiredToPlay,
+      totalResultsString,
+    );
+
+    if (!result.status) {
+      dispatch(setTransferTokenStatus(result.status));
+      dispatch(loaderDisabled());
+      dispatch(
+        notificationOpened({
+          open: true,
+          message: 'Error in sending the tokens, Please try again',
+          severity: 'error',
+          tx: '',
+        }),
+      );
+
+      return;
+    }
+
+    /*
+     * If the status is true, that means transaction got successful and we can proceed
+     */
+
+    // console.log('result.status', result.status);
+
+    if (result.signature) {
+      dispatch(setTransactionSignature(result.signature));
+      dispatch(modalOpened('success'));
+    }
+
+    dispatch(loaderDisabled());
+  };
+
   const modalContent = () => (
     <Box sx={matches ? styles.modal : styles.drawer}>
       <Box sx={styles.heading} component="header">
         <Typography sx={styles.title}>{title}</Typography>
         <Box sx={styles.statsWrapper}>
-          {/* <Box sx={styles.stats}>
-            <Typography sx={styles.statsTitle} variant="h3">
-              {time}
-            </Typography>
-            <Typography sx={styles.statsResult} variant="h3">
-              {timeDuration}
-            </Typography>
-          </Box> */}
           <Box sx={styles.stats}>
             <Typography sx={styles.statsTitle} variant="h3">
               {guessed}

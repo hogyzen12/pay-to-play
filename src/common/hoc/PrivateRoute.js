@@ -1,9 +1,9 @@
 import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useProvider } from 'common/hooks';
 import { routes } from 'routes';
 
-export const PrivateRoute = ({ children }) => {
-  const { transferTokenStatus } = useSelector(state => state.provider);
+export const PrivateRoute = ({ component: Component }) => {
+  const { transferTokenStatus } = useProvider();
 
-  return transferTokenStatus ? children : <Navigate to={routes.home} />;
+  return transferTokenStatus ? Component : <Navigate to={routes.home} />;
 };

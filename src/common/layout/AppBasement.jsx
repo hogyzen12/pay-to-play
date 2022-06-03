@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   Box,
   Toolbar,
@@ -9,9 +9,12 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
-import { useSticky } from 'common/hooks/useSticky';
+import { modalOpened } from 'redux/modal/modalSlice';
+import { useSticky, useProvider } from 'common/hooks';
 import { Button, Swipeable } from 'common/components';
+import { gameResetActive } from 'redux/game/gameSlice';
 import { initialResults } from 'common/static/results';
+import { generateResults } from 'common/utils/misc';
 import staticContent from 'common/static/content.json';
 
 const { connected, notConnected } = staticContent.header;
@@ -79,14 +82,15 @@ const styles = {
   },
 };
 
-const AppBasement = ({ open, resetTimer, toggleDrawer, generateResults }) => {
-  const { providerPubKey } = useSelector(state => state.provider);
-  const { sticky } = useSticky();
+const AppBasement = ({ open, toggleDrawer }) => {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const { providerPubKey } = useProvider();
+  const { sticky } = useSticky();
 
   const handleReset = () => {
-    if (resetTimer) resetTimer();
+    dispatch(gameResetActive());
 
     initialResults.across.forEach(item => {
       item.answer = '';
@@ -99,6 +103,7 @@ const AppBasement = ({ open, resetTimer, toggleDrawer, generateResults }) => {
   const handleSubmit = () => {
     toggleDrawer();
     generateResults();
+    dispatch(modalOpened('submit'));
   };
 
   const basementToolbar = () => (

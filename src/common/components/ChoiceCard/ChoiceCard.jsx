@@ -22,8 +22,8 @@ const ChoiceCard = ({
   available,
   description,
   selectedPage,
-  handleClickSOL,
   transitionDelay,
+  handleClickSOL,
   handleClickDHMT,
   customStyles = {},
 }) => {

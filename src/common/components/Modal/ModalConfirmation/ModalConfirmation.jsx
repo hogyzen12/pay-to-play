@@ -1,4 +1,7 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useTheme } from '@mui/material/styles';
 import {
   Button,
   Dialog,
@@ -9,25 +12,31 @@ import {
   useMediaQuery,
   Typography,
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { styles } from './Confirmation.styles';
+import { modalClosed } from 'redux/modal/modalSlice';
+import { useModal } from 'common/hooks';
+import { routes } from 'routes';
+import { styles } from './ModalConfirmation.styles';
 import staticContent from 'common/static/content.json';
 
 const { title, description, agree } = staticContent.pages.articles.dialog;
+const { message } = staticContent.pages.crossword.dialog;
 
-const Confirmation = ({ open, setOpen }) => {
+const ModalConfirmation = () => {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const { pathname } = useLocation();
+  const { isModalOpen, modalType } = useModal();
 
   const handleClose = (event, reason) => {
     if (reason && reason === 'backdropClick') return;
 
-    setOpen(false);
+    dispatch(modalClosed());
   };
 
   return (
     <Dialog
-      open={open}
+      open={isModalOpen && modalType === 'confirm'}
       fullScreen={fullScreen}
       onClose={handleClose}
       PaperProps={{
@@ -41,7 +50,7 @@ const Confirmation = ({ open, setOpen }) => {
 
       <DialogContent sx={styles.content}>
         <DialogContentText sx={styles.description}>
-          {description}
+          {pathname === `/${routes.crossword}` ? message : description}
         </DialogContentText>
       </DialogContent>
 
@@ -56,4 +65,4 @@ const Confirmation = ({ open, setOpen }) => {
   );
 };
 
-export default Confirmation;
+export default ModalConfirmation;

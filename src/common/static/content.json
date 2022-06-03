@@ -109,6 +109,9 @@
         "down": "Down",
         "something": "Something isnt right?",
         "button": "Submit"
+      },
+      "dialog": {
+        "message": "Please do not leave the article page until you have finished. To re-access the content you will have to repeat the payment."
       }
     },
     "notFound": {

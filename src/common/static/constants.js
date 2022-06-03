@@ -1,13 +1,15 @@
 import { clusterApiUrl, LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
 
 export const NETWORK = clusterApiUrl('mainnet-beta');
-export const txLink = 'https://solscan.io/tx';
-export const expiryTimestamp = new Date();
+export const solscanUrl = 'https://solscan.io/tx';
+export const memberAddress = 'memberclaims@cryptonary.com';
+export const nonMemberAddress = 'nonmemberclaims@cryptonary.com';
 export const totalQuestions = 30;
 export const SOLamount = '0.1';
 export const DHMTamount = '1';
 export const SHDWamount = '1';
 export const timeAmount = 10799; // one hour 3600
+export const expiryTimestamp = new Date();
 
 export let shadowRequiredToPlay = 1.0 * LAMPORTS_PER_SOL;
 export let diamondsRequiredToPlay = 1;

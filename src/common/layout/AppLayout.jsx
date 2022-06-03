@@ -21,13 +21,7 @@ const styles = {
   },
 };
 
-const AppLayout = ({
-  hours,
-  seconds,
-  minutes,
-  resetTimer,
-  generateResults,
-}) => {
+const AppLayout = () => {
   const [open, setOpen] = useState(false);
   const [showBasement, setShowBasement] = useState(false);
   const location = useLocation();
@@ -40,25 +34,13 @@ const AppLayout = ({
 
   return (
     <Box sx={styles.layout}>
-      <AppBar
-        hours={hours}
-        seconds={seconds}
-        minutes={minutes}
-        toggleDrawer={toggleDrawer}
-      />
+      <AppBar toggleDrawer={toggleDrawer} />
 
       <AppWrapper>
         <Outlet />
       </AppWrapper>
 
-      {showBasement && (
-        <AppBasement
-          open={open}
-          resetTimer={resetTimer}
-          toggleDrawer={toggleDrawer}
-          generateResults={generateResults}
-        />
-      )}
+      {showBasement && <AppBasement open={open} toggleDrawer={toggleDrawer} />}
     </Box>
   );
 };

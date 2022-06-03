@@ -124,13 +124,13 @@
     },
     "7": {
       "clue": "The technology used to scale ETH via L2s",
-      "answer": "ZKROLLUPS",
-      "row": 6,
+      "answer": "ROLLUPS",
+      "row": 8,
       "col": 22
     },
     "8": {
       "clue": "Rare and valuable gem close to the heart of everyone playing this game",
-      "answer": "DIAMOND",
+      "answer": "DMNDS",
       "row": 7,
       "col": 0
     },

@@ -13,25 +13,25 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
-import { modalClosed } from 'redux/modal/modalSlice';
 import { ReactComponent as CheckmarkImage } from 'assets/icons/checkmark.svg';
+import { modalClosed } from 'redux/modal/modalSlice';
 import { Button } from 'common/components';
+import { useModal, useProvider } from 'common/hooks';
 import { routes } from 'routes';
 import { styles } from './ModalSuccess.styles';
-import { txLink } from 'common/static/constants';
+import { solscanUrl } from 'common/static/constants';
 import staticContent from 'common/static/content.json';
 
 const { title, description, button, link } =
   staticContent.pages.crossword.successModal;
 
-const ModalSuccess = ({ transactionSignature }) => {
-  const dispatch = useDispatch();
+const ModalSuccess = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
-  const { isModalOpen, modalType } = useSelector(state => state.modal);
-
-  const TXID = `${txLink}/${transactionSignature}`;
+  const { isModalOpen, modalType } = useModal();
+  const { transactionSignature } = useProvider();
 
   const handleClose = () => {
     dispatch(modalClosed());
@@ -58,7 +58,11 @@ const ModalSuccess = ({ transactionSignature }) => {
               <Typography sx={styles.title}>{title}</Typography>
               <Typography sx={styles.description} variant="body2">
                 {description}{' '}
-                <Link sx={styles.link} href={TXID} target="_blank">
+                <Link
+                  sx={styles.link}
+                  href={`${solscanUrl}/${transactionSignature}`}
+                  target="_blank"
+                >
                   {link}
                 </Link>
               </Typography>
@@ -88,7 +92,11 @@ const ModalSuccess = ({ transactionSignature }) => {
             <Typography sx={styles.title}>{title}</Typography>
             <Typography sx={styles.description} variant="body2">
               {description}{' '}
-              <Link sx={styles.link} href={TXID} target="_blank">
+              <Link
+                sx={styles.link}
+                href={`${solscanUrl}/${transactionSignature}`}
+                target="_blank"
+              >
                 {link}
               </Link>
             </Typography>

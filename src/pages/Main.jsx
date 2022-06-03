@@ -20,6 +20,7 @@ const styles = {
     gridTemplateColumns: {
       xs: '1fr',
       md: 'repeat(2, 1fr)',
+      lg: 'repeat(3, 1fr)',
       xl: 'repeat(3, 1fr)',
     },
     gridTemplateRows: { xs: 'repeat(5, 1fr)', md: 'repeat(2, 1fr)' },
@@ -28,7 +29,7 @@ const styles = {
   },
   custom: {
     maxWidth: '100%',
-    gridColumn: { md: '1 / 3', xl: '1 / 4' },
+    gridColumn: { md: '1 / 3', lg: '1 / 4', xl: '1 / 4' },
   },
 };
 

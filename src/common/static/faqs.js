@@ -7,7 +7,7 @@ export const raffleFAQs = {
       id: uuidv4(),
       title: 'What is the Diamonds Game?',
       description:
-        'The Diamonds Game is a fun game for holders to try and increase the number of DMNDS they have. The DMND pool has been seeded with 165 DMNDS from the treasury! These initial 165 entries made by the treasury cannot win the game. The number of winners will be determined by the number of entries divided by 10. Each winner will win 10 DMNDS. Unlimited entries until time limit expires - 1 entry per DMND spent. Entries recorded on the blockchain - winners randomly selected. ',
+        'The Diamonds Game is a fun game for holders to try and increase the number of DMNDS they have. The DMND pool has been seeded with DMNDS from the treasury! These initial entries made by the treasury cannot win the game. The number of winners will be determined by the number of entries divided by 10. Each winner will win 10 DMNDS. Unlimited entries until time limit expires - 1 entry per DMND spent. Entries recorded on the blockchain - winners randomly selected. ',
     },
     {
       id: uuidv4(),
@@ -33,6 +33,92 @@ export const raffleFAQs = {
 export const raffleArchive = {
   title: 'Archive - Previous Results',
   items: [
+    {
+      id: uuidv4(),
+      title: 'Diamonds Game #001',
+      description:
+        'Below is all the information needed to verify the game on chain:',
+      archive: [
+        {
+          id: uuidv4(),
+          text: '43 Winners',
+          link: '',
+        },
+        {
+          id: uuidv4(),
+          text: 'Entries, Winners and payouts:',
+          link: 'https://shdw-drive.genesysgo.net/DQeQVxZyuKCQ2jN3dfnzuvSAmq1stD3zy6aoS89K7gqs/Dmnd_game_1.txt',
+        },
+        {
+          id: uuidv4(),
+          text: 'Tickets Sold: 267',
+        },
+        {
+          id: uuidv4(),
+          text: 'Entry Wallet: RfLp216Smd15xDGbJKb6gxYUPyKj2aLoMPhzRNNcYke',
+          link: '',
+        },
+      ],
+    },
+    {
+      id: uuidv4(),
+      title: 'Raffle #004 The Bridged #2302',
+      description:
+        'Below is all the information needed to verify this raffle on chain:',
+      archive: [
+        {
+          id: uuidv4(),
+          text: 'Winner: Ticket #137',
+          link: '',
+        },
+        {
+          id: uuidv4(),
+          text: 'Winning Entry:',
+          link: 'https://solscan.io/tx/59y4ud3ERXcwbXU6aAzE9S4kQ4gY9YrPD9BWZTjBbmy67Heuu7CdY7dKRB8EYMKxbGucNC3UenyNrrHjujrVN9Mv',
+        },
+        {
+          id: uuidv4(),
+          text: 'Tickets Sold: 347',
+        },
+        {
+          id: uuidv4(),
+          text: 'Payout:',
+          link: 'https://solscan.io/tx/M5G37EU5G4fSnCCjsgVZRzE9wgajfc3BK9M1iG2pT5RzoVxNTNjzoaqU1rACLyTtTsvCL1eWs675QbpsNku7L5g',
+        },
+        {
+          id: uuidv4(),
+          text: 'Entry Wallet: RfL6fnU4HGRWuzK7Ty9x9Wh74iUUfKZYCEx2eqwyGrG',
+          link: '',
+        },
+      ],
+    },
+    {
+      id: uuidv4(),
+      title: 'Raffle #003 Geexolotls WLs',
+      description:
+        'Below is all the information needed to verify this raffle on chain:',
+      archive: [
+        {
+          id: uuidv4(),
+          text: '30 Winners',
+          link: '',
+        },
+        {
+          id: uuidv4(),
+          text: 'Entries, Winners and payouts:',
+          link: 'https://shdw-drive.genesysgo.net/DQeQVxZyuKCQ2jN3dfnzuvSAmq1stD3zy6aoS89K7gqs/Raffle_3_results.txt',
+        },
+        {
+          id: uuidv4(),
+          text: 'Tickets Sold: 133',
+        },
+        {
+          id: uuidv4(),
+          text: 'Entry Wallet: RfLMVUiXmxmxry79R2qNaxwTBhCriyMxZkBCRe9SUKE',
+          link: '',
+        },
+      ],
+    },
     {
       id: uuidv4(),
       title: 'Raffle #002 Lionel Trashi',

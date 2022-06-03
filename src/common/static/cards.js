@@ -55,7 +55,7 @@ export const cards = [
     description:
       'Currently under construction - a skill based game that will test your crypto knowledge.',
     image: game,
-    available: false,
+    available: true,
     redirect: routes.crossword,
     transitionDelay: 0.5,
     payment: {

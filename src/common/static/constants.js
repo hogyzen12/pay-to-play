@@ -13,9 +13,9 @@ export let shadowRequiredToPlay = 1.0 * LAMPORTS_PER_SOL;
 export let diamondsRequiredToPlay = 1;
 
 export let utilMemo = 'DMND utility being used';
-export let geexolotlsRaffleMemo = 'Geexolotls Raffle Entry ';
-export let bridgedRaffleMemo = 'Bridged Raffle Entry ';
-export let diamondsGameRaffleMemo = 'Diamonds Game Entry ';
+export let portalsRaffleMemo = 'Portals cc Raffle Entry ';
+export let tombstonedRaffleMemo = 'Tombstoned Raffle Entry ';
+export let diamondsGameRaffleMemo = 'Diamonds Game 2 Entry ';
 export let testMemo = 'Test Entry '; // !TEST VALUE
 
 export const tokenMint = new PublicKey(
@@ -27,10 +27,10 @@ export const shadowMint = new PublicKey(
 export const gameWalletPublicKey = new PublicKey(
   'CproxWoLCk4QrCd3VJNUpo3QZf3bjEnTN1FuBcRbZYaw',
 );
-export const geexolotlsRafflePublicKey = new PublicKey(
+export const portalsRafflePublicKey = new PublicKey(
   'RfLMVUiXmxmxry79R2qNaxwTBhCriyMxZkBCRe9SUKE',
 );
-export const bridgedRafflePublicKey = new PublicKey(
+export const tombstonedRafflePublicKey = new PublicKey(
   'RfL6fnU4HGRWuzK7Ty9x9Wh74iUUfKZYCEx2eqwyGrG',
 );
 export const diamondsGameRafflePublicKey = new PublicKey(

@@ -1,15 +1,15 @@
-import raffle from 'assets/image/raffles/geexolotls.gif';
-import raffle2 from 'assets/image/raffles/bridged.png';
+import raffle from 'assets/image/raffles/portals_cc.png';
+import raffle2 from 'assets/image/raffles/tombstoned_3463.png';
 import raffle3 from 'assets/image/raffles/diamonds_game.png';
 import { routes } from 'routes';
 
 import {
-  geexolotlsRaffleMemo,
-  bridgedRaffleMemo,
+  portalsRaffleMemo,
+  tombstonedRaffleMemo,
   diamondsGameRaffleMemo,
   testMemo,
-  geexolotlsRafflePublicKey,
-  bridgedRafflePublicKey,
+  portalsRafflePublicKey,
+  tombstonedRafflePublicKey,
   diamondsGameRafflePublicKey,
   testRafflePublicKey,
 } from './constants';
@@ -39,28 +39,40 @@ export const tickets = [
   //   raffleWalletPublicKey: raffleTwoWalletPublicKey,
   //   possibleWinners: 0
   // },
+  //{
+  //  title: 'New Raffle',
+  //  image: raffle3,
+  //  redirect: routes.raffle,
+  //  transitionDelay: 0.4,
+  //  buttonText: 'Purchase game entry (1 DMND)',
+  //  targetDate: 'Jun 27, 2022',
+  //  targetTime: '15:00:00',
+  //  raffleMemo: testMemo,
+  //  raffleWalletPublicKey: testRafflePublicKey,
+  //  possibleWinners: 1,
+  //},
   {
-    title: 'GEEXOLOTLS WL spots',
+    title: 'Portals WL spots',
     image: raffle,
     redirect: routes.raffle,
     transitionDelay: 0.1,
     buttonText: 'Purchase raffle entry (1 DMND)',
-    targetDate: 'May 25, 2022',
+    targetDate: 'Jun 10, 2022',
     targetTime: '15:00:00',
-    raffleMemo: geexolotlsRaffleMemo,
-    raffleWalletPublicKey: geexolotlsRafflePublicKey,
-    possibleWinners: 30,
+    raffleMemo: portalsRaffleMemo,
+    raffleWalletPublicKey: portalsRafflePublicKey,
+    possibleWinners: 20,
   },
   {
-    title: 'The Bridged #2302',
+    title: 'Tombstoned #2302',
     image: raffle2,
     redirect: routes.raffle,
     transitionDelay: 0.2,
     buttonText: 'Purchase raffle entry (1 DMND)',
-    targetDate: 'May 27, 2022',
+    targetDate: 'Jun 10, 2022',
     targetTime: '15:00:00',
-    raffleMemo: bridgedRaffleMemo,
-    raffleWalletPublicKey: bridgedRafflePublicKey,
+    raffleMemo: tombstonedRaffleMemo,
+    raffleWalletPublicKey: tombstonedRafflePublicKey,
     possibleWinners: 1,
   },
   {
@@ -69,22 +81,10 @@ export const tickets = [
     redirect: routes.raffle,
     transitionDelay: 0.3,
     buttonText: 'Purchase game entry (1 DMND)',
-    targetDate: 'May 27, 2022',
+    targetDate: 'Jun 10, 2022',
     targetTime: '15:00:00',
     raffleMemo: diamondsGameRaffleMemo,
     raffleWalletPublicKey: diamondsGameRafflePublicKey,
     possibleWinners: 0,
-  },
-  {
-    title: 'New Raffle',
-    image: raffle3,
-    redirect: routes.raffle,
-    transitionDelay: 0.4,
-    buttonText: 'Purchase game entry (1 DMND)',
-    targetDate: 'Jun 27, 2022',
-    targetTime: '15:00:00',
-    raffleMemo: testMemo,
-    raffleWalletPublicKey: testRafflePublicKey,
-    possibleWinners: 1,
   },
 ];

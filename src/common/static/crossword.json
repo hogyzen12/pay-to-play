@@ -1,19 +1,19 @@
 {
   "across": {
     "1": {
-      "clue": "The first name of Ethereum Creator",
+      "clue": "The first name of Ethereum creator",
       "answer": "VITALIK",
       "row": 1,
       "col": 0
     },
     "2": {
-      "clue": "Long term view/timeframe",
+      "clue": "Used to indicate a long term view / time horizon",
       "answer": "MACRO",
       "row": 1,
       "col": 8
     },
     "3": {
-      "clue": "Your best guide in the crypto market",
+      "clue": "Your best guide in the crypto market, and source for accurate and impartial research",
       "answer": "CRYPTONARY",
       "row": 1,
       "col": 14
@@ -25,7 +25,7 @@
       "col": 1
     },
     "5": {
-      "clue": "What happened with Lil Uzi Verts project",
+      "clue": "What Lil Uzi Verts NFT project on Solana could be characterised as",
       "answer": "RUGPULL",
       "row": 6,
       "col": 14
@@ -105,7 +105,7 @@
       "col": 18
     },
     "4": {
-      "clue": "What will happen with ethereum in order for 2.0 to release",
+      "clue": "A major technological advancement and key narrative for Ethereum this year that.",
       "answer": "MERGE",
       "row": 1,
       "col": 8
@@ -141,7 +141,7 @@
       "col": 6
     },
     "10": {
-      "clue": "The acronym used by the founder of FTX",
+      "clue": "The acronym used by the founder of FTX on twitter",
       "answer": "SBFALAMEDA",
       "row": 7,
       "col": 10
@@ -177,7 +177,7 @@
       "col": 1
     },
     "16": {
-      "clue": "The kinda coin you don't want to buy",
+      "clue": "The kinda coin you don't want to buy - usually shilled by influencers",
       "answer": "SHITCOIN",
       "row": 16,
       "col": 13

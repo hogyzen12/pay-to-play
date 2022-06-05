@@ -1,0 +1,186 @@
+{
+  "across": {
+    "1": {
+      "clue": "The first name of Ethereum creator",
+      "answer": "VITALIK",
+      "row": 1,
+      "col": 0
+    },
+    "2": {
+      "clue": "Used to indicate a long term view / time horizon",
+      "answer": "MACRO",
+      "row": 1,
+      "col": 8
+    },
+    "3": {
+      "clue": "Your best guide in the crypto market, and source for accurate and impartial research",
+      "answer": "CRYPTONARY",
+      "row": 1,
+      "col": 14
+    },
+    "4": {
+      "clue": "They provide rpc resources to over 50% of the Solana ecosystem",
+      "answer": "GENESYSGO",
+      "row": 4,
+      "col": 1
+    },
+    "5": {
+      "clue": "What Lil Uzi Verts NFT project on Solana could be characterised as",
+      "answer": "RUGPULL",
+      "row": 6,
+      "col": 14
+    },
+    "6": {
+      "clue": "A sector we expect to reach a market cap of a 100 quadrillion",
+      "answer": "DERIVATIVES",
+      "row": 7,
+      "col": 0
+    },
+    "7": {
+      "clue": "Colour of Bills Glasses",
+      "answer": "YELLOW",
+      "row": 8,
+      "col": 12
+    },
+    "8": {
+      "clue": "A core feature that makes crypto so important",
+      "answer": "UNMUTABLE",
+      "row": 11,
+      "col": 15
+    },
+    "9": {
+      "clue": "The verb used to denote buying too much of something without doing your own research",
+      "answer": "APEING",
+      "row": 14,
+      "col": 8
+    },
+    "10": {
+      "clue": "Cryptonarys market sentiment",
+      "answer": "BULLISH",
+      "row": 16,
+      "col": 1
+    },
+    "11": {
+      "clue": "The first name of the Bitcoin creator",
+      "answer": "SATOSHI",
+      "row": 16,
+      "col": 9
+    },
+    "12": {
+      "clue": "Something that crypto seeks to encourage",
+      "answer": "INNOVATION",
+      "row": 18,
+      "col": 6
+    },
+    "13": {
+      "clue": "The format of this game",
+      "answer": "CROSSWORD",
+      "row": 21,
+      "col": 7
+    },
+    "14": {
+      "clue": "A key element which will expand the throughput of Ethereum",
+      "answer": "SHARDING",
+      "row": 23,
+      "col": 7
+    }
+  },
+  "down": {
+    "1": {
+      "clue": "What you should be doing with some of your Solana, and the mechanism that secures the network aka Proof of",
+      "answer": "STAKE",
+      "row": 0,
+      "col": 2
+    },
+    "2": {
+      "clue": "The base layer this game is built on",
+      "answer": "SOLANA",
+      "row": 0,
+      "col": 12
+    },
+    "3": {
+      "clue": "Karims favourite cryptocurrency",
+      "answer": "ETHEREUM",
+      "row": 0,
+      "col": 18
+    },
+    "4": {
+      "clue": "A major technological advancement and key narrative for Ethereum this year that.",
+      "answer": "MERGE",
+      "row": 1,
+      "col": 8
+    },
+    "5": {
+      "clue": "A much discussed place - it's final form has not been reached yet",
+      "answer": "METAVERSE",
+      "row": 3,
+      "col": 4
+    },
+    "6": {
+      "clue": "The instrument that allows trader to increase their positions aka what Uncle Sams Casino offers",
+      "answer": "LEVERAGE",
+      "row": 6,
+      "col": 20
+    },
+    "7": {
+      "clue": "The technology used to scale ETH via L2s",
+      "answer": "ZKROLLUPS",
+      "row": 6,
+      "col": 22
+    },
+    "8": {
+      "clue": "Rare and valuable gem close to the heart of everyone playing this game",
+      "answer": "DIAMOND",
+      "row": 7,
+      "col": 0
+    },
+    "9": {
+      "clue": "The study of what a token is used for and how it is distributed",
+      "answer": "TOKENOMICS",
+      "row": 7,
+      "col": 6
+    },
+    "10": {
+      "clue": "The acronym used by the founder of FTX on twitter",
+      "answer": "SBFALAMEDA",
+      "row": 7,
+      "col": 10
+    },
+    "11": {
+      "clue": "Surname of Solana Creator",
+      "answer": "YAKOVENKO",
+      "row": 8,
+      "col": 12
+    },
+    "12": {
+      "clue": "What happens to your account when you are short BTC and it pumps HARD",
+      "answer": "LIQUIDATION",
+      "row": 8,
+      "col": 15
+    },
+    "13": {
+      "clue": "A description of the current market conditions most commonly referred to by renowned crypto trader and founding partner of 3AC",
+      "answer": "SUPERCYCLE",
+      "row": 10,
+      "col": 18
+    },
+    "14": {
+      "clue": "The artist behind the Degen Ape Academy",
+      "answer": "MONOLIFF",
+      "row": 12,
+      "col": 3
+    },
+    "15": {
+      "clue": "The first cryptocurrency to be created",
+      "answer": "BITCOIN",
+      "row": 16,
+      "col": 1
+    },
+    "16": {
+      "clue": "The kinda coin you don't want to buy - usually shilled by influencers",
+      "answer": "SHITCOIN",
+      "row": 16,
+      "col": 13
+    }
+  }
+}

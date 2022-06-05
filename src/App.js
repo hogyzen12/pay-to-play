@@ -485,7 +485,10 @@ const App = () => {
             />
             <Route
               path={routes.crossword}
-              element={<PrivateRoute component={<CrosswordPage />} />}
+              element={
+                // <PrivateRoute component={<CrosswordPage />} />
+                <CrosswordPage />
+              }
             />
             <Route
               path={routes.merchandise}

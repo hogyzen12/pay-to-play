@@ -4,177 +4,177 @@
       "clue": "Used to indicate a long term view / time horizon",
       "answer": "MACRO",
       "row": 1,
-      "col": 0
+      "col": 2
     },
     "2": {
       "clue": "A key element which will expand the throughput of Ethereum",
       "answer": "SHARDING",
       "row": 0,
-      "col": 15
+      "col": 17
     },
     "3": {
       "clue": "The model that many coins use to generate revenue, rewarding older holders with capital from new entrants",
       "answer": "PONZI",
       "row": 20,
-      "col": 13
+      "col": 15
     },
     "4": {
       "clue": "What you should be doing with some of your Solana, and the mechanism that secures the network aka Proof of ...",
       "answer": "STAKE",
       "row": 4,
-      "col": 11
+      "col": 13
     },
     "5": {
       "clue": "The first name of the Ethereum creator",
       "answer": "VITALIK",
       "row": 8,
-      "col": 7
+      "col": 9
     },
     "6": {
       "clue": "Colour of Bills Glasses",
       "answer": "YELLOW",
       "row": 7,
-      "col": 0
+      "col": 2
     },
     "7": {
       "clue": "The instrument that allows traders to increase the size of their positions aka what Uncle Sams Casino offers",
       "answer": "LEVERAGE",
       "row": 9,
-      "col": 0
+      "col": 2
     },
     "8": {
       "clue": "A system or process for which there is a singular source of authority, control and/or truth",
       "answer": "CENTRALISED",
       "row": 10,
-      "col": 11
+      "col": 13
     },
     "9": {
       "clue": "An eating utensil. Also commonly used in relationship to ETH upgrades",
       "answer": "FORK",
       "row": 14,
-      "col": 20
+      "col": 22
     },
     "10": {
       "clue": "A precious gem and also a token all DH holders are accruing via in wallet staking",
       "answer": "DMNDS",
       "row": 15,
-      "col": 0
+      "col": 2
     },
     "11": {
       "clue": "A positive outlook on life, and the other ETH scaling solution type",
       "answer": "OPTIMISTIC",
       "row": 15,
-      "col": 7
+      "col": 9
     },
     "12": {
       "clue": "The token attached to the SSC NFTs, which also allows user access to decentralised storage",
       "answer": "SHADOW",
       "row": 17,
-      "col": 5
+      "col": 7
     },
     "13": {
       "clue": "The first cryptocurrency to be created",
       "answer": "BITCOIN",
       "row": 17,
-      "col": 12
+      "col": 14
     },
     "14": {
       "clue": "The first name of the Bitcoin creator",
       "answer": "SATOSHI",
       "row": 19,
-      "col": 9
-    },
-    "15": {
-      "clue": "Futures that have no expiration date - they have also seen the most volume in crypto",
-      "answer": "PERPS",
-      "row": 4,
-      "col": 0
+      "col": 11
     }
   },
   "down": {
     "1": {
+      "clue": "Futures that have no expiration date - they have also seen the most volume in crypto",
+      "answer": "PERPS",
+      "row": 11,
+      "col": 24
+    },
+    "2": {
       "clue": "The encryption algorithm used by Solana for it's PoH validation mechanism",
       "answer": "SHA256",
       "row": 17,
-      "col": 5
+      "col": 7
     },
-    "2": {
+    "3": {
       "clue": "What Lil Uzi Verts NFT project on Solana could be characterised as, and something every NFT degen has ended up owning",
       "answer": "RUGPULL",
       "row": 1,
-      "col": 3
-    },
-    "3": {
-      "clue": "A sector we expect to reach a market cap of a 100 quadrillion",
-      "answer": "DERIVATIVES",
-      "row": 0,
-      "col": 19
+      "col": 5
     },
     "4": {
+      "clue": "A sector we expect to reach a market cap of a 100 quadrillion",
+      "answer": "DERIVATIVES",
+      "row": 1,
+      "col": 21
+    },
+    "5": {
       "clue": "The scaling mechanism that executes transactions off chain using merkle tress. Two words no spaces",
       "answer": "ZEROKNOWLEDGE",
       "row": 2,
-      "col": 17
+      "col": 19
     },
-    "5": {
+    "6": {
       "clue": "A major technological advancement and key narrative for Ethereum this year... it should reduce those gas fees too",
       "answer": "MERGE",
       "row": 3,
-      "col": 15
-    },
-    "6": {
-      "clue": "Karims favourite cryptocurrency",
-      "answer": "ETHEREUM",
-      "row": 4,
-      "col": 1
+      "col": 17
     },
     "7": {
-      "clue": "The surname of one of the Solana Creators",
-      "answer": "YAKOVENKO",
-      "row": 4,
-      "col": 7
+      "clue": "Karims favourite cryptocurrency",
+      "answer": "ETHEREUM",
+      "row": 3,
+      "col": 3
     },
     "8": {
-      "clue": "Your best guide in the crypto market, and source for accurate and impartial research",
-      "answer": "CRYPTONARY",
+      "clue": "The surname of one of the Solana Creators",
+      "answer": "YAKOVENKO",
       "row": 4,
       "col": 9
     },
     "9": {
-      "clue": "Tokens whose value aims to be constant",
-      "answer": "STABLECOIN",
+      "clue": "Your best guide in the crypto market, and source for accurate and impartial research",
+      "answer": "CRYPTONARY",
       "row": 4,
       "col": 11
     },
     "10": {
+      "clue": "Tokens whose value aims to be constant",
+      "answer": "STABLECOIN",
+      "row": 4,
+      "col": 13
+    },
+    "11": {
       "clue": "What happens to your account when you are long BTC and it dumps HARD",
       "answer": "LIQUIDATION",
       "row": 5,
-      "col": 21
+      "col": 23
     },
-    "11": {
+    "12": {
       "clue": "The study of what a token is used for and how it is distributed",
       "answer": "TOKENOMICS",
       "row": 6,
-      "col": 13
+      "col": 15
     },
-    "12": {
+    "13": {
       "clue": "An ETH scaling mechanism which has two types",
       "answer": "ROLLUPS",
       "row": 9,
-      "col": 4
+      "col": 6
     },
-    "13": {
+    "14": {
       "clue": "The kinda coin you don't want to buy - usually shilled by influencers",
       "answer": "SHITCOIN",
       "row": 13,
-      "col": 15
+      "col": 17
     },
-    "14": {
+    "15": {
       "clue": "The base layer this game is built on",
       "answer": "SOLANA",
       "row": 14,
-      "col": 7
+      "col": 9
     }
   }
 }

@@ -38,6 +38,7 @@ const Game = () => {
 
   useEffect(() => {
     const crossRef = crosswordRef.current;
+    crossRef.fillAllAnswers(); // !TODO: has to be removed for production
 
     if (crossRef && gameReset) {
       crossRef.reset();

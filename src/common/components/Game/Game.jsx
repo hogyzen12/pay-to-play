@@ -38,7 +38,7 @@ const Game = () => {
 
   useEffect(() => {
     const crossRef = crosswordRef.current;
-    crossRef.fillAllAnswers(); // !TODO: has to be removed for production
+    // crossRef.fillAllAnswers(); // !TODO: has to be removed for production
 
     if (crossRef && gameReset) {
       crossRef.reset();
@@ -52,10 +52,10 @@ const Game = () => {
         data={data}
         theme={theme}
         ref={crosswordRef}
-        onCellChange={(row, col, char) => console.log(row, col, char)}
-        onAnswerComplete={(direction, number, correct, answer) => {
-          console.log('answer', direction, number, correct, answer);
-        }}
+        // onCellChange={(row, col, char) => console.log(row, col, char)}
+        // onAnswerComplete={(direction, number, correct, answer) => {
+        //   console.log('answer', direction, number, correct, answer);
+        // }}
       >
         <Box sx={styles.grid}>
           <CrosswordGrid />

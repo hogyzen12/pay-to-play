@@ -140,7 +140,7 @@ const AppBasement = ({ open, toggleDrawer }) => {
         <Button
           title={submit}
           onClick={handleSubmit}
-          // disabled={!providerPubKey}
+          disabled={!providerPubKey}
         />
       </Box>
     </Toolbar>

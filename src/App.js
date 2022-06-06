@@ -444,7 +444,7 @@ const App = () => {
      * !TODO: Error on getting NFTs
      */
 
-    // getAllNFTs(connection, providerPubKey);
+    const nftsmetadata = await getAllNFTs(connection, providerPubKey);
 
     /*
      * Allow user to access the page

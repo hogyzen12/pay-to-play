@@ -1,16 +1,35 @@
-// import { Connection } from '@metaplex/js';
-import { Metadata } from '@metaplex-foundation/mpl-token-metadata';
-// import { NETWORK } from 'common/static/constants';
+import { clusterApiUrl, Connection, PublicKey } from '@solana/web3.js';
+import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import * as bs58 from 'bs58';
 
 export const getAllNFTs = async (connection, providerPubKey) => {
-  const pKey = providerPubKey.toString();
+  const owner = providerPubKey;
 
-  console.log('%cPubKey :>> ', 'color: orange', pKey);
+  console.log('%cPubKey :>> ', 'color: orange', owner);
   console.log('%cConnection :>> ', 'color: orange', connection);
 
-  const nftsmetadata = await Metadata.findDataByOwner(connection, pKey);
+  const response = await connection.getParsedTokenAccountsByOwner(owner, {
+    programId: TOKEN_PROGRAM_ID,
+  });
 
-  console.log('%cNFTsMetadata :>> ', 'color: blue', nftsmetadata);
+  console.log('%cResponse :>> ', 'color: blue', response);
+
+  response.value.forEach(accountInfo => {
+    console.log(`pubkey: ${accountInfo.pubkey.toBase58()}`);
+    console.log(`mint: ${accountInfo.account.data['parsed']['info']['mint']}`);
+    console.log(
+      `owner: ${accountInfo.account.data['parsed']['info']['owner']}`,
+    );
+    console.log(
+      `decimals: ${accountInfo.account.data['parsed']['info']['tokenAmount']['decimals']}`,
+    );
+    console.log(
+      `amount: ${accountInfo.account.data['parsed']['info']['tokenAmount']['amount']}`,
+    );
+    console.log('====================');
+  });
+
+  let nftsmetadata = response;
 
   return nftsmetadata;
 };

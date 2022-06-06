@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as splToken from '@solana/spl-token';
-import { confirmAlert } from 'react-confirm-alert';
-import { Close as CloseIcon } from '@mui/icons-material';
 import {
   Box,
   Card,
@@ -10,8 +8,6 @@ import {
   CardContent,
   CardActions,
   Typography,
-  Backdrop,
-  IconButton,
 } from '@mui/material';
 import { motion } from 'framer-motion';
 
@@ -21,7 +17,7 @@ import {
   DHMTamount,
   diamondsRequiredToPlay,
 } from 'common/static/constants';
-import { useCountdown } from 'common/hooks';
+import { useCountdown, useProvider } from 'common/hooks';
 import { PayButton, Countdown } from 'common/components';
 import { transferDiamondToken } from 'common/utils/transferDiamond';
 import { loaderActive, loaderDisabled } from 'redux/loader/loaderSlice';
@@ -47,7 +43,7 @@ const Ticket = ({
   const [rafflesSold, setRafflesSold] = useState(0);
   const [winners, setWinners] = useState(0);
   const dispatch = useDispatch();
-  const { provider, providerPubKey } = useSelector(state => state.provider);
+  const { provider, providerPubKey } = useProvider();
   const { days, hours, minutes, seconds, isExpired } = useCountdown(
     targetDate,
     targetTime,
@@ -156,62 +152,7 @@ const Ticket = ({
      * Go here and check to see they can afford with diamonds
      */
     if (diamondBalance?.value?.amount < 1) {
-      // alert("Not enough balance, please fund your wallet")
-      const optionsNoBalance = {
-        childrenElement: () => <div />,
-        customUI: ({ onClose }) => (
-          <Backdrop open={true} onClick={onClose}>
-            <Box
-              sx={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                maxWidth: { xs: '90%', md: '600px' },
-                width: '100%',
-                bgcolor: '#1D1D1D',
-                padding: '16px 16px 32px',
-                borderRadius: '8px',
-              }}
-            >
-              <IconButton
-                sx={{
-                  display: 'block',
-                  padding: '0',
-                  margin: '0',
-                  marginLeft: 'auto',
-                  marginBottom: '20px',
-                }}
-                onClick={onClose}
-              >
-                <CloseIcon sx={{ color: '#A2A2A2' }} />
-              </IconButton>
-              <Typography
-                sx={{
-                  mb: '16px',
-                  fontSize: '32px',
-                  textAlign: 'center',
-                }}
-                variant="h3"
-              >
-                You do need more SOL for gas fees
-              </Typography>
-              <Typography sx={{ textAlign: 'center' }}>
-                You need to have at least 1 DMND to play the game.
-              </Typography>
-            </Box>
-          </Backdrop>
-        ),
-        closeOnEscape: true,
-        closeOnClickOutside: true,
-        willUnmount: () => {},
-        afterClose: () => {},
-        onClickOutside: () => {},
-        onKeypressEscape: () => {},
-        overlayClassName: 'overlay-custom-class-name',
-      };
-
-      confirmAlert(optionsNoBalance);
+      alert('Not enough balance, please fund your wallet');
       return;
     }
 

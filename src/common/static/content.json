@@ -107,11 +107,11 @@
         "guessed": "Words guessed:",
         "across": "Across",
         "down": "Down",
-        "something": "Something isnt right?",
+        "something": "my name is BILL",
         "button": "Submit"
       },
       "dialog": {
-        "message": "Please do not leave the article page until you have finished. To re-access the content you will have to repeat the payment."
+        "message": "Please do not leave the page until you have finished. To re-access the content you will have to repeat the payment."
       }
     },
     "notFound": {

@@ -8,8 +8,16 @@ import staticContent from 'common/static/content.json';
 
 const { title, description } = staticContent.meta.crossword;
 
+const styles = {
+  container: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+};
+
 const Crossword = () => (
-  <AppContainer>
+  <AppContainer customStyles={styles.container} size="xl">
     <AnimatePresence>
       <Box
         component={motion.div}

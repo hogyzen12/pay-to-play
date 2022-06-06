@@ -95,8 +95,8 @@
     "1": {
       "clue": "The encryption algorithm used by Solana for it's PoH validation mechanism",
       "answer": "SHA256",
-      "row": 17,
-      "col": 5
+      "row": 16,
+      "col": 6
     },
     "2": {
       "clue": "What Lil Uzi Verts NFT project on Solana could be characterised as, and something every NFT degen has ended up owning",

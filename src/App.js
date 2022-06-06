@@ -1,13 +1,9 @@
 import { Suspense, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Box, Typography, Backdrop, IconButton } from '@mui/material';
-import { Close as CloseIcon } from '@mui/icons-material';
-import { confirmAlert } from 'react-confirm-alert';
 import { Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
 import * as splToken from '@solana/spl-token';
 
-import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Loader, Notification, Modal, NoBalance } from 'common/components';
 import { AppLayout, ArticlesLayout } from 'common/layout';
 import { useModal, useProvider, useLoader } from 'common/hooks';
@@ -137,63 +133,18 @@ const App = () => {
 
     if (balanceInLamports < lamportsRequiredToPlay) {
       const fundNeededToPlay = lamportsRequiredToPlay - balanceInLamports;
-      const optionsNoBalance = {
-        childrenElement: () => <div />,
-        customUI: ({ onClose }) => (
-          <Backdrop open={true} onClick={onClose}>
-            <Box
-              sx={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                maxWidth: { xs: '90%', md: '600px' },
-                width: '100%',
-                bgcolor: '#1D1D1D',
-                padding: '16px 16px 32px',
-                borderRadius: '8px',
-              }}
-            >
-              <IconButton
-                sx={{
-                  display: 'block',
-                  padding: '0',
-                  margin: '0',
-                  marginLeft: 'auto',
-                  marginBottom: '20px',
-                }}
-                onClick={onClose}
-              >
-                <CloseIcon sx={{ color: '#A2A2A2' }} />
-              </IconButton>
-              <Typography
-                sx={{
-                  mb: '16px',
-                  fontSize: '32px',
-                  textAlign: 'center',
-                }}
-                variant="h3"
-              >
-                You do not have enough balance
-              </Typography>
-              <Typography sx={{ textAlign: 'center' }}>
-                Please fund your wallet with{' '}
-                <b>{fundNeededToPlay / LAMPORTS_PER_SOL} SOL</b> tokens to play
-                the game.
-              </Typography>
-            </Box>
-          </Backdrop>
-        ),
-        closeOnEscape: true,
-        closeOnClickOutside: true,
-        willUnmount: () => {},
-        afterClose: () => {},
-        onClickOutside: () => {},
-        onKeypressEscape: () => {},
-        overlayClassName: 'overlay-custom-class-name',
-      };
 
-      confirmAlert(optionsNoBalance);
+      dispatch(
+        notificationOpened({
+          open: true,
+          message: `Please fund your wallet with ${
+            fundNeededToPlay / LAMPORTS_PER_SOL
+          } SOL tokens`,
+          severity: 'info',
+          tx: '',
+        }),
+      );
+
       return;
     }
 
@@ -329,19 +280,14 @@ const App = () => {
        */
       if (diamondBalance?.value?.amount < 1) {
         // alert("Not enough balance, please fund your wallet")
-        const optionsNoBalance = {
-          childrenElement: () => <div />,
-          customUI: ({ onClose }) => <NoBalance onClose={onClose} />,
-          closeOnEscape: true,
-          closeOnClickOutside: true,
-          willUnmount: () => {},
-          afterClose: () => {},
-          onClickOutside: () => {},
-          onKeypressEscape: () => {},
-          overlayClassName: 'overlay-custom-class-name',
-        };
-
-        confirmAlert(optionsNoBalance);
+        dispatch(
+          notificationOpened({
+            open: true,
+            message: `You need to have at least 1 DMND`,
+            severity: 'info',
+            tx: '',
+          }),
+        );
         return;
       }
 
@@ -451,6 +397,61 @@ const App = () => {
      */
     navigate(routes.membership);
   };
+
+  // const handlePay = (
+  //   selectedItem,
+  //   currency,
+  //   hashMemo,
+  //   emailAddress,
+  //   member,
+  // ) => {
+  //   const isSHDW = currency === 'SHDW';
+  //   const isFree = currency === 'free';
+
+  //   console.log('selectedItem', selectedItem);
+  //   console.log('currency', currency);
+  //   console.log('hashMemo', hashMemo);
+  //   console.log('emailAddress', emailAddress);
+  //   console.log('member', member);
+
+  //   /*
+  //    * Flow to play the game
+  //    * 1. Check if the user is logged in
+  //    * 2. Check the wallet has a DMND in it
+  //    * 3. If no DMND then ask them to stake and get some
+  //    * 4. If Diamond present then proceed
+  //    * Check if the user is logged in
+  //    */
+
+  //   if (!providerPubKey) {
+  //     dispatch(
+  //       notificationOpened({
+  //         open: true,
+  //         message: 'Please connect your wallet',
+  //         severity: 'info',
+  //         tx: '',
+  //       }),
+  //     );
+
+  //     return;
+  //   }
+
+  //   if (isFree) {
+  //     switch (selectedItem) {
+  //       case routes.articles:
+  //         navigate(routes.articles);
+  //         return;
+  //       case routes.membership:
+  //         navigate(routes.membership);
+  //         return;
+  //       case routes.raffle:
+  //         navigate(routes.raffle);
+  //         return;
+  //       default:
+  //         navigate(routes.home);
+  //     }
+  //   }
+  // };
 
   return (
     <>

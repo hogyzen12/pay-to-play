@@ -4,7 +4,6 @@ import * as splToken from '@solana/spl-token';
 import {
   Box,
   Typography,
-  Link,
   Modal as SubmitModal,
   Drawer,
   useTheme,
@@ -20,7 +19,6 @@ import { notificationOpened } from 'redux/notification/notificationSlice';
 import { transferDiamondToken } from 'common/utils/transferDiamond';
 import { Button, Answer, Tabs } from 'common/components';
 import {
-  totalQuestions,
   tokenMint,
   gameWalletPublicKey,
   diamondsRequiredToPlay,
@@ -29,6 +27,9 @@ import { initialResults } from 'common/static/results';
 import { ReactComponent as AcrossIcon } from 'assets/icons/across.svg';
 import { styles } from './ModalSubmit.styles';
 import staticContent from 'common/static/content.json';
+
+const totalQuestions =
+  initialResults.across.length + initialResults.down.length;
 
 const { guessed, title, across, button, down, something } =
   staticContent.pages.crossword.submitModal;
@@ -60,7 +61,8 @@ const ModalSubmit = ({ connection }) => {
   };
 
   const handleSubmit = async () => {
-    // dispatch(modalOpened('submit'));
+    dispatch(loaderActive());
+    handleClose();
 
     const acrossAxisString =
       initialResults.across.reduce((acc, item) => {
@@ -101,6 +103,7 @@ const ModalSubmit = ({ connection }) => {
      * Address found and we pull balance succesfully here
      * Print to console the amount to check
      */
+
     const diamondBalance = await connection.getTokenAccountBalance(
       diamondAddress,
     );
@@ -115,7 +118,6 @@ const ModalSubmit = ({ connection }) => {
      * We know the accs will exist as the payer has diamonds to have gotten to this stage
      * we call our custom function here to do this
      */
-    dispatch(loaderActive());
 
     const result = await transferDiamondToken(
       provider,
@@ -128,13 +130,19 @@ const ModalSubmit = ({ connection }) => {
       totalResultsString,
     );
 
+    console.log('result', result);
+    console.log('result', result.status);
+    console.log('result', result.error);
+
     if (!result.status) {
-      dispatch(setTransferTokenStatus(result.status));
+      // dispatch(setTransferTokenStatus(result.status));
       dispatch(loaderDisabled());
       dispatch(
         notificationOpened({
           open: true,
-          message: 'Error in sending the tokens, Please try again',
+          message: result.error
+            ? result.error
+            : 'Error in sending the tokens, Please try again',
           severity: 'error',
           tx: '',
         }),
@@ -147,7 +155,7 @@ const ModalSubmit = ({ connection }) => {
      * If the status is true, that means transaction got successful and we can proceed
      */
 
-    // console.log('result.status', result.status);
+    console.log('result.signature', result.signature);
 
     if (result.signature) {
       dispatch(setTransactionSignature(result.signature));
@@ -219,9 +227,10 @@ const ModalSubmit = ({ connection }) => {
       </Box>
 
       <Box sx={styles.footer} component="footer">
-        <Link sx={styles.link} href="#">
+        {/* <Link sx={styles.link} href="#">
           {something}
-        </Link>
+        </Link> */}
+        <Typography>{something}</Typography>
         <Button title={`${button} (1 DMND)`} onClick={handleSubmit} />
       </Box>
     </Box>

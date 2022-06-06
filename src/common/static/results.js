@@ -121,7 +121,7 @@ export const initialResults = {
       number: 1,
       clue: cross.down[1].clue,
       answer: '',
-      grid: ['17_5', '18_5', '19_5', '20_5', '21_5', '22_5'],
+      grid: ['16_6', '17_6', '18_6', '19_6', '20_6', '21_6'],
     },
     {
       number: 2,

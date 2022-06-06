@@ -1,5 +1,7 @@
-import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Box } from '@mui/material';
+import { resetSignature } from 'redux/provider/providerSlice';
 import { ChoiceCard } from 'common/components';
 import { AppContainer } from 'common/layout';
 import { cards } from 'common/static/cards';
@@ -33,32 +35,40 @@ const styles = {
   },
 };
 
-const Main = ({ handleClickSOL, handleClickDHMT, handleOpenMembership }) => (
-  <>
-    <AppContainer customStyles={styles.container} size="xl">
-      <Box sx={styles.choice}>
-        {cards.map((card, index) => (
-          <ChoiceCard
-            key={index}
-            title={card.title}
-            image={card.image}
-            payment={card.payment}
-            available={card.available}
-            selectedPage={card.redirect}
-            description={card.description}
-            transitionDelay={card.transitionDelay}
-            handleClickSOL={handleClickSOL}
-            handleClickDHMT={
-              card.redirect === routes.membership
-                ? handleOpenMembership
-                : handleClickDHMT
-            }
-            customStyles={index === 0 && styles.custom}
-          />
-        ))}
-      </Box>
-    </AppContainer>
-  </>
-);
+const Main = ({ handleClickSOL, handleClickDHMT, handleOpenMembership }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(resetSignature());
+  }, [dispatch]);
+
+  return (
+    <>
+      <AppContainer customStyles={styles.container} size="xl">
+        <Box sx={styles.choice}>
+          {cards.map((card, index) => (
+            <ChoiceCard
+              key={index}
+              title={card.title}
+              image={card.image}
+              payment={card.payment}
+              available={card.available}
+              selectedPage={card.redirect}
+              description={card.description}
+              transitionDelay={card.transitionDelay}
+              handleClickSOL={handleClickSOL}
+              handleClickDHMT={
+                card.redirect === routes.membership
+                  ? handleOpenMembership
+                  : handleClickDHMT
+              }
+              customStyles={index === 0 && styles.custom}
+            />
+          ))}
+        </Box>
+      </AppContainer>
+    </>
+  );
+};
 
 export default withMetadata({ title, description })(Main);

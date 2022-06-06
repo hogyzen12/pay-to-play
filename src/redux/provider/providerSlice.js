@@ -24,6 +24,11 @@ const providerSlice = createSlice({
       ...state,
       transactionSignature: action.payload,
     }),
+    resetSignature: state => ({
+      ...state,
+      transferTokenStatus: false,
+      transactionSignature: '',
+    }),
   },
 });
 
@@ -32,6 +37,7 @@ export const {
   setProviderPubKey,
   setTransferTokenStatus,
   setTransactionSignature,
+  resetSignature,
 } = providerSlice.actions;
 
 export default providerSlice;

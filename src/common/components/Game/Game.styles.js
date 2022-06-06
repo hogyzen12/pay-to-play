@@ -2,15 +2,16 @@ export const styles = {
   game: {
     width: '100%',
     display: 'flex',
-    flexDirection: { xs: 'column', md: 'column' },
+    flexDirection: { xs: 'column', lg: 'row' },
     gap: '24px',
-    // width: { md: '50%' },
+    padding: { md: '0 5%', lg: '0' },
   },
   grid: {
-    // width: { xs: '100%', md: '50%' },
+    width: { xs: '100%', lg: '50%' },
     padding: '8px',
     bgcolor: '#404040',
     borderRadius: '8px',
+    height: 'fit-content',
   },
   title: {
     fontSize: '24px',
@@ -18,7 +19,7 @@ export const styles = {
     marginBottom: '20px',
   },
   hints: {
-    // width: { xs: '100%', md: '50%' }
+    width: { xs: '100%', lg: '50%' },
   },
   clues: {
     display: 'flex',

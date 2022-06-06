@@ -152,7 +152,14 @@ const Ticket = ({
      * Go here and check to see they can afford with diamonds
      */
     if (diamondBalance?.value?.amount < 1) {
-      alert('Not enough balance, please fund your wallet');
+      dispatch(
+        notificationOpened({
+          open: true,
+          message: 'Not enough balance, please fund your wallet',
+          severity: 'info',
+          tx: '',
+        }),
+      );
       return;
     }
 

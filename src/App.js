@@ -107,7 +107,7 @@ const App = () => {
     /*
      * Allow user to access the page
      */
-    navigate(routes.membership);
+    // navigate(routes.membership);
   };
 
   const paySOL = async redirect => {

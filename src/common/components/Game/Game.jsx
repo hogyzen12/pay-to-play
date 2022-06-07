@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Typography } from '@mui/material';
@@ -18,10 +18,10 @@ import staticContent from 'common/static/content.json';
 const { hints } = staticContent.pages.crossword;
 
 const Game = () => {
+  const { gameReset } = useSelector(state => state.game);
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const crosswordRef = useRef();
-  const { pathname } = useLocation();
-  const { gameReset } = useSelector(state => state.game);
 
   useEffect(() => {
     if (pathname === `/${routes.crossword}`) {

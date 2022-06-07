@@ -7,11 +7,9 @@ import {
   portalsRaffleMemo,
   tombstonedRaffleMemo,
   diamondsGameRaffleMemo,
-  testMemo,
   portalsRafflePublicKey,
   tombstonedRafflePublicKey,
   diamondsGameRafflePublicKey,
-  testRafflePublicKey,
 } from './constants';
 
 export const tickets = [
@@ -39,18 +37,6 @@ export const tickets = [
   //   raffleWalletPublicKey: raffleTwoWalletPublicKey,
   //   possibleWinners: 0
   // },
-  //{
-  //  title: 'New Raffle',
-  //  image: raffle3,
-  //  redirect: routes.raffle,
-  //  transitionDelay: 0.4,
-  //  buttonText: 'Purchase game entry (1 DMND)',
-  //  targetDate: 'Jun 27, 2022',
-  //  targetTime: '15:00:00',
-  //  raffleMemo: testMemo,
-  //  raffleWalletPublicKey: testRafflePublicKey,
-  //  possibleWinners: 1,
-  //},
   {
     title: 'Portals WL spots',
     image: raffle,

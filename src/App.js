@@ -1,14 +1,15 @@
 import { Suspense, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
 import * as splToken from '@solana/spl-token';
-
-import { Loader, Notification, Modal, NoBalance } from 'common/components';
+import { Loader, Notification, Modal } from 'common/components';
 import { AppLayout, ArticlesLayout } from 'common/layout';
 import { useModal, useProvider, useLoader } from 'common/hooks';
+import { setTransactionSignature } from 'redux/provider/providerSlice';
 import { loaderActive, loaderDisabled } from 'redux/loader/loaderSlice';
 import { notificationOpened } from 'redux/notification/notificationSlice';
+import { modalOpened } from 'redux/modal/modalSlice';
 import { transferCustomToken } from 'common/utils/transferToken';
 import { transferDiamondToken } from 'common/utils/transferDiamond';
 import { sendEmail } from 'common/utils/misc';
@@ -37,13 +38,16 @@ import {
   gameWalletPublicKey,
   shadowMint,
   shadowRequiredToPlay,
+  lamportsRequiredToPlay,
   tokenMint,
   utilMemo,
   memberAddress,
   nonMemberAddress,
+  DMND,
+  FREE,
+  SHDW,
+  SOL,
 } from 'common/static/constants';
-
-let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
 
 const App = () => {
   const dispatch = useDispatch();
@@ -97,32 +101,23 @@ const App = () => {
     }
   }, [provider, dispatch]);
 
-  const handlePaySOL = async (selectedItem, currency) => {
+  const openMembership = async () => {
+    const nftsmetadata = await getAllNFTs(connection, providerPubKey);
+
+    /*
+     * Allow user to access the page
+     */
+    navigate(routes.membership);
+  };
+
+  const paySOL = async redirect => {
     /*
      * Flow to play the game
-     * 1. Check if the user is logged in
-     * 2. Check the wallet has SOL in it
-     * 3. If no SOL then ask him to fund the wallet first
-     * 4. If required SOL present the, proceed with the transaction
+     * 1. Check the wallet has SOL in it
+     * 2. If no SOL then ask him to fund the wallet first
+     * 3. If required SOL present the, proceed with the transaction
      *
      */
-
-    /*
-     * Check if the user is logged in
-     */
-
-    if (!providerPubKey) {
-      dispatch(
-        notificationOpened({
-          open: true,
-          message: 'Please connect your wallet',
-          severity: 'info',
-          tx: '',
-        }),
-      );
-
-      return;
-    }
 
     /*
      * Check if the user has SOL in his wallet
@@ -153,24 +148,26 @@ const App = () => {
      */
 
     dispatch(loaderActive());
-    lamportsRequiredToPlay = lamportsRequiredToPlay / LAMPORTS_PER_SOL;
+
+    const requiredLamports = lamportsRequiredToPlay / LAMPORTS_PER_SOL;
 
     const result = await transferCustomToken(
       provider,
       connection,
-      lamportsRequiredToPlay,
+      requiredLamports,
       providerPubKey,
       gameWalletPublicKey,
     );
 
     if (!result.status) {
       dispatch(setTransferTokenStatus(result.status));
-
       dispatch(loaderDisabled());
       dispatch(
         notificationOpened({
           open: true,
-          message: 'Error in sending the tokens, Please try again',
+          message: result.error
+            ? result.error
+            : 'Error in sending the tokens, Please try again',
           severity: 'error',
           tx: '',
         }),
@@ -186,71 +183,31 @@ const App = () => {
     dispatch(setTransferTokenStatus(result.status));
     dispatch(loaderDisabled());
 
-    navigate(selectedItem);
+    if (redirect) navigate(redirect);
   };
 
-  const handlePayDHMT = async (
+  const payDHMT = async (
     selectedItem,
     currency,
     hashMemo,
     emailAddress,
     member,
+    resultsSubmit = false,
   ) => {
-    const isSHDW = currency === 'SHDW';
-    const isFree = currency === 'free';
-
-    console.log('selectedItem', selectedItem);
-    console.log('currency', currency);
-    console.log('hashMemo', hashMemo);
-    console.log('emailAddress', emailAddress);
-    console.log('member', member);
-
     /*
      * Flow to play the game
-     * 1. Check if the user is logged in
-     * 2. Check the wallet has a DMND in it
-     * 3. If no DMND then ask them to stake and get some
-     * 4. If Diamond present then proceed
+     * 1. Check the wallet has a DMND in it
+     * 2. If no DMND then ask them to stake and get some
+     * 3. If Diamond present then proceed
      * Check if the user is logged in
      */
-
-    if (!providerPubKey) {
-      dispatch(
-        notificationOpened({
-          open: true,
-          message: 'Please connect your wallet',
-          severity: 'info',
-          tx: '',
-        }),
-      );
-
-      return;
-    }
-
-    if (isFree && selectedItem === routes.articles) {
-      navigate(routes.articles);
-
-      return;
-    }
-
-    if (isFree && selectedItem === routes.membership) {
-      navigate(routes.membership);
-
-      return;
-    }
-
-    if (isFree && selectedItem === routes.raffle) {
-      navigate(routes.raffle);
-
-      return;
-    }
 
     /*
      * Check if the user has diamonds in their wallet
      * And use the value to check if they can afford the game
      */
     const diamondAddress = await splToken.getAssociatedTokenAddress(
-      isSHDW ? shadowMint : tokenMint,
+      currency === SHDW ? shadowMint : tokenMint,
       providerPubKey,
     );
 
@@ -271,15 +228,11 @@ const App = () => {
         diamondAddress,
       );
 
-      console.log(diamondBalance);
-      // console.log(diamondBalance.value.amount);
-      // console.log('found balance');
-
       /*
        * Go here and check to see they can afford with diamonds
        */
+
       if (diamondBalance?.value?.amount < 1) {
-        // alert("Not enough balance, please fund your wallet")
         dispatch(
           notificationOpened({
             open: true,
@@ -288,6 +241,7 @@ const App = () => {
             tx: '',
           }),
         );
+
         return;
       }
 
@@ -303,28 +257,31 @@ const App = () => {
       const result = await transferDiamondToken(
         provider,
         connection,
-        isSHDW ? shadowMint : tokenMint,
+        currency === SHDW ? shadowMint : tokenMint,
         providerPubKey,
         gameWalletPublicKey,
         diamondBalance.value.amount,
-        isSHDW ? shadowRequiredToPlay : diamondsRequiredToPlay,
+        currency === SHDW ? shadowRequiredToPlay : diamondsRequiredToPlay,
         hashMemo ? hashMemo : utilMemo,
       );
 
       if (!result.status) {
-        dispatch(setTransferTokenStatus(result.status));
-
         dispatch(loaderDisabled());
         dispatch(
           notificationOpened({
             open: true,
-            message: 'Error in sending the tokens, Please try again',
+            message: 'Error in sending the tokens, please try again',
             severity: 'error',
             tx: '',
           }),
         );
 
         return;
+      }
+
+      if (result.signature) {
+        dispatch(setTransferTokenStatus(result.status));
+        dispatch(setTransactionSignature(result.signature));
       }
 
       if (emailAddress) {
@@ -339,8 +296,6 @@ const App = () => {
        * If the status is true, that means transaction got successful and we can proceed
        */
 
-      console.log('result.signature', result.signature);
-
       dispatch(
         notificationOpened({
           open: true,
@@ -350,13 +305,11 @@ const App = () => {
         }),
       );
 
-      // console.log('result.status', result.status);
-      dispatch(setTransferTokenStatus(result.status));
       dispatch(loaderDisabled());
-      selectedItem && navigate(selectedItem);
-    } catch (error) {
-      console.log('SHDW error :>> ', error);
+      if (resultsSubmit) dispatch(modalOpened('success'));
 
+      if (selectedItem) navigate(selectedItem);
+    } catch (error) {
       dispatch(
         notificationOpened({
           open: true,
@@ -368,9 +321,22 @@ const App = () => {
     }
   };
 
-  const handleOpenMembership = async () => {
+  const handlePay = (
+    selectedItem,
+    currency,
+    hashMemo,
+    emailAddress,
+    member,
+    result,
+  ) => {
+    console.log('%cSelectedItem', 'color: orange', selectedItem);
+    console.log('%cCurrency', 'color: orange', currency);
+    console.log('%cHashMemo', 'color: orange', hashMemo);
+    console.log('%cemailAddress', 'color: orange', emailAddress);
+    console.log('%cMember', 'color: orange', member);
+
     /*
-     * Handle click membership card button
+     * Check if the user is logged in
      */
 
     if (!providerPubKey) {
@@ -386,88 +352,48 @@ const App = () => {
       return;
     }
 
-    /*
-     * !TODO: Error on getting NFTs
-     */
-
-    const nftsmetadata = await getAllNFTs(connection, providerPubKey);
-
-    /*
-     * Allow user to access the page
-     */
-    navigate(routes.membership);
+    if (currency === FREE) {
+      switch (selectedItem) {
+        case routes.articles:
+          navigate(routes.articles);
+          return;
+        case routes.membership:
+          openMembership();
+          return;
+        case routes.raffle:
+          navigate(routes.raffle);
+          return;
+        default:
+          null;
+      }
+    } else {
+      switch (currency) {
+        case SOL:
+          paySOL(selectedItem);
+          return;
+        case SHDW:
+        case DMND:
+          payDHMT(
+            selectedItem,
+            currency,
+            hashMemo,
+            emailAddress,
+            member,
+            result,
+          );
+          return;
+        default:
+          null;
+      }
+    }
   };
-
-  // const handlePay = (
-  //   selectedItem,
-  //   currency,
-  //   hashMemo,
-  //   emailAddress,
-  //   member,
-  // ) => {
-  //   const isSHDW = currency === 'SHDW';
-  //   const isFree = currency === 'free';
-
-  //   console.log('selectedItem', selectedItem);
-  //   console.log('currency', currency);
-  //   console.log('hashMemo', hashMemo);
-  //   console.log('emailAddress', emailAddress);
-  //   console.log('member', member);
-
-  //   /*
-  //    * Flow to play the game
-  //    * 1. Check if the user is logged in
-  //    * 2. Check the wallet has a DMND in it
-  //    * 3. If no DMND then ask them to stake and get some
-  //    * 4. If Diamond present then proceed
-  //    * Check if the user is logged in
-  //    */
-
-  //   if (!providerPubKey) {
-  //     dispatch(
-  //       notificationOpened({
-  //         open: true,
-  //         message: 'Please connect your wallet',
-  //         severity: 'info',
-  //         tx: '',
-  //       }),
-  //     );
-
-  //     return;
-  //   }
-
-  //   if (isFree) {
-  //     switch (selectedItem) {
-  //       case routes.articles:
-  //         navigate(routes.articles);
-  //         return;
-  //       case routes.membership:
-  //         navigate(routes.membership);
-  //         return;
-  //       case routes.raffle:
-  //         navigate(routes.raffle);
-  //         return;
-  //       default:
-  //         navigate(routes.home);
-  //     }
-  //   }
-  // };
 
   return (
     <>
       <Suspense fallback={<Loader isLoading />}>
         <Routes>
           <Route path={routes.home} element={<AppLayout />}>
-            <Route
-              index
-              element={
-                <MainPage
-                  handleClickSOL={handlePaySOL}
-                  handleClickDHMT={handlePayDHMT}
-                  handleOpenMembership={handleOpenMembership}
-                />
-              }
-            />
+            <Route index element={<MainPage handlePay={handlePay} />} />
             <Route
               path={routes.raffle}
               element={
@@ -480,7 +406,7 @@ const App = () => {
               path={routes.membership}
               element={
                 <LimitedRoute
-                  component={<MembershipPage handlePayDHMT={handlePayDHMT} />}
+                  component={<MembershipPage handlePay={handlePay} />}
                 />
               }
             />
@@ -494,16 +420,12 @@ const App = () => {
             />
           </Route>
 
-          <Route
-            path={routes.articles}
-            element={<LimitedRoute component={<ArticlesLayout />} />}
-          >
+          <Route path={routes.articles} element={<ArticlesLayout />}>
             <Route
               index
               element={
-                <ArticlesPage
-                  handleClickSOL={handlePaySOL}
-                  handleClickDHMT={handlePayDHMT}
+                <LimitedRoute
+                  component={<ArticlesPage handlePay={handlePay} />}
                 />
               }
             />
@@ -520,7 +442,7 @@ const App = () => {
         </Routes>
       </Suspense>
 
-      {isModalOpen && <Modal connection={connection} />}
+      {isModalOpen && <Modal handlePay={handlePay} />}
       <Loader isLoading={isLoading} />
       <Notification />
     </>

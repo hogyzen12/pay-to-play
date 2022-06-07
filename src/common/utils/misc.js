@@ -79,3 +79,26 @@ export const sendEmail = (emailAddress, role, signature) => {
     .then(console.log)
     .catch(console.log);
 };
+
+export const resultsToString = () => {
+  const acrossAxisString =
+    initialResults.across.reduce((acc, item) => {
+      acc += item.answer ? `| ${item.answer} ` : `|  `;
+
+      return acc;
+    }, '') + '|';
+
+  const downAxisString =
+    initialResults.down.reduce((acc, item) => {
+      acc += item.answer ? `| ${item.answer} ` : `|  `;
+
+      return acc;
+    }, '') + '|';
+
+  const totalResultsString = (acrossAxisString + downAxisString).replace(
+    '||',
+    '|',
+  );
+
+  return totalResultsString;
+};

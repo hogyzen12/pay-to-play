@@ -57,7 +57,7 @@ export const cards = [
     image: game,
     available: true,
     redirect: routes.crossword,
-    transitionDelay: 0.5,
+    transitionDelay: 0.4,
     payment: {
       sol: false,
       dhmt: true,
@@ -71,8 +71,8 @@ export const cards = [
       'Being worked on at the moment - you will be able to claim a discount on any CoinDrip Merch!',
     image: discount,
     available: true,
-    redirect: routes.discount,
-    transitionDelay: 0.4,
+    redirect: routes.merchandise,
+    transitionDelay: 0.5,
     payment: {
       sol: false,
       dhmt: true,

@@ -37,7 +37,7 @@ const styles = {
   },
 };
 
-const Membership = ({ handlePayDHMT }) => (
+const Membership = ({ handlePay }) => (
   <AppContainer size="md" customStyles={styles.container}>
     <AnimatePresence>
       <Box
@@ -51,7 +51,7 @@ const Membership = ({ handlePayDHMT }) => (
           <Box sx={styles.mediaBox}>
             <CardMedia sx={styles.media} src={dhandsImage} component="img" />
           </Box>
-          <Form handlePayDHMT={handlePayDHMT} />
+          <Form handlePay={handlePay} />
         </Card>
       </Box>
     </AnimatePresence>

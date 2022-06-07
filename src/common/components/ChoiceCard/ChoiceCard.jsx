@@ -9,24 +9,31 @@ import {
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import { PayButton } from 'common/components';
-import { SOLamount, DHMTamount, SHDWamount } from 'common/static/constants';
+import {
+  SOLamount,
+  DHMTamount,
+  SHDWamount,
+  SOL,
+  SHDW,
+  DMND,
+  FREE,
+} from 'common/static/constants';
 import { styles } from './ChoiceCard.styles';
 import staticContent from 'common/static/content.json';
 
-const { dhmt, sol, shdw, start, comming } = staticContent.pages.main;
+const { start, comming } = staticContent.pages.main;
 
-const ChoiceCard = ({
-  title,
-  image,
-  payment,
-  available,
-  description,
-  selectedPage,
-  transitionDelay,
-  handleClickSOL,
-  handleClickDHMT,
-  customStyles = {},
-}) => {
+const ChoiceCard = ({ card, handlePay, customStyles = {} }) => {
+  const {
+    title,
+    image,
+    payment,
+    redirect,
+    available,
+    description,
+    transitionDelay,
+  } = card;
+
   return (
     <Card
       sx={{ ...styles.card, ...customStyles }}
@@ -62,34 +69,34 @@ const ChoiceCard = ({
             <>
               {payment.sol && (
                 <PayButton
-                  currency={sol}
+                  currency={SOL}
                   amount={SOLamount}
-                  handlePay={handleClickSOL}
-                  selectedPage={selectedPage}
+                  handlePay={handlePay}
+                  selectedPage={redirect}
                 />
               )}
               {payment.dhmt && (
                 <PayButton
-                  currency={dhmt}
+                  currency={DMND}
                   amount={DHMTamount}
-                  handlePay={handleClickDHMT}
-                  selectedPage={selectedPage}
+                  handlePay={handlePay}
+                  selectedPage={redirect}
                 />
               )}
               {payment.shdw && (
                 <PayButton
-                  currency={shdw}
+                  currency={SHDW}
                   amount={SHDWamount}
-                  handlePay={handleClickDHMT}
-                  selectedPage={selectedPage}
+                  handlePay={handlePay}
+                  selectedPage={redirect}
                 />
               )}
               {payment.free && (
                 <PayButton
                   title="Open"
-                  currency="free"
-                  handlePay={handleClickDHMT}
-                  selectedPage={selectedPage}
+                  currency={FREE}
+                  handlePay={handlePay}
+                  selectedPage={redirect}
                 />
               )}
             </>

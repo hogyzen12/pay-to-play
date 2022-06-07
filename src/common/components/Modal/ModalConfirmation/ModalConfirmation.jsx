@@ -37,7 +37,7 @@ const ModalConfirmation = () => {
   return (
     <Dialog
       open={isModalOpen && modalType === 'confirm'}
-      fullScreen={fullScreen}
+      // fullScreen={fullScreen}
       onClose={handleClose}
       PaperProps={{
         style: {

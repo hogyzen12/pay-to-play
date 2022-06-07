@@ -38,38 +38,34 @@ const styles = {
     flexDirection: { xs: 'column', lg: 'row' },
     gap: '8px',
   },
+  faq: { mb: { xs: '48px', md: '0' } },
 };
 
-const Raffle = ({ connection }) => {
-  return (
-    <AppContainer size="xl" customStyles={styles.container}>
-      <Typography sx={styles.title} variant="h2" component="h2">
-        {pageTitle}
-      </Typography>
+const Raffle = ({ connection }) => (
+  <AppContainer size="xl" customStyles={styles.container}>
+    <Typography sx={styles.title} variant="h2" component="h2">
+      {pageTitle}
+    </Typography>
 
-      <AnimatePresence>
-        <Box
-          component={motion.div}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          sx={styles.tickets}
-        >
-          {tickets.map((ticket, index) => (
-            <Ticket key={index} connection={connection} {...ticket} />
-          ))}
-        </Box>
-      </AnimatePresence>
-
-      <Box sx={styles.faqs}>
-        <FAQs
-          customStyles={{ mb: { xs: '48px', md: '0' } }}
-          dataFAQs={raffleFAQs}
-        />
-        <FAQs dataFAQs={raffleArchive} />
+    <AnimatePresence>
+      <Box
+        component={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        sx={styles.tickets}
+      >
+        {tickets.map((ticket, index) => (
+          <Ticket key={index} ticket={ticket} connection={connection} />
+        ))}
       </Box>
-    </AppContainer>
-  );
-};
+    </AnimatePresence>
+
+    <Box sx={styles.faqs}>
+      <FAQs customStyles={styles.faq} dataFAQs={raffleFAQs} />
+      <FAQs dataFAQs={raffleArchive} />
+    </Box>
+  </AppContainer>
+);
 
 export default withMetadata({ title, description })(Raffle);

@@ -28,6 +28,8 @@ const Form = ({ handlePay }) => {
   const onSubmit = async ({ email }) => {
     const member = await findMemberByEmail(email);
 
+    console.log('member', member);
+
     await handlePay(null, DMND, sha1(email), email, member);
 
     reset();

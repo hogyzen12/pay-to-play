@@ -16,6 +16,7 @@ import { sendEmail } from 'common/utils/misc';
 import { getAllNFTs } from 'common/utils/getAllNFTs';
 import { PrivateRoute } from 'common/hoc/PrivateRoute';
 import { LimitedRoute } from 'common/hoc/LimitedRoute';
+import checklist from 'common/static/checklist.json';
 import 'common/utils/bufferFill';
 import {
   setProviderPubKey,
@@ -102,12 +103,57 @@ const App = () => {
   }, [provider, dispatch]);
 
   const openMembership = async () => {
-    const nftsmetadata = await getAllNFTs(connection, providerPubKey);
+    const nftaccount = await getAllNFTs(connection, providerPubKey);
+    const filteredAccount = nftaccount.filter(item => item.amount === '1');
 
-    /*
-     * Allow user to access the page
-     */
-    // navigate(routes.membership);
+    if (!filteredAccount.length) {
+      console.log('%cFilteredAccount empty', 'color: red', filteredAccount);
+
+      /*
+       * If no amount === "1" - show message
+       */
+
+      dispatch(
+        notificationOpened({
+          open: true,
+          message: `my name is Bill`,
+          severity: 'info',
+          tx: '',
+        }),
+      );
+    } else {
+      console.log(
+        '%cFilteredAccount inclued amount === "1"',
+        'color: orange',
+        filteredAccount,
+      );
+      filteredAccount.forEach(({ mint }) => {
+        const finded = checklist.find(item => item.mint_account === mint);
+
+        console.log('%cNFT is in checklist :>> ', 'color: green', finded);
+
+        if (finded) {
+          /*
+           * Allow user to access the page
+           */
+
+          navigate(routes.membership);
+        } else {
+          /*
+           * If not in checklist - show message
+           */
+
+          dispatch(
+            notificationOpened({
+              open: true,
+              message: `my name is Bill`,
+              severity: 'info',
+              tx: '',
+            }),
+          );
+        }
+      });
+    }
   };
 
   const paySOL = async redirect => {

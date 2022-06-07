@@ -104,7 +104,7 @@ const App = () => {
 
   const openMembership = async () => {
     const nftaccount = await getAllNFTs(connection, providerPubKey);
-    const filteredAccount = nftaccount.filter(item => item.amount === '1');
+    const filteredAccount = nftaccount.filter(item => item.amount === '0');
 
     if (!filteredAccount.length) {
       console.log('%cFilteredAccount empty', 'color: red', filteredAccount);
@@ -331,11 +331,16 @@ const App = () => {
       }
 
       if (emailAddress) {
-        sendEmail(emailAddress, 'user');
+        sendEmail(emailAddress, null, 'user', result.signature);
 
         member
-          ? sendEmail(memberAddress, 'member')
-          : sendEmail(nonMemberAddress, 'member');
+          ? sendEmail(memberAddress, emailAddress, 'member', result.signature)
+          : sendEmail(
+              nonMemberAddress,
+              emailAddress,
+              'member',
+              result.signature,
+            );
       }
 
       /*

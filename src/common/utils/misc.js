@@ -45,9 +45,9 @@ export const generateResults = () => {
   localStorageSet('results', initialResults);
 };
 
-export const sendEmail = (emailAddress, role, signature) => {
+export const sendEmail = (sendToEmail, userAddress, role, signature) => {
   const userTemplate = {
-    to_email: emailAddress,
+    to_email: sendToEmail,
     my_html: `
 			<span>You can check your transaction status:</span>
 			<a href="${solscanUrl}/${signature}">
@@ -57,12 +57,18 @@ export const sendEmail = (emailAddress, role, signature) => {
   };
 
   const memberTemplate = {
-    to_email: emailAddress,
+    to_email: sendToEmail,
     my_html: `
+		<div>
+			<span>Email:</span>
+			<span>${userAddress}</span>
+		</div>
+		<div>
 			<span>You can check your transaction status:</span>
 			<a href="${solscanUrl}/${signature}">
 				here
 			</a>
+		</div>
 			`,
   };
 

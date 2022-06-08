@@ -7,7 +7,6 @@ import { AppContainer } from 'common/layout';
 import { cards } from 'common/static/cards';
 import staticContent from 'common/static/content.json';
 import withMetadata from 'common/hoc/withMetadata';
-import { routes } from 'routes';
 
 const { title, description } = staticContent.meta.main;
 
@@ -35,7 +34,7 @@ const styles = {
   },
 };
 
-const Main = ({ handleClickSOL, handleClickDHMT, handleOpenMembership }) => {
+const Main = ({ handlePay }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,19 +48,8 @@ const Main = ({ handleClickSOL, handleClickDHMT, handleOpenMembership }) => {
           {cards.map((card, index) => (
             <ChoiceCard
               key={index}
-              title={card.title}
-              image={card.image}
-              payment={card.payment}
-              available={card.available}
-              selectedPage={card.redirect}
-              description={card.description}
-              transitionDelay={card.transitionDelay}
-              handleClickSOL={handleClickSOL}
-              handleClickDHMT={
-                card.redirect === routes.membership
-                  ? handleOpenMembership
-                  : handleClickDHMT
-              }
+              card={card}
+              handlePay={handlePay}
               customStyles={index === 0 && styles.custom}
             />
           ))}

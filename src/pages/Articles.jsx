@@ -32,7 +32,7 @@ const styles = {
   },
 };
 
-const Articles = ({ handleClickSOL, handleClickDHMT }) => (
+const Articles = ({ handlePay }) => (
   <AppContainer size="xl" customStyles={styles.container}>
     <Typography sx={styles.title} variant="h2" component="h2">
       {pageTitle}
@@ -40,18 +40,7 @@ const Articles = ({ handleClickSOL, handleClickDHMT }) => (
 
     <Box sx={styles.choice}>
       {articles.map((article, index) => (
-        <ChoiceCard
-          key={index}
-          title={article.title}
-          image={article.image}
-          payment={article.payment}
-          available={article.available}
-          selectedPage={article.redirect}
-          description={article.description}
-          transitionDelay={article.transitionDelay}
-          handleClickSOL={handleClickSOL}
-          handleClickDHMT={handleClickDHMT}
-        />
+        <ChoiceCard key={index} card={article} handlePay={handlePay} />
       ))}
     </Box>
   </AppContainer>

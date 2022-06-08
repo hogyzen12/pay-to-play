@@ -1,16 +1,13 @@
 import React from 'react';
-import emailjs from '@emailjs/browser';
 import { Controller, useForm } from 'react-hook-form';
 import { Box, Typography, TextField, Button } from '@mui/material';
-import { emailPattern, solscanUrl } from 'common/static/constants';
+import { emailPattern, DMND } from 'common/static/constants';
 import { styles } from './Form.styles';
-import staticContent from 'common/static/content.json';
 import premiumUsers from 'common/static/premium.json';
 
 const sha1 = require('sha1');
-const { dhmt } = staticContent.pages.main;
 
-const Form = ({ handlePayDHMT }) => {
+const Form = ({ handlePay }) => {
   const {
     handleSubmit,
     reset,
@@ -29,10 +26,9 @@ const Form = ({ handlePayDHMT }) => {
   };
 
   const onSubmit = async ({ email }) => {
-    if (!email) return;
-
     const member = await findMemberByEmail(email);
-    await handlePayDHMT(null, dhmt, sha1(email), email, member);
+
+    await handlePay(null, DMND, sha1(email), email, member);
 
     reset();
   };

@@ -1,17 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useModal } from 'common/hooks';
 import {
   ModalSubmit,
   ModalSuccess,
   ModalConfirmation,
 } from 'common/components';
 
-const Modal = ({ connection }) => {
-  const { modalType } = useSelector(state => state.modal);
+const Modal = ({ handlePay }) => {
+  const { modalType } = useModal();
 
   return (
     <>
-      {modalType === 'submit' && <ModalSubmit connection={connection} />}
+      {modalType === 'submit' && <ModalSubmit handlePay={handlePay} />}
       {modalType === 'success' && <ModalSuccess />}
       {modalType === 'confirm' && <ModalConfirmation />}
     </>

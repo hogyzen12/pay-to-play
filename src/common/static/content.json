@@ -99,12 +99,12 @@
         "button": "Got it"
       },
       "submitModal": {
-        "title": "Submit your answers",
+        "title": "Check & Submit your answers",
         "time": "Time:",
         "guessed": "Words guessed:",
         "across": "Across",
         "down": "Down",
-        "something": "Check and then submit your answers by clicking the button and signing the transaction. To return to the crossword and edit your answers click anywhere no on the popup!",
+        "something": "Click off the popup window to return to the crossword.",
         "button": "Submit"
       },
       "dialog": {

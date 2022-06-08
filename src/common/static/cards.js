@@ -53,7 +53,7 @@ export const cards = [
   {
     title: 'Diamond Hands NFT Game',
     description:
-      'Currently under construction - a skill based game that will test your crypto knowledge.',
+      'A game that will test your crypto knowledge, with prizes for the top 40 players and participation rewards for the first 500 players.',
     image: game,
     available: true,
     redirect: routes.crossword,

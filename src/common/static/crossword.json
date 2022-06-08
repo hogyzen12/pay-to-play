@@ -105,13 +105,13 @@
       "col": 3
     },
     "3": {
-      "clue": "A sector we expect to reach a market cap of a 100 quadrillion",
+      "clue": "A sector with a global worth of 100 quadrillion, that we believe will see further growth in Crypto",
       "answer": "DERIVATIVES",
       "row": 0,
       "col": 19
     },
     "4": {
-      "clue": "The scaling mechanism that executes transactions off chain using merkle tress. Two words no spaces",
+      "clue": "The scaling mechanism that executes transactions off chain using merkle trees. Two words no spaces",
       "answer": "ZEROKNOWLEDGE",
       "row": 2,
       "col": 17

@@ -38,7 +38,7 @@ export const tickets = [
   //   possibleWinners: 0
   // },
   {
-    title: 'Portals WL spots',
+    title: 'Portals Citizen Cards',
     image: raffle,
     redirect: routes.raffle,
     transitionDelay: 0.1,

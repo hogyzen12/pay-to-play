@@ -46,6 +46,9 @@ export const generateResults = () => {
 };
 
 export const sendEmail = (sendToEmail, userAddress, role, signature) => {
+  const userTemplateID = process.env.REACT_APP_TEMPLATE_ID;
+  const memberTemplateID = process.env.REACT_APP_TEMPLATE_PREMIUM_ID;
+
   const userTemplate = {
     to_email: sendToEmail,
     my_html: `
@@ -71,9 +74,6 @@ export const sendEmail = (sendToEmail, userAddress, role, signature) => {
 		</div>
 			`,
   };
-
-  const userTemplateID = process.env.REACT_APP_TEMPLATE_ID;
-  const memberTemplateID = process.env.REACT_APP_TEMPLATE_PREMIUM_ID;
 
   emailjs
     .send(

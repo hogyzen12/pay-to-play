@@ -107,12 +107,6 @@ const App = () => {
     const filteredAccount = nftaccount.filter(item => item.amount === '1');
 
     if (!filteredAccount.length) {
-      console.log('%cFilteredAccount empty', 'color: red', filteredAccount);
-
-      /*
-       * If no amount === "1" - show message
-       */
-
       dispatch(
         notificationOpened({
           open: true,
@@ -122,37 +116,26 @@ const App = () => {
         }),
       );
     } else {
-      console.log(
-        '%cFilteredAccount inclued amount === "1"',
-        'color: orange',
-        filteredAccount,
-      );
-      filteredAccount.forEach(({ mint }) => {
-        const finded = checklist.find(item => item.mint_account === mint);
+      const accountsList = filteredAccount.reduce((acc, { mint }) => {
+        const result = checklist.find(item => item.mint_account === mint);
 
-        console.log('%cNFT is in checklist :>> ', 'color: green', finded);
+        if (result) acc = [...acc, result];
 
-        if (finded) {
-          /*
-           * Allow user to access the page
-           */
+        return acc;
+      }, []);
 
-          navigate(routes.membership);
-        } else {
-          /*
-           * If not in checklist - show message
-           */
-
-          dispatch(
-            notificationOpened({
-              open: true,
-              message: `my name is Bill`,
-              severity: 'info',
-              tx: '',
-            }),
-          );
-        }
-      });
+      if (accountsList.length) {
+        navigate(routes.membership);
+      } else {
+        dispatch(
+          notificationOpened({
+            open: true,
+            message: `my name is Bill`,
+            severity: 'info',
+            tx: '',
+          }),
+        );
+      }
     }
   };
 

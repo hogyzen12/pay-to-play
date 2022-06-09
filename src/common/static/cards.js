@@ -40,7 +40,7 @@ export const cards = [
     title: 'Claim CPro membership',
     description: 'Claim CPro membership',
     image: cpro,
-    available: true,
+    available: false,
     redirect: routes.membership,
     transitionDelay: 0.3,
     payment: {
@@ -70,7 +70,7 @@ export const cards = [
     description:
       'Being worked on at the moment - you will be able to claim a discount on any CoinDrip Merch!',
     image: discount,
-    available: true,
+    available: false,
     redirect: routes.merchandise,
     transitionDelay: 0.5,
     payment: {

@@ -38,6 +38,9 @@ export const shadowMint = new PublicKey(
 export const gameWalletPublicKey = new PublicKey(
   'CproxWoLCk4QrCd3VJNUpo3QZf3bjEnTN1FuBcRbZYaw',
 );
+export const crosswordWalletPublicKey = new PublicKey(
+  'CrsYhHpyajSeQCT5SnJCYng1sxJF3Emrm5P95Ku1hkWZ',
+);
 export const portalsRafflePublicKey = new PublicKey(
   'Rf3PiAvNdy6KgHMXQhLr1fJPQujbvKmopHyoM6eP4jP',
 );

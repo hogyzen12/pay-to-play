@@ -37,6 +37,7 @@ import {
   NETWORK,
   diamondsRequiredToPlay,
   gameWalletPublicKey,
+  crosswordWalletPublicKey,
   shadowMint,
   shadowRequiredToPlay,
   lamportsRequiredToPlay,
@@ -223,6 +224,7 @@ const App = () => {
     member,
     resultsSubmit = false,
   ) => {
+    console.log('resultsSubmit', resultsSubmit);
     /*
      * Flow to play the game
      * 1. Check the wallet has a DMND in it
@@ -288,7 +290,7 @@ const App = () => {
         connection,
         currency === SHDW ? shadowMint : tokenMint,
         providerPubKey,
-        gameWalletPublicKey,
+        resultsSubmit ? crosswordWalletPublicKey : gameWalletPublicKey,
         diamondBalance.value.amount,
         currency === SHDW ? shadowRequiredToPlay : diamondsRequiredToPlay,
         hashMemo ? hashMemo : utilMemo,
@@ -458,9 +460,10 @@ const App = () => {
             <Route
               index
               element={
-                <LimitedRoute
-                  component={<ArticlesPage handlePay={handlePay} />}
-                />
+                // <LimitedRoute
+                //   component={<ArticlesPage handlePay={handlePay} />}
+                // />
+                <ArticlesPage handlePay={handlePay} />
               }
             />
             {articlesRoutes.map(({ path, component: Article }) => (
@@ -477,7 +480,7 @@ const App = () => {
       </Suspense>
 
       {isModalOpen && <Modal handlePay={handlePay} />}
-      <Loader isLoading={isLoading} />
+      {isLoading && <Loader isLoading />}
       <Notification />
     </>
   );

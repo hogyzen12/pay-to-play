@@ -42,6 +42,7 @@ export const styles = {
     display: 'flex',
     padding: '0',
     marginTop: 'auto',
+    flexWrap: 'wrap',
   },
   start: {
     mr: '16px',
@@ -49,6 +50,7 @@ export const styles = {
   buttons: {
     display: 'flex',
     alignItems: 'center',
+    flexWrap: 'wrap',
     gap: '8px',
   },
   soon: {

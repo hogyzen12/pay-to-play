@@ -123,7 +123,7 @@
         "button": "Submit"
       },
       "dialog": {
-        "message": "Please do not leave the page until you have submitted your crossword answers. Unlimited time, 1 entry per wallet. To re-access the game you will have to repeat the payment with a DMND. The clues are separated into Down and Across. Clicking on a specific clue will automatically set you up to enter your answer for that clue.You can submit your answers with the Submit button in the bottom right, which will make a popup appear. Here you can do a final check on your answers and then confirm submission. Submission is complete when your transaction with your submission is confirmed - a popup will appear when the submission is complete confirming things. The reset button will clear all your answers."
+        "message": "IF ON MOBILE - TAP THE THREE HORIZONTAL LINES ON THE TOP RIGHT TO MAKE THE SUBMIT APPEAR. Please do not leave the page until you have submitted your crossword answers. Unlimited time, 1 entry per wallet. To re-access the game you will have to repeat the payment with a DMND. The clues are separated into Down and Across. Clicking on a specific clue will automatically set you up to enter your answer for that clue.You can submit your answers with the Submit button in the bottom right, which will make a popup appear. Here you can do a final check on your answers and then confirm submission. Submission is complete when your transaction with your submission is confirmed - a popup will appear when the submission is complete confirming things. The reset button will clear all your answers."
       }
     },
     "notFound": {

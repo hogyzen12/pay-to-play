@@ -90,6 +90,9 @@
     "membership": {
       "pageTitle": "Claim CPro membership"
     },
+    "merchandise": {
+      "discountTitle": "Discount Code:"
+    },
     "crossword": {
       "hints": "Hints",
       "successModal": {

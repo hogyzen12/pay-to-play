@@ -5,6 +5,7 @@ export { default as Tabs } from './Tabs/Tabs';
 export { default as Form } from './Form/Form';
 export { default as Modal } from './Modal/Modal';
 export { default as Timer } from './Timer/Timer';
+export { default as Banner } from './Banner/Banner';
 export { default as Ticket } from './Ticket/Ticket';
 export { default as Loader } from './Loader/Loader';
 export { default as Button } from './Button/Button';

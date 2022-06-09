@@ -5,6 +5,7 @@ export const NETWORK = clusterApiUrl('mainnet-beta');
 export const solscanUrl = 'https://solscan.io/tx';
 export const memberAddress = 'memberclaims@cryptonary.com';
 export const nonMemberAddress = 'nonmemberclaims@cryptonary.com';
+export const discountCode = 'PhHj1PaWjG4_Mv4mmUrU';
 export const SOLamount = '0.1';
 export const DHMTamount = '1';
 export const SHDWamount = '1';

@@ -5,7 +5,9 @@ import { styles } from './FAQs.styles';
 
 const FAQs = ({ dataFAQs, customStyles = {} }) => (
   <Box sx={{ ...styles.faq, ...customStyles }}>
-    <Typography sx={styles.title}>{dataFAQs.title}</Typography>
+    {dataFAQs.title && (
+      <Typography sx={styles.title}>{dataFAQs.title}</Typography>
+    )}
 
     {dataFAQs.items.map(({ title, description, id, archive }) => (
       <Accordion

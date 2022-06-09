@@ -126,7 +126,7 @@ const AppBar = ({ toggleDrawer }) => {
             </>
           )}
 
-          {location.pathname === routes.crossword && gameWalletStatus()}
+          {location.pathname === `/${routes.crossword}` && gameWalletStatus()}
         </Box>
       </Toolbar>
     </AppHeading>

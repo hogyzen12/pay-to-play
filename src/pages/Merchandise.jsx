@@ -1,14 +1,15 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Card, CardMedia, CardContent, Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { AppContainer } from 'common/layout';
-import { FAQs } from 'common/components';
+import { FAQs, Banner } from 'common/components';
 import { merchFAQs } from 'common/static/faqs';
-import withMetadata from 'common/hoc/withMetadata';
+import { discountCode } from 'common/static/constants';
 import staticContent from 'common/static/content.json';
-import airdrop from 'assets/image/airdrop.jpg';
+import withMetadata from 'common/hoc/withMetadata';
 
 const { title, description } = staticContent.meta.merchandise;
+const { discountTitle } = staticContent.pages.merchandise;
 
 const styles = {
   container: {
@@ -31,6 +32,13 @@ const styles = {
   },
   box: { width: { xs: '100%', md: '50%' } },
   faqs: { maxWidth: { xs: '100%', md: '50%' } },
+  codeTitle: { fontSize: '40px', mb: '40px' },
+  code: {
+    fontSize: { xs: '20px', md: '32px' },
+    border: '1px solid #fff',
+    padding: '10px 20px',
+    borderRadius: '6px',
+  },
 };
 
 const Merchandise = () => (
@@ -42,13 +50,18 @@ const Merchandise = () => (
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <Card>
-          <CardMedia sx={styles.media} src={airdrop} component="img" />
-          <CardContent sx={styles.content}>
-            <Box sx={styles.box}></Box>
-            <FAQs dataFAQs={merchFAQs} customStyles={styles.faqs} />
-          </CardContent>
-        </Card>
+        <Banner />
+        <Box sx={styles.content}>
+          <FAQs dataFAQs={merchFAQs} customStyles={styles.faqs} />
+          <Box sx={{ width: { xs: '100%', md: '50%' } }}>
+            <Typography sx={styles.codeTitle} variant="h2">
+              {discountTitle}
+            </Typography>
+            <Typography sx={styles.code} variant="body1" component="span">
+              {discountCode}
+            </Typography>
+          </Box>
+        </Box>
       </Box>
     </AnimatePresence>
   </AppContainer>

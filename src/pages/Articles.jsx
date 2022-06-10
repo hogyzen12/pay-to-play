@@ -10,21 +10,13 @@ const { title, description } = staticContent.meta.articles;
 const { pageTitle } = staticContent.pages.articles;
 
 const styles = {
-  // container: {
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  //   padding: '32px 0',
-  // },
   container: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '32px 16px',
-    maxWidth: '1600px',
-    margin: '0 auto',
+    padding: '32px 0',
+    maxWidth: { xl: '1600px' },
   },
   title: {
     mb: '32px',
@@ -48,18 +40,36 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: '10px',
+
+    '&::-webkit-scrollbar': {
+      width: '2px',
+    },
+    '&::-webkit-scrollbar-track': {
+      background: 'transparent',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      background: '#A2A2A2',
+    },
+    '&::-webkit-scrollbar-thumb:hover': {
+      background: '#555',
+    },
   },
 };
 
 const Articles = ({ handlePay }) => (
-  // <AppContainer size="xl" customStyles={styles.container}>
-  <Box sx={styles.container}>
+  <AppContainer size="xl" customStyles={styles.container}>
     <Typography sx={styles.title} variant="h2" component="h2">
       {pageTitle}
     </Typography>
 
     <Stack sx={styles.wrapper} direction="row" spacing={1}>
-      <Box sx={styles.item}>
+      <Box
+        sx={{
+          ...styles.item,
+          overflowY: articles.categoryA.length > 3 ? 'scroll' : '',
+          maxHeight: '1650px',
+        }}
+      >
         {articles.categoryA.map((article, index) => (
           <ChoiceCard
             key={index}
@@ -100,8 +110,7 @@ const Articles = ({ handlePay }) => (
         ))}
       </Box>
     </Stack>
-  </Box>
-  /* </AppContainer> */
+  </AppContainer>
 );
 
 export default withMetadata({ title, description })(Articles);

@@ -11,7 +11,7 @@ import {
 import { AppContainer } from 'common/layout';
 import staticContent from 'common/static/content.json';
 import withMetadata from 'common/hoc/withMetadata';
-import alive from 'assets/image/cards/alive.png';
+import wealth from 'assets/image/cards/wealth.png';
 
 const { title, description } = staticContent.meta.wealth;
 
@@ -45,7 +45,7 @@ const Wealth = () => (
         exit={{ opacity: 0 }}
         sx={{ userSelect: 'none' }}
       >
-        <CardMedia sx={{ mb: '24px' }} src={alive} component="img" />
+        <CardMedia sx={{ mb: '24px' }} src={wealth} component="img" />
       </Box>
     </AnimatePresence>
   </AppContainer>

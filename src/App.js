@@ -470,7 +470,10 @@ const App = () => {
               <Route
                 key={path}
                 path={path}
-                element={<PrivateRoute component={<Article />} />}
+                element={
+                  // <PrivateRoute component={<Article />} />
+                  <Article />
+                }
               />
             ))}
           </Route>

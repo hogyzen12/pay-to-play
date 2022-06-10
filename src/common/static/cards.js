@@ -20,6 +20,7 @@ export const cards = [
       shdw: false,
       free: true,
     },
+    latest: false,
   },
   {
     title: 'Raffle page',
@@ -35,6 +36,7 @@ export const cards = [
       shdw: false,
       free: true,
     },
+    latest: false,
   },
   {
     title: 'Claim CPro membership',
@@ -49,6 +51,7 @@ export const cards = [
       shdw: false,
       free: true,
     },
+    latest: false,
   },
   {
     title: 'Diamond Hands NFT Game',
@@ -64,6 +67,7 @@ export const cards = [
       shdw: false,
       free: false,
     },
+    latest: false,
   },
   {
     title: 'Win Coindrip Merchandise',
@@ -79,5 +83,6 @@ export const cards = [
       shdw: false,
       free: false,
     },
+    latest: false,
   },
 ];

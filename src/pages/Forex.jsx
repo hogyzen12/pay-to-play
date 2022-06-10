@@ -98,6 +98,7 @@ const Forex = () => (
         <List sx={{ mb: '32px' }}>
           <ListItem sx={{ padding: '0 0 0 16px' }}>
             <ListItemText sx={styles.italicText}>
+              &#9679;{'  '}
               <Link
                 sx={styles.link}
                 href="https://www.cryptonary.com/research/30x-alive-and-well/"
@@ -112,6 +113,7 @@ const Forex = () => (
           </ListItem>
           <ListItem sx={{ padding: '0 0 0 16px' }}>
             <ListItemText sx={styles.italicText}>
+              &#9679;{'  '}
               <Link
                 sx={styles.link}
                 href="https://www.cryptonary.com/research/simply-teleport-your-coins/"
@@ -126,6 +128,7 @@ const Forex = () => (
           </ListItem>
           <ListItem sx={{ padding: '0 0 0 16px' }}>
             <ListItemText sx={styles.italicText}>
+              &#9679;{'  '}
               <Link
                 sx={styles.link}
                 href="https://www.cryptonary.com/research/the-bridge-to-crypto-wealth/"
@@ -139,6 +142,7 @@ const Forex = () => (
           </ListItem>
           <ListItem sx={{ padding: '0 0 0 16px' }}>
             <ListItemText sx={styles.italicText}>
+              &#9679;{'  '}
               <Link
                 sx={styles.link}
                 href="https://www.cryptonary.com/research/sliding-into-cross-chain-dms/"

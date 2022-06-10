@@ -1,8 +1,8 @@
-import game from 'assets/image/cards/game.jpg';
-import raffle from 'assets/image/cards/raffle.png';
-import discount from 'assets/image/cards/discount.jpg';
+import game from 'assets/image/cards/dmnd-game.jpg';
+import raffle from 'assets/image/cards/dmnd-raffle.jpg';
+import discount from 'assets/image/cards/dmnd-discount.jpg';
 import cpro from 'assets/image/cards/cpro.png';
-import future from 'assets/image/cards/articles_head.png';
+import future from 'assets/image/cards/articles_head.jpg';
 
 import { routes } from 'routes';
 

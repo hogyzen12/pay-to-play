@@ -119,7 +119,7 @@ export const articles = {
       image: future,
       available: true,
       redirect: `${routes.articles}/${routes.future}`,
-      transitionDelay: 0.2,
+      transitionDelay: 0.1,
       payment: {
         sol: true,
         dhmt: true,
@@ -135,7 +135,7 @@ export const articles = {
       image: premia,
       available: true,
       redirect: `${routes.articles}/${routes.premia}`,
-      transitionDelay: 0.3,
+      transitionDelay: 0.2,
       payment: {
         sol: true,
         dhmt: true,
@@ -153,7 +153,7 @@ export const articles = {
       image: dao20,
       available: true,
       redirect: `${routes.articles}/${routes.alphaTwenty}`,
-      transitionDelay: 0.3,
+      transitionDelay: 0.1,
       payment: {
         sol: true,
         dhmt: true,
@@ -169,7 +169,7 @@ export const articles = {
       image: alpha,
       available: true,
       redirect: `${routes.articles}/${routes.alpha}`,
-      transitionDelay: 0.4,
+      transitionDelay: 0.2,
       payment: {
         sol: false,
         dhmt: true,
@@ -186,7 +186,7 @@ export const articles = {
       image: premium,
       available: true,
       redirect: `${routes.articles}/${routes.premium}`,
-      transitionDelay: 0.4,
+      transitionDelay: 0.1,
       payment: {
         sol: true,
         dhmt: true,

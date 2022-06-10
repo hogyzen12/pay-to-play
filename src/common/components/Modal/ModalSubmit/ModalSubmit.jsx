@@ -117,7 +117,7 @@ const ModalSubmit = ({ handlePay }) => {
       </Box>
 
       <Box sx={styles.footer} component="footer">
-        <Typography>{something}</Typography>
+        <Typography sx={{ mt: { xs: '20px', md: 0 } }}>{something}</Typography>
         <Button title={`${button} (1 DMND)`} onClick={handlePayToSubmit} />
       </Box>
     </Box>
@@ -130,7 +130,16 @@ const ModalSubmit = ({ handlePay }) => {
           {modalContent()}
         </SubmitModal>
       ) : (
-        <Drawer anchor="bottom" open={isModalOpen} onClose={handleClose}>
+        <Drawer
+          PaperProps={{
+            sx: {
+              top: '60px',
+            },
+          }}
+          anchor="bottom"
+          open={isModalOpen}
+          onClose={handleClose}
+        >
           {modalContent()}
         </Drawer>
       )}

@@ -224,6 +224,7 @@ const App = () => {
     member,
     resultsSubmit = false,
   ) => {
+    console.log('resultsSubmit', resultsSubmit);
     /*
      * Flow to play the game
      * 1. Check the wallet has a DMND in it
@@ -464,11 +465,11 @@ const App = () => {
                 />
               }
             />
-            {articlesRoutes.map(({ path, component: Article }) => (
+            {articlesRoutes.map(({ path, component: ArticlePage }) => (
               <Route
                 key={path}
                 path={path}
-                element={<PrivateRoute component={<Article />} />}
+                element={<PrivateRoute component={<ArticlePage />} />}
               />
             ))}
           </Route>
@@ -478,7 +479,7 @@ const App = () => {
       </Suspense>
 
       {isModalOpen && <Modal handlePay={handlePay} />}
-      <Loader isLoading={isLoading} />
+      {isLoading && <Loader isLoading />}
       <Notification />
     </>
   );

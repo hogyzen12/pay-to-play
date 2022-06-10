@@ -24,6 +24,18 @@ export const MembershipPage = lazy(() =>
   import('./pages/Membership' /* webpackChunkName: "MembershipPage" */),
 );
 
+export const ForexPage = lazy(() =>
+  import('./pages/Forex' /* webpackChunkName: "ForexPage" */),
+);
+
+export const WealthPage = lazy(() =>
+  import('./pages/Wealth' /* webpackChunkName: "WealthPage" */),
+);
+
+export const XChainPage = lazy(() =>
+  import('./pages/XChain' /* webpackChunkName: "XChainPage" */),
+);
+
 export const FuturePage = lazy(() =>
   import('./pages/Future' /* webpackChunkName: "FuturePage" */),
 );
@@ -67,6 +79,9 @@ export const routes = {
   membership: 'membership',
   merchandise: 'merchandise',
   articles: 'articles',
+  forex: 'forex',
+  wealth: 'wealth',
+  xchain: 'xchain',
   alive: 'alive',
   alpha: 'alpha',
   future: 'future',
@@ -79,6 +94,9 @@ export const routes = {
 };
 
 export const articlesRoutes = [
+  { path: routes.forex, component: ForexPage },
+  { path: routes.wealth, component: WealthPage },
+  { path: routes.xchain, component: XChainPage },
   { path: routes.alive, component: AlivePage },
   { path: routes.alpha, component: AlphaPage },
   { path: routes.future, component: FuturePage },

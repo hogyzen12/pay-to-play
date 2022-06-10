@@ -1,8 +1,7 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
-import { ChoiceCard } from 'common/components';
+import { Typography, useTheme, useMediaQuery } from '@mui/material';
 import { AppContainer } from 'common/layout';
-import { articles } from 'common/static/articles';
+import { ArticleStack, ArticleTabs } from 'common/components';
 import withMetadata from 'common/hoc/withMetadata';
 import staticContent from 'common/static/content.json';
 
@@ -14,36 +13,31 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: { xs: 'start', 1200: 'center' },
+    maxWidth: { xl: '1600px' },
   },
   title: {
     mb: '32px',
   },
-  choice: {
-    display: 'grid',
-    gridTemplateColumns: {
-      xs: '1fr',
-      md: 'repeat(2, 1fr)',
-      xl: 'repeat(3, 1fr)',
-    },
-    gridTemplateRows: { xs: 'repeat(5, 1fr)', md: 'repeat(2, 1fr)' },
-    gridColumnGap: { md: '16px' },
-    gridRowGap: '16px',
-  },
 };
 
-const Articles = ({ handlePay }) => (
-  <AppContainer size="xl" customStyles={styles.container}>
-    <Typography sx={styles.title} variant="h2" component="h2">
-      {pageTitle}
-    </Typography>
+const Articles = ({ handlePay }) => {
+  const theme = useTheme();
+  const isDesktopView = useMediaQuery(theme.breakpoints.up(1200));
 
-    <Box sx={styles.choice}>
-      {articles.map((article, index) => (
-        <ChoiceCard key={index} card={article} handlePay={handlePay} />
-      ))}
-    </Box>
-  </AppContainer>
-);
+  return (
+    <AppContainer size="xl" customStyles={styles.container}>
+      <Typography sx={styles.title} variant="h2" component="h2">
+        {pageTitle}
+      </Typography>
+
+      {isDesktopView ? (
+        <ArticleStack handlePay={handlePay} />
+      ) : (
+        <ArticleTabs handlePay={handlePay} />
+      )}
+    </AppContainer>
+  );
+};
 
 export default withMetadata({ title, description })(Articles);

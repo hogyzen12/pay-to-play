@@ -113,7 +113,7 @@ const AppBar = ({ toggleDrawer }) => {
             </Button>
           )}
 
-          {location.pathname !== routes.crossword && providerPubKey && (
+          {location.pathname !== `/${routes.crossword}` && providerPubKey && (
             <>
               <Typography sx={styles.key}>
                 {providerPubKey?.toBase58()}

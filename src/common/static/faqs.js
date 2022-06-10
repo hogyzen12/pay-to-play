@@ -35,6 +35,92 @@ export const raffleArchive = {
   items: [
     {
       id: uuidv4(),
+      title: 'Diamonds Game #002',
+      description:
+        'Below is all the information needed to verify the game on chain:',
+      archive: [
+        {
+          id: uuidv4(),
+          text: '47 Winners',
+          link: '',
+        },
+        {
+          id: uuidv4(),
+          text: 'Entries, Winners and payouts:',
+          link: 'https://shdw-drive.genesysgo.net/DQeQVxZyuKCQ2jN3dfnzuvSAmq1stD3zy6aoS89K7gqs/Dmnd_game_2.txt',
+        },
+        {
+          id: uuidv4(),
+          text: 'Tickets Sold: 315',
+        },
+        {
+          id: uuidv4(),
+          text: 'Entry Wallet: gm2bnBrvoRQRhvU1d24FPgHmdMySfbxeYcXxvFAZkpc',
+          link: '',
+        },
+      ],
+    },
+    {
+      id: uuidv4(),
+      title: 'Raffle #006 Tombstoned #2302',
+      description:
+        'Below is all the information needed to verify this raffle on chain:',
+      archive: [
+        {
+          id: uuidv4(),
+          text: 'Winner: Ticket #571',
+          link: '',
+        },
+        {
+          id: uuidv4(),
+          text: 'Winning Entry:',
+          link: 'https://solscan.io/tx/GvL6Whct2NSnwjqPfaxTTUrJDZXpzJwjja3ebeGoLcfYtNM2zpN7fGaDRnhh2Z1xEviGufoiY2kBR98bcjrrS92',
+        },
+        {
+          id: uuidv4(),
+          text: 'Tickets Sold: 726',
+        },
+        {
+          id: uuidv4(),
+          text: 'Payout:',
+          link: 'https://solscan.io/tx/5nfb4wMxybR5XvBWHw5tU4zAJEBVBx3gM4otr1thY7NBtrCa1N5LoDnweGubBRCkVwwMThe8LRHeg85qtQbFY195',
+        },
+        {
+          id: uuidv4(),
+          text: 'Entry Wallet: Rf3XUKqNiDeXnLdf96xqddwMBtuC3EzVRYNVXeQGUc1',
+          link: '',
+        },
+      ],
+    },
+    {
+      id: uuidv4(),
+      title: 'Raffle #005 Portals Citizen Cards',
+      description:
+        'Below is all the information needed to verify this raffle on chain:',
+      archive: [
+        {
+          id: uuidv4(),
+          text: '20 Winners',
+          link: '',
+        },
+        {
+          id: uuidv4(),
+          text: 'Entries, Winners and payouts:',
+          link: 'https://shdw-drive.genesysgo.net/DQeQVxZyuKCQ2jN3dfnzuvSAmq1stD3zy6aoS89K7gqs/Raffle_5_results.txt',
+        },
+        {
+          id: uuidv4(),
+          text: 'Tickets Sold: 291',
+        },
+        {
+          id: uuidv4(),
+          text: 'Entry Wallet: Rf3PiAvNdy6KgHMXQhLr1fJPQujbvKmopHyoM6eP4jP',
+          link: '',
+        },
+      ],
+    },
+    {
+      id: uuidv4(),
       title: 'Diamonds Game #001',
       description:
         'Below is all the information needed to verify the game on chain:',

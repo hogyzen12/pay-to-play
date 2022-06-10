@@ -14,15 +14,15 @@ export const styles = {
     borderRadius: '8px',
   },
   mediaBox: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    bgcolor: '#1E1D21',
-    borderRadius: '8px',
-    maxWidth: '640px',
-    width: '100%',
-    height: '200px',
-    mb: '16px',
+    position: 'relative',
+  },
+  label: {
+    position: 'absolute',
+    left: '6px',
+    top: '6px',
+    bgcolor: 'red',
+    padding: '6px 12px',
+    borderRadius: '4px',
   },
   content: {
     mb: '32px',
@@ -37,11 +37,16 @@ export const styles = {
     fontSize: '14px',
     lineHeight: '22.4px',
     color: theme => theme.palette.success.contrastText,
+    textOverflow: 'ellipsis',
+    whiteSpace: 'wrap',
+    overflow: 'hidden',
+    maxHeight: '90px',
   },
   actions: {
     display: 'flex',
     padding: '0',
     marginTop: 'auto',
+    flexWrap: 'wrap',
   },
   start: {
     mr: '16px',
@@ -49,6 +54,7 @@ export const styles = {
   buttons: {
     display: 'flex',
     alignItems: 'center',
+    flexWrap: 'wrap',
     gap: '8px',
   },
   soon: {

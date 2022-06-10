@@ -27,6 +27,7 @@ const ChoiceCard = ({
   card: {
     title,
     image,
+    latest = false,
     payment,
     redirect,
     available,
@@ -37,20 +38,23 @@ const ChoiceCard = ({
   customStyles = {},
 }) => (
   <Card
-    sx={{ ...styles.card, ...customStyles }}
+    sx={{ ...styles.card, ...customStyles, bgcolor: latest ? '#013220' : '' }}
     component={motion.div}
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
     transition={{ delay: transitionDelay }}
   >
-    <CardMedia
-      sx={styles.image}
-      alt={title}
-      image={image}
-      component="img"
-      height="240"
-    />
+    <Box sx={styles.mediaBox}>
+      {latest && <Box sx={styles.label}>New</Box>}
+      <CardMedia
+        sx={styles.image}
+        alt={title}
+        image={image}
+        component="img"
+        height="240"
+      />
+    </Box>
 
     <CardContent sx={styles.content}>
       <Typography sx={styles.title} variant="h3">

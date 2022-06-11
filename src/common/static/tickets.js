@@ -50,7 +50,7 @@ export const tickets = [
     possibleWinners: 20,
   },
   {
-    title: 'Tombstoned #2302',
+    title: 'Tombstoned #3463',
     image: raffle2,
     redirect: routes.raffle,
     transitionDelay: 0.2,

@@ -62,7 +62,7 @@ export const raffleArchive = {
     },
     {
       id: uuidv4(),
-      title: 'Raffle #006 Tombstoned #2302',
+      title: 'Raffle #006 Tombstoned #3463',
       description:
         'Below is all the information needed to verify this raffle on chain:',
       archive: [

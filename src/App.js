@@ -111,7 +111,7 @@ const App = () => {
       dispatch(
         notificationOpened({
           open: true,
-          message: `my name is Bill`,
+          message: `You need to hold a DH NFT in your wallet to access the membership claiming page!`,
           severity: 'info',
           tx: '',
         }),
@@ -131,7 +131,7 @@ const App = () => {
         dispatch(
           notificationOpened({
             open: true,
-            message: `my name is Bill`,
+            message: `You need to hold a DH NFT in your wallet to access the membership claiming page!`,
             severity: 'info',
             tx: '',
           }),

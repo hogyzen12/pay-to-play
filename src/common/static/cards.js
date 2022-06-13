@@ -42,7 +42,7 @@ export const cards = [
     title: 'Claim CPro membership',
     description: 'Claim CPro membership',
     image: cpro,
-    available: false,
+    available: true,
     redirect: routes.membership,
     transitionDelay: 0.3,
     payment: {

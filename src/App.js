@@ -107,7 +107,7 @@ const App = () => {
 
   const openMembership = async () => {
     const nftaccount = await getAllNFTs(connection, providerPubKey);
-    const filteredAccount = nftaccount.filter(item => item.amount === '0');
+    const filteredAccount = nftaccount.filter(item => item.amount === '1');
 
     if (!filteredAccount.length) {
       dispatch(
@@ -362,8 +362,8 @@ const App = () => {
       );
 
       dispatch(loaderDisabled());
-      if (resultsSubmit) dispatch(modalOpened('success'));
 
+      if (resultsSubmit) dispatch(modalOpened('success'));
       if (selectedItem) navigate(selectedItem);
     } catch (error) {
       dispatch(
@@ -374,6 +374,8 @@ const App = () => {
           tx: '',
         }),
       );
+    } finally {
+      dispatch(loaderDisabled());
     }
   };
 

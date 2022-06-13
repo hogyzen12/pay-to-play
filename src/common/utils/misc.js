@@ -52,6 +52,7 @@ export const sendEmail = (sendToEmail, userAddress, role, signature) => {
   const userTemplate = {
     to_email: sendToEmail,
     my_html: `
+			<span>Congratulations on successfully claiming your 1 month of CPro with DMNDS! You can find your receipt of payment on chain at the below link. Your CPro account linked to this email will be updated to reflect this within the next 48 hours. We appreciate your patience :slightly_smiling_face:</span>
 			<span>You can check your transaction status:</span>
 			<a href="${solscanUrl}/${signature}">
 				here

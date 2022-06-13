@@ -9,6 +9,7 @@ export const discountCode = 'PhHj1PaWjG4_Mv4mmUrU';
 export const SOLamount = '0.1';
 export const DHMTamount = '1';
 export const SHDWamount = '1';
+export const diamondsToClaim = '2';
 export const timeAmount = 10799; // one hour 3600
 export const expiryTimestamp = new Date();
 
@@ -37,6 +38,9 @@ export const shadowMint = new PublicKey(
 );
 export const gameWalletPublicKey = new PublicKey(
   'CproxWoLCk4QrCd3VJNUpo3QZf3bjEnTN1FuBcRbZYaw',
+);
+export const memberPubkey = new PublicKey(
+  'MbrS5cieMK9hvyjB5nhBWaKFW31aKk2WGGNeCePnQ8j',
 );
 export const crosswordWalletPublicKey = new PublicKey(
   'CrsYhHpyajSeQCT5SnJCYng1sxJF3Emrm5P95Ku1hkWZ',

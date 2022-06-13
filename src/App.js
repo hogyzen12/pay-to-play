@@ -37,6 +37,7 @@ import {
   NETWORK,
   diamondsRequiredToPlay,
   gameWalletPublicKey,
+  memberPubkey,
   crosswordWalletPublicKey,
   shadowMint,
   shadowRequiredToPlay,
@@ -45,6 +46,7 @@ import {
   utilMemo,
   memberAddress,
   nonMemberAddress,
+  diamondsToClaim,
   DMND,
   FREE,
   SHDW,
@@ -219,8 +221,8 @@ const App = () => {
   const payDHMT = async (
     selectedItem,
     currency,
-    hashMemo,
-    emailAddress,
+    hashMemo, // hashed email
+    emailAddress, // email string
     member,
     resultsSubmit = false,
   ) => {
@@ -283,6 +285,18 @@ const App = () => {
        * we call our custom function here to do this
        */
 
+      let walletPubKey = gameWalletPublicKey;
+
+      if (emailAddress) {
+        walletPubKey = memberPubkey;
+        console.log('memberPubkey :>>', walletPubKey);
+      }
+
+      if (resultsSubmit) {
+        walletPubKey = crosswordWalletPublicKey;
+        console.log('crosswordWalletPublicKey :>> ', walletPubKey);
+      }
+
       dispatch(loaderActive());
 
       const result = await transferDiamondToken(
@@ -290,8 +304,8 @@ const App = () => {
         connection,
         currency === SHDW ? shadowMint : tokenMint,
         providerPubKey,
-        resultsSubmit ? crosswordWalletPublicKey : gameWalletPublicKey,
-        diamondBalance.value.amount,
+        walletPubKey,
+        emailAddress ? diamondsToClaim : diamondBalance.value.amount,
         currency === SHDW ? shadowRequiredToPlay : diamondsRequiredToPlay,
         hashMemo ? hashMemo : utilMemo,
       );

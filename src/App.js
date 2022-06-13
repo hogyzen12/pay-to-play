@@ -286,15 +286,21 @@ const App = () => {
        */
 
       let walletPubKey = gameWalletPublicKey;
+      let requiredToPlay = diamondsRequiredToPlay;
 
       if (emailAddress) {
         walletPubKey = memberPubkey;
+        requiredToPlay = diamondsToClaim;
         console.log('memberPubkey :>>', walletPubKey);
       }
 
       if (resultsSubmit) {
         walletPubKey = crosswordWalletPublicKey;
         console.log('crosswordWalletPublicKey :>> ', walletPubKey);
+      }
+
+      if (currency === SHDW) {
+        requiredToPlay = shadowRequiredToPlay;
       }
 
       dispatch(loaderActive());
@@ -305,8 +311,8 @@ const App = () => {
         currency === SHDW ? shadowMint : tokenMint,
         providerPubKey,
         walletPubKey,
-        emailAddress ? diamondsToClaim : diamondBalance.value.amount,
-        currency === SHDW ? shadowRequiredToPlay : diamondsRequiredToPlay,
+        diamondBalance.value.amount,
+        requiredToPlay,
         hashMemo ? hashMemo : utilMemo,
       );
 

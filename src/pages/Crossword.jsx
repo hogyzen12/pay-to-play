@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Box } from '@mui/material';
-import { Game } from 'common/components';
+import { Game, FAQs } from 'common/components';
 import { AppContainer } from 'common/layout';
+import { crosswordFAQs } from 'common/static/faqs';
 import withMetadata from 'common/hoc/withMetadata';
 import staticContent from 'common/static/content.json';
 
@@ -13,6 +14,11 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  faqs: {
+    margin: '0 auto',
+    paddingTop: '80px',
+    maxWidth: '720px',
   },
 };
 
@@ -26,6 +32,7 @@ const Crossword = () => (
         exit={{ opacity: 0 }}
       >
         <Game />
+        <FAQs dataFAQs={crosswordFAQs} customStyles={styles.faqs} />
       </Box>
     </AnimatePresence>
   </AppContainer>

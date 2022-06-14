@@ -272,13 +272,161 @@ export const raffleArchive = {
   ],
 };
 
-export const membershipFAQs = {
+export const merchFAQs = {
+  title: '',
+  items: [
+    {
+      id: uuidv4(),
+      title: 'How to claim!',
+      description:
+        'In order to claim your merch airdrop you will need to have a DH hoodie or t-shirt token in your wallet. These tokens have been airdropped to the owners of the eligible NFTs. The first step is to enter ANY email address you have access to. It does not have to be your CPro one. The last day to submit/claim will be the 30th of this month. All codes will be sent out by the 31st.	Now you’ve filled in your email it’s time to claim your airdrop. Open up your Solana wallet and find your DH Hoodie or DH Tshirt tokens. Now send your tokens to:	MrchFrUf6zQqWpSKosEymtd1jDHjQC9RxxzbcCyqi4r. If you send 2 tokens - you will receive 2 codes, 4 tokens - 4 codes etc.. Each token corresponds to 1 merch airdrop. Once your transaction goes through look up the transaction on solscan and paste the link into the transaction link field. If you need to see how to do this check out the example videos below !! ',
+    },
+  ],
+};
+
+export const crosswordFAQs = {
   title: 'FAQs',
   items: [
     {
       id: uuidv4(),
-      title: 'How it works?',
-      description: 'test ',
+      title: 'Answers:',
+      description: [
+        {
+          question: 'Used to indicate a long term view / time horizon',
+          answer: 'MACRO',
+        },
+        {
+          question:
+            'A key element which will expand the throughput of Ethereum',
+          answer: 'SHARDING',
+        },
+        {
+          question:
+            'The model that many coins use to generate revenue, rewarding older holders with capital from new entrants',
+          answer: 'PONZI',
+        },
+        {
+          question:
+            'What you should be doing with some of your Solana, and the mechanism that secures the network aka Proof of ...',
+          answer: 'STAKE',
+        },
+        {
+          question: 'The first name of the Ethereum creator',
+          answer: 'VITALIK',
+        },
+        {
+          question: 'Colour of Bills Glasses',
+          answer: 'YELLOW',
+        },
+        {
+          question:
+            'The instrument that allows traders to increase the size of their positions aka what Uncle Sams Casino offers',
+          answer: 'LEVERAGE',
+        },
+        {
+          question:
+            'A system or process for which there is a singular source of authority, control and/or truth',
+          answer: 'CENTRALISED',
+        },
+        {
+          question:
+            'An eating utensil. Also commonly used in relationship to ETH upgrades',
+          answer: 'FORK',
+        },
+        {
+          question:
+            'A precious gem and also a token all DH holders are accruing via in wallet staking',
+          answer: 'DMNDS',
+        },
+        {
+          question:
+            'A positive outlook on life, and the other ETH scaling solution type',
+          answer: 'OPTIMISTIC',
+        },
+        {
+          question:
+            'The token attached to the SSC NFTs, which also allows user access to decentralised storage',
+          answer: 'SHADOW',
+        },
+        {
+          question: 'The first cryptocurrency to be created',
+          answer: 'BITCOIN',
+        },
+        {
+          question: 'The first name of the Bitcoin creator',
+          answer: 'SATOSHI',
+        },
+        {
+          question:
+            'Futures that have no expiration date - they have also seen the most volume in crypto',
+          answer: 'PERPS',
+        },
+        {
+          question:
+            "The encryption algorithm used by Solana for it's PoH validation mechanism",
+          answer: 'SHA256',
+        },
+        {
+          question:
+            'What Lil Uzi Verts NFT project on Solana could be characterised as, and something every NFT degen has ended up owning',
+          answer: 'RUGPULL',
+        },
+        {
+          question:
+            'A sector with a global worth of 100 quadrillion, that we believe will see further growth in Crypto',
+          answer: 'DERIVATIVES',
+        },
+        {
+          question:
+            'The scaling mechanism that executes transactions off chain using merkle trees. Two words no spaces',
+          answer: 'ZEROKNOWLEDGE',
+        },
+        {
+          question:
+            'A major technological advancement and key narrative for Ethereum this year... it should reduce those gas fees too',
+          answer: 'MERGE',
+        },
+        {
+          question: 'Karims favourite cryptocurrency',
+          answer: 'ETHEREUM',
+        },
+        {
+          question: 'The surname of one of the Solana Creators',
+          answer: 'YAKOVENKO',
+        },
+        {
+          question:
+            'Your best guide in the crypto market, and source for accurate and impartial research',
+          answer: 'CRYPTONARY',
+        },
+        {
+          question: 'Tokens whose value aims to be constant',
+          answer: 'STABLECOIN',
+        },
+        {
+          question:
+            'What happens to your account when you are long BTC and it dumps HARD',
+          answer: 'LIQUIDATION',
+        },
+        {
+          question:
+            'The study of what a token is used for and how it is distributed',
+          answer: 'TOKENOMICS',
+        },
+        {
+          question: 'An ETH scaling mechanism which has two types',
+          answer: 'ROLLUPS',
+        },
+        {
+          question:
+            "The kinda coin you don't want to buy - usually shilled by influencers",
+          answer: 'SHITCOIN',
+        },
+        {
+          question: 'The base layer this game is built on',
+          answer: 'SOLANA',
+        },
+      ],
     },
     {
       id: uuidv4(),
@@ -288,14 +436,44 @@ export const membershipFAQs = {
   ],
 };
 
-export const merchFAQs = {
-  title: '',
+export const membershipFirstFAQs = {
+  title: 'FAQs',
   items: [
     {
       id: uuidv4(),
-      title: 'How to claim!',
-      description:
-        'In order to claim your merch airdrop you will need to have a DH hoodie or t-shirt token in your wallet. These tokens have been airdropped to the owners of the eligible NFTs. The first step is to enter ANY email address you have access to. It does not have to be your CPro one. The last day to submit/claim will be the 30th of this month. All codes will be sent out by the 31st.	Now you’ve filled in your email it’s time to claim your airdrop. Open up your Solana wallet and find your DH Hoodie or DH Tshirt tokens. Now send your tokens to:	MrchFrUf6zQqWpSKosEymtd1jDHjQC9RxxzbcCyqi4r. If you send 2 tokens - you will receive 2 codes, 4 tokens - 4 codes etc.. Each token corresponds to 1 merch airdrop. Once your transaction goes through look up the transaction on solscan and paste the link into the transaction link field. If you need to see how to do this check out the example videos below !! ',
+      title: 'How it works?',
+      description: 'test ',
+      video: null,
+    },
+    {
+      id: uuidv4(),
+      title: 'How it works?',
+      description: 'test',
+      video: null,
+    },
+  ],
+};
+
+export const membershipSecondFAQs = {
+  title: 'FAQs with Video',
+  items: [
+    {
+      id: uuidv4(),
+      title: 'How it works?',
+      description: 'test ',
+      video: {
+        title: 'Membership test video title',
+        link: 'https://www.youtube.com/embed/7B9krM5zQCw',
+      },
+    },
+    {
+      id: uuidv4(),
+      title: 'How it works?',
+      description: 'test',
+      video: {
+        title: 'Membership test video title',
+        link: 'https://www.youtube.com/embed/7B9krM5zQCw',
+      },
     },
   ],
 };

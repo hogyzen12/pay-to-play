@@ -9,11 +9,12 @@ const FAQs = ({ dataFAQs, customStyles = {} }) => (
       <Typography sx={styles.title}>{dataFAQs.title}</Typography>
     )}
 
-    {dataFAQs.items.map(({ title, description, id, archive }) => (
+    {dataFAQs.items.map(({ title, description, id, archive, video = null }) => (
       <Accordion
         id={id}
         key={id}
         title={title}
+        video={video}
         archive={archive}
         description={description}
       />

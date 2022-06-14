@@ -63,9 +63,9 @@ export const cards = [
     transitionDelay: 0.4,
     payment: {
       sol: false,
-      dhmt: true,
+      dhmt: false,
       shdw: false,
-      free: false,
+      free: true,
     },
     latest: false,
   },

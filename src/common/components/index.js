@@ -22,4 +22,5 @@ export { default as ArticlePanel } from './Articles/ArticlePanel/ArticlePanel';
 export { default as Notification } from './Notification/Notification';
 export { default as ModalSubmit } from './Modal/ModalSubmit/ModalSubmit';
 export { default as ModalSuccess } from './Modal/ModalSuccess/ModalSuccess';
+export { default as EmbeddedVideo } from './EmbeddedVideo/EmbeddedVideo';
 export { default as ModalConfirmation } from './Modal/ModalConfirmation/ModalConfirmation';

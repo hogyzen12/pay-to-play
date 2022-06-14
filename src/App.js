@@ -421,6 +421,9 @@ const App = () => {
         case routes.raffle:
           navigate(routes.raffle);
           return;
+        case routes.crossword:
+          navigate(routes.crossword);
+          return;
         default:
           null;
       }
@@ -470,7 +473,7 @@ const App = () => {
             />
             <Route
               path={routes.crossword}
-              element={<PrivateRoute component={<CrosswordPage />} />}
+              element={<LimitedRoute component={<CrosswordPage />} />}
             />
             <Route
               path={routes.merchandise}

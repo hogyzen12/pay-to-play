@@ -25,47 +25,51 @@ export const MembershipPage = lazy(() =>
 );
 
 export const ForexPage = lazy(() =>
-  import('./pages/Forex' /* webpackChunkName: "ForexPage" */),
+  import('./pages/articles/Forex' /* webpackChunkName: "ForexPage" */),
 );
 
 export const WealthPage = lazy(() =>
-  import('./pages/Wealth' /* webpackChunkName: "WealthPage" */),
+  import('./pages/articles/Wealth' /* webpackChunkName: "WealthPage" */),
 );
 
 export const XChainPage = lazy(() =>
-  import('./pages/XChain' /* webpackChunkName: "XChainPage" */),
+  import('./pages/articles/XChain' /* webpackChunkName: "XChainPage" */),
 );
 
 export const FuturePage = lazy(() =>
-  import('./pages/Future' /* webpackChunkName: "FuturePage" */),
+  import('./pages/articles/Future' /* webpackChunkName: "FuturePage" */),
 );
 
 export const PremiumPage = lazy(() =>
-  import('./pages/Premium' /* webpackChunkName: "PremiumPage" */),
+  import('./pages/articles/Premium' /* webpackChunkName: "PremiumPage" */),
 );
 
 export const PremiaPage = lazy(() =>
-  import('./pages/Premia' /* webpackChunkName: "PremiaPage" */),
+  import('./pages/articles/Premia' /* webpackChunkName: "PremiaPage" */),
 );
 
 export const AlphaPage = lazy(() =>
-  import('./pages/Alpha' /* webpackChunkName: "AlphaPage" */),
+  import('./pages/articles/Alpha' /* webpackChunkName: "AlphaPage" */),
 );
 
 export const AlphaTwentyPage = lazy(() =>
-  import('./pages/AlphaTwenty' /* webpackChunkName: "AlphaTwentyPage" */),
+  import(
+    './pages/articles/AlphaTwenty' /* webpackChunkName: "AlphaTwentyPage" */
+  ),
 );
 
 export const MultiChainPage = lazy(() =>
-  import('./pages/MultiChain' /* webpackChunkName: "MultiChainPage" */),
+  import(
+    './pages/articles/MultiChain' /* webpackChunkName: "MultiChainPage" */
+  ),
 );
 
 export const AlivePage = lazy(() =>
-  import('./pages/Alive' /* webpackChunkName: "AlivePage" */),
+  import('./pages/articles/Alive' /* webpackChunkName: "AlivePage" */),
 );
 
 export const TeleportPage = lazy(() =>
-  import('./pages/Teleport' /* webpackChunkName: "TeleportPage" */),
+  import('./pages/articles/Teleport' /* webpackChunkName: "TeleportPage" */),
 );
 
 export const NotFoundPage = lazy(() =>

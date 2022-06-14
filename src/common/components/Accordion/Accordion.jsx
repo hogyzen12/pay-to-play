@@ -8,9 +8,10 @@ import {
   AccordionDetails,
 } from '@mui/material';
 import { Add as AddIcon, Remove as RemoveIcon } from '@mui/icons-material';
+import { EmbeddedVideo } from 'common/components';
 import { styles } from './Accordion.styles';
 
-const Accordion = ({ id, title, archive, description }) => {
+const Accordion = ({ id, title, archive, video, description }) => {
   const [expanded, setExpanded] = useState(0);
 
   const handleChange = itemID => {
@@ -33,10 +34,26 @@ const Accordion = ({ id, title, archive, description }) => {
       <AccordionDetails
         sx={expanded === id ? styles.detailsExpanded : styles.details}
       >
-        {description && (
+        {typeof description === 'string' ? (
           <Typography sx={styles.description} variant="body2" component="p">
             {description}
           </Typography>
+        ) : (
+          description.map(({ question, answer }, index) => (
+            <Box
+              sx={{
+                pb: '8px',
+                mb: '16px',
+                borderBottom: '1px solid #A2A2A2',
+              }}
+              key={index}
+            >
+              <Typography sx={{ mb: '6px' }} variant="h3">
+                {index + 1}.{question}:
+              </Typography>
+              <Typography variant="body2">{answer}</Typography>
+            </Box>
+          ))
         )}
 
         {archive && (
@@ -59,6 +76,14 @@ const Accordion = ({ id, title, archive, description }) => {
               </Box>
             ))}
           </Box>
+        )}
+
+        {video && (
+          <EmbeddedVideo
+            videoLink={video.link}
+            videoTitle={video.title}
+            videoExpanded={Boolean(expanded)}
+          />
         )}
       </AccordionDetails>
     </AccordionItem>

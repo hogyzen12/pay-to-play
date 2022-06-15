@@ -40,7 +40,8 @@ export const cards = [
   },
   {
     title: 'Claim CPro membership',
-    description: 'Claim CPro membership',
+    description:
+      'Claim CPro membership - Under construction. Accessible only if your wallet holds a DH. ',
     image: cpro,
     available: true,
     redirect: routes.membership,

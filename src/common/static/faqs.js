@@ -285,7 +285,7 @@ export const merchFAQs = {
 };
 
 export const crosswordFAQs = {
-  title: 'FAQs',
+  title: 'Answers & Winners',
   items: [
     {
       id: uuidv4(),
@@ -430,48 +430,56 @@ export const crosswordFAQs = {
     },
     {
       id: uuidv4(),
-      title: 'How it works?',
-      description: 'test',
+      title: 'Winners:',
+      description:
+        'https://shdw-drive.genesysgo.net/DQeQVxZyuKCQ2jN3dfnzuvSAmq1stD3zy6aoS89K7gqs/crossword_winners.txt',
+    },
+    {
+      id: uuidv4(),
+      title: 'Full Entry logs and scores',
+      description:
+        'https://shdw-drive.genesysgo.net/DQeQVxZyuKCQ2jN3dfnzuvSAmq1stD3zy6aoS89K7gqs/crossword_full_entry_logs.txt',
     },
   ],
 };
 
 export const membershipFirstFAQs = {
-  title: 'FAQs',
+  title: 'How to Claim',
   items: [
     {
       id: uuidv4(),
-      title: 'How it works?',
-      description: 'test ',
+      title: 'What to do ?',
+      description:
+        'Welcome DH holder! To claim your membership simply enter the email address which you want to receive the month of CPro membership in the box. Once done, click the submit button to purchase the membership for 30DMNDS. Approve the transaction - once it has gone through you will receive an email containing the link to your transaction which is your receipt and some more details! All done !',
       video: null,
     },
     {
       id: uuidv4(),
-      title: 'How it works?',
-      description: 'test',
+      title: 'How does it work ?',
+      description:
+        'Welcome DH holder! To access this DH exclusive page and utility the user must have a DH NFT in their wallet. Once here the user inputs their email address and pays the 30DMND fee for the CPro membership. The transaction is the users receipt, and contains their email encrypted so the claim can be authenticated, and so no one can find out your email. Once the transaction has gone through the user will receive an email thanking them for their claiming - their CPro access with the submitted email will be live within 48 hours.',
+      video: null,
+    },
+    {
+      id: uuidv4(),
+      title: 'I had a problem',
+      description:
+        'If you encounter any type of problem with this feel free to reach out in the discord. If you have received an email it means everything has gone through fine, and you can confirm this by checking your wallets transactions. Please have your wallet and email handy if looking for help !',
       video: null,
     },
   ],
 };
 
 export const membershipSecondFAQs = {
-  title: 'FAQs with Video',
+  title: 'How to - Video',
   items: [
     {
       id: uuidv4(),
-      title: 'How it works?',
-      description: 'test ',
+      title: 'Tutorial Video',
+      description:
+        'Watch the below video to see what to expect when claiming you CPro membership using DMNDs!',
       video: {
-        title: 'Membership test video title',
-        link: 'https://www.youtube.com/embed/7B9krM5zQCw',
-      },
-    },
-    {
-      id: uuidv4(),
-      title: 'How it works?',
-      description: 'test',
-      video: {
-        title: 'Membership test video title',
+        title: 'Membership Claiming Tutorial',
         link: 'https://www.youtube.com/embed/7B9krM5zQCw',
       },
     },

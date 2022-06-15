@@ -498,7 +498,10 @@ const App = () => {
               <Route
                 key={path}
                 path={path}
-                element={<PrivateRoute component={<ArticlePage />} />}
+                element={
+                  // <ArticlePage />
+                  <PrivateRoute component={<ArticlePage />} />
+                }
               />
             ))}
           </Route>

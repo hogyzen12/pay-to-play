@@ -1,5 +1,4 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
 
 const styles = {
@@ -8,10 +7,10 @@ const styles = {
   },
 };
 
-const AppWrapper = () => {
+const AppWrapper = ({ children }) => {
   return (
     <Box sx={styles.main} component="main">
-      <Outlet />
+      {children}
     </Box>
   );
 };

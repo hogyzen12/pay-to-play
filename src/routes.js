@@ -72,6 +72,18 @@ export const TeleportPage = lazy(() =>
   import('./pages/articles/Teleport' /* webpackChunkName: "TeleportPage" */),
 );
 
+export const NewPage = lazy(() =>
+  import('./pages/articles/New' /* webpackChunkName: "NewPage" */),
+);
+
+export const NewPage2 = lazy(() =>
+  import('./pages/articles/New2' /* webpackChunkName: "NewPage2" */),
+);
+
+export const NewPage3 = lazy(() =>
+  import('./pages/articles/New3' /* webpackChunkName: "NewPage3" */),
+);
+
 export const NotFoundPage = lazy(() =>
   import('./pages/NotFound' /* webpackChunkName: "NotFoundPage" */),
 );
@@ -83,6 +95,9 @@ export const routes = {
   membership: 'membership',
   merchandise: 'merchandise',
   articles: 'articles',
+  new: 'new',
+  new2: 'new2',
+  new3: 'new3',
   forex: 'forex',
   wealth: 'wealth',
   xchain: 'xchain',
@@ -98,6 +113,9 @@ export const routes = {
 };
 
 export const articlesRoutes = [
+  { path: routes.new, component: NewPage },
+  { path: routes.new2, component: NewPage2 },
+  { path: routes.new3, component: NewPage3 },
   { path: routes.forex, component: ForexPage },
   { path: routes.wealth, component: WealthPage },
   { path: routes.xchain, component: XChainPage },

@@ -28,7 +28,7 @@ export const articles = {
         shdw: false,
         free: false,
       },
-      latest: true,
+      latest: false,
     },
     {
       title: 'The Bridge to Crypto Wealth',
@@ -44,7 +44,7 @@ export const articles = {
         shdw: false,
         free: false,
       },
-      latest: true,
+      latest: false,
     },
     {
       title: 'Sliding into X-Chain DMs',
@@ -60,7 +60,7 @@ export const articles = {
         shdw: false,
         free: false,
       },
-      latest: true,
+      latest: false,
     },
     {
       title: 'The Multi-Chain Universe & Thesis',
@@ -113,13 +113,28 @@ export const articles = {
   ],
   categoryB: [
     {
+      title: 'New',
+      description: 'New...',
+      image: future,
+      available: true,
+      redirect: `${routes.articles}/${routes.new}`,
+      transitionDelay: 0.1,
+      payment: {
+        sol: true,
+        dhmt: true,
+        shdw: false,
+        free: false,
+      },
+      latest: true,
+    },
+    {
       title: 'Leaping Into the Future(s)',
       description:
         'The Babylonian dynasty King Hammurabi is not someone we mention often at Cryptonary. The Ancient Mesopotamia ruler, famous for establishing early written laws, could be...',
       image: future,
       available: true,
       redirect: `${routes.articles}/${routes.future}`,
-      transitionDelay: 0.1,
+      transitionDelay: 0.2,
       payment: {
         sol: true,
         dhmt: true,
@@ -135,7 +150,7 @@ export const articles = {
       image: premia,
       available: true,
       redirect: `${routes.articles}/${routes.premia}`,
-      transitionDelay: 0.2,
+      transitionDelay: 0.3,
       payment: {
         sol: true,
         dhmt: true,
@@ -147,13 +162,28 @@ export const articles = {
   ],
   categoryC: [
     {
+      title: 'New2',
+      description: 'New2...',
+      image: future,
+      available: true,
+      redirect: `${routes.articles}/${routes.new2}`,
+      transitionDelay: 0.1,
+      payment: {
+        sol: true,
+        dhmt: true,
+        shdw: false,
+        free: false,
+      },
+      latest: true,
+    },
+    {
       title: 'Alpha DAO: Proposal #20',
       description:
         'Alpha-DAO is a new Decentralized Autonomous Organization created by seasoned crypto researchers. Disclaimer: This is not investment nor investment advice. Only you are responsible for...',
       image: dao20,
       available: true,
       redirect: `${routes.articles}/${routes.alphaTwenty}`,
-      transitionDelay: 0.1,
+      transitionDelay: 0.2,
       payment: {
         sol: true,
         dhmt: true,
@@ -169,7 +199,7 @@ export const articles = {
       image: alpha,
       available: true,
       redirect: `${routes.articles}/${routes.alpha}`,
-      transitionDelay: 0.2,
+      transitionDelay: 0.3,
       payment: {
         sol: false,
         dhmt: true,
@@ -181,12 +211,27 @@ export const articles = {
   ],
   categoryD: [
     {
+      title: 'New3',
+      description: 'New3...',
+      image: future,
+      available: true,
+      redirect: `${routes.articles}/${routes.new3}`,
+      transitionDelay: 0.1,
+      payment: {
+        sol: true,
+        dhmt: true,
+        shdw: false,
+        free: false,
+      },
+      latest: true,
+    },
+    {
       title: 'Premium Article',
       description: 'I mean it says in the title - SHOW ME THE MONEY!!',
       image: premium,
       available: true,
       redirect: `${routes.articles}/${routes.premium}`,
-      transitionDelay: 0.1,
+      transitionDelay: 0.2,
       payment: {
         sol: true,
         dhmt: true,

@@ -3,6 +3,7 @@ import raffle from 'assets/image/cards/dmnd-raffle.jpg';
 import discount from 'assets/image/cards/dmnd-discount.jpg';
 import cpro from 'assets/image/cards/cpro.png';
 import future from 'assets/image/cards/articles_head.png';
+import { mintUrl } from 'common/static/constants';
 
 import { routes } from 'routes';
 
@@ -83,6 +84,21 @@ export const cards = [
       dhmt: true,
       shdw: false,
       free: false,
+    },
+    latest: false,
+  },
+  {
+    title: 'Switch & Burn',
+    description: 'Switch and burn',
+    image: discount,
+    available: true,
+    redirect: mintUrl,
+    transitionDelay: 0.6,
+    payment: {
+      sol: false,
+      dhmt: false,
+      shdw: false,
+      free: true,
     },
     latest: false,
   },

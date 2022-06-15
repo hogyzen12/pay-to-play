@@ -51,6 +51,7 @@ import {
   FREE,
   SHDW,
   SOL,
+  mintUrl,
 } from 'common/static/constants';
 
 const App = () => {
@@ -424,8 +425,11 @@ const App = () => {
         case routes.crossword:
           navigate(routes.crossword);
           return;
+        case mintUrl:
+          window.location.replace(mintUrl);
+          return;
         default:
-          null;
+          navigate(selectedItem);
       }
     } else {
       switch (currency) {

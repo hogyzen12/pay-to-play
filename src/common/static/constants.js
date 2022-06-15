@@ -2,6 +2,7 @@ import { clusterApiUrl, LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
 import { initialResults } from 'common/static/results';
 
 export const NETWORK = clusterApiUrl('mainnet-beta');
+export const mintUrl = 'https://inpulsgor.github.io/candymachine/';
 export const solscanUrl = 'https://solscan.io/tx';
 export const memberAddress = 'dhcpro@cryptonary.com';
 export const nonMemberAddress = 'dhnoncpro@cryptonary.com';

@@ -28,4 +28,11 @@ export const styles = {
     maxWidth: { xs: '240px', md: '400px' },
   },
   link: { color: '#512DA8' },
+  hyperlink: {
+    display: 'block',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    maxWidth: { xs: '260px', sm: '400px', md: '550px', xl: '600px' },
+  },
 };

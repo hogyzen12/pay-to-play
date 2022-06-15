@@ -431,14 +431,20 @@ export const crosswordFAQs = {
     {
       id: uuidv4(),
       title: 'Winners:',
-      description:
-        'https://shdw-drive.genesysgo.net/DQeQVxZyuKCQ2jN3dfnzuvSAmq1stD3zy6aoS89K7gqs/crossword_winners.txt',
+      description: '',
+      hyperlink: {
+        title: '',
+        href: 'https://shdw-drive.genesysgo.net/DQeQVxZyuKCQ2jN3dfnzuvSAmq1stD3zy6aoS89K7gqs/crossword_winners.txt',
+      },
     },
     {
       id: uuidv4(),
       title: 'Full Entry logs and scores',
-      description:
-        'https://shdw-drive.genesysgo.net/DQeQVxZyuKCQ2jN3dfnzuvSAmq1stD3zy6aoS89K7gqs/crossword_full_entry_logs.txt',
+      description: '',
+      hyperlink: {
+        title: '',
+        href: 'https://shdw-drive.genesysgo.net/DQeQVxZyuKCQ2jN3dfnzuvSAmq1stD3zy6aoS89K7gqs/crossword_full_entry_logs.txt',
+      },
     },
   ],
 };

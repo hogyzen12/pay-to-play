@@ -11,7 +11,14 @@ import { Add as AddIcon, Remove as RemoveIcon } from '@mui/icons-material';
 import { EmbeddedVideo } from 'common/components';
 import { styles } from './Accordion.styles';
 
-const Accordion = ({ id, title, archive, video, description }) => {
+const Accordion = ({
+  id,
+  title,
+  archive,
+  video = null,
+  description,
+  hyperlink = null,
+}) => {
   const [expanded, setExpanded] = useState(0);
 
   const handleChange = itemID => {
@@ -84,6 +91,16 @@ const Accordion = ({ id, title, archive, video, description }) => {
             videoTitle={video.title}
             videoExpanded={Boolean(expanded)}
           />
+        )}
+
+        {hyperlink && (
+          <Link
+            sx={{ ...styles.link, ...styles.hyperlink }}
+            href={hyperlink?.href}
+            target="_blank"
+          >
+            {hyperlink.href}
+          </Link>
         )}
       </AccordionDetails>
     </AccordionItem>

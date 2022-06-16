@@ -109,7 +109,7 @@ const App = () => {
 
   const openMembership = async () => {
     const nftaccount = await getAllNFTs(connection, providerPubKey);
-    const filteredAccount = nftaccount.filter(item => item.amount === '0');
+    const filteredAccount = nftaccount.filter(item => item.amount === '1');
 
     if (!filteredAccount.length) {
       dispatch(

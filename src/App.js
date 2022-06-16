@@ -502,8 +502,8 @@ const App = () => {
                 key={path}
                 path={path}
                 element={
-                  <ArticlePage />
-                  // <PrivateRoute component={<ArticlePage />} />
+                  // <ArticlePage />
+                  <PrivateRoute component={<ArticlePage />} />
                 }
               />
             ))}

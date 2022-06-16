@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import withPresence from 'common/hoc/withPresence';
 import staticContent from 'common/static/content.json';
-import universe from 'assets/image/cards/universe.png';
+import universe from 'assets/image/articles/universe.png';
 
 const { title, description } = staticContent.meta.universe;
 

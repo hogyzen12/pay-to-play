@@ -11,7 +11,7 @@ import {
 import staticContent from 'common/static/content.json';
 import withPresence from 'common/hoc/withPresence';
 
-import premia from 'assets/image/cards/premia.jpg';
+import premia from 'assets/image/articles/premia.jpg';
 import g1 from 'assets/image/articles/premia/1.jpeg';
 import g2 from 'assets/image/articles/premia/2.jpeg';
 import g4 from 'assets/image/articles/premia/4.jpeg';

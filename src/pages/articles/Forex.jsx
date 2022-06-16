@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import staticContent from 'common/static/content.json';
 import withPresence from 'common/hoc/withPresence';
-import forex from 'assets/image/cards/forex.png';
+import forex from 'assets/image/articles/forex.png';
 
 const { title, description } = staticContent.meta.forex;
 

@@ -10,14 +10,14 @@ import {
 } from '@mui/material';
 import staticContent from 'common/static/content.json';
 import withPresence from 'common/hoc/withPresence';
-import forex from 'assets/image/cards/forex.png';
+import forex from 'assets/image/articles/forex.png';
 
 const { title, description } = staticContent.meta.forex;
 
-const New2 = ({ styles }) => (
+const AphaNineteen = ({ styles }) => (
   <>
     <CardMedia sx={{ mb: '24px' }} src={forex} component="img" />
   </>
 );
 
-export default withPresence({ title, description })(New2);
+export default withPresence({ title, description })(AphaNineteen);

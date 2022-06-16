@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import withPresence from 'common/hoc/withPresence';
 import staticContent from 'common/static/content.json';
-import teleport from 'assets/image/cards/teleport.png';
+import teleport from 'assets/image/articles/teleport.png';
 
 const { title, description } = staticContent.meta.teleport;
 

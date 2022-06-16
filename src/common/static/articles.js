@@ -1,14 +1,20 @@
-import alpha from 'assets/image/cards/alpha.png';
-import premia from 'assets/image/cards/premia.jpg';
-import premium from 'assets/image/cards/premium.png';
-import universe from 'assets/image/cards/universe.png';
-import alive from 'assets/image/cards/alive.png';
-import teleport from 'assets/image/cards/teleport.png';
-import dao20 from 'assets/image/cards/dao20.png';
-import future from 'assets/image/cards/future.png';
-import forex from 'assets/image/cards/forex.png';
-import wealth from 'assets/image/cards/wealth.png';
-import xchain from 'assets/image/cards/xchain.png';
+import forex from 'assets/image/articles/forex.png';
+import wealth from 'assets/image/articles/wealth.png';
+import xchain from 'assets/image/articles/xchain.png';
+import universe from 'assets/image/articles/universe.png';
+import alive from 'assets/image/articles/alive.png';
+import teleport from 'assets/image/articles/teleport.png';
+
+import future from 'assets/image/articles/future.png';
+import premia from 'assets/image/articles/premia.jpg';
+import deep from 'assets/image/articles/deep.png';
+
+import dao18 from 'assets/image/articles/dao18.png';
+import dao19 from 'assets/image/articles/dao19.png';
+import dao20 from 'assets/image/articles/dao20.png';
+
+import premium from 'assets/image/articles/premium.png';
+import reset from 'assets/image/articles/reset.png';
 
 import { routes } from 'routes';
 
@@ -113,11 +119,12 @@ export const articles = {
   ],
   categoryB: [
     {
-      title: 'New',
-      description: 'New...',
-      image: future,
+      title: 'dYdX | Deep Dive',
+      description:
+        'Intro The crypto market is huge, and constantly growing (not up only, but over time). DeFi use is exploding. The derivatives market is the largest...',
+      image: deep,
       available: true,
-      redirect: `${routes.articles}/${routes.new}`,
+      redirect: `${routes.articles}/${routes.deep}`,
       transitionDelay: 0.1,
       payment: {
         sol: true,
@@ -162,11 +169,28 @@ export const articles = {
   ],
   categoryC: [
     {
-      title: 'New2',
-      description: 'New2...',
-      image: future,
+      title: 'Alpha-DAO: Proposal #18',
+      description:
+        "The Diamond Hands NFT project is backed by Cryptonary's team of leading industry experts and one of the biggest established communities in the crypto space.",
+      image: dao18,
       available: true,
-      redirect: `${routes.articles}/${routes.new2}`,
+      redirect: `${routes.articles}/${routes.alpha}`,
+      transitionDelay: 0.3,
+      payment: {
+        sol: false,
+        dhmt: true,
+        shdw: true,
+        free: false,
+      },
+      latest: false,
+    },
+    {
+      title: 'Alpha-DAO: Proposal #19',
+      description:
+        'Alpha-DAO is a new Decentralized Autonomous Organization created by seasoned crypto researchers. Disclaimer: This is not investment nor investment advice. Only you are...',
+      image: dao19,
+      available: true,
+      redirect: `${routes.articles}/${routes.alphaNineteen}`,
       transitionDelay: 0.1,
       payment: {
         sol: true,
@@ -174,7 +198,7 @@ export const articles = {
         shdw: false,
         free: false,
       },
-      latest: true,
+      latest: false,
     },
     {
       title: 'Alpha DAO: Proposal #20',
@@ -192,30 +216,15 @@ export const articles = {
       },
       latest: false,
     },
-    {
-      title: 'Alpha-DAO Proposal #18',
-      description:
-        "The Diamond Hands NFT project is backed by Cryptonary's team of leading industry experts and one of the biggest established communities in the crypto space.",
-      image: alpha,
-      available: true,
-      redirect: `${routes.articles}/${routes.alpha}`,
-      transitionDelay: 0.3,
-      payment: {
-        sol: false,
-        dhmt: true,
-        shdw: true,
-        free: false,
-      },
-      latest: false,
-    },
   ],
   categoryD: [
     {
-      title: 'New3',
-      description: 'New3...',
-      image: future,
+      title: 'The Great Reset',
+      description:
+        'Everyone is talking about The Great Reset, the only reset happening right now though is your portfolio... Over the past 7 months crypto has lost...',
+      image: reset,
       available: true,
-      redirect: `${routes.articles}/${routes.new3}`,
+      redirect: `${routes.articles}/${routes.reset}`,
       transitionDelay: 0.1,
       payment: {
         sol: true,

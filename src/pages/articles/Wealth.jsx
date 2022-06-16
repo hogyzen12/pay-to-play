@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import staticContent from 'common/static/content.json';
 import withPresence from 'common/hoc/withPresence';
-import wealth from 'assets/image/cards/wealth.png';
+import wealth from 'assets/image/articles/wealth.png';
 
 const { title, description } = staticContent.meta.wealth;
 

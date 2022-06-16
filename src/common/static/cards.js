@@ -1,10 +1,10 @@
 import game from 'assets/image/cards/dmnd-game.jpg';
 import raffle from 'assets/image/cards/dmnd-raffle.jpg';
 import discount from 'assets/image/cards/dmnd-discount.jpg';
-import cpro from 'assets/image/cards/cpro.png';
+import cpro from 'assets/image/cards/dmnd-cpro.png';
 import future from 'assets/image/cards/articles_head.png';
-import { mintUrl } from 'common/static/constants';
 
+import { mintUrl } from 'common/static/constants';
 import { routes } from 'routes';
 
 export const cards = [

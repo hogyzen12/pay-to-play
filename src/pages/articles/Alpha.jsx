@@ -10,7 +10,7 @@ import {
 import withPresence from 'common/hoc/withPresence';
 import staticContent from 'common/static/content.json';
 
-import alpha from 'assets/image/cards/alpha.png';
+import alpha from 'assets/image/articles/dao18.png';
 import g1 from 'assets/image/articles/alpha/1.png';
 import g2 from 'assets/image/articles/alpha/2.png';
 import g3 from 'assets/image/articles/alpha/3.png';

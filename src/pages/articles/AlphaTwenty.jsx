@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import withPresence from 'common/hoc/withPresence';
 import staticContent from 'common/static/content.json';
-import dao20 from 'assets/image/cards/dao20.png';
+import dao20 from 'assets/image/articles/dao20.png';
 
 const { title, description } = staticContent.meta.alphaTwenty;
 

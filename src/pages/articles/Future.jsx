@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import withPresence from 'common/hoc/withPresence';
 import staticContent from 'common/static/content.json';
-import future from 'assets/image/cards/future.png';
+import future from 'assets/image/articles/future.png';
 
 const { title, description } = staticContent.meta.future;
 

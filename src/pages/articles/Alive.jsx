@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import staticContent from 'common/static/content.json';
 import withPresence from 'common/hoc/withPresence';
-import alive from 'assets/image/cards/alive.png';
+import alive from 'assets/image/articles/alive.png';
 
 const { title, description } = staticContent.meta.alive;
 

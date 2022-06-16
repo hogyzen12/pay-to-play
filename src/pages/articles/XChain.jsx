@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import staticContent from 'common/static/content.json';
 import withPresence from 'common/hoc/withPresence';
-import xchain from 'assets/image/cards/xchain.png';
+import xchain from 'assets/image/articles/xchain.png';
 
 const { title, description } = staticContent.meta.xchain;
 

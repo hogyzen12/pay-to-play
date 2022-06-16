@@ -72,16 +72,18 @@ export const TeleportPage = lazy(() =>
   import('./pages/articles/Teleport' /* webpackChunkName: "TeleportPage" */),
 );
 
-export const NewPage = lazy(() =>
-  import('./pages/articles/New' /* webpackChunkName: "NewPage" */),
+export const AphaNineteenPage = lazy(() =>
+  import(
+    './pages/articles/AphaNineteen' /* webpackChunkName: "AphaNineteenPage" */
+  ),
 );
 
-export const NewPage2 = lazy(() =>
-  import('./pages/articles/New2' /* webpackChunkName: "NewPage2" */),
+export const DeepPage = lazy(() =>
+  import('./pages/articles/Deep' /* webpackChunkName: "DeepPage" */),
 );
 
-export const NewPage3 = lazy(() =>
-  import('./pages/articles/New3' /* webpackChunkName: "NewPage3" */),
+export const ResetPage = lazy(() =>
+  import('./pages/articles/Reset' /* webpackChunkName: "ResetPage" */),
 );
 
 export const NotFoundPage = lazy(() =>
@@ -96,26 +98,26 @@ export const routes = {
   merchandise: 'merchandise',
   articles: 'articles',
   new: 'new',
-  new2: 'new2',
-  new3: 'new3',
+  deep: 'deep',
+  alpha: 'alpha',
+  alive: 'alive',
+  reset: 'reset',
   forex: 'forex',
   wealth: 'wealth',
   xchain: 'xchain',
-  alive: 'alive',
-  alpha: 'alpha',
   future: 'future',
   premia: 'premia',
   premium: 'premium',
   teleport: 'teleport',
   universe: 'universe',
   alphaTwenty: 'alpha-twenty',
+  alphaNineteen: 'alpha-nineteen',
   notFound: '*',
 };
 
 export const articlesRoutes = [
-  { path: routes.new, component: NewPage },
-  { path: routes.new2, component: NewPage2 },
-  { path: routes.new3, component: NewPage3 },
+  { path: routes.deep, component: DeepPage },
+  { path: routes.reset, component: ResetPage },
   { path: routes.forex, component: ForexPage },
   { path: routes.wealth, component: WealthPage },
   { path: routes.xchain, component: XChainPage },
@@ -127,4 +129,5 @@ export const articlesRoutes = [
   { path: routes.teleport, component: TeleportPage },
   { path: routes.universe, component: MultiChainPage },
   { path: routes.alphaTwenty, component: AlphaTwentyPage },
+  { path: routes.alphaNineteen, component: AphaNineteenPage },
 ];

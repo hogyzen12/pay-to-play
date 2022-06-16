@@ -52,6 +52,7 @@ import {
   SHDW,
   SOL,
   mintUrl,
+  solscanUrl,
 } from 'common/static/constants';
 
 const App = () => {
@@ -108,7 +109,7 @@ const App = () => {
 
   const openMembership = async () => {
     const nftaccount = await getAllNFTs(connection, providerPubKey);
-    const filteredAccount = nftaccount.filter(item => item.amount === '1');
+    const filteredAccount = nftaccount.filter(item => item.amount === '0');
 
     if (!filteredAccount.length) {
       dispatch(
@@ -257,124 +258,129 @@ const App = () => {
      * Print to console the amount to check
      */
 
-    // try {
-    const diamondBalance = await connection.getTokenAccountBalance(
-      diamondAddress,
-    );
+    try {
+      const diamondBalance = await connection.getTokenAccountBalance(
+        diamondAddress,
+      );
 
-    /*
-     * Go here and check to see they can afford with diamonds
-     */
+      /*
+       * Go here and check to see they can afford with diamonds
+       */
 
-    if (diamondBalance?.value?.amount < 1) {
+      if (diamondBalance?.value?.amount < 1) {
+        dispatch(
+          notificationOpened({
+            open: true,
+            message: `You need to have at least 1 DMND`,
+            severity: 'info',
+            tx: '',
+          }),
+        );
+
+        return;
+      }
+
+      /*
+       * Time to get them to send us their Diamond
+       * For this we need to use the Associated token accounts
+       * We know the accs will exist as the payer has diamonds to have gotten to this stage
+       * we call our custom function here to do this
+       */
+
+      let walletPubKey = gameWalletPublicKey;
+      let requiredToPlay = diamondsRequiredToPlay;
+
+      if (emailAddress) {
+        walletPubKey = memberPubkey;
+        requiredToPlay = diamondsToClaim;
+        console.log('memberPubkey :>>', walletPubKey);
+      }
+
+      if (resultsSubmit) {
+        walletPubKey = crosswordWalletPublicKey;
+        console.log('crosswordWalletPublicKey :>> ', walletPubKey);
+      }
+
+      if (currency === SHDW) {
+        requiredToPlay = shadowRequiredToPlay;
+      }
+
+      dispatch(loaderActive());
+
+      const result = await transferDiamondToken(
+        provider,
+        connection,
+        currency === SHDW ? shadowMint : tokenMint,
+        providerPubKey,
+        walletPubKey,
+        diamondBalance.value.amount,
+        requiredToPlay,
+        hashMemo ? hashMemo : utilMemo,
+      );
+
+      console.log('result.status', result.status);
+
+      if (!result.status) {
+        dispatch(loaderDisabled());
+        dispatch(
+          notificationOpened({
+            open: true,
+            message: 'Error in sending the tokens, please try again',
+            severity: 'error',
+            tx: '',
+          }),
+        );
+
+        return;
+      }
+
+      if (result.signature) {
+        dispatch(setTransferTokenStatus(result.status));
+        dispatch(setTransactionSignature(result.signature));
+      }
+
+      if (emailAddress) {
+        sendEmail(emailAddress, null, 'user', result.signature);
+
+        member
+          ? sendEmail(memberAddress, emailAddress, 'member', result.signature)
+          : sendEmail(
+              nonMemberAddress,
+              emailAddress,
+              'member',
+              result.signature,
+            );
+      }
+
+      /*
+       * If the status is true, that means transaction got successful and we can proceed
+       */
+
       dispatch(
         notificationOpened({
           open: true,
-          message: `You need to have at least 1 DMND`,
-          severity: 'info',
-          tx: '',
+          message: 'Submitted transaction confirmed',
+          severity: 'success',
+          tx: emailAddress ? `${solscanUrl}/${result.signature}` : '',
         }),
       );
 
-      return;
-    }
-
-    /*
-     * Time to get them to send us their Diamond
-     * For this we need to use the Associated token accounts
-     * We know the accs will exist as the payer has diamonds to have gotten to this stage
-     * we call our custom function here to do this
-     */
-
-    let walletPubKey = gameWalletPublicKey;
-    let requiredToPlay = diamondsRequiredToPlay;
-
-    if (emailAddress) {
-      walletPubKey = memberPubkey;
-      requiredToPlay = diamondsToClaim;
-      console.log('memberPubkey :>>', walletPubKey);
-    }
-
-    if (resultsSubmit) {
-      walletPubKey = crosswordWalletPublicKey;
-      console.log('crosswordWalletPublicKey :>> ', walletPubKey);
-    }
-
-    if (currency === SHDW) {
-      requiredToPlay = shadowRequiredToPlay;
-    }
-
-    dispatch(loaderActive());
-
-    const result = await transferDiamondToken(
-      provider,
-      connection,
-      currency === SHDW ? shadowMint : tokenMint,
-      providerPubKey,
-      walletPubKey,
-      diamondBalance.value.amount,
-      requiredToPlay,
-      hashMemo ? hashMemo : utilMemo,
-    );
-
-    console.log('result.status', result.status);
-
-    if (!result.status) {
       dispatch(loaderDisabled());
+
+      if (resultsSubmit) dispatch(modalOpened('success'));
+      if (selectedItem) navigate(selectedItem);
+    } catch (error) {
       dispatch(
         notificationOpened({
           open: true,
-          message: 'Error in sending the tokens, please try again',
+          message: 'Failed to get token account balance',
           severity: 'error',
           tx: '',
         }),
       );
-
-      return;
+    } finally {
+      dispatch(loaderDisabled());
     }
-
-    if (result.signature) {
-      dispatch(setTransferTokenStatus(result.status));
-      dispatch(setTransactionSignature(result.signature));
-    }
-
-    if (emailAddress) {
-      sendEmail(emailAddress, null, 'user', result.signature);
-
-      member
-        ? sendEmail(memberAddress, emailAddress, 'member', result.signature)
-        : sendEmail(nonMemberAddress, emailAddress, 'member', result.signature);
-    }
-
-    /*
-     * If the status is true, that means transaction got successful and we can proceed
-     */
-
-    dispatch(
-      notificationOpened({
-        open: true,
-        message: 'Submitted transaction confirmed',
-        severity: 'success',
-        tx: '',
-      }),
-    );
-
-    dispatch(loaderDisabled());
-
-    if (resultsSubmit) dispatch(modalOpened('success'));
-    if (selectedItem) navigate(selectedItem);
-    // } catch (error) {
-    //   dispatch(
-    //     notificationOpened({
-    //       open: true,
-    //       message: 'Failed to get token account balance',
-    //       severity: 'error',
-    //       tx: '',
-    //     }),
-    //   );
-    // } finally {
-    //   dispatch(loaderDisabled());
-    // }
   };
 
   const handlePay = (
@@ -496,8 +502,8 @@ const App = () => {
                 key={path}
                 path={path}
                 element={
-                  // <ArticlePage />
-                  <PrivateRoute component={<ArticlePage />} />
+                  <ArticlePage />
+                  // <PrivateRoute component={<ArticlePage />} />
                 }
               />
             ))}

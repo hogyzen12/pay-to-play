@@ -44,7 +44,7 @@ export const cards = [
     description:
       'Claim CPro membership - Under construction. Accessible only if your wallet holds a DH. ',
     image: cpro,
-    available: true,
+    available: false,
     redirect: routes.membership,
     transitionDelay: 0.3,
     payment: {
@@ -89,9 +89,9 @@ export const cards = [
   },
   {
     title: 'Switch & Burn',
-    description: 'Switch and burn',
+    description: 'Under Construction - Switch and burn',
     image: discount,
-    available: true,
+    available: false,
     redirect: mintUrl,
     transitionDelay: 0.6,
     payment: {

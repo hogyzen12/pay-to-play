@@ -24,9 +24,9 @@ export let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
 export let diamondsRequiredToPlay = 1;
 
 export let utilMemo = 'DMND utility being used';
-export let portalsRaffleMemo = 'Portals cc Raffle Entry ';
-export let tombstonedRaffleMemo = 'Tombstoned Raffle Entry ';
-export let diamondsGameRaffleMemo = 'Diamonds Game 2 Entry ';
+export let firstRaffleMemo = 'Gnomie Raffle Entry ';
+export let secondRaffleMemo = 'Primates Raffle Entry ';
+export let diamondsGameRaffleMemo = 'Diamonds Game 3 Entry ';
 
 export const totalQuestions =
   initialResults.across.length + initialResults.down.length;
@@ -46,14 +46,14 @@ export const memberPubkey = new PublicKey(
 export const crosswordWalletPublicKey = new PublicKey(
   'CrsYhHpyajSeQCT5SnJCYng1sxJF3Emrm5P95Ku1hkWZ',
 );
-export const portalsRafflePublicKey = new PublicKey(
-  'Rf3PiAvNdy6KgHMXQhLr1fJPQujbvKmopHyoM6eP4jP',
+export const gnomeRafflePublicKey = new PublicKey(
+  'Rf7M4t1Usm4QnkQwX5bMAb2d66BRbG4ECAnXh3vDHc7',
 );
-export const tombstonedRafflePublicKey = new PublicKey(
-  'Rf3XUKqNiDeXnLdf96xqddwMBtuC3EzVRYNVXeQGUc1',
+export const primateRafflePublicKey = new PublicKey(
+  'Rf8SdB3KUusQqvpvapqGrcEXSqC7iCUJghUvDCzmrWA',
 );
 export const diamondsGameRafflePublicKey = new PublicKey(
-  'gm2bnBrvoRQRhvU1d24FPgHmdMySfbxeYcXxvFAZkpc',
+  'gm3xuW2HpvzursNW5wwW1qWN2qVN1GDgrMdTooGhhmf',
 );
 
 export const initialAlertState = {

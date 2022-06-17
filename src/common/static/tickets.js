@@ -1,14 +1,14 @@
-import raffle from 'assets/image/raffles/portals_cc.png';
-import raffle2 from 'assets/image/raffles/tombstoned_3463.png';
+import raffle from 'assets/image/raffles/Pawnshop_gnomie_2685.png';
+import raffle2 from 'assets/image/raffles/Primate_7267.png';
 import raffle3 from 'assets/image/raffles/diamonds_game.png';
 import { routes } from 'routes';
 
 import {
-  portalsRaffleMemo,
-  tombstonedRaffleMemo,
+  firstRaffleMemo,
+  secondRaffleMemo,
   diamondsGameRaffleMemo,
-  portalsRafflePublicKey,
-  tombstonedRafflePublicKey,
+  gnomeRafflePublicKey,
+  primateRafflePublicKey,
   diamondsGameRafflePublicKey,
 } from './constants';
 
@@ -38,27 +38,27 @@ export const tickets = [
   //   possibleWinners: 0
   // },
   {
-    title: 'Portals Citizen Cards',
+    title: 'Pawnshop Gnomie 2685',
     image: raffle,
     redirect: routes.raffle,
     transitionDelay: 0.1,
     buttonText: 'Purchase raffle entry (1 DMND)',
-    targetDate: 'Jun 10, 2022',
+    targetDate: 'Jun 24, 2022',
     targetTime: '15:00:00',
-    raffleMemo: portalsRaffleMemo,
-    raffleWalletPublicKey: portalsRafflePublicKey,
-    possibleWinners: 20,
+    raffleMemo: firstRaffleMemo,
+    raffleWalletPublicKey: gnomeRafflePublicKey,
+    possibleWinners: 1,
   },
   {
-    title: 'Tombstoned #3463',
+    title: 'Primate_7267',
     image: raffle2,
     redirect: routes.raffle,
     transitionDelay: 0.2,
     buttonText: 'Purchase raffle entry (1 DMND)',
-    targetDate: 'Jun 10, 2022',
+    targetDate: 'Jun 24, 2022',
     targetTime: '15:00:00',
-    raffleMemo: tombstonedRaffleMemo,
-    raffleWalletPublicKey: tombstonedRafflePublicKey,
+    raffleMemo: secondRaffleMemo,
+    raffleWalletPublicKey: primateRafflePublicKey,
     possibleWinners: 1,
   },
   {
@@ -67,7 +67,7 @@ export const tickets = [
     redirect: routes.raffle,
     transitionDelay: 0.3,
     buttonText: 'Purchase game entry (1 DMND)',
-    targetDate: 'Jun 10, 2022',
+    targetDate: 'Jun 24, 2022',
     targetTime: '15:00:00',
     raffleMemo: diamondsGameRaffleMemo,
     raffleWalletPublicKey: diamondsGameRafflePublicKey,

@@ -169,17 +169,17 @@ export const articles = {
   ],
   categoryC: [
     {
-      title: 'Alpha-DAO: Proposal #18',
+      title: 'Alpha DAO: Proposal #20',
       description:
-        "The Diamond Hands NFT project is backed by Cryptonary's team of leading industry experts and one of the biggest established communities in the crypto space.",
-      image: dao18,
+        'Alpha-DAO is a new Decentralized Autonomous Organization created by seasoned crypto researchers. Disclaimer: This is not investment nor investment advice. Only you are responsible for...',
+      image: dao20,
       available: true,
-      redirect: `${routes.articles}/${routes.alpha}`,
-      transitionDelay: 0.3,
+      redirect: `${routes.articles}/${routes.alphaTwenty}`,
+      transitionDelay: 0.1,
       payment: {
-        sol: false,
+        sol: true,
         dhmt: true,
-        shdw: true,
+        shdw: false,
         free: false,
       },
       latest: false,
@@ -191,7 +191,7 @@ export const articles = {
       image: dao19,
       available: true,
       redirect: `${routes.articles}/${routes.alphaNineteen}`,
-      transitionDelay: 0.1,
+      transitionDelay: 0.2,
       payment: {
         sol: true,
         dhmt: true,
@@ -201,17 +201,17 @@ export const articles = {
       latest: false,
     },
     {
-      title: 'Alpha DAO: Proposal #20',
+      title: 'Alpha-DAO: Proposal #18',
       description:
-        'Alpha-DAO is a new Decentralized Autonomous Organization created by seasoned crypto researchers. Disclaimer: This is not investment nor investment advice. Only you are responsible for...',
-      image: dao20,
+        "The Diamond Hands NFT project is backed by Cryptonary's team of leading industry experts and one of the biggest established communities in the crypto space.",
+      image: dao18,
       available: true,
-      redirect: `${routes.articles}/${routes.alphaTwenty}`,
-      transitionDelay: 0.2,
+      redirect: `${routes.articles}/${routes.alpha}`,
+      transitionDelay: 0.3,
       payment: {
-        sol: true,
+        sol: false,
         dhmt: true,
-        shdw: false,
+        shdw: true,
         free: false,
       },
       latest: false,

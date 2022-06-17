@@ -22,10 +22,10 @@ const ArticleTabs = ({ handlePay }) => {
           value={value}
           onChange={handleChange}
         >
-          <Tab label="category_A" />
-          <Tab label="category_B" />
-          <Tab label="category_C" />
-          <Tab label="category_D" />
+          <Tab label="Cross Chain" />
+          <Tab label="DeFi Derivatives" />
+          <Tab label="Alpha DAO" />
+          <Tab label="Opinion" />
         </Tabs>
       </Box>
       <Box sx={{ p: '32px 0' }}>

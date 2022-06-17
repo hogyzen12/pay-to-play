@@ -38,7 +38,7 @@ export const tickets = [
   //   possibleWinners: 0
   // },
   {
-    title: 'Pawnshop Gnomie 2685',
+    title: 'Pawnshop Gnomie #2685',
     image: raffle,
     redirect: routes.raffle,
     transitionDelay: 0.1,
@@ -50,7 +50,7 @@ export const tickets = [
     possibleWinners: 1,
   },
   {
-    title: 'Primate_7267',
+    title: 'Primate #7267',
     image: raffle2,
     redirect: routes.raffle,
     transitionDelay: 0.2,

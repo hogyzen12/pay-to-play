@@ -492,9 +492,10 @@ const App = () => {
             <Route
               index
               element={
-                <LimitedRoute
-                  component={<ArticlesPage handlePay={handlePay} />}
-                />
+                // <LimitedRoute
+                //   component={<ArticlesPage handlePay={handlePay} />}
+                // />
+                <ArticlesPage handlePay={handlePay} />
               }
             />
             {articlesRoutes.map(({ path, component: ArticlePage }) => (
@@ -502,8 +503,8 @@ const App = () => {
                 key={path}
                 path={path}
                 element={
-                  // <ArticlePage />
-                  <PrivateRoute component={<ArticlePage />} />
+                  <ArticlePage />
+                  // <PrivateRoute component={<ArticlePage />} />
                 }
               />
             ))}

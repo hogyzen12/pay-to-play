@@ -156,11 +156,19 @@ const AphaNineteen = ({ styles }) => (
       high yielding strategies.
     </Typography>
     <Link
-      sx={{ ...styles.link, mb: '24px', display: 'block' }}
+      sx={{
+        ...styles.link,
+        mb: '24px',
+        display: 'block',
+        maxWidth: { xs: '280px', md: '680px' },
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+      }}
       href="https://gov.premia.finance/#/proposal/0x671986784d3d842884e0ca5cabefcc0773c16f686ebc0aaed78ed0f32ea03b00"
       target="_blank"
     >
-      https://gov.premia.finance/#/proposal/0x671986784d...
+      https://gov.premia.finance/#/proposal/0x671986784d3d842884e0ca5cabefcc0773c16f686ebc0aaed78ed0f32ea03b00
     </Link>
     <Typography sx={styles.regular}>
       <Typography sx={styles.boldText} component="span">
@@ -179,11 +187,19 @@ const AphaNineteen = ({ styles }) => (
     </Typography>
 
     <Link
-      sx={{ ...styles.link, mb: '24px', display: 'block' }}
+      sx={{
+        ...styles.link,
+        mb: '24px',
+        display: 'block',
+        maxWidth: { xs: '280px', md: '680px' },
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+      }}
       href="https://gov.premia.finance/#/proposal/0xb33da0562b7715e583a11eae33da1b20dbd149171f32da1356284d329ba8c6a2"
       target="_blank"
     >
-      https://gov.premia.finance/#/proposal/0xb33da0562b7715...
+      https://gov.premia.finance/#/proposal/0xb33da0562b7715e583a11eae33da1b20dbd149171f32da1356284d329ba8c6a2
     </Link>
     <Typography
       sx={{ ...styles.regular, ...styles.boldText, ...styles.italicText }}

@@ -495,17 +495,13 @@ const App = () => {
                 <LimitedRoute
                   component={<ArticlesPage handlePay={handlePay} />}
                 />
-                // <ArticlesPage handlePay={handlePay} />
               }
             />
             {articlesRoutes.map(({ path, component: ArticlePage }) => (
               <Route
                 key={path}
                 path={path}
-                element={
-                  // <ArticlePage />
-                  <PrivateRoute component={<ArticlePage />} />
-                }
+                element={<PrivateRoute component={<ArticlePage />} />}
               />
             ))}
           </Route>

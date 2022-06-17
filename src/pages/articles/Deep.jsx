@@ -1,4 +1,5 @@
 import React from 'react';
+import { TwitterTweetEmbed } from 'react-twitter-embed';
 import {
   CardMedia,
   Typography,
@@ -388,11 +389,8 @@ const Deep = ({ styles }) => (
         Trading Leagues
       </Link>
     </Typography>
-    <iframe
-      title="dYdX"
-      src="https://twitter.com/dYdX/status/1485630433505251340"
-    ></iframe>
-    <Typography sx={styles.regular}>
+    <TwitterTweetEmbed tweetId={'1485630433505251340'} />
+    <Typography sx={{ ...styles.regular, mt: '24px' }}>
       An initiative designed to attract new users, and keep current users
       trading, the leagues gamify trading on the platform with some huge prizes
       up for grabs. Announced in January, the leagues are an innovative
@@ -479,11 +477,14 @@ const Deep = ({ styles }) => (
       released to the public on 10th May 2022, check out the announcement and
       video below to see how it works.
     </Typography>
-    <iframe
-      title="dYdX"
-      src="https://twitter.com/dYdX/status/1524053110582243328"
-    ></iframe>
-    <iframe title="dYdX" src="https://youtu.be/7BOA6cZdzHU"></iframe>
+    <TwitterTweetEmbed tweetId={'1524053110582243328'} />
+    <EmbeddedVideo
+      videoExpanded
+      fullScreen
+      videoLink="https://www.youtube.com/embed/7BOA6cZdzHU"
+      videoTitle="dYdX"
+      customStyles={{ height: '400px', mb: '32px', mt: '24px' }}
+    />
     <Typography sx={{ ...styles.regular, mb: '32px' }}>
       dYdX is one of the first DeFi protocols to launch a mobile app, and by far
       the largest. A vital tool, it differentiates them from their competitors
@@ -675,11 +676,8 @@ const Deep = ({ styles }) => (
       Happily, that doesn’t seem to be the case. dYdX intends to be fully
       decentralised by the end of 2022!
     </Typography>
-    <iframe
-      title="dYdX"
-      src="https://twitter.com/dYdX/status/1516477847791095808?ref_src=twsrctfw%7Ctwcamptweetembed%7Ctwterm1516477847791095808%7Ctwgr%7Ctwcons1_&amp;ref_url=https%3A%2F%2Fcointelegraph.com%2Fnews%2Fderivatives-exchange-dydx-to-become-100-decentralized-by-eoy"
-    ></iframe>
-    <Typography sx={styles.regular}>
+    <TwitterTweetEmbed tweetId={'1516477847791095808'} />
+    <Typography sx={{ ...styles.regular, mt: '24px' }}>
       With release of V4, expected by the end of 2022, the V3 API will stop
       being used, and instead, a fully decentralised perpetual contracts market
       API will ship, seeing a fully decentralised dYdX born.
@@ -862,11 +860,8 @@ const Deep = ({ styles }) => (
       Tweet below. Orbiter allows deposits from Arbitrum, zkSync, Polygon,
       Optimism and more (with considerably lower gas fees!).
     </Typography>
-    <iframe
-      title="dYdX"
-      src="https://twitter.com/dYdX/status/1526217744835813377.html"
-    ></iframe>
-    <Typography sx={styles.regular}>
+    <TwitterTweetEmbed tweetId={'1526217744835813377'} />
+    <Typography sx={{ ...styles.regular, mt: '24px' }}>
       I’ve tested Orbiter, and for anyone familiar with DeFi, it’s intuitive and
       simple to use, and a great tool for depositing to dYdX with low fees (as
       the deposit only costs around $2 and is near instant).

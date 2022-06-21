@@ -126,7 +126,7 @@ const Forex = ({ styles }) => (
     <Typography sx={styles.regular}>
       These are all valid solutions, and all are being used to move millions of
       dollars worth of assets daily. However, they each have their positives and
-      negatives – there is no “perfect” solution to the interoperability problem
+      negatives - there is no “perfect” solution to the interoperability problem
       (at least, not yet). So, which one takes the cake?
     </Typography>
     <Typography sx={styles.regular}>

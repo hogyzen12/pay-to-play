@@ -10,8 +10,10 @@ const ArticlesList = ({ articles, handlePay }) => {
     <Box
       sx={{
         ...styles.column,
-        [theme.breakpoints.up(1200)]: {
+        [theme.breakpoints.up('xl')]: {
           overflowY: articles.length > 3 ? 'scroll' : '',
+          gridTemplateColumns: 'repeat(1, 1fr)',
+          gridTemplateRows: 'repeat(3, 1fr)',
         },
       }}
     >

@@ -13,8 +13,11 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: { xs: 'start', 1200: 'center' },
-    maxWidth: { xl: '1700px' },
+    justifyContent: {
+      xs: 'start',
+      xl: 'center',
+    },
+    maxWidth: { xl: '1900px' },
   },
   title: {
     mb: '32px',
@@ -23,7 +26,7 @@ const styles = {
 
 const Articles = ({ handlePay }) => {
   const theme = useTheme();
-  const isDesktopView = useMediaQuery(theme.breakpoints.up(1200));
+  const isDesktopView = useMediaQuery(theme.breakpoints.up('xl'));
 
   return (
     <AppContainer size="xl" customStyles={styles.container}>

@@ -29,7 +29,7 @@ const ArticleTabs = ({ handlePay }) => {
           <Tab label="L2’s & roll ups" />
         </Tabs>
       </Box>
-      <Box sx={{ p: '32px 0' }}>
+      <Box sx={{ p: '32px 0', width: '100%' }}>
         <ArticlePanel value={value} index={0}>
           <ArticlesList articles={articles.categoryA} handlePay={handlePay} />
         </ArticlePanel>

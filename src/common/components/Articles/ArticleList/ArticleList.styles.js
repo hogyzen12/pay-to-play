@@ -1,9 +1,15 @@
 export const styles = {
   column: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '10px',
-    maxHeight: '1650px',
+    display: 'grid',
+    gridTemplateColumns: {
+      xs: 'repeat(1, 1fr)',
+      sm: 'repeat(1, 1fr)',
+      md: 'repeat(2, 1fr)',
+      lg: 'repeat(3, 1fr)',
+      xl: 'repeat(1, 1fr)',
+    },
+    gridGap: '8px',
+    maxHeight: '1696px',
 
     '&::-webkit-scrollbar': {
       width: '2px',
@@ -19,6 +25,6 @@ export const styles = {
     },
   },
   card: {
-    minHeight: '540px',
+    minHeight: { xs: '540px', xl: '560px' },
   },
 };

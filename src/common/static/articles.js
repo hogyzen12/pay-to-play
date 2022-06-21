@@ -39,7 +39,7 @@ export const articles = {
     {
       title: 'The Bridge to Crypto Wealth',
       description:
-        'We are rapidly approaching the end of the cross-chain communications series. Up till now, we have covered; the thesis, Liquidity Pools, Synthetic Assets, and Layer...',
+        'We are rapidly approaching the end of the cross-chain communications series. Up till now, we have covered; the thesis, Liquidity Pools...',
       image: wealth,
       available: true,
       redirect: `${routes.articles}/${routes.wealth}`,
@@ -87,7 +87,7 @@ export const articles = {
     {
       title: '30X: Alive & Well or...?',
       description:
-        'The question is no longer which chain will succeed and render the rest of them obsolete. As we have seen with Layer 1 SZN throughout...',
+        'The question is no longer which chain will succeed and render the rest of them obsolete. As we have seen with Layer 1 SZN...',
       image: alive,
       available: true,
       redirect: `${routes.articles}/${routes.alive}`,
@@ -103,7 +103,7 @@ export const articles = {
     {
       title: 'Simply Teleport your Coins',
       description:
-        'We have outlined the problem in the first part of this series - how to move assets and information efficiently and safely between otherwise isolated...',
+        'We have outlined the problem in the first part of this series - how to move assets and information efficiently...',
       image: teleport,
       available: true,
       redirect: `${routes.articles}/${routes.teleport}`,
@@ -132,12 +132,12 @@ export const articles = {
         shdw: false,
         free: false,
       },
-      latest: true,
+      latest: false,
     },
     {
       title: 'Leaping Into the Future(s)',
       description:
-        'The Babylonian dynasty King Hammurabi is not someone we mention often at Cryptonary. The Ancient Mesopotamia ruler, famous for establishing early written laws, could be...',
+        'The Babylonian dynasty King Hammurabi is not someone we mention often at Cryptonary. The Ancient Mesopotamia ruler...',
       image: future,
       available: true,
       redirect: `${routes.articles}/${routes.future}`,
@@ -153,7 +153,7 @@ export const articles = {
     {
       title: 'Premia Deep Dive',
       description:
-        'I’m no sorcerer, but after months of deep research, I’m confident I can leave the crystal ball at home, and still give you some grade-A alpha. - Max',
+        'I’m no sorcerer, but after months of deep research, I’m confident I can leave the crystal ball at home, and still...',
       image: premia,
       available: true,
       redirect: `${routes.articles}/${routes.premia}`,
@@ -171,7 +171,7 @@ export const articles = {
     {
       title: 'Alpha DAO: Proposal #20',
       description:
-        'Alpha-DAO is a new Decentralized Autonomous Organization created by seasoned crypto researchers. Disclaimer: This is not investment nor investment advice. Only you are responsible for...',
+        'Alpha-DAO is a new Decentralized Autonomous Organization created by seasoned crypto researchers. Disclaimer: This is not investment...',
       image: dao20,
       available: true,
       redirect: `${routes.articles}/${routes.alphaTwenty}`,
@@ -187,7 +187,7 @@ export const articles = {
     {
       title: 'Alpha-DAO: Proposal #19',
       description:
-        'Alpha-DAO is a new Decentralized Autonomous Organization created by seasoned crypto researchers. Disclaimer: This is not investment nor investment advice. Only you are...',
+        'Alpha-DAO is a new Decentralized Autonomous Organization created by seasoned...',
       image: dao19,
       available: true,
       redirect: `${routes.articles}/${routes.alphaNineteen}`,
@@ -203,7 +203,7 @@ export const articles = {
     {
       title: 'Alpha-DAO: Proposal #18',
       description:
-        "The Diamond Hands NFT project is backed by Cryptonary's team of leading industry experts and one of the biggest established communities in the crypto space.",
+        "The Diamond Hands NFT project is backed by Cryptonary's team of leading industry experts...",
       image: dao18,
       available: true,
       redirect: `${routes.articles}/${routes.alpha}`,
@@ -218,6 +218,23 @@ export const articles = {
     },
   ],
   categoryD: [
+    {
+      title: 'Inflation, Fiat, and the Fed',
+      description:
+        'We have had a lot of questions regarding inflation and monetary policy over the last couple of months...',
+      image:
+        'https://www.cryptonary.com/wp-content/uploads/2022/06/Without-other-ballons.png',
+      available: true,
+      redirect: `${routes.articles}/${routes.inflation}`,
+      transitionDelay: 0.2,
+      payment: {
+        sol: true,
+        dhmt: true,
+        shdw: false,
+        free: false,
+      },
+      latest: true,
+    },
     {
       title: 'Navigating the Bear Market',
       description:
@@ -238,7 +255,7 @@ export const articles = {
     {
       title: 'The Great Reset',
       description:
-        'Everyone is talking about The Great Reset, the only reset happening right now though is your portfolio... Over the past 7 months crypto has lost...',
+        'Everyone is talking about The Great Reset, the only reset happening right now though is your portfolio...',
       image: reset,
       available: true,
       redirect: `${routes.articles}/${routes.reset}`,
@@ -249,7 +266,7 @@ export const articles = {
         shdw: false,
         free: false,
       },
-      latest: true,
+      latest: false,
     },
     {
       title: 'Premium Article',
@@ -271,29 +288,12 @@ export const articles = {
     {
       title: 'Layer-2 Ecosystem Update',
       description:
-        'Yes, you heard it correctly! All the Layer-2 Alpha in one simple report. Major activities, outlooks, and updates that are bound to happen throughout the year in the L2 ecosystem can be...',
+        'Yes, you heard it correctly! All the Layer-2 Alpha in one simple report. Major activities, outlooks...',
       image:
         'https://www.cryptonary.com/wp-content/uploads/2022/06/Layer-2-Ecosystem-Update.png',
       available: true,
       redirect: `${routes.articles}/${routes.layerTwo}`,
       transitionDelay: 0.1,
-      payment: {
-        sol: true,
-        dhmt: true,
-        shdw: false,
-        free: false,
-      },
-      latest: true,
-    },
-    {
-      title: 'Inflation, Fiat, and the Fed',
-      description:
-        'We have had a lot of questions regarding inflation and monetary policy over the last couple of months, and not many people are aware of the impact...',
-      image:
-        'https://www.cryptonary.com/wp-content/uploads/2022/06/Without-other-ballons.png',
-      available: true,
-      redirect: `${routes.articles}/${routes.inflation}`,
-      transitionDelay: 0.2,
       payment: {
         sol: true,
         dhmt: true,

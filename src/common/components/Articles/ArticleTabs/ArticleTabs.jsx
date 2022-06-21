@@ -26,6 +26,7 @@ const ArticleTabs = ({ handlePay }) => {
           <Tab label="DeFi Derivatives" />
           <Tab label="Alpha DAO" />
           <Tab label="Opinion" />
+          <Tab label="L2’s & roll ups" />
         </Tabs>
       </Box>
       <Box sx={{ p: '32px 0' }}>
@@ -40,6 +41,9 @@ const ArticleTabs = ({ handlePay }) => {
         </ArticlePanel>
         <ArticlePanel value={value} index={3}>
           <ArticlesList articles={articles.categoryD} handlePay={handlePay} />
+        </ArticlePanel>
+        <ArticlePanel value={value} index={4}>
+          <ArticlesList articles={articles.categoryE} handlePay={handlePay} />
         </ArticlePanel>
       </Box>
     </>

@@ -6,19 +6,31 @@
     },
     "articles": {
       "title": "Diamond Hands Articles",
-      "description": "Diamond Hands Articles list"
+      "description": "Diamond Hands Articles"
+    },
+    "inflation": {
+      "title": "Inflation, Fiat, and the Fed",
+      "description": "We have had a lot of questions regarding inflation and monetary policy over the last couple of months, and not many people are aware of the impact and importance of inflation when dealing with financial markets."
+    },
+    "layer": {
+      "title": "Layer-2 Ecosystem Update",
+      "description": "Major activities, outlooks, and updates that are bound to happen throughout the year in the L2 ecosystem can be found in this report. Pure Alpha regarding Arbitrum, Optimism, StarkWare ecosystem, and zkSync."
+    },
+    "bear": {
+      "title": "Navigating the Bear Market",
+      "description": "Bear markets are frantic and frightening, but they are a natural part of the market cycle. Bull markets do not last forever, nor do bear markets. The latter are healthy and required for continued price appreciation."
     },
     "forex": {
       "title": "FOREX On-Chain",
-      "description": "Diamond Hands Articles list"
+      "description": "The time has come! We’re finally at the end of the cross-chain communications series. We’ve covered the most feasible methods of closing the gaps that exist between chains - but how can one gain exposure to this upside? We got you covered!"
     },
     "wealth": {
       "title": "The Bridge to Crypto Wealth",
-      "description": "Diamond Hands Articles list"
+      "description": "We are rapidly approaching the end of the cross-chain communications series. Up till now, we have covered; the thesis, Liquidity Pools, Synthetic Assets, and Layer 0 protocols."
     },
     "xchain": {
       "title": "Sliding into X-Chain DMs",
-      "description": "Diamond Hands Articles list"
+      "description": "Up till this point we have covered a few of the cross-chain solutions that allow for the transfer of wealth between chains. However, there is one area that we have yet to cover - cross-chain messaging."
     },
     "universe": {
       "title": "Multi-Chain Universe & Thesis",

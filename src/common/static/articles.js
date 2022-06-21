@@ -219,13 +219,30 @@ export const articles = {
   ],
   categoryD: [
     {
+      title: 'Navigating the Bear Market',
+      description:
+        'Bear markets are frantic and frightening, but they are a natural part of the market cycle. Bull markets do not last forever...',
+      image:
+        'https://www.cryptonary.com/wp-content/uploads/2022/06/NavBearMarket-1.jpg',
+      available: true,
+      redirect: `${routes.articles}/${routes.bearMarket}`,
+      transitionDelay: 0.1,
+      payment: {
+        sol: true,
+        dhmt: true,
+        shdw: false,
+        free: false,
+      },
+      latest: true,
+    },
+    {
       title: 'The Great Reset',
       description:
         'Everyone is talking about The Great Reset, the only reset happening right now though is your portfolio... Over the past 7 months crypto has lost...',
       image: reset,
       available: true,
       redirect: `${routes.articles}/${routes.reset}`,
-      transitionDelay: 0.1,
+      transitionDelay: 0.2,
       payment: {
         sol: true,
         dhmt: true,
@@ -240,7 +257,7 @@ export const articles = {
       image: premium,
       available: true,
       redirect: `${routes.articles}/${routes.premium}`,
-      transitionDelay: 0.2,
+      transitionDelay: 0.3,
       payment: {
         sol: true,
         dhmt: true,
@@ -248,6 +265,42 @@ export const articles = {
         free: false,
       },
       latest: false,
+    },
+  ],
+  categoryE: [
+    {
+      title: 'Layer-2 Ecosystem Update',
+      description:
+        'Yes, you heard it correctly! All the Layer-2 Alpha in one simple report. Major activities, outlooks, and updates that are bound to happen throughout the year in the L2 ecosystem can be...',
+      image:
+        'https://www.cryptonary.com/wp-content/uploads/2022/06/Layer-2-Ecosystem-Update.png',
+      available: true,
+      redirect: `${routes.articles}/${routes.layerTwo}`,
+      transitionDelay: 0.1,
+      payment: {
+        sol: true,
+        dhmt: true,
+        shdw: false,
+        free: false,
+      },
+      latest: true,
+    },
+    {
+      title: 'Inflation, Fiat, and the Fed',
+      description:
+        'We have had a lot of questions regarding inflation and monetary policy over the last couple of months, and not many people are aware of the impact...',
+      image:
+        'https://www.cryptonary.com/wp-content/uploads/2022/06/Without-other-ballons.png',
+      available: true,
+      redirect: `${routes.articles}/${routes.inflation}`,
+      transitionDelay: 0.2,
+      payment: {
+        sol: true,
+        dhmt: true,
+        shdw: false,
+        free: false,
+      },
+      latest: true,
     },
   ],
 };

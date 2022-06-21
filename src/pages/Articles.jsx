@@ -14,7 +14,7 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: { xs: 'start', 1200: 'center' },
-    maxWidth: { xl: '1600px' },
+    maxWidth: { xl: '1700px' },
   },
   title: {
     mb: '32px',

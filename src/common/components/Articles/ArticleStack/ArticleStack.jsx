@@ -10,6 +10,7 @@ const ArticleStack = ({ handlePay }) => {
       <ArticlesList articles={articles.categoryB} handlePay={handlePay} />
       <ArticlesList articles={articles.categoryC} handlePay={handlePay} />
       <ArticlesList articles={articles.categoryD} handlePay={handlePay} />
+      <ArticlesList articles={articles.categoryE} handlePay={handlePay} />
     </Stack>
   );
 };

@@ -86,6 +86,20 @@ export const ResetPage = lazy(() =>
   import('./pages/articles/Reset' /* webpackChunkName: "ResetPage" */),
 );
 
+export const BearMarketPage = lazy(() =>
+  import(
+    './pages/articles/BearMarket' /* webpackChunkName: "BearMarketPage" */
+  ),
+);
+
+export const LayerTwoPage = lazy(() =>
+  import('./pages/articles/LayerTwo' /* webpackChunkName: "LayerTwoPage" */),
+);
+
+export const InflationPage = lazy(() =>
+  import('./pages/articles/Inflation' /* webpackChunkName: "InflationPage" */),
+);
+
 export const NotFoundPage = lazy(() =>
   import('./pages/NotFound' /* webpackChunkName: "NotFoundPage" */),
 );
@@ -97,6 +111,9 @@ export const routes = {
   membership: 'membership',
   merchandise: 'merchandise',
   articles: 'articles',
+  bearMarket: 'bear-market',
+  layerTwo: 'layer-two',
+  inflation: 'inflation',
   new: 'new',
   deep: 'deep',
   alpha: 'alpha',
@@ -116,6 +133,9 @@ export const routes = {
 };
 
 export const articlesRoutes = [
+  { path: routes.inflation, component: InflationPage },
+  { path: routes.bearMarket, component: BearMarketPage },
+  { path: routes.layerTwo, component: LayerTwoPage },
   { path: routes.deep, component: DeepPage },
   { path: routes.reset, component: ResetPage },
   { path: routes.forex, component: ForexPage },

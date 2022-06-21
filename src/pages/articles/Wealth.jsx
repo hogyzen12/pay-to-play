@@ -22,12 +22,12 @@ const Wealth = ({ styles }) => (
       Synthetic Assets, and Layer 0 protocols.
     </Typography>
     <Typography sx={styles.regular}>
-      However, there is one solution that we have not covered – bridges.
+      However, there is one solution that we have not covered - bridges.
       Cross-chain bridges are the most commonly used method of moving assets
       between chains. But why have we left them till last?
     </Typography>
     <Typography sx={{ ...styles.regular, mb: '32px' }}>
-      Well, bridges come in many forms – and a few of the bridges out there also
+      Well, bridges come in many forms - and a few of the bridges out there also
       utilize concepts covered in the previous journals. So, without further
       ado, let’s dive into the expansive (and sometimes controversial) world of
       cross-chain bridges!

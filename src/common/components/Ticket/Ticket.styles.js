@@ -51,7 +51,23 @@ export const styles = {
   actions: {
     padding: '0',
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     mt: 'auto',
+  },
+  setButton: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: { xs: '2px 8px', md: '2px 8px' },
+    color: '#fff',
+    minWidth: 'fit-content',
+    p: '0',
+    m: '0 0 0 4px',
+    border: theme => `1px solid ${theme.palette.success.main}`,
+    '&:hover': {
+      borderColor: '#FFF',
+    },
+    icon: { width: '20px', height: '20px' },
   },
 };

@@ -8,7 +8,9 @@ import {
   CardContent,
   CardActions,
   Typography,
+  Button,
 } from '@mui/material';
+import { Add as AddIcon, Remove as RemoveIcon } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { useCountdown, useProvider } from 'common/hooks';
 import { PayButton, Countdown } from 'common/components';
@@ -41,6 +43,7 @@ const Ticket = ({
   },
   connection,
 }) => {
+  const [multiEntryDMNDsAmount, setMultiEntryDMNDsAmount] = useState(3);
   const [rafflesSold, setRafflesSold] = useState(0);
   const [winners, setWinners] = useState(0);
   const { provider, providerPubKey } = useProvider();
@@ -86,7 +89,13 @@ const Ticket = ({
     }
   }, [possibleWinners, rafflesSold, isExpired]);
 
-  const handlePayRaffle = async () => {
+  const handlePayRaffle = async (_, currency) => {
+    const isSingleEntry = currency === DMND + 'single';
+    const isMultiEntry = currency === DMND + 'multi';
+
+    console.log('%cIsSingleEntry', 'color: green', isSingleEntry);
+    console.log('%cIsMultiEntry', 'color: green', isMultiEntry);
+
     if (!providerPubKey) {
       dispatch(
         notificationOpened({
@@ -126,8 +135,13 @@ const Ticket = ({
        * Output the ATA to console to check manually
        * TODO!!!! ADD ERROR HANDLE IF ATA NOT FOUND
        */
-      console.log(diamondAddress.toString());
-      console.log(raffleAddress.toString());
+
+      console.log(
+        '%cDiamondAddress',
+        'color: green',
+        diamondAddress.toString(),
+      );
+      console.log('%cRaffleAddress', 'color: green', raffleAddress.toString());
       console.log('found ATA');
 
       if (!diamondAddress && !raffleAddress) {
@@ -152,22 +166,10 @@ const Ticket = ({
         diamondAddress,
       );
 
-      const raffleBalance = await connection.getTokenAccountBalance(
-        raffleAddress,
-      );
-
-      console.log(raffleBalance.value.uiAmount);
-
-      const entryValue = raffleBalance.value.uiAmount + 1;
-      console.log(entryValue);
-
-      const raffleEntryMemo = raffleMemo + entryValue.toString();
-      console.log(raffleEntryMemo);
-
       /*
        * Go here and check to see they can afford with diamonds
        */
-      if (diamondBalance?.value?.amount < 1) {
+      if (isSingleEntry && diamondBalance?.value?.amount < 1) {
         dispatch(
           notificationOpened({
             open: true,
@@ -179,6 +181,40 @@ const Ticket = ({
 
         return;
       }
+
+      if (
+        isMultiEntry &&
+        diamondBalance?.value?.amount < multiEntryDMNDsAmount
+      ) {
+        dispatch(
+          notificationOpened({
+            open: true,
+            message: 'Not enough balance, please fund your wallet',
+            severity: 'info',
+            tx: '',
+          }),
+        );
+
+        return;
+      }
+
+      /*
+       *
+       */
+
+      const raffleBalance = await connection.getTokenAccountBalance(
+        raffleAddress,
+      );
+      console.log('%cUiAmount', 'color: green', raffleBalance.value.uiAmount);
+
+      const DMNDamount = isMultiEntry ? multiEntryDMNDsAmount : 1; // !UPDATED ROW
+      console.log('%cDMNDamount set by user', 'color: green', DMNDamount);
+
+      const entryValue = raffleBalance.value.uiAmount + DMNDamount; // !UPDATED ROW
+      console.log('%cEntryValue', 'color: green', entryValue);
+
+      const raffleEntryMemo = raffleMemo + entryValue.toString();
+      console.log('%cRaffleEntryMemo', 'color: green', raffleEntryMemo);
 
       /*
        * Time to get them to send us their Diamond
@@ -196,7 +232,7 @@ const Ticket = ({
         providerPubKey,
         raffleWalletPublicKey,
         diamondBalance.value.amount,
-        diamondsRequiredToPlay,
+        isMultiEntry ? multiEntryDMNDsAmount : diamondsRequiredToPlay, // !UPDATED ROW
         raffleEntryMemo,
       );
 
@@ -239,6 +275,16 @@ const Ticket = ({
         }),
       );
     }
+  };
+
+  const handleIncreaseAmount = () => {
+    setMultiEntryDMNDsAmount(multiEntryDMNDsAmount + 1);
+  };
+
+  const handleDecreaseAmount = () => {
+    if (multiEntryDMNDsAmount <= 1) return;
+
+    setMultiEntryDMNDsAmount(multiEntryDMNDsAmount - 1);
   };
 
   return (
@@ -300,11 +346,41 @@ const Ticket = ({
         {!isExpired && (
           <PayButton
             title="Purchase raffle entry (1 DMND)"
-            currency={DMND}
+            currency={DMND + 'single'}
             amount={DHMTamount}
             handlePay={handlePayRaffle}
             selectedPage={selectedPage}
+            customStyles={{ mb: 1, width: '100%' }}
           />
+        )}
+        {!isExpired && (
+          <Box
+            sx={{
+              display: 'flex',
+              width: '100%',
+            }}
+          >
+            <PayButton
+              title={`entry (${multiEntryDMNDsAmount} DMND)`}
+              currency={DMND + 'multi'}
+              amount={DHMTamount}
+              handlePay={handlePayRaffle}
+              selectedPage={selectedPage}
+              customStyles={{ width: '100%' }}
+            />
+            <Box
+              sx={{
+                display: 'flex',
+              }}
+            >
+              <Button sx={styles.setButton} onClick={handleIncreaseAmount}>
+                <AddIcon sx={styles.icon} />
+              </Button>
+              <Button sx={styles.setButton} onClick={handleDecreaseAmount}>
+                <RemoveIcon sx={styles.icon} />
+              </Button>
+            </Box>
+          </Box>
         )}
       </CardActions>
     </Card>

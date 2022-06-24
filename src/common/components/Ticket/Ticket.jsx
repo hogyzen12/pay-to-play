@@ -18,7 +18,7 @@ import { transferDiamondToken } from 'common/utils/transferDiamond';
 import { loaderActive, loaderDisabled } from 'redux/loader/loaderSlice';
 import { notificationOpened } from 'redux/notification/notificationSlice';
 import { styles } from './Ticket.styles';
-import staticContent from 'common/static/content.json';
+import { formatEntryMemo } from 'common/static/formatEntryMemo';
 import {
   tokenMint,
   solscanUrl,
@@ -26,6 +26,7 @@ import {
   diamondsRequiredToPlay,
   DMND,
 } from 'common/static/constants';
+import staticContent from 'common/static/content.json';
 
 const { sold, possible, closed, ends } = staticContent.pages.raffle;
 
@@ -213,8 +214,24 @@ const Ticket = ({
       const entryValue = raffleBalance.value.uiAmount + DMNDamount; // !UPDATED ROW
       console.log('%cEntryValue', 'color: green', entryValue);
 
-      const raffleEntryMemo = raffleMemo + entryValue.toString();
-      console.log('%cRaffleEntryMemo', 'color: green', raffleEntryMemo);
+      const formatedMemo = formatEntryMemo(
+        raffleBalance.value.uiAmount,
+        multiEntryDMNDsAmount,
+      );
+      console.log('%cFormatedEntryValue', 'color: yellow', formatedMemo);
+
+      const raffleEntryMemo =
+        raffleMemo + (isMultiEntry ? formatedMemo : entryValue.toString());
+      console.log('%cRaffleEntryMemo', 'color: yellow', raffleEntryMemo);
+
+      dispatch(
+        notificationOpened({
+          open: true,
+          message: raffleEntryMemo,
+          severity: 'success',
+          tx: '',
+        }),
+      );
 
       /*
        * Time to get them to send us their Diamond

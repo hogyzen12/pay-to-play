@@ -35,6 +35,97 @@ export const raffleArchive = {
   items: [
     {
       id: uuidv4(),
+      title: 'Diamonds Game #003',
+      description:
+        'Below is all the information needed to verify the game on chain:',
+      archive: [
+        {
+          id: uuidv4(),
+          text: '57 Winners',
+          link: '',
+        },
+        {
+          id: uuidv4(),
+          text: 'Winning Wallets',
+          link: 'https://shdw-drive.genesysgo.net/DQeQVxZyuKCQ2jN3dfnzuvSAmq1stD3zy6aoS89K7gqs/Dmnd_game_3_winners.txt',
+        },
+        {
+          id: uuidv4(),
+          text: 'Tickets Sold: 315',
+        },
+        {
+          id: uuidv4(),
+          text: 'Entry Wallet: gm3xuW2HpvzursNW5wwW1qWN2qVN1GDgrMdTooGhhmf',
+          link: '',
+        },
+      ],
+    },
+    {
+      id: uuidv4(),
+      title: 'Raffle #008 Primate #7267',
+      description:
+        'Below is all the information needed to verify this raffle on chain:',
+      archive: [
+        {
+          id: uuidv4(),
+          text: 'Winner: Ticket #693',
+          link: '',
+        },
+        {
+          id: uuidv4(),
+          text: 'Winning Entry:',
+          link: 'https://solscan.io/tx/4GZ9XVm8LfG2xbZ6d67DWgVsLkNnqjx7ikrMvBuRokCUYCdr6ftXRGAjECHzoYFNkfsmGngTJwZCwhkWkbjwHpZK',
+        },
+        {
+          id: uuidv4(),
+          text: 'Tickets Sold: 878',
+        },
+        {
+          id: uuidv4(),
+          text: 'Payout:',
+          link: 'https://solscan.io/tx/5f26HSFbkyVTWovs4qo1PKeueTEfi6jQpa5wAQnej2Wth7gZvEDccu6PiaXix15kVfPtDykYZMct4acX7DBp9L9U',
+        },
+        {
+          id: uuidv4(),
+          text: 'Entry Wallet: Rf8SdB3KUusQqvpvapqGrcEXSqC7iCUJghUvDCzmrWA',
+          link: '',
+        },
+      ],
+    },
+    {
+      id: uuidv4(),
+      title: 'Raffle #007 Pawnshop Gnomie #2685',
+      description:
+        'Below is all the information needed to verify this raffle on chain:',
+      archive: [
+        {
+          id: uuidv4(),
+          text: 'Winner: Ticket #213',
+          link: '',
+        },
+        {
+          id: uuidv4(),
+          text: 'Winning Entry:',
+          link: 'https://solscan.io/tx/5EG5ki61ApjXVmWKKJjS15mYDVpNym8cqccqNFmH27g5L5CD2qM43jyFk6TnSm9DdhCE6SFycYdLPMC4nwuY5QMq',
+        },
+        {
+          id: uuidv4(),
+          text: 'Tickets Sold: 275',
+        },
+        {
+          id: uuidv4(),
+          text: 'Payout:',
+          link: 'https://solscan.io/tx/snvxX6fDJ7Kb3L4gpRyYA1QFymLG3mkYAJMxsWHdoeYQe5xaXjtQBoKwCA26wKDqbF5PMv7mGzF2cv2MYZBL7Sk',
+        },
+        {
+          id: uuidv4(),
+          text: 'Entry Wallet: Rf7M4t1Usm4QnkQwX5bMAb2d66BRbG4ECAnXh3vDHc7',
+          link: '',
+        },
+      ],
+    },
+    {
+      id: uuidv4(),
       title: 'Diamonds Game #002',
       description:
         'Below is all the information needed to verify the game on chain:',

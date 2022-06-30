@@ -24,8 +24,8 @@ export let lamportsRequiredToPlay = 0.1 * LAMPORTS_PER_SOL;
 export let diamondsRequiredToPlay = 1;
 
 export let utilMemo = 'DMND utility being used';
-export let firstRaffleMemo = 'Gnomie Raffle Entry ';
-export let secondRaffleMemo = 'Primates Raffle Entry ';
+export let firstRaffleMemo = 'KEN Raffle Entry ';
+export let secondRaffleMemo = 'APE Raffle Entry ';
 export let diamondsGameRaffleMemo = 'Diamonds Game 3 Entry ';
 
 export const totalQuestions =
@@ -46,14 +46,14 @@ export const memberPubkey = new PublicKey(
 export const crosswordWalletPublicKey = new PublicKey(
   'CrsYhHpyajSeQCT5SnJCYng1sxJF3Emrm5P95Ku1hkWZ',
 );
-export const gnomeRafflePublicKey = new PublicKey(
-  'Rf7M4t1Usm4QnkQwX5bMAb2d66BRbG4ECAnXh3vDHc7',
+export const firstRafflePublicKey = new PublicKey(
+  'Rf95CoDxjD8hAPr1MZdtmCBNhkyuNavnRgHG8Pe9576',
 );
-export const primateRafflePublicKey = new PublicKey(
-  'Rf8SdB3KUusQqvpvapqGrcEXSqC7iCUJghUvDCzmrWA',
+export const secondRafflePublicKey = new PublicKey(
+  'RfxFd2qBgEhsaHZEDbwcNZMcHuNTJZmyeccvX4Psa1k',
 );
 export const diamondsGameRafflePublicKey = new PublicKey(
-  'gm3xuW2HpvzursNW5wwW1qWN2qVN1GDgrMdTooGhhmf',
+  'gm4z57YiQbZuGFFz2Ya8XutENP9t6L2woXBGc698k3c',
 );
 
 export const initialAlertState = {

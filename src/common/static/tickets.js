@@ -1,5 +1,5 @@
-import raffle from 'assets/image/raffles/Pawnshop_gnomie_2685.png';
-import raffle2 from 'assets/image/raffles/Primate_7267.png';
+import raffle from 'assets/image/raffles/Kenoko_2089.png';
+import raffle2 from 'assets/image/raffles/Ape_1089.png';
 import raffle3 from 'assets/image/raffles/diamonds_game.png';
 import { routes } from 'routes';
 
@@ -7,8 +7,8 @@ import {
   firstRaffleMemo,
   secondRaffleMemo,
   diamondsGameRaffleMemo,
-  gnomeRafflePublicKey,
-  primateRafflePublicKey,
+  firstRafflePublicKey,
+  secondRafflePublicKey,
   diamondsGameRafflePublicKey,
 } from './constants';
 
@@ -38,27 +38,27 @@ export const tickets = [
   //   possibleWinners: 0
   // },
   {
-    title: 'Pawnshop Gnomie #2685',
+    title: 'Kenoko #2089 & #1624',
     image: raffle,
     redirect: routes.raffle,
     transitionDelay: 0.1,
     buttonText: 'Purchase raffle entry (1 DMND)',
-    targetDate: 'Jun 24, 2022',
+    targetDate: 'Jul 8, 2022',
     targetTime: '15:00:00',
     raffleMemo: firstRaffleMemo,
-    raffleWalletPublicKey: gnomeRafflePublicKey,
-    possibleWinners: 1,
+    raffleWalletPublicKey: firstRafflePublicKey,
+    possibleWinners: 2,
   },
   {
-    title: 'Primate #7267',
+    title: 'Ape #1089',
     image: raffle2,
     redirect: routes.raffle,
     transitionDelay: 0.2,
     buttonText: 'Purchase raffle entry (1 DMND)',
-    targetDate: 'Jun 24, 2022',
+    targetDate: 'Jul 8, 2022',
     targetTime: '15:00:00',
     raffleMemo: secondRaffleMemo,
-    raffleWalletPublicKey: primateRafflePublicKey,
+    raffleWalletPublicKey: secondRafflePublicKey,
     possibleWinners: 1,
   },
   {
@@ -67,7 +67,7 @@ export const tickets = [
     redirect: routes.raffle,
     transitionDelay: 0.3,
     buttonText: 'Purchase game entry (1 DMND)',
-    targetDate: 'Jun 24, 2022',
+    targetDate: 'Jul 8, 2022',
     targetTime: '15:00:00',
     raffleMemo: diamondsGameRaffleMemo,
     raffleWalletPublicKey: diamondsGameRafflePublicKey,

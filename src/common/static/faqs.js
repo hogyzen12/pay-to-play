@@ -35,6 +35,107 @@ export const raffleArchive = {
   items: [
     {
       id: uuidv4(),
+      title: 'Diamonds Game #004',
+      description:
+        'Below is all the information needed to verify the game on chain:',
+      archive: [
+        {
+          id: uuidv4(),
+          text: '73 Winners',
+          link: '',
+        },
+        {
+          id: uuidv4(),
+          text: 'Winning Wallets',
+          link: 'https://shdw-drive.genesysgo.net/GCa7qSu8Xz65NU1JfBTdNHUjJjLpjMwhHLFnSFd4XGgp/winners_gm4.pdf',
+        },
+        {
+          id: uuidv4(),
+          text: 'Tickets Sold: 439',
+        },
+        {
+          id: uuidv4(),
+          text: 'Entry Wallet: gm4z57YiQbZuGFFz2Ya8XutENP9t6L2woXBGc698k3c',
+          link: '',
+        },
+      ],
+    },
+    {
+      id: uuidv4(),
+      title: 'Raffle #010 Just Ape #1089',
+      description:
+        'Below is all the information needed to verify this raffle on chain:',
+      archive: [
+        {
+          id: uuidv4(),
+          text: 'Winner: Ticket #409',
+          link: '',
+        },
+        {
+          id: uuidv4(),
+          text: 'Winning Entry:',
+          link: 'https://solscan.io/tx/2ZE5kofGBTxyyiyJYfJugAAqtFKwN529BQ6pd6EVE4u6HWwLsuhDSvSvUrxVUp11YrM8BYLxAiwDtZfnmLcRcogW',
+        },
+        {
+          id: uuidv4(),
+          text: 'Tickets Sold: 694',
+        },
+        {
+          id: uuidv4(),
+          text: 'Payout:',
+          link: 'https://solscan.io/tx/2uRRuko4q6WnLw3CEhZRy72aXux3FWwnFeNyJ2JpyYrJcvJzs8co81eJmdbxz9dAp2Vp6qeNoS9Grv7eyftsXPfd',
+        },
+        {
+          id: uuidv4(),
+          text: 'Entry Wallet: RfxFd2qBgEhsaHZEDbwcNZMcHuNTJZmyeccvX4Psa1k',
+          link: '',
+        },
+      ],
+    },
+    {
+      id: uuidv4(),
+      title: 'Raffle #009 Kenoko #1624 & #2089',
+      description:
+        'Below is all the information needed to verify this raffle on chain:',
+      archive: [
+        {
+          id: uuidv4(),
+          text: 'Winners: Ticket #69 & #251',
+          link: '',
+        },
+        {
+          id: uuidv4(),
+          text: 'Winning Entry: #69',
+          link: 'https://solscan.io/tx/3WwRSQ2YuAcdqbZNK6mf9Wk66zezP4was9NJmEac7sSPgmsYPLqE4E99UyjNAkQ5wY1jzbBYxqBwHVtHWXUN3eZJ',
+        },
+        {
+          id: uuidv4(),
+          text: 'Winning Entry: #251',
+          link: 'https://solscan.io/tx/5aFisEeNsHVPVXScW7FnVosGsbPREwVNjGXVXkbfr46bZjwieCRznmzimJATa2fJ6kvLQg7i7TonKyA8Ya4fPmQu',
+        },
+        {
+          id: uuidv4(),
+          text: 'Tickets Sold: 447',
+        },
+        {
+          id: uuidv4(),
+          text: 'Payout: #69 - Kenoko #1624',
+          link: 'https://solscan.io/tx/4jrbxfAvAymWGuYnFVD4zhVVaUHHnpUKH2o2jhFtyAxbQsn5DEERYuCWtiCghpnFUxJ3xBBaV81D8acsWaWqQe2V',
+        },
+        {
+          id: uuidv4(),
+          text: 'Payout: #251 - Kenoko #2089',
+          link: 'https://solscan.io/tx/SYQZegkgB7U3PHgjg1gyVuMP8RQ88xSSmwVjMXUHrH7q3q8AYsHZTSbBVxwNa8fT1CFRDRGoLcvcaubV7saCAQ8',
+        },
+        {
+          id: uuidv4(),
+          text: 'Entry Wallet: Rf95CoDxjD8hAPr1MZdtmCBNhkyuNavnRgHG8Pe9576',
+          link: '',
+        },
+      ],
+    },
+    {
+      id: uuidv4(),
       title: 'Diamonds Game #003',
       description:
         'Below is all the information needed to verify the game on chain:',
